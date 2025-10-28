@@ -454,6 +454,156 @@ export const clearAllData = mutation({
   },
 });
 
+// Gamecenter-specific queries
+
+// Get top matchups by total score (shootouts)
+export const getTopMatchups = query({
+  args: { limit: v.optional(v.number()) },
+  handler: async (ctx, args) => {
+    const limit = args.limit || 10;
+    const matchups = await ctx.db.query("matchups").collect();
+    
+    // Calculate total score for each matchup and sort
+    const matchupsWithTotalScore = matchups.map(matchup => ({
+      ...matchup,
+      totalScore: matchup.homeScore + matchup.awayScore
+    })).sort((a, b) => b.totalScore - a.totalScore);
+    
+    return matchupsWithTotalScore.slice(0, limit);
+  },
+});
+
+// Get lowest scoring matchups (snoozers)
+export const getLowestMatchups = query({
+  args: { limit: v.optional(v.number()) },
+  handler: async (ctx, args) => {
+    const limit = args.limit || 10;
+    const matchups = await ctx.db.query("matchups").collect();
+    
+    // Calculate total score for each matchup and sort
+    const matchupsWithTotalScore = matchups.map(matchup => ({
+      ...matchup,
+      totalScore: matchup.homeScore + matchup.awayScore
+    })).sort((a, b) => a.totalScore - b.totalScore);
+    
+    return matchupsWithTotalScore.slice(0, limit);
+  },
+});
+
+// Get biggest blowouts (largest margin of victory)
+export const getBiggestBlowouts = query({
+  args: { limit: v.optional(v.number()) },
+  handler: async (ctx, args) => {
+    const limit = args.limit || 10;
+    const matchups = await ctx.db.query("matchups").collect();
+    
+    // Calculate margin for each matchup and sort
+    const matchupsWithMargin = matchups.map(matchup => ({
+      ...matchup,
+      margin: Math.abs(matchup.homeScore - matchup.awayScore)
+    })).sort((a, b) => b.margin - a.margin);
+    
+    return matchupsWithMargin.slice(0, limit);
+  },
+});
+
+// Get closest matchups (nailbiters)
+export const getClosestMatchups = query({
+  args: { limit: v.optional(v.number()) },
+  handler: async (ctx, args) => {
+    const limit = args.limit || 10;
+    const matchups = await ctx.db.query("matchups").collect();
+    
+    // Calculate margin for each matchup and sort
+    const matchupsWithMargin = matchups.map(matchup => ({
+      ...matchup,
+      margin: Math.abs(matchup.homeScore - matchup.awayScore)
+    })).sort((a, b) => a.margin - b.margin);
+    
+    return matchupsWithMargin.slice(0, limit);
+  },
+});
+
+// Get championship matchups
+export const getChampionshipMatchups = query({
+  args: { limit: v.optional(v.number()) },
+  handler: async (ctx, args) => {
+    const limit = args.limit || 10;
+    const matchups = await ctx.db.query("matchups")
+      .filter((q) => q.eq(q.field("gameType"), "CHAMPIONSHIP"))
+      .collect();
+    
+    // Sort by season and week
+    return matchups.sort((a, b) => {
+      // We'll need to get season data to sort properly
+      return b.createdAt - a.createdAt; // For now, sort by creation time
+    }).slice(0, limit);
+  },
+});
+
+// Get matchups by week for a specific season
+export const getMatchupsByWeek = query({
+  args: { 
+    seasonId: v.id("seasons"),
+    week: v.number()
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db.query("matchups")
+      .withIndex("bySeasonAndWeek", (q) => q.eq("seasonId", args.seasonId).eq("week", args.week))
+      .collect();
+  },
+});
+
+// Get matchup statistics for a specific matchup
+export const getMatchupStats = query({
+  args: { matchupId: v.id("matchups") },
+  handler: async (ctx, args) => {
+    const matchup = await ctx.db.get(args.matchupId);
+    if (!matchup) return null;
+    
+    // Get teams
+    const homeTeam = await ctx.db.get(matchup.homeTeamId);
+    const awayTeam = await ctx.db.get(matchup.awayTeamId);
+    
+    if (!homeTeam || !awayTeam) return null;
+    
+    // Get season data for league averages
+    const season = await ctx.db.get(matchup.seasonId);
+    if (!season) return null;
+    
+    // Get all matchups for this season to calculate league average
+    const seasonMatchups = await ctx.db.query("matchups")
+      .withIndex("bySeason", (q) => q.eq("seasonId", matchup.seasonId))
+      .collect();
+    
+    const leagueAvgScore = seasonMatchups.length > 0 
+      ? seasonMatchups.reduce((sum, m) => sum + m.homeScore + m.awayScore, 0) / (seasonMatchups.length * 2)
+      : 0;
+    
+    // Calculate team averages
+    const homeTeamAvg = homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses);
+    const awayTeamAvg = awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses);
+    
+    // Calculate luck factors (simplified)
+    const homeLuckFactor = ((matchup.homeScore - homeTeamAvg) / homeTeamAvg) * 100;
+    const awayLuckFactor = ((matchup.awayScore - awayTeamAvg) / awayTeamAvg) * 100;
+    
+    return {
+      matchup,
+      homeTeam,
+      awayTeam,
+      season,
+      leagueAvgScore,
+      homeTeamAvg,
+      awayTeamAvg,
+      homeLuckFactor,
+      awayLuckFactor,
+      margin: Math.abs(matchup.homeScore - matchup.awayScore),
+      totalScore: matchup.homeScore + matchup.awayScore
+    };
+  },
+});
+
 // Clean up duplicate data in the database
 export const cleanupDuplicates = mutation({
   args: {},

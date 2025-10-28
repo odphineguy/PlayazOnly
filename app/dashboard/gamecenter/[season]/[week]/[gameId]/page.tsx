@@ -21,6 +21,7 @@ export default function GameDetailPage() {
   const teams = useQuery(api.fantasyFootball.getAllTeams);
   const seasons = useQuery(api.fantasyFootball.getAllSeasons);
   const allMatchups = useQuery(api.fantasyFootball.getAllMatchups);
+  const matchupStats = useQuery(api.fantasyFootball.getMatchupStats, { matchupId: gameId as any });
 
   // Get team data
   const homeTeam = teams?.find(team => team._id === matchup?.homeTeamId);
@@ -71,13 +72,13 @@ export default function GameDetailPage() {
         pointsRank: homeTeam.standing,
         coachScore: (homeTeam.wins / (homeTeam.wins + homeTeam.losses)) * 100,
         coachRank: homeTeam.standing,
-        luckFactor: Math.random() * 100 - 50, // Placeholder for now
-        totalYards: Math.floor(Math.random() * 200) + 300, // Placeholder
-        touchdowns: Math.floor(Math.random() * 4) + 1, // Placeholder
-        fieldGoals: Math.floor(Math.random() * 3) + 1, // Placeholder
-        turnovers: Math.floor(Math.random() * 3), // Placeholder
-        penalties: Math.floor(Math.random() * 5) + 2, // Placeholder
-        timeOfPossession: `${Math.floor(Math.random() * 10) + 25}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`
+        luckFactor: matchupStats?.homeLuckFactor || 0,
+        totalYards: Math.floor(matchup.homeScore * 2.5), // Estimate based on score
+        touchdowns: Math.floor(matchup.homeScore / 6), // Estimate based on score
+        fieldGoals: Math.floor((matchup.homeScore % 6) / 3), // Estimate based on score
+        turnovers: Math.floor(Math.random() * 2), // Random for now
+        penalties: Math.floor(Math.random() * 3) + 1, // Random for now
+        timeOfPossession: `${Math.floor(Math.random() * 5) + 28}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`
       }
     },
     team2: {
@@ -94,13 +95,13 @@ export default function GameDetailPage() {
         pointsRank: awayTeam.standing,
         coachScore: (awayTeam.wins / (awayTeam.wins + awayTeam.losses)) * 100,
         coachRank: awayTeam.standing,
-        luckFactor: Math.random() * 100 - 50, // Placeholder for now
-        totalYards: Math.floor(Math.random() * 200) + 300, // Placeholder
-        touchdowns: Math.floor(Math.random() * 4) + 1, // Placeholder
-        fieldGoals: Math.floor(Math.random() * 3) + 1, // Placeholder
-        turnovers: Math.floor(Math.random() * 3), // Placeholder
-        penalties: Math.floor(Math.random() * 5) + 2, // Placeholder
-        timeOfPossession: `${Math.floor(Math.random() * 10) + 25}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`
+        luckFactor: matchupStats?.awayLuckFactor || 0,
+        totalYards: Math.floor(matchup.awayScore * 2.5), // Estimate based on score
+        touchdowns: Math.floor(matchup.awayScore / 6), // Estimate based on score
+        fieldGoals: Math.floor((matchup.awayScore % 6) / 3), // Estimate based on score
+        turnovers: Math.floor(Math.random() * 2), // Random for now
+        penalties: Math.floor(Math.random() * 3) + 1, // Random for now
+        timeOfPossession: `${Math.floor(Math.random() * 5) + 28}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`
       }
     },
     gameType: matchup.gameType === "CHAMPIONSHIP" ? "Championship" : 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -17,18 +17,59 @@ import {
   ResponsiveContainer,
   Legend
 } from "recharts";
-import { useQuery } from "convex/react";
+import { useQuery, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
 export default function GamecenterPage() {
   const [selectedSeason, setSelectedSeason] = useState("2019");
   const [selectedWeek, setSelectedWeek] = useState("16");
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   // Get all seasons and leagues
   const leagues = useQuery(api.fantasyFootball.getAllLeagues);
-  const seasons = useQuery(api.fantasyFootball.getAllSeasons);
-  const allMatchups = useQuery(api.fantasyFootball.getAllMatchups);
+  const seasonsRaw = useQuery(api.fantasyFootball.getAllSeasons);
+  const allMatchupsRaw = useQuery(api.fantasyFootball.getAllMatchups);
   const teamsRaw = useQuery(api.fantasyFootball.getAllTeams);
+
+  // Import ESPN data if no teams exist
+  const importEspnData = useMutation(api.importAllEspnData.importAllEspnData);
+  const hasData = teamsRaw && teamsRaw.length > 0;
+
+  // Auto-import data if database has insufficient data or missing matchups
+  useEffect(() => {
+    const needsImport =
+      (!teamsRaw || teamsRaw.length < 50) || // Less than 50 teams
+      (!allMatchupsRaw || allMatchupsRaw.length < 100) || // Less than 100 matchups
+      (teamsRaw && teamsRaw.length > 0 && !teamsRaw[0].ownerDisplayName); // Missing owner data
+
+    if (needsImport && !isDataLoaded) {
+      console.log('Incomplete data detected, importing ESPN data...', {
+        teamsCount: teamsRaw?.length,
+        matchupsCount: allMatchupsRaw?.length,
+        hasOwnerData: teamsRaw?.[0]?.ownerDisplayName
+      });
+      setIsDataLoaded(true);
+      importEspnData().catch((error) => {
+        console.error('Auto-import failed:', error);
+        setIsDataLoaded(false);
+      });
+    }
+  }, [teamsRaw, seasonsRaw, allMatchupsRaw, importEspnData, isDataLoaded]);
+
+  // Deduplicate seasons by year (keep most recent)
+  const seasons = (() => {
+    if (!seasonsRaw) return null;
+
+    const seasonsByYear = new Map();
+    seasonsRaw.forEach(season => {
+      const existing = seasonsByYear.get(season.year);
+      if (!existing || season.createdAt > existing.createdAt) {
+        seasonsByYear.set(season.year, season);
+      }
+    });
+
+    return Array.from(seasonsByYear.values()).sort((a, b) => a.year - b.year);
+  })();
 
   // Deduplicate teams by seasonId + name (keep most recent)
   const teams = (() => {
@@ -46,26 +87,35 @@ export default function GamecenterPage() {
     return Array.from(teamsBySeasonAndName.values());
   })();
 
+  // Use processed data
+  const allMatchups = allMatchupsRaw;
+  
+  // Get categorized matchups for the "Matchups by Category" section
+  const topMatchups = useQuery(api.fantasyFootball.getTopMatchups, { limit: 5 });
+  const lowestMatchups = useQuery(api.fantasyFootball.getLowestMatchups, { limit: 5 });
+  const biggestBlowouts = useQuery(api.fantasyFootball.getBiggestBlowouts, { limit: 5 });
+  const closestMatchups = useQuery(api.fantasyFootball.getClosestMatchups, { limit: 5 });
+  const championshipMatchups = useQuery(api.fantasyFootball.getChampionshipMatchups, { limit: 5 });
+
+  // Debug logging
+  console.log('Gamecenter Debug:', {
+    topMatchups: topMatchups?.length,
+    lowestMatchups: lowestMatchups?.length,
+    biggestBlowouts: biggestBlowouts?.length,
+    closestMatchups: closestMatchups?.length,
+    championshipMatchups: championshipMatchups?.length,
+    teams: teams?.length,
+    seasons: seasons?.length,
+    allMatchups: allMatchups?.length
+  });
+
   // Get the current league (assuming first one for now)
   const currentLeague = leagues?.[0];
 
-  // Get seasons for the current league and deduplicate by year (keep most recent)
-  const leagueSeasons = (() => {
-    const allSeasons = seasons?.filter(season =>
-      currentLeague && season.leagueId === currentLeague._id
-    ) || [];
-
-    // Deduplicate by year - keep the most recently created entry
-    const seasonsByYear = new Map();
-    allSeasons.forEach(season => {
-      const existing = seasonsByYear.get(season.year);
-      if (!existing || season.createdAt > existing.createdAt) {
-        seasonsByYear.set(season.year, season);
-      }
-    });
-
-    return Array.from(seasonsByYear.values()).sort((a, b) => a.year - b.year);
-  })();
+  // Get seasons for the current league
+  const leagueSeasons = seasons?.filter(season =>
+    currentLeague && season.leagueId === currentLeague._id
+  ) || [];
 
   // Get matchups for the selected season
   const selectedSeasonData = leagueSeasons.find(s => s.year.toString() === selectedSeason);
@@ -326,165 +376,113 @@ export default function GamecenterPage() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             
-            {/* Column 1 - Top Matchups */}
+            {/* Column 1 - Top Matchups (Shootouts) */}
             <div className="space-y-4">
               {/* Individual Matchups */}
               <div className="space-y-3">
-                <Link href="/dashboard/gamecenter/2019/16/championship-1" className="block">
-                  <div className="bg-gray-50 rounded-lg p-3 hover:bg-gray-100 transition-colors cursor-pointer">
-                    <div className="text-xs text-gray-500 mb-1">2019 Week 16 CHAMPIONSHIP</div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium">South Side Delinquents</span>
-                      <div className="flex items-center space-x-2">
-                        <span className="text-green-600 font-bold">121.10</span>
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span className="text-red-600 font-bold">120.40</span>
+                {!topMatchups ? (
+                  <div className="text-center py-4 text-gray-500">Loading...</div>
+                ) : topMatchups.length === 0 ? (
+                  <div className="text-center py-4 text-gray-500">No data available</div>
+                ) : (
+                  topMatchups.map((matchup) => {
+                  const homeTeam = getTeam(matchup.homeTeamId);
+                  const awayTeam = getTeam(matchup.awayTeamId);
+                  const homeTeamName = getTeamName(matchup.homeTeamId);
+                  const awayTeamName = getTeamName(matchup.awayTeamId);
+                  const homeWon = matchup.homeScore > matchup.awayScore;
+                  const awayWon = matchup.awayScore > matchup.homeScore;
+                  
+                  // Get season year for display
+                  const season = seasons?.find(s => s._id === matchup.seasonId);
+                  
+                  return (
+                    <Link 
+                      key={matchup._id}
+                      href={`/dashboard/gamecenter/${season?.year || '2024'}/${matchup.week}/${matchup._id}`}
+                      className="block"
+                    >
+                      <div className="bg-gray-50 rounded-lg p-3 hover:bg-gray-100 transition-colors cursor-pointer">
+                        <div className="text-xs text-gray-500 mb-1">
+                          {season?.year || '2024'} Week {matchup.week} {matchup.gameType === 'CHAMPIONSHIP' ? 'CHAMPIONSHIP' : matchup.gameType === 'PLAYOFF' ? 'PLAYOFFS' : ''}
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium">{homeTeamName}</span>
+                          <div className="flex items-center space-x-2">
+                            <span className={`${homeWon ? 'text-green-600' : 'text-red-600'} font-bold`}>
+                              {matchup.homeScore.toFixed(2)}
+                            </span>
+                            <div className={`w-2 h-2 ${homeWon ? 'bg-green-500' : 'bg-red-500'} rounded-full`}></div>
+                            <span className={`${awayWon ? 'text-green-600' : 'text-red-600'} font-bold`}>
+                              {matchup.awayScore.toFixed(2)}
+                            </span>
+                          </div>
+                          <span className="text-sm font-medium">{awayTeamName}</span>
+                        </div>
                       </div>
-                      <span className="text-sm font-medium">What would Breesus do?</span>
-                    </div>
-                  </div>
-                </Link>
-
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">2019 Week 15 PLAYOFFS</div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Killer Beers</span>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-red-600 font-bold">148.40</span>
-                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                      <span className="text-green-600 font-bold">149.30</span>
-                    </div>
-                    <span className="text-sm font-medium">South Side Delinquents</span>
-                  </div>
-                </div>
-
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">2020 Week 1</div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">South Side Delinquents</span>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-green-600 font-bold">111.60</span>
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-red-600 font-bold">111.60</span>
-                    </div>
-                    <span className="text-sm font-medium">Chandler TopFeeders</span>
-                  </div>
-                </div>
-
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">2019 Week 14 PLAYOFFS</div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Young Money Cash Money</span>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-red-600 font-bold">89.30</span>
-                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                      <span className="text-green-600 font-bold">121.40</span>
-                    </div>
-                    <span className="text-sm font-medium">Killer Beers</span>
-                  </div>
-                </div>
-
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">2018 Week 12</div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Mad Men</span>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-green-600 font-bold">134.20</span>
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-red-600 font-bold">98.70</span>
-                    </div>
-                    <span className="text-sm font-medium">Pat Mahballz</span>
-                  </div>
-                </div>
+                    </Link>
+                  );
+                  })
+                )}
               </div>
 
               {/* Top Matchups Card */}
               <div className="bg-gradient-to-br from-orange-50 to-red-50 border border-orange-200 rounded-lg p-4">
                 <div className="flex items-center space-x-2 mb-2">
                   <span className="text-xl">🔥</span>
-                  <h3 className="font-semibold text-gray-800">Top Matchups</h3>
+                  <h3 className="font-semibold text-gray-800">Shootouts</h3>
                 </div>
                 <p className="text-sm text-gray-600 mb-3">
-                  We ranked every matchup in your league history - by importance, by performance, rivals, game of the weeks, and more - and this is the top of the top! View even more from this category below!
+                  The highest scoring matchups in league history! These are the slugfests where both teams brought their A-game.
                 </p>
                 <Button variant="ghost" className="text-orange-600 hover:text-orange-700 p-0 h-auto">
-                  More Top Matchups <ArrowRight className="w-4 h-4 ml-1" />
+                  More Shootouts <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>
               </div>
             </div>
 
-            {/* Column 2 - Shootouts & Snoozers */}
+            {/* Column 2 - Snoozers */}
             <div className="space-y-4">
               {/* Individual Matchups */}
               <div className="space-y-3">
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">2018 Week 10</div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Mad Men</span>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-red-600 font-bold">154.40</span>
-                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                      <span className="text-green-600 font-bold">176.60</span>
-                    </div>
-                    <span className="text-sm font-medium">Pat Mahballz</span>
-                  </div>
-                </div>
-
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">2019 Week 5</div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">South Side Delinquents</span>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-green-600 font-bold">186.30</span>
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-red-600 font-bold">138.70</span>
-                    </div>
-                    <span className="text-sm font-medium">Mad Men</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Shootouts Card */}
-              <div className="bg-gradient-to-br from-yellow-50 to-orange-50 border border-yellow-200 rounded-lg p-4">
-                <div className="flex items-center space-x-2 mb-2">
-                  <span className="text-xl">💥</span>
-                  <h3 className="font-semibold text-gray-800">Shootouts</h3>
-                </div>
-                <p className="text-sm text-gray-600 mb-3">
-                  Slugfest! These are the top scoring matchups in league history. View the top 5 here or continue below to view even more.
-                </p>
-                <Button variant="ghost" className="text-yellow-600 hover:text-yellow-700 p-0 h-auto">
-                  More Shootouts <ArrowRight className="w-4 h-4 ml-1" />
-                </Button>
-              </div>
-
-              {/* More Individual Matchups */}
-              <div className="space-y-3">
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">2018 Week 15</div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Miami Big D Big Sack</span>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-green-600 font-bold">64.30</span>
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-red-600 font-bold">64.10</span>
-                    </div>
-                    <span className="text-sm font-medium">Chandler cardsdude</span>
-                  </div>
-                </div>
-
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">2019 Week 16</div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Cock Blockers</span>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-red-600 font-bold">51.00</span>
-                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                      <span className="text-green-600 font-bold">78.10</span>
-                    </div>
-                    <span className="text-sm font-medium">BOTTOM FEEDER</span>
-                  </div>
-                </div>
+                {lowestMatchups?.map((matchup) => {
+                  const homeTeam = getTeam(matchup.homeTeamId);
+                  const awayTeam = getTeam(matchup.awayTeamId);
+                  const homeTeamName = getTeamName(matchup.homeTeamId);
+                  const awayTeamName = getTeamName(matchup.awayTeamId);
+                  const homeWon = matchup.homeScore > matchup.awayScore;
+                  const awayWon = matchup.awayScore > matchup.homeScore;
+                  
+                  // Get season year for display
+                  const season = seasons?.find(s => s._id === matchup.seasonId);
+                  
+                  return (
+                    <Link 
+                      key={matchup._id}
+                      href={`/dashboard/gamecenter/${season?.year || '2024'}/${matchup.week}/${matchup._id}`}
+                      className="block"
+                    >
+                      <div className="bg-gray-50 rounded-lg p-3 hover:bg-gray-100 transition-colors cursor-pointer">
+                        <div className="text-xs text-gray-500 mb-1">
+                          {season?.year || '2024'} Week {matchup.week} {matchup.gameType === 'CHAMPIONSHIP' ? 'CHAMPIONSHIP' : matchup.gameType === 'PLAYOFF' ? 'PLAYOFFS' : ''}
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium">{homeTeamName}</span>
+                          <div className="flex items-center space-x-2">
+                            <span className={`${homeWon ? 'text-green-600' : 'text-red-600'} font-bold`}>
+                              {matchup.homeScore.toFixed(2)}
+                            </span>
+                            <div className={`w-2 h-2 ${homeWon ? 'bg-green-500' : 'bg-red-500'} rounded-full`}></div>
+                            <span className={`${awayWon ? 'text-green-600' : 'text-red-600'} font-bold`}>
+                              {matchup.awayScore.toFixed(2)}
+                            </span>
+                          </div>
+                          <span className="text-sm font-medium">{awayTeamName}</span>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
 
               {/* Snoozers Card */}
@@ -494,7 +492,7 @@ export default function GamecenterPage() {
                   <h3 className="font-semibold text-gray-800">Snoozers</h3>
                 </div>
                 <p className="text-sm text-gray-600 mb-3">
-                  These are the lowest scoring matchups, how boring! View the top 5 here or continue below to view even more.
+                  The lowest scoring matchups in league history. These games were... well, let's just say they weren't the most exciting.
                 </p>
                 <Button variant="ghost" className="text-blue-600 hover:text-blue-700 p-0 h-auto">
                   More Snoozers <ArrowRight className="w-4 h-4 ml-1" />
@@ -504,33 +502,46 @@ export default function GamecenterPage() {
 
             {/* Column 3 - Blowouts & Nailbiters */}
             <div className="space-y-4">
-              {/* Individual Matchups */}
+              {/* Blowouts */}
               <div className="space-y-3">
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">2020 Week 16 PLAYOFFS</div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Mad Men</span>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-green-600 font-bold">160.60</span>
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-red-600 font-bold">57.10</span>
-                    </div>
-                    <span className="text-sm font-medium">Cock Blockers</span>
-                  </div>
-                </div>
-
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">2018 Week 11</div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Pat Mahballz</span>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-green-600 font-bold">184.30</span>
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-red-600 font-bold">96.60</span>
-                    </div>
-                    <span className="text-sm font-medium">Killer Beers</span>
-                  </div>
-                </div>
+                {biggestBlowouts?.slice(0, 2).map((matchup) => {
+                  const homeTeam = getTeam(matchup.homeTeamId);
+                  const awayTeam = getTeam(matchup.awayTeamId);
+                  const homeTeamName = getTeamName(matchup.homeTeamId);
+                  const awayTeamName = getTeamName(matchup.awayTeamId);
+                  const homeWon = matchup.homeScore > matchup.awayScore;
+                  const awayWon = matchup.awayScore > matchup.homeScore;
+                  
+                  // Get season year for display
+                  const season = seasons?.find(s => s._id === matchup.seasonId);
+                  
+                  return (
+                    <Link 
+                      key={matchup._id}
+                      href={`/dashboard/gamecenter/${season?.year || '2024'}/${matchup.week}/${matchup._id}`}
+                      className="block"
+                    >
+                      <div className="bg-gray-50 rounded-lg p-3 hover:bg-gray-100 transition-colors cursor-pointer">
+                        <div className="text-xs text-gray-500 mb-1">
+                          {season?.year || '2024'} Week {matchup.week} {matchup.gameType === 'CHAMPIONSHIP' ? 'CHAMPIONSHIP' : matchup.gameType === 'PLAYOFF' ? 'PLAYOFFS' : ''}
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium">{homeTeamName}</span>
+                          <div className="flex items-center space-x-2">
+                            <span className={`${homeWon ? 'text-green-600' : 'text-red-600'} font-bold`}>
+                              {matchup.homeScore.toFixed(2)}
+                            </span>
+                            <div className={`w-2 h-2 ${homeWon ? 'bg-green-500' : 'bg-red-500'} rounded-full`}></div>
+                            <span className={`${awayWon ? 'text-green-600' : 'text-red-600'} font-bold`}>
+                              {matchup.awayScore.toFixed(2)}
+                            </span>
+                          </div>
+                          <span className="text-sm font-medium">{awayTeamName}</span>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
 
               {/* Blowouts Card */}
@@ -540,40 +551,53 @@ export default function GamecenterPage() {
                   <h3 className="font-semibold text-gray-800">Blowouts</h3>
                 </div>
                 <p className="text-sm text-gray-600 mb-3">
-                  Hope you're on the right side of the largest blowouts in history! View the top 5 here or continue below to view more.
+                  The biggest margins of victory in league history. Hope you were on the winning side!
                 </p>
                 <Button variant="ghost" className="text-purple-600 hover:text-purple-700 p-0 h-auto">
                   More Blowouts <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>
               </div>
 
-              {/* More Individual Matchups */}
+              {/* Nailbiters */}
               <div className="space-y-3">
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">2018 Week 15</div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Miami Big D Big Sack</span>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-green-600 font-bold">64.30</span>
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-red-600 font-bold">64.10</span>
-                    </div>
-                    <span className="text-sm font-medium">Chandler cardsdude</span>
-                  </div>
-                </div>
-
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">2020 Week 6</div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Cock Blockers</span>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-green-600 font-bold">86.00</span>
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-red-600 font-bold">85.60</span>
-                    </div>
-                    <span className="text-sm font-medium">South Side Delinquents</span>
-                  </div>
-                </div>
+                {closestMatchups?.slice(0, 2).map((matchup) => {
+                  const homeTeam = getTeam(matchup.homeTeamId);
+                  const awayTeam = getTeam(matchup.awayTeamId);
+                  const homeTeamName = getTeamName(matchup.homeTeamId);
+                  const awayTeamName = getTeamName(matchup.awayTeamId);
+                  const homeWon = matchup.homeScore > matchup.awayScore;
+                  const awayWon = matchup.awayScore > matchup.homeScore;
+                  
+                  // Get season year for display
+                  const season = seasons?.find(s => s._id === matchup.seasonId);
+                  
+                  return (
+                    <Link 
+                      key={matchup._id}
+                      href={`/dashboard/gamecenter/${season?.year || '2024'}/${matchup.week}/${matchup._id}`}
+                      className="block"
+                    >
+                      <div className="bg-gray-50 rounded-lg p-3 hover:bg-gray-100 transition-colors cursor-pointer">
+                        <div className="text-xs text-gray-500 mb-1">
+                          {season?.year || '2024'} Week {matchup.week} {matchup.gameType === 'CHAMPIONSHIP' ? 'CHAMPIONSHIP' : matchup.gameType === 'PLAYOFF' ? 'PLAYOFFS' : ''}
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium">{homeTeamName}</span>
+                          <div className="flex items-center space-x-2">
+                            <span className={`${homeWon ? 'text-green-600' : 'text-red-600'} font-bold`}>
+                              {matchup.homeScore.toFixed(2)}
+                            </span>
+                            <div className={`w-2 h-2 ${homeWon ? 'bg-green-500' : 'bg-red-500'} rounded-full`}></div>
+                            <span className={`${awayWon ? 'text-green-600' : 'text-red-600'} font-bold`}>
+                              {matchup.awayScore.toFixed(2)}
+                            </span>
+                          </div>
+                          <span className="text-sm font-medium">{awayTeamName}</span>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
 
               {/* Nailbiters Card */}
@@ -583,7 +607,7 @@ export default function GamecenterPage() {
                   <h3 className="font-semibold text-gray-800">Nailbiters</h3>
                 </div>
                 <p className="text-sm text-gray-600 mb-3">
-                  A sigh of relief for one, pain for the other: the closest matchups in league history.
+                  The closest matchups in league history. These games came down to the wire!
                 </p>
                 <Button variant="ghost" className="text-green-600 hover:text-green-700 p-0 h-auto">
                   More Nailbiters <ArrowRight className="w-4 h-4 ml-1" />
@@ -595,44 +619,44 @@ export default function GamecenterPage() {
             <div className="space-y-4">
               {/* Championship Matchups */}
               <div className="space-y-3">
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">2020 Week 16 CHAMPIONSHIP</div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Young Money Cash Money</span>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-red-600 font-bold">93.50</span>
-                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                      <span className="text-green-600 font-bold">113.70</span>
-                    </div>
-                    <span className="text-sm font-medium">South Side Delinquents</span>
-                  </div>
-                </div>
-
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">2019 Week 16 CHAMPIONSHIP</div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">What would Breesus do?</span>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-red-600 font-bold">120.40</span>
-                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                      <span className="text-green-600 font-bold">121.10</span>
-                    </div>
-                    <span className="text-sm font-medium">South Side Delinquents</span>
-                  </div>
-                </div>
-
-                <div className="bg-gray-50 rounded-lg p-3">
-                  <div className="text-xs text-gray-500 mb-1">2018 Week 16 CHAMPIONSHIP</div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Mad Men</span>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-green-600 font-bold">136.30</span>
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-red-600 font-bold">86.90</span>
-                    </div>
-                    <span className="text-sm font-medium">Killer Beers</span>
-                  </div>
-                </div>
+                {championshipMatchups?.map((matchup) => {
+                  const homeTeam = getTeam(matchup.homeTeamId);
+                  const awayTeam = getTeam(matchup.awayTeamId);
+                  const homeTeamName = getTeamName(matchup.homeTeamId);
+                  const awayTeamName = getTeamName(matchup.awayTeamId);
+                  const homeWon = matchup.homeScore > matchup.awayScore;
+                  const awayWon = matchup.awayScore > matchup.homeScore;
+                  
+                  // Get season year for display
+                  const season = seasons?.find(s => s._id === matchup.seasonId);
+                  
+                  return (
+                    <Link 
+                      key={matchup._id}
+                      href={`/dashboard/gamecenter/${season?.year || '2024'}/${matchup.week}/${matchup._id}`}
+                      className="block"
+                    >
+                      <div className="bg-gray-50 rounded-lg p-3 hover:bg-gray-100 transition-colors cursor-pointer">
+                        <div className="text-xs text-gray-500 mb-1">
+                          {season?.year || '2024'} Week {matchup.week} CHAMPIONSHIP
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium">{homeTeamName}</span>
+                          <div className="flex items-center space-x-2">
+                            <span className={`${homeWon ? 'text-green-600' : 'text-red-600'} font-bold`}>
+                              {matchup.homeScore.toFixed(2)}
+                            </span>
+                            <div className={`w-2 h-2 ${homeWon ? 'bg-green-500' : 'bg-red-500'} rounded-full`}></div>
+                            <span className={`${awayWon ? 'text-green-600' : 'text-red-600'} font-bold`}>
+                              {matchup.awayScore.toFixed(2)}
+                            </span>
+                          </div>
+                          <span className="text-sm font-medium">{awayTeamName}</span>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
 
               {/* Championships Card */}
@@ -642,7 +666,7 @@ export default function GamecenterPage() {
                   <h3 className="font-semibold text-gray-800">Championships</h3>
                 </div>
                 <p className="text-sm text-gray-600 mb-3">
-                  Where all the glory goes - the Championship matchups from your league history. Check out the history of what it all comes down too.
+                  Where all the glory goes - the Championship matchups from your league history. These are the games that matter most!
                 </p>
                 <Button variant="ghost" className="text-yellow-600 hover:text-yellow-700 p-0 h-auto">
                   More Championships <ArrowRight className="w-4 h-4 ml-1" />
@@ -656,3 +680,4 @@ export default function GamecenterPage() {
     </div>
   );
 }
+console.log('NEXT_PUBLIC_CONVEX_URL:', process.env.NEXT_PUBLIC_CONVEX_URL);
