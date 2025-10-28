@@ -30,24 +30,28 @@ export default function HistoryPage() {
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   // Fetch real data from Convex
-  const allTimeStandings = useMutation(api.importAllEspnData.getAllTimeStandings);
-  const allTeamsWithSeasons = useMutation(api.importAllEspnData.getAllTeamsWithSeasons);
   const importAllData = useMutation(api.importAllEspnData.importAllEspnData);
+  const [allTimeStandings, setAllTimeStandings] = useState<any[]>([]);
+  const [allTeamsWithSeasons, setAllTeamsWithSeasons] = useState<any[]>([]);
 
   // Initialize data if not loaded
   useEffect(() => {
-    if (!isDataLoaded && allTeamsWithSeasons && allTeamsWithSeasons.length === 0) {
-      importAllData().then(() => {
-        setIsDataLoaded(true);
-      });
-    } else if (allTeamsWithSeasons && allTeamsWithSeasons.length > 0) {
-      setIsDataLoaded(true);
-    }
-  }, [allTeamsWithSeasons, isDataLoaded, importAllData]);
+    const loadData = async () => {
+      if (!isDataLoaded) {
+        try {
+          await importAllData();
+          setIsDataLoaded(true);
+        } catch (error) {
+          console.error('Error loading data:', error);
+        }
+      }
+    };
+    loadData();
+  }, [isDataLoaded, importAllData]);
 
   // Initialize selected teams when data loads
   useEffect(() => {
-    if (allTimeStandings && Object.keys(selectedTeams).length === 0) {
+    if (allTimeStandings && allTimeStandings.length > 0 && Object.keys(selectedTeams).length === 0) {
       const initialSelection: Record<string, boolean> = {};
       allTimeStandings.forEach(team => {
         initialSelection[team.teamName] = true;
