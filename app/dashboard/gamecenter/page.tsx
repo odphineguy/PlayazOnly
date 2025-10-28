@@ -21,8 +21,8 @@ import { useQuery, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
 export default function GamecenterPage() {
-  const [selectedSeason, setSelectedSeason] = useState("2019");
-  const [selectedWeek, setSelectedWeek] = useState("16");
+  const [selectedSeason, setSelectedSeason] = useState("2020");
+  const [selectedWeek, setSelectedWeek] = useState("1");
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   // Get all seasons and leagues
@@ -117,11 +117,36 @@ export default function GamecenterPage() {
     currentLeague && season.leagueId === currentLeague._id
   ) || [];
 
+  // Auto-select first available season and week with data
+  useEffect(() => {
+    if (leagueSeasons.length > 0 && allMatchups && allMatchups.length > 0) {
+      // Find the first season with matchups
+      const seasonWithData = leagueSeasons.find(season => {
+        const seasonMatchups = allMatchups.filter(matchup => matchup.seasonId === season._id);
+        return seasonMatchups.length > 0;
+      });
+
+      if (seasonWithData) {
+        setSelectedSeason(seasonWithData.year.toString());
+        
+        // Find the first week with matchups for this season
+        const seasonMatchups = allMatchups.filter(matchup => matchup.seasonId === seasonWithData._id);
+        const weeks = [...new Set(seasonMatchups.map(m => m.week))].sort((a, b) => a - b);
+        if (weeks.length > 0) {
+          setSelectedWeek(weeks[0].toString());
+        }
+      }
+    }
+  }, [leagueSeasons, allMatchups]);
+
   // Get matchups for the selected season
   const selectedSeasonData = leagueSeasons.find(s => s.year.toString() === selectedSeason);
   const seasonMatchups = allMatchups?.filter(matchup => 
     selectedSeasonData && matchup.seasonId === selectedSeasonData._id
   ) || [];
+
+  // Get available weeks for the selected season
+  const availableWeeks = [...new Set(seasonMatchups.map(m => m.week))].sort((a, b) => a - b);
 
   // Get current week matchups
   const currentMatchups = seasonMatchups.filter(matchup => 
@@ -271,7 +296,7 @@ export default function GamecenterPage() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {Array.from({ length: 18 }, (_, i) => i + 1).map(week => (
+                    {availableWeeks.map(week => (
                       <SelectItem key={week} value={week.toString()}>
                         {week}
                       </SelectItem>
@@ -286,7 +311,10 @@ export default function GamecenterPage() {
           <div className="space-y-6">
             {currentMatchups.length === 0 ? (
               <div className="text-center py-8 text-gray-500">
-                No matchups found for {selectedSeason} Week {selectedWeek}
+                {availableWeeks.length === 0 ? 
+                  `No matchups found for ${selectedSeason}` : 
+                  `No matchups found for ${selectedSeason} Week ${selectedWeek}. Available weeks: ${availableWeeks.join(', ')}`
+                }
               </div>
             ) : (
               currentMatchups.map((matchup, index) => {
