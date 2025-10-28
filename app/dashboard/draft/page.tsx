@@ -113,7 +113,13 @@ export default function DraftPage() {
     });
     
     // Calculate grades for each team
-    const grades = [];
+    const grades: Array<{
+      team: string;
+      grade: string;
+      picks: number;
+      avgValue: string;
+      bestPick: string;
+    }> = [];
     teamPicks.forEach((picks, teamId) => {
       const team = teams.find(t => t._id === teamId);
       if (team) {
@@ -144,7 +150,13 @@ export default function DraftPage() {
     });
     
     // Calculate trends for each round
-    const trends = [];
+    const trends: Array<{
+      round: number;
+      avgPoints: string;
+      qbCount: string;
+      rbCount: string;
+      wrCount: string;
+    }> = [];
     roundData.forEach((picks, round) => {
       trends.push({
         round,
