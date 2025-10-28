@@ -381,69 +381,25 @@ export const getAllTeams = query({
   },
 });
 
-// Matchup Management Functions
-export const createMatchup = mutation({
-  args: {
-    leagueId: v.id("leagues"),
-    seasonId: v.id("seasons"),
-    week: v.number(),
-    homeTeamId: v.id("teams"),
-    awayTeamId: v.id("teams"),
-    homeScore: v.number(),
-    awayScore: v.number(),
-    gameType: v.string(),
-  },
-  handler: async (ctx, args) => {
-    const now = Date.now();
-    return await ctx.db.insert("matchups", {
-      ...args,
-      createdAt: now,
-      updatedAt: now,
-    });
-  },
-});
+// Debug: Check what owner data we have
+export const debugTeamOwners = query({
+  args: {},
+  handler: async (ctx) => {
+    const teams = await ctx.db.query("teams").collect();
+    const sample = teams.slice(0, 20).map(t => ({
+      name: t.name,
+      ownerDisplayName: t.ownerDisplayName,
+      wins: t.wins,
+      losses: t.losses,
+      seasonId: t.seasonId
+    }));
 
-export const getMatchupsBySeason = query({
-  args: { seasonId: v.id("seasons") },
-  handler: async (ctx, args) => {
-    return await ctx.db
-      .query("matchups")
-      .withIndex("bySeason", (q) => q.eq("seasonId", args.seasonId))
-      .order("asc")
-      .collect();
-  },
-});
-
-export const getMatchupsBySeasonAndWeek = query({
-  args: { 
-    seasonId: v.id("seasons"),
-    week: v.number(),
-  },
-  handler: async (ctx, args) => {
-    return await ctx.db
-      .query("matchups")
-      .withIndex("bySeasonAndWeek", (q) => 
-        q.eq("seasonId", args.seasonId).eq("week", args.week)
-      )
-      .collect();
-  },
-});
-
-export const getMatchupsByLeague = query({
-  args: { leagueId: v.id("leagues") },
-  handler: async (ctx, args) => {
-    return await ctx.db
-      .query("matchups")
-      .withIndex("byLeague", (q) => q.eq("leagueId", args.leagueId))
-      .order("desc")
-      .collect();
-  },
-});
-
-export const getMatchupById = query({
-  args: { matchupId: v.id("matchups") },
-  handler: async (ctx, args) => {
-    return await ctx.db.get(args.matchupId);
+    return {
+      totalTeams: teams.length,
+      sample,
+      uniqueOwners: [...new Set(teams.map(t => t.ownerDisplayName))],
+      uniqueTeamNames: [...new Set(teams.map(t => t.name))]
+    };
   },
 });
 
@@ -455,37 +411,149 @@ export const getAllMatchups = query({
   },
 });
 
-// Get matchup statistics for a season
-export const getSeasonMatchupStats = query({
-  args: { seasonId: v.id("seasons") },
-  handler: async (ctx, args) => {
-    const matchups = await ctx.db
-      .query("matchups")
-      .withIndex("bySeason", (q) => q.eq("seasonId", args.seasonId))
-      .collect();
-
-    if (matchups.length === 0) {
-      return {
-        totalMatchups: 0,
-        averageScore: 0,
-        highestScore: 0,
-        lowestScore: 0,
-        totalPoints: 0,
-      };
+// Clear all fantasy football data (for re-importing fresh data)
+export const clearAllData = mutation({
+  args: {},
+  handler: async (ctx) => {
+    // Delete in order: teams, seasons, leagues (to avoid foreign key issues)
+    const teams = await ctx.db.query("teams").collect();
+    for (const team of teams) {
+      await ctx.db.delete(team._id);
     }
 
-    const allScores = matchups.flatMap(m => [m.homeScore, m.awayScore]);
-    const totalPoints = allScores.reduce((sum, score) => sum + score, 0);
-    const averageScore = totalPoints / allScores.length;
-    const highestScore = Math.max(...allScores);
-    const lowestScore = Math.min(...allScores);
+    const matchups = await ctx.db.query("matchups").collect();
+    for (const matchup of matchups) {
+      await ctx.db.delete(matchup._id);
+    }
+
+    const seasons = await ctx.db.query("seasons").collect();
+    for (const season of seasons) {
+      await ctx.db.delete(season._id);
+    }
+
+    const leagues = await ctx.db.query("leagues").collect();
+    for (const league of leagues) {
+      await ctx.db.delete(league._id);
+    }
 
     return {
-      totalMatchups: matchups.length,
-      averageScore: parseFloat(averageScore.toFixed(2)),
-      highestScore,
-      lowestScore,
-      totalPoints: parseFloat(totalPoints.toFixed(2)),
+      message: "All data cleared successfully!",
+      teamsDeleted: teams.length,
+      matchupsDeleted: matchups.length,
+      seasonsDeleted: seasons.length,
+      leaguesDeleted: leagues.length
+    };
+  },
+});
+
+// Clean up duplicate data in the database
+export const cleanupDuplicates = mutation({
+  args: {},
+  handler: async (ctx) => {
+    let deletedSeasons = 0;
+    let deletedTeams = 0;
+    let deletedLeagues = 0;
+
+    // 1. Remove duplicate leagues (keep oldest "Playaz Only" league)
+    const allLeagues = await ctx.db.query("leagues").collect();
+    const playazLeagues = allLeagues.filter(l => l.name === "Playaz Only");
+
+    if (playazLeagues.length > 1) {
+      // Sort by createdAt, keep the oldest
+      playazLeagues.sort((a, b) => a.createdAt - b.createdAt);
+      const keepLeague = playazLeagues[0];
+
+      // Delete duplicates
+      for (let i = 1; i < playazLeagues.length; i++) {
+        await ctx.db.delete(playazLeagues[i]._id);
+        deletedLeagues++;
+      }
+
+      // Use the kept league for cleanup
+      const leagueId = keepLeague._id;
+
+      // 2. Remove duplicate seasons for this league (keep most recent for each year)
+      const allSeasons = await ctx.db.query("seasons")
+        .withIndex("byLeague", (q) => q.eq("leagueId", leagueId))
+        .collect();
+
+      const seasonsByYear = new Map();
+      allSeasons.forEach(season => {
+        const existing = seasonsByYear.get(season.year);
+        if (!existing || season.createdAt > existing.createdAt) {
+          if (existing) {
+            seasonsByYear.set(season.year, { keep: season, duplicates: [existing, ...(seasonsByYear.get(season.year)?.duplicates || [])] });
+          } else {
+            seasonsByYear.set(season.year, { keep: season, duplicates: [] });
+          }
+        } else {
+          const current = seasonsByYear.get(season.year);
+          seasonsByYear.set(season.year, {
+            keep: current.keep,
+            duplicates: [...current.duplicates, season]
+          });
+        }
+      });
+
+      // Delete duplicate seasons and their teams
+      for (const [year, { keep, duplicates }] of seasonsByYear) {
+        for (const dupSeason of duplicates) {
+          // Delete all teams for this duplicate season
+          const teamsToDelete = await ctx.db.query("teams")
+            .withIndex("bySeason", (q) => q.eq("seasonId", dupSeason._id))
+            .collect();
+
+          for (const team of teamsToDelete) {
+            await ctx.db.delete(team._id);
+            deletedTeams++;
+          }
+
+          // Delete the duplicate season
+          await ctx.db.delete(dupSeason._id);
+          deletedSeasons++;
+        }
+      }
+
+      // 3. Remove duplicate teams within kept seasons (same seasonId + name)
+      const keptSeasons = Array.from(seasonsByYear.values()).map(s => s.keep);
+      for (const season of keptSeasons) {
+        const seasonTeams = await ctx.db.query("teams")
+          .withIndex("bySeason", (q) => q.eq("seasonId", season._id))
+          .collect();
+
+        const teamsByName = new Map();
+        seasonTeams.forEach(team => {
+          const existing = teamsByName.get(team.name);
+          if (!existing || team.createdAt > existing.createdAt) {
+            if (existing) {
+              teamsByName.set(team.name, { keep: team, duplicates: [existing, ...(teamsByName.get(team.name)?.duplicates || [])] });
+            } else {
+              teamsByName.set(team.name, { keep: team, duplicates: [] });
+            }
+          } else {
+            const current = teamsByName.get(team.name);
+            teamsByName.set(team.name, {
+              keep: current.keep,
+              duplicates: [...current.duplicates, team]
+            });
+          }
+        });
+
+        // Delete duplicate teams
+        for (const [name, { keep, duplicates }] of teamsByName) {
+          for (const dupTeam of duplicates) {
+            await ctx.db.delete(dupTeam._id);
+            deletedTeams++;
+          }
+        }
+      }
+    }
+
+    return {
+      message: "Cleanup completed!",
+      deletedLeagues,
+      deletedSeasons,
+      deletedTeams
     };
   },
 });

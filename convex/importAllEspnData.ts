@@ -13,154 +13,108 @@ export const importAllEspnData = mutation({
   args: {},
   handler: async (ctx) => {
     const now = Date.now();
-    
-    // First, create a league
-    const leagueId = await ctx.db.insert("leagues", {
+
+    // Check if league already exists
+    const existingLeague = await ctx.db.query("leagues")
+      .filter((q) => q.eq(q.field("name"), "Playaz Only"))
+      .first();
+
+    // Check if data is complete (has teams with ownerDisplayName and matchups)
+    if (existingLeague) {
+      const existingSeasons = await ctx.db.query("seasons")
+        .withIndex("byLeague", (q) => q.eq("leagueId", existingLeague._id))
+        .collect();
+
+      const existingTeams = await ctx.db.query("teams")
+        .withIndex("byLeague", (q) => q.eq("leagueId", existingLeague._id))
+        .collect();
+
+      const existingMatchups = await ctx.db.query("matchups")
+        .withIndex("byLeague", (q) => q.eq("leagueId", existingLeague._id))
+        .collect();
+
+      // Check if data is complete (7 seasons, 80+ teams, 500+ matchups, and has owner data)
+      const hasCompleteData =
+        existingSeasons.length >= 7 &&
+        existingTeams.length >= 80 &&
+        existingMatchups.length >= 500 &&
+        existingTeams[0]?.ownerDisplayName;
+
+      if (hasCompleteData) {
+        return {
+          message: "Data already imported and complete, skipping...",
+          leagueId: existingLeague._id,
+          seasonsCreated: existingSeasons.length,
+          teamsCreated: existingTeams.length,
+          matchupsCreated: existingMatchups.length
+        };
+      }
+
+      // Data exists but is incomplete - clear it
+      if (existingSeasons.length > 0) {
+        console.log("Clearing incomplete data before reimport...");
+
+        // Delete teams
+        for (const team of existingTeams) {
+          await ctx.db.delete(team._id);
+        }
+
+        // Delete matchups
+        for (const matchup of existingMatchups) {
+          await ctx.db.delete(matchup._id);
+        }
+
+        // Delete seasons
+        for (const season of existingSeasons) {
+          await ctx.db.delete(season._id);
+        }
+
+        // Delete league
+        await ctx.db.delete(existingLeague._id);
+      }
+    }
+
+    // Create temp user for commissioner and team owners if needed
+    const existingUser = await ctx.db.query("users")
+      .filter((q) => q.eq(q.field("externalId"), "temp_user"))
+      .first();
+
+    const tempUserId = existingUser
+      ? existingUser._id
+      : await ctx.db.insert("users", {
+          name: "Temp User",
+          externalId: "temp_user",
+        });
+
+    // Create or use existing league
+    const leagueId = existingLeague?._id || await ctx.db.insert("leagues", {
       name: "Playaz Only",
       platform: "ESPN",
-      commissionerId: "temp_commissioner" as any, // This would need to be mapped to actual user ID
+      commissionerId: tempUserId as any,
       createdAt: now,
       updatedAt: now,
     });
 
-    // ESPN data for all seasons (2018-2024)
+    // Use actual ESPN data from imported JSON files (data is at root level, not wrapped in year key)
     const espnData = {
-      "2018": {
-        year: 2018,
-        league_name: "Playaz Only",
-        teams: [
-          { team_id: 1, team_name: "Mad Men", owners: [{ displayName: "odphineguy" }], wins: 7, losses: 6, points_for: 1443.8, points_against: 1493.4, standing: 5, final_standing: 1, streak_length: 3, streak_type: "WIN" },
-          { team_id: 2, team_name: "South Side Delinquents", owners: [{ displayName: "DeezzNutzz3" }], wins: 8, losses: 5, points_for: 1521.2, points_against: 1489.6, standing: 3, final_standing: 4, streak_length: 2, streak_type: "WIN" },
-          { team_id: 3, team_name: "What would Breesus do?", owners: [{ displayName: "azknighted" }], wins: 9, losses: 4, points_for: 1587.3, points_against: 1456.7, standing: 2, final_standing: 2, streak_length: 1, streak_type: "LOSS" },
-          { team_id: 4, team_name: "Chandler TopFeeders", owners: [{ displayName: "Fly in ointment" }], wins: 8, losses: 5, points_for: 1512.8, points_against: 1498.2, standing: 4, final_standing: 3, streak_length: 3, streak_type: "WIN" },
-          { team_id: 5, team_name: "Miami Big D Big Sack", owners: [{ displayName: "Izreal 187" }], wins: 6, losses: 7, points_for: 1423.5, points_against: 1501.5, standing: 6, final_standing: 5, streak_length: 2, streak_type: "LOSS" },
-          { team_id: 6, team_name: "Young Money Cash Money", owners: [{ displayName: "jdramos88" }], wins: 7, losses: 6, points_for: 1456.9, points_against: 1487.1, standing: 7, final_standing: 6, streak_length: 1, streak_type: "WIN" },
-          { team_id: 7, team_name: "Killer Beers", owners: [{ displayName: "Lenz31" }], wins: 6, losses: 7, points_for: 1434.2, points_against: 1498.8, standing: 8, final_standing: 7, streak_length: 2, streak_type: "LOSS" },
-          { team_id: 8, team_name: "Cock Blockers", owners: [{ displayName: "oasoto" }], wins: 5, losses: 8, points_for: 1398.7, points_against: 1523.3, standing: 9, final_standing: 9, streak_length: 3, streak_type: "LOSS" },
-          { team_id: 9, team_name: "BOTTOM FEEDER", owners: [{ displayName: "odphineguy" }], wins: 4, losses: 9, points_for: 1356.4, points_against: 1567.6, standing: 10, final_standing: 10, streak_length: 4, streak_type: "LOSS" },
-          { team_id: 10, team_name: "The Tank", owners: [{ displayName: "CeeLos1987" }], wins: 3, losses: 10, points_for: 1324.8, points_against: 1598.2, standing: 11, final_standing: 10, streak_length: 5, streak_type: "LOSS" },
-          { team_id: 11, team_name: "OG LA Raiders", owners: [{ displayName: "ODPhrank23" }], wins: 2, losses: 11, points_for: 1289.3, points_against: 1634.7, standing: 12, final_standing: 11, streak_length: 6, streak_type: "LOSS" },
-          { team_id: 12, team_name: "Wreaking Crew JDR", owners: [{ displayName: "samakers15425" }], wins: 1, losses: 12, points_for: 1256.7, points_against: 1678.3, standing: 12, final_standing: 12, streak_length: 7, streak_type: "LOSS" }
-        ]
-      },
-      "2019": {
-        year: 2019,
-        league_name: "Playaz Only",
-        teams: [
-          { team_id: 1, team_name: "Mad Men", owners: [{ displayName: "odphineguy" }], wins: 6, losses: 7, points_for: 1415.8, points_against: 1498.2, standing: 8, final_standing: 10, streak_length: 2, streak_type: "LOSS" },
-          { team_id: 2, team_name: "South Side Delinquents", owners: [{ displayName: "DeezzNutzz3" }], wins: 9, losses: 4, points_for: 1567.3, points_against: 1434.7, standing: 2, final_standing: 2, streak_length: 3, streak_type: "WIN" },
-          { team_id: 3, team_name: "What would Breesus do?", owners: [{ displayName: "azknighted" }], wins: 10, losses: 3, points_for: 1623.8, points_against: 1398.2, standing: 1, final_standing: 1, streak_length: 4, streak_type: "WIN" },
-          { team_id: 4, team_name: "Chandler TopFeeders", owners: [{ displayName: "Fly in ointment" }], wins: 7, losses: 6, points_for: 1489.5, points_against: 1512.5, standing: 6, final_standing: 4, streak_length: 1, streak_type: "WIN" },
-          { team_id: 5, team_name: "Miami Big D Big Sack", owners: [{ displayName: "Izreal 187" }], wins: 5, losses: 8, points_for: 1398.7, points_against: 1523.3, standing: 9, final_standing: 6, streak_length: 2, streak_type: "LOSS" },
-          { team_id: 6, team_name: "Young Money Cash Money", owners: [{ displayName: "jdramos88" }], wins: 8, losses: 5, points_for: 1523.6, points_against: 1476.4, standing: 4, final_standing: 5, streak_length: 2, streak_type: "WIN" },
-          { team_id: 7, team_name: "Killer Beers", owners: [{ displayName: "Lenz31" }], wins: 6, losses: 7, points_for: 1456.9, points_against: 1487.1, standing: 7, final_standing: 8, streak_length: 3, streak_type: "LOSS" },
-          { team_id: 8, team_name: "Cock Blockers", owners: [{ displayName: "oasoto" }], wins: 8, losses: 5, points_for: 1512.8, points_against: 1498.2, standing: 3, final_standing: 3, streak_length: 1, streak_type: "WIN" },
-          { team_id: 9, team_name: "BOTTOM FEEDER", owners: [{ displayName: "odphineguy" }], wins: 4, losses: 9, points_for: 1356.4, points_against: 1567.6, standing: 10, final_standing: 9, streak_length: 4, streak_type: "LOSS" },
-          { team_id: 10, team_name: "The Tank", owners: [{ displayName: "CeeLos1987" }], wins: 6, losses: 7, points_for: 1423.5, points_against: 1501.5, standing: 11, final_standing: 9, streak_length: 2, streak_type: "LOSS" },
-          { team_id: 11, team_name: "OG LA Raiders", owners: [{ displayName: "ODPhrank23" }], wins: 3, losses: 10, points_for: 1289.3, points_against: 1634.7, standing: 11, final_standing: 11, streak_length: 5, streak_type: "LOSS" },
-          { team_id: 12, team_name: "Wreaking Crew JDR", owners: [{ displayName: "samakers15425" }], wins: 2, losses: 11, points_for: 1256.7, points_against: 1678.3, standing: 12, final_standing: 12, streak_length: 6, streak_type: "LOSS" }
-        ]
-      },
-      "2020": {
-        year: 2020,
-        league_name: "Playaz Only",
-        teams: [
-          { team_id: 1, team_name: "Mad Men", owners: [{ displayName: "odphineguy" }], wins: 7, losses: 6, points_for: 1456.9, points_against: 1487.1, standing: 6, final_standing: 7, streak_length: 1, streak_type: "WIN" },
-          { team_id: 2, team_name: "South Side Delinquents", owners: [{ displayName: "DeezzNutzz3" }], wins: 10, losses: 3, points_for: 1623.8, points_against: 1398.2, standing: 1, final_standing: 1, streak_length: 4, streak_type: "WIN" },
-          { team_id: 3, team_name: "What would Breesus do?", owners: [{ displayName: "azknighted" }], wins: 8, losses: 5, points_for: 1523.6, points_against: 1476.4, standing: 3, final_standing: 3, streak_length: 2, streak_type: "WIN" },
-          { team_id: 4, team_name: "Chandler TopFeeders", owners: [{ displayName: "Fly in ointment" }], wins: 8, losses: 5, points_for: 1512.8, points_against: 1498.2, standing: 4, final_standing: 4, streak_length: 1, streak_type: "WIN" },
-          { team_id: 5, team_name: "Miami Big D Big Sack", owners: [{ displayName: "Izreal 187" }], wins: 3, losses: 10, points_for: 1289.3, points_against: 1634.7, standing: 10, final_standing: 10, streak_length: 5, streak_type: "LOSS" },
-          { team_id: 6, team_name: "Young Money Cash Money", owners: [{ displayName: "jdramos88" }], wins: 7, losses: 6, points_for: 1456.9, points_against: 1487.1, standing: 6, final_standing: 6, streak_length: 1, streak_type: "WIN" },
-          { team_id: 7, team_name: "Killer Beers", owners: [{ displayName: "Lenz31" }], wins: 8, losses: 5, points_for: 1523.6, points_against: 1476.4, standing: 5, final_standing: 5, streak_length: 2, streak_type: "WIN" },
-          { team_id: 8, team_name: "Cock Blockers", owners: [{ displayName: "oasoto" }], wins: 9, losses: 4, points_for: 1567.3, points_against: 1434.7, standing: 2, final_standing: 2, streak_length: 3, streak_type: "WIN" },
-          { team_id: 9, team_name: "BOTTOM FEEDER", owners: [{ displayName: "odphineguy" }], wins: 4, losses: 9, points_for: 1356.4, points_against: 1567.6, standing: 9, final_standing: 8, streak_length: 4, streak_type: "LOSS" },
-          { team_id: 10, team_name: "The Tank", owners: [{ displayName: "CeeLos1987" }], wins: 6, losses: 7, points_for: 1423.5, points_against: 1501.5, standing: 8, final_standing: 8, streak_length: 2, streak_type: "LOSS" },
-          { team_id: 11, team_name: "OG LA Raiders", owners: [{ displayName: "ODPhrank23" }], wins: 2, losses: 11, points_for: 1256.7, points_against: 1678.3, standing: 11, final_standing: 11, streak_length: 6, streak_type: "LOSS" },
-          { team_id: 12, team_name: "Wreaking Crew JDR", owners: [{ displayName: "samakers15425" }], wins: 1, losses: 12, points_for: 1234.5, points_against: 1701.5, standing: 12, final_standing: 12, streak_length: 7, streak_type: "LOSS" }
-        ]
-      },
-      "2021": {
-        year: 2021,
-        league_name: "Playaz Only",
-        teams: [
-          { team_id: 1, team_name: "Mad Men", owners: [{ displayName: "odphineguy" }], wins: 8, losses: 5, points_for: 1523.6, points_against: 1476.4, standing: 4, final_standing: 4, streak_length: 2, streak_type: "WIN" },
-          { team_id: 2, team_name: "South Side Delinquents", owners: [{ displayName: "DeezzNutzz3" }], wins: 9, losses: 4, points_for: 1567.3, points_against: 1434.7, standing: 2, final_standing: 2, streak_length: 3, streak_type: "WIN" },
-          { team_id: 3, team_name: "What would Breesus do?", owners: [{ displayName: "azknighted" }], wins: 7, losses: 6, points_for: 1456.9, points_against: 1487.1, standing: 5, final_standing: 3, streak_length: 1, streak_type: "WIN" },
-          { team_id: 4, team_name: "Chandler TopFeeders", owners: [{ displayName: "Fly in ointment" }], wins: 8, losses: 5, points_for: 1512.8, points_against: 1498.2, standing: 3, final_standing: 3, streak_length: 1, streak_type: "WIN" },
-          { team_id: 5, team_name: "Miami Big D Big Sack", owners: [{ displayName: "Izreal 187" }], wins: 4, losses: 9, points_for: 1356.4, points_against: 1567.6, standing: 9, final_standing: 9, streak_length: 4, streak_type: "LOSS" },
-          { team_id: 6, team_name: "Young Money Cash Money", owners: [{ displayName: "jdramos88" }], wins: 6, losses: 7, points_for: 1423.5, points_against: 1501.5, standing: 7, final_standing: 7, streak_length: 2, streak_type: "LOSS" },
-          { team_id: 7, team_name: "Killer Beers", owners: [{ displayName: "Lenz31" }], wins: 10, losses: 3, points_for: 1623.8, points_against: 1398.2, standing: 1, final_standing: 1, streak_length: 4, streak_type: "WIN" },
-          { team_id: 8, team_name: "Cock Blockers", owners: [{ displayName: "oasoto" }], wins: 7, losses: 6, points_for: 1456.9, points_against: 1487.1, standing: 6, final_standing: 6, streak_length: 1, streak_type: "WIN" },
-          { team_id: 9, team_name: "BOTTOM FEEDER", owners: [{ displayName: "odphineguy" }], wins: 5, losses: 8, points_for: 1398.7, points_against: 1523.3, standing: 8, final_standing: 8, streak_length: 3, streak_type: "LOSS" },
-          { team_id: 10, team_name: "The Tank", owners: [{ displayName: "CeeLos1987" }], wins: 3, losses: 10, points_for: 1289.3, points_against: 1634.7, standing: 10, final_standing: 10, streak_length: 5, streak_type: "LOSS" },
-          { team_id: 11, team_name: "OG LA Raiders", owners: [{ displayName: "ODPhrank23" }], wins: 2, losses: 11, points_for: 1256.7, points_against: 1678.3, standing: 11, final_standing: 11, streak_length: 6, streak_type: "LOSS" },
-          { team_id: 12, team_name: "Wreaking Crew JDR", owners: [{ displayName: "samakers15425" }], wins: 1, losses: 12, points_for: 1234.5, points_against: 1701.5, standing: 12, final_standing: 12, streak_length: 7, streak_type: "LOSS" }
-        ]
-      },
-      "2022": {
-        year: 2022,
-        league_name: "Playaz Only",
-        teams: [
-          { team_id: 1, team_name: "Mad Men", owners: [{ displayName: "odphineguy" }], wins: 7, losses: 6, points_for: 1456.9, points_against: 1487.1, standing: 6, final_standing: 6, streak_length: 1, streak_type: "WIN" },
-          { team_id: 2, team_name: "South Side Delinquents", owners: [{ displayName: "DeezzNutzz3" }], wins: 10, losses: 3, points_for: 1623.8, points_against: 1398.2, standing: 1, final_standing: 1, streak_length: 4, streak_type: "WIN" },
-          { team_id: 3, team_name: "What would Breesus do?", owners: [{ displayName: "azknighted" }], wins: 8, losses: 5, points_for: 1523.6, points_against: 1476.4, standing: 3, final_standing: 3, streak_length: 2, streak_type: "WIN" },
-          { team_id: 4, team_name: "Chandler TopFeeders", owners: [{ displayName: "Fly in ointment" }], wins: 6, losses: 7, points_for: 1423.5, points_against: 1501.5, standing: 7, final_standing: 7, streak_length: 2, streak_type: "LOSS" },
-          { team_id: 5, team_name: "Miami Big D Big Sack", owners: [{ displayName: "Izreal 187" }], wins: 3, losses: 10, points_for: 1289.3, points_against: 1634.7, standing: 10, final_standing: 10, streak_length: 5, streak_type: "LOSS" },
-          { team_id: 6, team_name: "Young Money Cash Money", owners: [{ displayName: "jdramos88" }], wins: 5, losses: 8, points_for: 1398.7, points_against: 1523.3, standing: 8, final_standing: 8, streak_length: 3, streak_type: "LOSS" },
-          { team_id: 7, team_name: "Killer Beers", owners: [{ displayName: "Lenz31" }], wins: 8, losses: 5, points_for: 1512.8, points_against: 1498.2, standing: 4, final_standing: 4, streak_length: 1, streak_type: "WIN" },
-          { team_id: 8, team_name: "Cock Blockers", owners: [{ displayName: "oasoto" }], wins: 7, losses: 6, points_for: 1456.9, points_against: 1487.1, standing: 5, final_standing: 5, streak_length: 1, streak_type: "WIN" },
-          { team_id: 9, team_name: "BOTTOM FEEDER", owners: [{ displayName: "odphineguy" }], wins: 6, losses: 7, points_for: 1423.5, points_against: 1501.5, standing: 9, final_standing: 9, streak_length: 2, streak_type: "LOSS" },
-          { team_id: 10, team_name: "The Tank", owners: [{ displayName: "CeeLos1987" }], wins: 4, losses: 9, points_for: 1356.4, points_against: 1567.6, standing: 9, final_standing: 9, streak_length: 4, streak_type: "LOSS" },
-          { team_id: 11, team_name: "OG LA Raiders", owners: [{ displayName: "ODPhrank23" }], wins: 2, losses: 11, points_for: 1256.7, points_against: 1678.3, standing: 11, final_standing: 11, streak_length: 6, streak_type: "LOSS" },
-          { team_id: 12, team_name: "Wreaking Crew JDR", owners: [{ displayName: "samakers15425" }], wins: 8, losses: 5, points_for: 1523.6, points_against: 1476.4, standing: 2, final_standing: 2, streak_length: 2, streak_type: "WIN" }
-        ]
-      },
-      "2023": {
-        year: 2023,
-        league_name: "Playaz Only",
-        teams: [
-          { team_id: 1, team_name: "Mad Men", owners: [{ displayName: "odphineguy" }], wins: 6, losses: 7, points_for: 1423.5, points_against: 1501.5, standing: 8, final_standing: 8, streak_length: 2, streak_type: "LOSS" },
-          { team_id: 2, team_name: "South Side Delinquents", owners: [{ displayName: "DeezzNutzz3" }], wins: 8, losses: 5, points_for: 1523.6, points_against: 1476.4, standing: 3, final_standing: 3, streak_length: 2, streak_type: "WIN" },
-          { team_id: 3, team_name: "What would Breesus do?", owners: [{ displayName: "azknighted" }], wins: 9, losses: 4, points_for: 1567.3, points_against: 1434.7, standing: 2, final_standing: 3, streak_length: 3, streak_type: "WIN" },
-          { team_id: 4, team_name: "Chandler TopFeeders", owners: [{ displayName: "Fly in ointment" }], wins: 7, losses: 6, points_for: 1456.9, points_against: 1487.1, standing: 5, final_standing: 5, streak_length: 1, streak_type: "WIN" },
-          { team_id: 5, team_name: "Miami Big D Big Sack", owners: [{ displayName: "Izreal 187" }], wins: 4, losses: 9, points_for: 1356.4, points_against: 1567.6, standing: 9, final_standing: 9, streak_length: 4, streak_type: "LOSS" },
-          { team_id: 6, team_name: "Young Money Cash Money", owners: [{ displayName: "jdramos88" }], wins: 5, losses: 8, points_for: 1398.7, points_against: 1523.3, standing: 8, final_standing: 8, streak_length: 3, streak_type: "LOSS" },
-          { team_id: 7, team_name: "Killer Beers", owners: [{ displayName: "Lenz31" }], wins: 8, losses: 5, points_for: 1512.8, points_against: 1498.2, standing: 4, final_standing: 2, streak_length: 1, streak_type: "WIN" },
-          { team_id: 8, team_name: "Cock Blockers", owners: [{ displayName: "oasoto" }], wins: 10, losses: 3, points_for: 1623.8, points_against: 1398.2, standing: 1, final_standing: 1, streak_length: 4, streak_type: "WIN" },
-          { team_id: 9, team_name: "BOTTOM FEEDER", owners: [{ displayName: "odphineguy" }], wins: 3, losses: 10, points_for: 1289.3, points_against: 1634.7, standing: 10, final_standing: 10, streak_length: 5, streak_type: "LOSS" },
-          { team_id: 10, team_name: "The Tank", owners: [{ displayName: "CeeLos1987" }], wins: 2, losses: 11, points_for: 1256.7, points_against: 1678.3, standing: 11, final_standing: 11, streak_length: 6, streak_type: "LOSS" },
-          { team_id: 11, team_name: "OG LA Raiders", owners: [{ displayName: "ODPhrank23" }], wins: 1, losses: 12, points_for: 1234.5, points_against: 1701.5, standing: 12, final_standing: 12, streak_length: 7, streak_type: "LOSS" },
-          { team_id: 12, team_name: "Wreaking Crew JDR", owners: [{ displayName: "samakers15425" }], wins: 6, losses: 7, points_for: 1423.5, points_against: 1501.5, standing: 6, final_standing: 6, streak_length: 2, streak_type: "LOSS" }
-        ]
-      },
-      "2024": {
-        year: 2024,
-        league_name: "Playaz Only",
-        teams: [
-          { team_id: 1, team_name: "Mad Men", owners: [{ displayName: "odphineguy" }], wins: 0, losses: 0, points_for: 0, points_against: 0, standing: 0, final_standing: 0, streak_length: 0, streak_type: "WIN" },
-          { team_id: 2, team_name: "South Side Delinquents", owners: [{ displayName: "DeezzNutzz3" }], wins: 0, losses: 0, points_for: 0, points_against: 0, standing: 0, final_standing: 0, streak_length: 0, streak_type: "WIN" },
-          { team_id: 3, team_name: "What would Breesus do?", owners: [{ displayName: "azknighted" }], wins: 0, losses: 0, points_for: 0, points_against: 0, standing: 0, final_standing: 0, streak_length: 0, streak_type: "WIN" },
-          { team_id: 4, team_name: "Chandler TopFeeders", owners: [{ displayName: "Fly in ointment" }], wins: 0, losses: 0, points_for: 0, points_against: 0, standing: 0, final_standing: 0, streak_length: 0, streak_type: "WIN" },
-          { team_id: 5, team_name: "Miami Big D Big Sack", owners: [{ displayName: "Izreal 187" }], wins: 0, losses: 0, points_for: 0, points_against: 0, standing: 0, final_standing: 0, streak_length: 0, streak_type: "WIN" },
-          { team_id: 6, team_name: "Young Money Cash Money", owners: [{ displayName: "jdramos88" }], wins: 0, losses: 0, points_for: 0, points_against: 0, standing: 0, final_standing: 0, streak_length: 0, streak_type: "WIN" },
-          { team_id: 7, team_name: "Killer Beers", owners: [{ displayName: "Lenz31" }], wins: 0, losses: 0, points_for: 0, points_against: 0, standing: 0, final_standing: 0, streak_length: 0, streak_type: "WIN" },
-          { team_id: 8, team_name: "Cock Blockers", owners: [{ displayName: "oasoto" }], wins: 0, losses: 0, points_for: 0, points_against: 0, standing: 0, final_standing: 0, streak_length: 0, streak_type: "WIN" },
-          { team_id: 9, team_name: "BOTTOM FEEDER", owners: [{ displayName: "odphineguy" }], wins: 0, losses: 0, points_for: 0, points_against: 0, standing: 0, final_standing: 0, streak_length: 0, streak_type: "WIN" },
-          { team_id: 10, team_name: "The Tank", owners: [{ displayName: "CeeLos1987" }], wins: 0, losses: 0, points_for: 0, points_against: 0, standing: 0, final_standing: 0, streak_length: 0, streak_type: "WIN" },
-          { team_id: 11, team_name: "OG LA Raiders", owners: [{ displayName: "ODPhrank23" }], wins: 0, losses: 0, points_for: 0, points_against: 0, standing: 0, final_standing: 0, streak_length: 0, streak_type: "WIN" },
-          { team_id: 12, team_name: "Wreaking Crew JDR", owners: [{ displayName: "samakers15425" }], wins: 0, losses: 0, points_for: 0, points_against: 0, standing: 0, final_standing: 0, streak_length: 0, streak_type: "WIN" }
-        ]
-      }
+      "2018": espnData2018 as any,
+      "2019": espnData2019 as any,
+      "2020": espnData2020 as any,
+      "2021": espnData2021 as any,
+      "2022": espnData2022 as any,
+      "2023": espnData2023 as any,
+      "2024": espnData2024 as any,
     };
 
     const seasons = [];
     const teams = [];
     const teamMap = new Map(); // Map ESPN team names to Convex team IDs
+    let totalMatchups = 0;
 
     // Create seasons and teams for each year
     for (const [yearStr, seasonData] of Object.entries(espnData)) {
       const year = parseInt(yearStr);
-      
+
       // Create season
       const seasonId = await ctx.db.insert("seasons", {
         leagueId,
@@ -175,17 +129,23 @@ export const importAllEspnData = mutation({
         createdAt: now,
         updatedAt: now,
       });
-      
+
       seasons.push({ year, seasonId });
+
+      // Create a map of team names to team IDs for this season
+      const seasonTeamMap = new Map();
 
       // Create teams for this season
       for (const teamData of seasonData.teams) {
+        const ownerDisplayName = teamData.owners?.[0]?.displayName || "Unknown";
+
         const teamId = await ctx.db.insert("teams", {
           leagueId,
           seasonId,
           espnTeamId: teamData.team_id,
           name: teamData.team_name,
-          ownerId: "temp_owner" as any, // This would need to be mapped to actual user IDs
+          ownerId: tempUserId as any, // Use temp user ID
+          ownerDisplayName, // Save owner display name for aggregation
           wins: teamData.wins,
           losses: teamData.losses,
           ties: 0,
@@ -202,7 +162,8 @@ export const importAllEspnData = mutation({
         // Store team mapping for later use
         const teamKey = `${year}-${teamData.owners[0].displayName}`;
         teamMap.set(teamKey, teamId);
-        
+        seasonTeamMap.set(teamData.team_name, teamId);
+
         teams.push({
           year,
           teamId,
@@ -216,6 +177,36 @@ export const importAllEspnData = mutation({
           finalStanding: teamData.final_standing
         });
       }
+
+      // Import matchups for this season
+      if (seasonData.matchups && Array.isArray(seasonData.matchups)) {
+        for (const matchup of seasonData.matchups) {
+          const homeTeamId = seasonTeamMap.get(matchup.home_team);
+          const awayTeamId = seasonTeamMap.get(matchup.away_team);
+
+          if (homeTeamId && awayTeamId) {
+            // Determine game type based on week number
+            let gameType = "REGULAR";
+            if (matchup.week >= 15 && matchup.week <= 16) {
+              gameType = matchup.week === 16 ? "CHAMPIONSHIP" : "PLAYOFF";
+            }
+
+            await ctx.db.insert("matchups", {
+              leagueId,
+              seasonId,
+              week: matchup.week,
+              homeTeamId,
+              awayTeamId,
+              homeScore: matchup.home_score,
+              awayScore: matchup.away_score,
+              gameType,
+              createdAt: now,
+              updatedAt: now,
+            });
+            totalMatchups++;
+          }
+        }
+      }
     }
 
     return {
@@ -223,6 +214,7 @@ export const importAllEspnData = mutation({
       leagueId,
       seasonsCreated: seasons.length,
       teamsCreated: teams.length,
+      matchupsCreated: totalMatchups,
       seasons,
       teams: teams.slice(0, 10) // Return first 10 teams as sample
     };
@@ -261,7 +253,7 @@ export const getTeamStandings = mutation({
       .withIndex("bySeason", (q) => q.eq("seasonId", season._id))
       .collect();
     
-    return teams.sort((a, b) => a.finalStanding - b.finalStanding);
+    return teams.sort((a, b) => (a.finalStanding || 0) - (b.finalStanding || 0));
   },
 });
 

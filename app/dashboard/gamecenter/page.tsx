@@ -28,15 +28,44 @@ export default function GamecenterPage() {
   const leagues = useQuery(api.fantasyFootball.getAllLeagues);
   const seasons = useQuery(api.fantasyFootball.getAllSeasons);
   const allMatchups = useQuery(api.fantasyFootball.getAllMatchups);
-  const teams = useQuery(api.fantasyFootball.getAllTeams);
+  const teamsRaw = useQuery(api.fantasyFootball.getAllTeams);
+
+  // Deduplicate teams by seasonId + name (keep most recent)
+  const teams = (() => {
+    if (!teamsRaw) return null;
+
+    const teamsBySeasonAndName = new Map();
+    teamsRaw.forEach(team => {
+      const key = `${team.seasonId}-${team.name}`;
+      const existing = teamsBySeasonAndName.get(key);
+      if (!existing || team.createdAt > existing.createdAt) {
+        teamsBySeasonAndName.set(key, team);
+      }
+    });
+
+    return Array.from(teamsBySeasonAndName.values());
+  })();
 
   // Get the current league (assuming first one for now)
   const currentLeague = leagues?.[0];
-  
-  // Get seasons for the current league
-  const leagueSeasons = seasons?.filter(season => 
-    currentLeague && season.leagueId === currentLeague._id
-  ) || [];
+
+  // Get seasons for the current league and deduplicate by year (keep most recent)
+  const leagueSeasons = (() => {
+    const allSeasons = seasons?.filter(season =>
+      currentLeague && season.leagueId === currentLeague._id
+    ) || [];
+
+    // Deduplicate by year - keep the most recently created entry
+    const seasonsByYear = new Map();
+    allSeasons.forEach(season => {
+      const existing = seasonsByYear.get(season.year);
+      if (!existing || season.createdAt > existing.createdAt) {
+        seasonsByYear.set(season.year, season);
+      }
+    });
+
+    return Array.from(seasonsByYear.values()).sort((a, b) => a.year - b.year);
+  })();
 
   // Get matchups for the selected season
   const selectedSeasonData = leagueSeasons.find(s => s.year.toString() === selectedSeason);

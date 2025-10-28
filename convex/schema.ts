@@ -50,6 +50,7 @@ export default defineSchema({
       espnTeamId: v.optional(v.number()),
       name: v.string(),
       ownerId: v.id("users"),
+      ownerDisplayName: v.optional(v.string()), // ESPN owner display name for aggregation
       wins: v.number(),
       losses: v.number(),
       ties: v.optional(v.number()),
@@ -64,6 +65,7 @@ export default defineSchema({
     }).index("byLeague", ["leagueId"])
       .index("bySeason", ["seasonId"])
       .index("byOwner", ["ownerId"])
+      .index("byOwnerDisplayName", ["ownerDisplayName"])
       .index("byLeagueAndSeason", ["leagueId", "seasonId"])
       .index("byEspnTeamId", ["espnTeamId"]),
 
