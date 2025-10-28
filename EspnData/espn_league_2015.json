@@ -1,0 +1,1186 @@
+{
+  "year": 2015,
+  "league_name": "Playaz Only",
+  "teams": [
+    {
+      "team_id": 1,
+      "team_name": "Mad Men",
+      "owners": [
+        {
+          "displayName": "odphineguy",
+          "firstName": "Abe",
+          "id": "{1BF22DC3-090B-47B9-A6B3-9A4C3699A3E7}",
+          "lastName": "Perez"
+        }
+      ],
+      "wins": 9,
+      "losses": 5,
+      "points_for": 1337.0,
+      "points_against": 1284.0,
+      "standing": 3,
+      "final_standing": 5,
+      "streak_length": 4,
+      "streak_type": "WIN",
+      "roster": [
+        {
+          "name": "Eddie Lacy",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "A.J. Green",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Panthers D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Devonta Freeman",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Ronnie Hillman",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "DeAndre Hopkins",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Ben Roethlisberger",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Tyler Eifert",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Spencer Ware",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Cairo Santos",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Ryan Fitzpatrick",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "James White",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Tyler Lockett",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Denard Robinson",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Will Tye",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Willie Snead",
+          "position": "WR",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 2,
+      "team_name": "Tempe cardsdude",
+      "owners": [
+        {
+          "displayName": "cardsdude09",
+          "firstName": "cardsdude",
+          "id": "{7EF2DFB8-BE1D-43EC-9306-88BA566129B2}",
+          "lastName": "tempe"
+        }
+      ],
+      "wins": 6,
+      "losses": 8,
+      "points_for": 1181.0,
+      "points_against": 1264.0,
+      "standing": 7,
+      "final_standing": 8,
+      "streak_length": 2,
+      "streak_type": "WIN",
+      "roster": [
+        {
+          "name": "Larry Fitzgerald",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "John Brown",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Carson Palmer",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Patriots D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Bills D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Dan Bailey",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "David Johnson",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Antonio Andrews",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Mike Nugent",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Delanie Walker",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Michael Crabtree",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Jameis Winston",
+          "position": "QB",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 3,
+      "team_name": "Killer Beers",
+      "owners": [
+        {
+          "displayName": "oasoto",
+          "firstName": "Omar",
+          "id": "{D161841C-208D-429B-8FC7-A26211C65896}",
+          "lastName": "Soto"
+        }
+      ],
+      "wins": 8,
+      "losses": 6,
+      "points_for": 1318.0,
+      "points_against": 1144.0,
+      "standing": 4,
+      "final_standing": 3,
+      "streak_length": 6,
+      "streak_type": "WIN",
+      "roster": [
+        {
+          "name": "Randall Cobb",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Andre Ellington",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Cam Newton",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "DeAngelo Williams",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Frank Gore",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Sam Bradford",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Michael Floyd",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Heath Miller",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Sammy Watkins",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Chiefs D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Jeremy Maclin",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Russell Wilson",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Ryan Mathews",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Cameron Artis-Payne",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Anquan Boldin",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Chris Boswell",
+          "position": "K",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 4,
+      "team_name": "South Side Delinquents",
+      "owners": [
+        {
+          "displayName": "DeezzNutzz3",
+          "firstName": "Daniel",
+          "id": "{7A7EEF46-E90B-4397-BA13-CD6C8E3AC774}",
+          "lastName": "Ortega"
+        }
+      ],
+      "wins": 4,
+      "losses": 9,
+      "points_for": 1202.0,
+      "points_against": 1342.0,
+      "standing": 11,
+      "final_standing": 12,
+      "streak_length": 1,
+      "streak_type": "LOSS",
+      "roster": [
+        {
+          "name": "Matt Forte",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Aaron Rodgers",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Emmanuel Sanders",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Doug Martin",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Owen Daniels",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Dolphins D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Teddy Bridgewater",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Danny Amendola",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "James Jones",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Josh Brown",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Benjamin Watson",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Stevie Johnson",
+          "position": "WR",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 5,
+      "team_name": "Young Money Cash Money",
+      "owners": [
+        {
+          "displayName": "Lenz31",
+          "firstName": "Lawrence",
+          "id": "{6DF52985-B8B8-4CC3-8706-6E010A8133D7}",
+          "lastName": "Dobrosky"
+        }
+      ],
+      "wins": 3,
+      "losses": 11,
+      "points_for": 1121.0,
+      "points_against": 1481.0,
+      "standing": 12,
+      "final_standing": 10,
+      "streak_length": 1,
+      "streak_type": "LOSS",
+      "roster": [
+        {
+          "name": "Dez Bryant",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Rob Gronkowski",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Latavius Murray",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Jordan Matthews",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Matt Ryan",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Pierre Garcon",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Cardinals D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Travis Benjamin",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Allen Robinson",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Blair Walsh",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "C.J. Anderson",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Alfred Blue",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Thomas Rawls",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Vincent Jackson",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Javorius Allen",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Jacob Tamme",
+          "position": "TE",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 6,
+      "team_name": "The Tank",
+      "owners": [
+        {
+          "displayName": "ODPhrank23",
+          "firstName": "Frank",
+          "id": "{248E5388-B10C-48D2-90C8-86853478BDB2}",
+          "lastName": "Ballesteros"
+        }
+      ],
+      "wins": 12,
+      "losses": 2,
+      "points_for": 1502.0,
+      "points_against": 1113.0,
+      "standing": 1,
+      "final_standing": 2,
+      "streak_length": 4,
+      "streak_type": "WIN",
+      "roster": [
+        {
+          "name": "Calvin Johnson",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Alshon Jeffery",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Brandin Cooks",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Todd Gurley",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Tom Brady",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Seahawks D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Stephen Gostkowski",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Darren Sproles",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Broncos D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Doug Baldwin",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Karlos Williams",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Blake Bortles",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Jordan Reed",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Cecil Shorts III",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Alfred Morris",
+          "position": "RB",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 8,
+      "team_name": "Miami Big D Big Sack",
+      "owners": [
+        {
+          "displayName": "Fly in ointment",
+          "firstName": "Gil",
+          "id": "{E06B6062-9305-4EAD-AB60-6293057EAD54}",
+          "lastName": "Ruiz"
+        }
+      ],
+      "wins": 10,
+      "losses": 4,
+      "points_for": 1397.0,
+      "points_against": 1172.0,
+      "standing": 2,
+      "final_standing": 4,
+      "streak_length": 4,
+      "streak_type": "LOSS",
+      "roster": [
+        {
+          "name": "Adrian Peterson",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "T.Y. Hilton",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Lamar Miller",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Chris Ivory",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Travis Kelce",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Martavis Bryant",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Philip Rivers",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Charles Sims",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Steven Hauschka",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Eagles D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Zach Ertz",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Caleb Sturgis",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Saints D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Rashad Jennings",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Rueben Randle",
+          "position": "WR",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 9,
+      "team_name": "OG LA Raiders",
+      "owners": [
+        {
+          "displayName": "Izreal 187",
+          "firstName": "Hamilton",
+          "id": "{63247C58-97AE-4AA3-8ACE-7F83568EA573}",
+          "lastName": "Ramirez"
+        }
+      ],
+      "wins": 8,
+      "losses": 6,
+      "points_for": 1179.0,
+      "points_against": 1182.0,
+      "standing": 5,
+      "final_standing": 6,
+      "streak_length": 1,
+      "streak_type": "WIN",
+      "roster": [
+        {
+          "name": "Odell Beckham Jr.",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Amari Cooper",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Darren McFadden",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Derek Carr",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Bengals D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Charcandrick West",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Sebastian Janikowski",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Jeremy Langford",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Jets D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Zach Miller",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "AJ McCarron",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Bilal Powell",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Markus Wheaton",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Clive Walford",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Falcons D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Tre Mason",
+          "position": "RB",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 10,
+      "team_name": "Jock Straps",
+      "owners": [
+        {
+          "displayName": "azknighted",
+          "firstName": "dan",
+          "id": "{F72AA8AC-4D01-439D-A609-0AA5E875D8C4}",
+          "lastName": "larios"
+        }
+      ],
+      "wins": 6,
+      "losses": 7,
+      "points_for": 1299.0,
+      "points_against": 1235.0,
+      "standing": 6,
+      "final_standing": 1,
+      "streak_length": 1,
+      "streak_type": "WIN",
+      "roster": [
+        {
+          "name": "DeMarco Murray",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Drew Brees",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Brandon Marshall",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "DeSean Jackson",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Julius Thomas",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Brandon McManus",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Ted Ginn Jr.",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Allen Hurns",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Gary Barnidge",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Tim Hightower",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Julian Edelman",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Mike Gillislee",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Christine Michael",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Jonathan Stewart",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Redskins D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Isaiah Crowell",
+          "position": "RB",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 11,
+      "team_name": "Wreaking Crew JDR",
+      "owners": [
+        {
+          "displayName": "jdramos88",
+          "firstName": "jorge",
+          "id": "{2A8CEE3C-7CC2-450E-89B7-4F3910616F0E}",
+          "lastName": "Ramos"
+        }
+      ],
+      "wins": 5,
+      "losses": 9,
+      "points_for": 1222.0,
+      "points_against": 1322.0,
+      "standing": 10,
+      "final_standing": 9,
+      "streak_length": 2,
+      "streak_type": "LOSS",
+      "roster": [
+        {
+          "name": "Antonio Brown",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Mark Ingram",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Joique Bell",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Jason Witten",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Matthew Stafford",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Marques Colston",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Danny Woodhead",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Kyle Rudolph",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Kirk Cousins",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Graham Gano",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Steelers D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Brandon LaFell",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Titans D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Melvin Gordon",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Golden Tate",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Terrance Williams",
+          "position": "WR",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 12,
+      "team_name": "Delinger Escape Plan",
+      "owners": [
+        {
+          "displayName": "crdns31mchl",
+          "firstName": "Michael",
+          "id": "{A64926AD-A3B8-4F79-BB00-7326C11DC741}",
+          "lastName": "cardenas"
+        }
+      ],
+      "wins": 6,
+      "losses": 8,
+      "points_for": 1107.0,
+      "points_against": 1234.0,
+      "standing": 9,
+      "final_standing": 11,
+      "streak_length": 2,
+      "streak_type": "LOSS",
+      "roster": [
+        {
+          "name": "Julio Jones",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Peyton Manning",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Greg Olsen",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Giovani Bernard",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Mike Wallace",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Shane Vereen",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Adam Vinatieri",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Marvin Jones",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Donte Moncrief",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Vikings D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Ravens D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Alex Smith",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Kamar Aiken",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Nick Novak",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Matt Jones",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Johnny Manziel",
+          "position": "QB",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 13,
+      "team_name": "M.W.A. Str8outaChandlr",
+      "owners": [
+        {
+          "displayName": "CeeLos1987",
+          "firstName": "Carlos J",
+          "id": "{21065FC8-3BA4-4C4A-865F-C83BA40C4A4E}",
+          "lastName": "Zubiate"
+        }
+      ],
+      "wins": 6,
+      "losses": 8,
+      "points_for": 1167.0,
+      "points_against": 1259.0,
+      "standing": 8,
+      "final_standing": 7,
+      "streak_length": 3,
+      "streak_type": "LOSS",
+      "roster": [
+        {
+          "name": "Demaryius Thomas",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Jeremy Hill",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Mike Evans",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "T.J. Yeldon",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Jarvis Landry",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Eric Decker",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Ryan Tannehill",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Tyrod Taylor",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Marshawn Lynch",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Antonio Gates",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Eli Manning",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Rams D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Richard Rodgers",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Chandler Catanzaro",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Texans D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Ameer Abdullah",
+          "position": "RB",
+          "points": 0
+        }
+      ]
+    }
+  ],
+  "matchups": [],
+  "settings": {
+    "reg_season_count": 14,
+    "playoff_team_count": 6,
+    "team_count": 12
+  }
+}

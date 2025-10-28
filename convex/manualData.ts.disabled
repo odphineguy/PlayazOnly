@@ -1,0 +1,174 @@
+import { mutation, query } from "./_generated/server";
+import { v } from "convex/values";
+
+// Manual Data Entry Functions for 2010-2017
+export const addManualSeasonData = mutation({
+  args: {
+    seasonId: v.id("seasons"),
+    teams: v.array(v.object({
+      name: v.string(),
+      ownerName: v.string(),
+      wins: v.number(),
+      losses: v.number(),
+      ties: v.optional(v.number()),
+      pointsFor: v.number(),
+      pointsAgainst: v.number(),
+      standing: v.number(),
+      finalStanding: v.optional(v.number()),
+      streakLength: v.number(),
+      streakType: v.string(),
+    })),
+    transactions: v.optional(v.array(v.object({
+      type: v.string(),
+      description: v.string(),
+      week: v.optional(v.number()),
+      involvedTeams: v.array(v.string()),
+    }))),
+    draftPicks: v.optional(v.array(v.object({
+      teamName: v.string(),
+      playerName: v.string(),
+      position: v.string(),
+      round: v.number(),
+      pick: v.number(),
+      overallPick: v.number(),
+    }))),
+  },
+  handler: async (ctx, args) => {
+    const { seasonId, teams, transactions = [], draftPicks = [] } = args;
+    const now = Date.now();
+
+    // Get season info
+    const season = await ctx.db.get(seasonId);
+    if (!season) throw new Error("Season not found");
+
+    // Create teams
+    const teamIds: { teamId: any; teamName: string }[] = [];
+    for (const teamData of teams) {
+      const teamId = await ctx.db.insert("teams", {
+        leagueId: season.leagueId,
+        seasonId,
+        name: teamData.name,
+        ownerId: "temp_owner_id" as any, // This would need to be mapped to actual user IDs
+        wins: teamData.wins,
+        losses: teamData.losses,
+        ties: teamData.ties || 0,
+        pointsFor: teamData.pointsFor,
+        pointsAgainst: teamData.pointsAgainst,
+        standing: teamData.standing,
+        finalStanding: teamData.finalStanding,
+        streakLength: teamData.streakLength,
+        streakType: teamData.streakType,
+        createdAt: now,
+        updatedAt: now,
+      });
+      teamIds.push({ teamId, teamName: teamData.name });
+    }
+
+    // Create transactions
+    for (const transaction of transactions) {
+      const involvedTeamIds = transaction.involvedTeams
+        .map(teamName => teamIds.find(t => t.teamName === teamName)?.teamId)
+        .filter(Boolean) as any[];
+
+      await ctx.db.insert("transactions", {
+        leagueId: season.leagueId,
+        seasonId,
+        type: transaction.type,
+        description: transaction.description,
+        involvedTeams: involvedTeamIds,
+        involvedPlayers: [], // Would need player IDs if available
+        week: transaction.week,
+        createdAt: now,
+        updatedAt: now,
+      });
+    }
+
+    // Create draft picks
+    for (const pick of draftPicks) {
+      const teamId = teamIds.find(t => t.teamName === pick.teamName)?.teamId;
+      if (!teamId) continue;
+
+      // Find or create player
+      let existingPlayer = await ctx.db
+        .query("players")
+        .filter((q) => q.eq(q.field("name"), pick.playerName))
+        .first();
+
+      let playerId: any;
+      if (!existingPlayer) {
+        playerId = await ctx.db.insert("players", {
+          name: pick.playerName,
+          position: pick.position,
+          createdAt: now,
+          updatedAt: now,
+        });
+      } else {
+        playerId = existingPlayer._id;
+      }
+
+      await ctx.db.insert("draftPicks", {
+        leagueId: season.leagueId,
+        seasonId,
+        teamId,
+        playerId,
+        round: pick.round,
+        pick: pick.pick,
+        overallPick: pick.overallPick,
+        createdAt: now,
+      });
+    }
+
+    // Update season to mark as having complete data
+    await ctx.db.patch(seasonId, {
+      hasCompleteData: true,
+      updatedAt: now,
+    });
+
+    return {
+      teamsCreated: teams.length,
+      transactionsCreated: transactions.length,
+      draftPicksCreated: draftPicks.length,
+      message: "Successfully added manual season data",
+    };
+  },
+});
+
+export const getSeasonsByDataSource = query({
+  args: { 
+    leagueId: v.id("leagues"),
+    dataSource: v.string(),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db
+      .query("seasons")
+      .withIndex("byLeague", (q) => q.eq("leagueId", args.leagueId))
+      .filter((q) => q.eq(q.field("dataSource"), args.dataSource))
+      .order("desc")
+      .collect();
+  },
+});
+
+export const getIncompleteSeasons = query({
+  args: { leagueId: v.id("leagues") },
+  handler: async (ctx, args) => {
+    return await ctx.db
+      .query("seasons")
+      .withIndex("byLeague", (q) => q.eq("leagueId", args.leagueId))
+      .filter((q) => q.eq(q.field("hasCompleteData"), false))
+      .order("desc")
+      .collect();
+  },
+});
+
+export const updateSeasonDataStatus = mutation({
+  args: {
+    seasonId: v.id("seasons"),
+    hasCompleteData: v.boolean(),
+  },
+  handler: async (ctx, args) => {
+    await ctx.db.patch(args.seasonId, {
+      hasCompleteData: args.hasCompleteData,
+      updatedAt: Date.now(),
+    });
+  },
+});

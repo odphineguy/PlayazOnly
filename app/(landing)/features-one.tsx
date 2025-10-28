@@ -1,5 +1,4 @@
 import { Card } from '@/components/ui/card'
-import { Table } from './table'
 import { CpuArchitecture } from './cpu-architecture'
 import { AnimatedListCustom } from './animated-list-custom'
   
@@ -12,9 +11,6 @@ export default function FeaturesOne() {
                     <div className="text-center">
                         <h2 className="text-foreground text-4xl font-semibold">Effortless Task Management</h2>
                         <p className="text-muted-foreground mb-12 mt-4 text-balance text-lg">Automate your tasks and workflows by connecting your favorite tools like Notion, Todoist, and more. AI-powered scheduling helps you stay on track and adapt to changing priorities.</p>
-                        <div className="bg-foreground/5 rounded-3xl p-6">
-                            <Table />
-                        </div>
                     </div>
 
                     <div className="border-foreground/10 relative mt-16 grid gap-12 border-b pb-12 [--radius:1rem] md:grid-cols-2">

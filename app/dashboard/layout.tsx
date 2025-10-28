@@ -1,38 +1,32 @@
-import { AppSidebar } from "@/app/dashboard/app-sidebar"
-import { SiteHeader } from "@/app/dashboard/site-header"
-import { LoadingBar } from "@/app/dashboard/loading-bar"
-import {
-  SidebarInset,
-  SidebarProvider,
-} from "@/components/ui/sidebar"
+"use client";
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+import { DashboardSidebar } from "@/components/dashboard-sidebar";
+import { ScrollArea } from "@/components/ui/scroll-area";
+
+interface DashboardLayoutProps {
+  children: React.ReactNode;
+}
+
+export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
-    <SidebarProvider
-      style={
-        {
-          "--sidebar-width": "calc(var(--spacing) * 72)",
-          "--header-height": "calc(var(--spacing) * 12)",
-        } as React.CSSProperties
-      }
-      className="group/layout"
-    >
-      <AppSidebar variant="inset" />
-      <SidebarInset>
-        <LoadingBar />
-        <SiteHeader />
-        <div className="flex flex-1 flex-col">
-          <div className="@container/main flex flex-1 flex-col gap-2">
-            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-              {children}
-            </div>
+    <div className="flex h-screen bg-background">
+      {/* Sidebar */}
+      <div className="hidden md:flex md:w-64 md:flex-col">
+        <div className="flex flex-col flex-grow pt-5 overflow-y-auto border-r bg-card">
+          <div className="flex flex-col flex-grow">
+            <DashboardSidebar />
           </div>
         </div>
-      </SidebarInset>
-    </SidebarProvider>
-  )
-} 
+      </div>
+      
+      {/* Main content */}
+      <div className="flex flex-col flex-1 overflow-hidden">
+        <ScrollArea className="flex-1">
+          <div className="container mx-auto p-6">
+            {children}
+          </div>
+        </ScrollArea>
+      </div>
+    </div>
+  );
+}

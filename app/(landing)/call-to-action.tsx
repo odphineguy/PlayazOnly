@@ -8,24 +8,14 @@ export default function CallToAction() {
             <div className=" mx-auto max-w-5xl rounded-3xl px-6 py-12 md:py-20 lg:py-32">
                 <PixelCard variant="blue" className="w-full max-w-5xl h-auto aspect-[16/9]">
                 <div className="absolute text-center">
-                    <h2 className="text-balance text-4xl font-semibold lg:text-5xl">Start Building</h2>
-                    <p className="mt-4">Libero sapiente aliquam quibusdam aspernatur.</p>
+                    <h2 className="text-balance text-4xl font-semibold lg:text-5xl">Playaz Only</h2>
 
                     <div className="mt-12 flex flex-wrap justify-center gap-4">
                         <Button
                             asChild
                             size="lg">
-                            <Link href="/">
-                                <span>Get Started</span>
-                            </Link>
-                        </Button>
-
-                        <Button
-                            asChild
-                            size="lg"
-                            variant="outline">
-                            <Link href="/">
-                                <span>Book Demo</span>
+                            <Link href="/dashboard">
+                                <span>Enter</span>
                             </Link>
                         </Button>
                     </div>

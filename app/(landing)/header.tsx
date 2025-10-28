@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import React from 'react'
 import { cn } from '@/lib/utils'
+import { ModeToggle } from '@/components/mode-toggle'
 
 // Demo mode - temporarily disabled auth components
 // import { Authenticated, Unauthenticated, AuthLoading } from "convex/react";
@@ -17,10 +18,10 @@ import { useTheme } from "next-themes"
 
 
 const menuItems = [
-    { name: 'Features', href: '#link' },
-    { name: 'Solution', href: '#link' },
-    { name: 'Pricing', href: '#link' },
-    { name: 'About', href: '#link' },
+    { name: 'Dashboard', href: '/dashboard' },
+    { name: 'Import Data', href: '/import' },
+    { name: 'Manual Entry', href: '/manual-entry' },
+    { name: 'Pricing', href: '/pricing' },
 ]
 
 export const HeroHeader = () => {
@@ -51,9 +52,7 @@ export const HeroHeader = () => {
                                 href="/"
                                 aria-label="home"
                                 className="flex items-center space-x-2">
-                                <ChatMaxingIconColoured />
-                                <span className="text-xl font-medium">Starter.diy</span>
-                                <Badge variant="outline" className="text-muted-foreground  text-xs">Demo</Badge>
+                                {/* Logo can be added here if needed */}
                             </Link>
 
                             <button
@@ -120,6 +119,7 @@ export const HeroHeader = () => {
                                         <span>Get Started</span>
                                     </Link>
                                 </Button>
+                                <ModeToggle />
                             </div>
                         </div>
                     </div>

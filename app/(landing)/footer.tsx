@@ -16,7 +16,7 @@ const links = [
     },
     {
         title: 'Pricing',
-        href: '#',
+        href: '/pricing',
     },
     {
         title: 'Help',
@@ -32,13 +32,6 @@ export default function FooterSection() {
     return (
         <footer className="py-16 md:py-32">
             <div className="mx-auto max-w-5xl px-6">
-                <Link
-                    href="/"
-                    aria-label="go home"
-                    className="flex mx-auto gap-2 items-center size-fit">
-                    <ChatMaxingIconColoured />
-                    <span className="text-xl font-medium">Starter.diy</span>
-                </Link>
 
                 <div className="my-8 flex flex-wrap justify-center gap-6 text-sm">
                     {links.map((link, index) => (
@@ -159,7 +152,7 @@ export default function FooterSection() {
                         </svg>
                     </Link>
                 </div>
-                <span className="text-muted-foreground block text-center text-sm"> © {new Date().getFullYear()} Starter.diy, All rights reserved</span>
+                <span className="text-muted-foreground block text-center text-sm">© 2025 Abe Media, All rights reserved</span>
             </div>
         </footer>
     )

@@ -1,0 +1,3065 @@
+{
+  "year": 2025,
+  "league_name": "Playaz Only",
+  "teams": [
+    {
+      "team_id": 1,
+      "team_name": "Mad Men",
+      "owners": [
+        {
+          "displayName": "odphineguy",
+          "firstName": "Abe",
+          "id": "{1BF22DC3-090B-47B9-A6B3-9A4C3699A3E7}",
+          "lastName": "Perez",
+          "notificationSettings": [
+            {
+              "enabled": true,
+              "id": "7462c007-9a44-398b-a917-b0490ab9d23c",
+              "type": "TEAM_PLAYER_INJURY"
+            },
+            {
+              "enabled": true,
+              "id": "976519ae-edc2-3980-9804-018e5697383b",
+              "type": "TEAM_PLAYER_AVAILABILITY"
+            },
+            {
+              "enabled": true,
+              "id": "1e9b05d2-3f4a-32f2-8abc-d26507f40c06",
+              "type": "TEAM_PLAYER_NEWS"
+            },
+            {
+              "enabled": true,
+              "id": "5fe08812-3feb-328e-9836-f7cd0dbd3b42",
+              "type": "TEAM_PLAYER_STARTBENCH"
+            },
+            {
+              "enabled": true,
+              "id": "588c8887-af2b-331f-9bda-65e71dd7ba84",
+              "type": "TEAM_TRADE_OFFER"
+            },
+            {
+              "enabled": true,
+              "id": "55448832-fd57-387f-8cd7-1e4465ff56be",
+              "type": "DRAFT"
+            },
+            {
+              "enabled": true,
+              "id": "3cd04328-ffa1-36a6-98de-ca4888cf92f3",
+              "type": "TEAM_MATCHUP_SCORE"
+            },
+            {
+              "enabled": true,
+              "id": "3f4979a0-2184-3f55-a3cf-dc55855bfc39",
+              "type": "KEY_PLAY"
+            },
+            {
+              "enabled": true,
+              "id": "47c53557-0a58-353a-9e7f-b8aa6c909af0",
+              "type": "REDZONE"
+            },
+            {
+              "enabled": true,
+              "id": "863ab07d-eb41-367c-8dd0-7f0e839ea434",
+              "type": "ADD_DROP"
+            },
+            {
+              "enabled": true,
+              "id": "365b78d6-520c-32a3-a391-c4b46453b161",
+              "type": "WEEKLY_RECAP"
+            },
+            {
+              "enabled": true,
+              "id": "96b7eb42-52c6-39e8-a5e3-2b410e0bbd29",
+              "type": "WAIVERS"
+            },
+            {
+              "enabled": true,
+              "id": "c110e807-1fe5-330e-a65e-5f7d3c7950e7",
+              "type": "CELEBRATION_SHARE"
+            }
+          ]
+        }
+      ],
+      "wins": 5,
+      "losses": 2,
+      "points_for": 794.0,
+      "points_against": 720.5,
+      "standing": 2,
+      "final_standing": 0,
+      "streak_length": 1,
+      "streak_type": "WIN",
+      "roster": [
+        {
+          "name": "Puka Nacua",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Josh Jacobs",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Jaxon Smith-Njigba",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "RJ Harvey",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Emeka Egbuka",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Jacory Croskey-Merritt",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Kyler Murray",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Ollie Gordon II",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Dalton Kincaid",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Chase McLaughlin",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Blake Corum",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Xavier Legette",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Vikings D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Cade Otton",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Rams D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Justin Fields",
+          "position": "QB",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 2,
+      "team_name": "Chandler TopFeeders",
+      "owners": [
+        {
+          "displayName": "samakers15425",
+          "firstName": "Sam",
+          "id": "{24F32870-C1D4-4010-9200-CF06EFD41099}",
+          "lastName": "Akers",
+          "notificationSettings": [
+            {
+              "enabled": true,
+              "id": "3a99cb80-9c7b-3f63-bbd6-413e366dc8f5",
+              "type": "TEAM_PLAYER_INJURY"
+            },
+            {
+              "enabled": true,
+              "id": "5e8dd6d7-c06b-3476-9fe4-ab9f11e65683",
+              "type": "TEAM_PLAYER_AVAILABILITY"
+            },
+            {
+              "enabled": true,
+              "id": "a5eea5c5-462b-31ec-b5d4-31a50cd96155",
+              "type": "TEAM_PLAYER_NEWS"
+            },
+            {
+              "enabled": true,
+              "id": "24599884-f8e3-3159-a668-95644ce11390",
+              "type": "TEAM_PLAYER_STARTBENCH"
+            },
+            {
+              "enabled": true,
+              "id": "fb1858d4-1aca-3719-b129-85c44219eec6",
+              "type": "TEAM_TRADE_OFFER"
+            },
+            {
+              "enabled": true,
+              "id": "a3f9e75b-3058-33b3-90e4-75b2f17944c1",
+              "type": "DRAFT"
+            },
+            {
+              "enabled": true,
+              "id": "1b5c2e37-dc14-3588-8a64-442f1400fb91",
+              "type": "TEAM_MATCHUP_SCORE"
+            },
+            {
+              "enabled": true,
+              "id": "cf88f5a1-db38-38e4-88fa-d6c0a16c3f3d",
+              "type": "KEY_PLAY"
+            },
+            {
+              "enabled": true,
+              "id": "f5f5fce1-c117-3845-97a8-079e320cb0c9",
+              "type": "REDZONE"
+            },
+            {
+              "enabled": true,
+              "id": "75d106f5-d420-3d90-8c93-7e05b07013df",
+              "type": "ADD_DROP"
+            },
+            {
+              "enabled": true,
+              "id": "4891654e-e285-3ceb-bec2-616d4eaf2807",
+              "type": "WEEKLY_RECAP"
+            },
+            {
+              "enabled": true,
+              "id": "0cee1fdd-4f28-3009-84b2-48879c88e05b",
+              "type": "WAIVERS"
+            },
+            {
+              "enabled": true,
+              "id": "affac75f-1e4d-3703-b76f-c46450609816",
+              "type": "CELEBRATION_SHARE"
+            }
+          ]
+        }
+      ],
+      "wins": 6,
+      "losses": 1,
+      "points_for": 852.9,
+      "points_against": 662.5,
+      "standing": 1,
+      "final_standing": 0,
+      "streak_length": 6,
+      "streak_type": "WIN",
+      "roster": [
+        {
+          "name": "CeeDee Lamb",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Jonathan Taylor",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Patrick Mahomes",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Kenneth Walker III",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "George Pickens",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Chris Olave",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Mark Andrews",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "C.J. Stroud",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Jerome Ford",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Chris Boswell",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Cardinals D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Dalton Schultz",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Tyquan Thornton",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Nick Folk",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Malik Washington",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Buccaneers D/ST",
+          "position": "D/ST",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 3,
+      "team_name": "Killer Beers",
+      "owners": [
+        {
+          "displayName": "oasoto",
+          "firstName": "Omar",
+          "id": "{D161841C-208D-429B-8FC7-A26211C65896}",
+          "lastName": "Soto",
+          "notificationSettings": [
+            {
+              "enabled": true,
+              "id": "110d7c96-5199-3fd5-919f-e7208809a49a",
+              "type": "TEAM_PLAYER_INJURY"
+            },
+            {
+              "enabled": true,
+              "id": "96f3ece9-6738-3aa8-ace6-894d83b3e143",
+              "type": "TEAM_PLAYER_AVAILABILITY"
+            },
+            {
+              "enabled": true,
+              "id": "f086502a-eb64-3a5d-a3e0-a4e47b6f623e",
+              "type": "TEAM_PLAYER_NEWS"
+            },
+            {
+              "enabled": true,
+              "id": "ea416466-1b45-3883-b9e3-73606aa2d149",
+              "type": "TEAM_PLAYER_STARTBENCH"
+            },
+            {
+              "enabled": true,
+              "id": "d878d7bb-f707-30a7-ac00-49142f5e1370",
+              "type": "TEAM_TRADE_OFFER"
+            },
+            {
+              "enabled": true,
+              "id": "7189aa19-9205-39f2-bc56-584fc57d95a9",
+              "type": "DRAFT"
+            },
+            {
+              "enabled": true,
+              "id": "8095c27c-1f43-3a59-8de8-fa589284ad11",
+              "type": "TEAM_MATCHUP_SCORE"
+            },
+            {
+              "enabled": true,
+              "id": "7f2f7ebf-531e-3e3c-b173-1b8cbb472f95",
+              "type": "KEY_PLAY"
+            },
+            {
+              "enabled": true,
+              "id": "d43ab48f-a062-3f01-8ddb-fd4a92de2629",
+              "type": "REDZONE"
+            },
+            {
+              "enabled": true,
+              "id": "f0ec637c-2194-3716-9f72-798631204e3c",
+              "type": "ADD_DROP"
+            },
+            {
+              "enabled": true,
+              "id": "b20479e7-610a-3b14-bd1a-423700999e34",
+              "type": "WEEKLY_RECAP"
+            },
+            {
+              "enabled": true,
+              "id": "84cfab90-7e65-3609-aec9-ba50520f1914",
+              "type": "WAIVERS"
+            },
+            {
+              "enabled": true,
+              "id": "6c57b814-6cb6-37cb-9bc8-b11ae41f70af",
+              "type": "CELEBRATION_SHARE"
+            }
+          ]
+        }
+      ],
+      "wins": 2,
+      "losses": 5,
+      "points_for": 704.1,
+      "points_against": 773.8,
+      "standing": 11,
+      "final_standing": 0,
+      "streak_length": 2,
+      "streak_type": "WIN",
+      "roster": [
+        {
+          "name": "Christian McCaffrey",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "A.J. Brown",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Ladd McConkey",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Sam LaPorta",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Jakobi Meyers",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Ricky Pearsall",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Rhamondre Stevenson",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Jordan Love",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Rashid Shaheed",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Hollywood Brown",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Woody Marks",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Falcons D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Matthew Stafford",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Jason Myers",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Oronde Gadsden II",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Will Reichard",
+          "position": "K",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 4,
+      "team_name": "South Side Delinquents",
+      "owners": [
+        {
+          "displayName": "DeezzNutzz3",
+          "firstName": "Daniel",
+          "id": "{7A7EEF46-E90B-4397-BA13-CD6C8E3AC774}",
+          "lastName": "Ortega",
+          "notificationSettings": [
+            {
+              "enabled": true,
+              "id": "ca3b269e-4e23-3fbc-adf2-7c534644f1cd",
+              "type": "TEAM_PLAYER_INJURY"
+            },
+            {
+              "enabled": true,
+              "id": "63dcc726-2ee6-3627-b7c9-06d94db4bd51",
+              "type": "TEAM_PLAYER_AVAILABILITY"
+            },
+            {
+              "enabled": true,
+              "id": "48e13ce4-fa96-3f11-a1bf-c26c467100fc",
+              "type": "TEAM_PLAYER_NEWS"
+            },
+            {
+              "enabled": true,
+              "id": "c488bfe5-388f-3540-a94c-40103ba4e0df",
+              "type": "TEAM_PLAYER_STARTBENCH"
+            },
+            {
+              "enabled": true,
+              "id": "96a8f0d4-d736-376f-a114-4fb6aea38350",
+              "type": "TEAM_TRADE_OFFER"
+            },
+            {
+              "enabled": true,
+              "id": "6c0d8314-96f1-3ece-b631-c059778af296",
+              "type": "DRAFT"
+            },
+            {
+              "enabled": true,
+              "id": "5f50e654-4285-3794-8e20-818e62d980b6",
+              "type": "TEAM_MATCHUP_SCORE"
+            },
+            {
+              "enabled": true,
+              "id": "c14d3db1-f96b-3704-98f7-6e7da786c7bb",
+              "type": "KEY_PLAY"
+            },
+            {
+              "enabled": true,
+              "id": "4e5f70c1-805a-3367-81a8-348ad9ad20ad",
+              "type": "REDZONE"
+            },
+            {
+              "enabled": true,
+              "id": "d5de9047-4602-35d9-b0b3-1755102743a5",
+              "type": "ADD_DROP"
+            },
+            {
+              "enabled": true,
+              "id": "baf97d26-cc12-3f9b-ba63-cd03deda2a57",
+              "type": "WEEKLY_RECAP"
+            },
+            {
+              "enabled": true,
+              "id": "af464af2-4d89-36f6-9075-424354aacb8e",
+              "type": "WAIVERS"
+            },
+            {
+              "enabled": true,
+              "id": "1ee8db78-33ad-30a8-a6c5-391ca5fe50a0",
+              "type": "CELEBRATION_SHARE"
+            }
+          ]
+        }
+      ],
+      "wins": 2,
+      "losses": 5,
+      "points_for": 630.8,
+      "points_against": 736.9,
+      "standing": 13,
+      "final_standing": 0,
+      "streak_length": 2,
+      "streak_type": "WIN",
+      "roster": [
+        {
+          "name": "Bijan Robinson",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Joe Burrow",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Trey McBride",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Xavier Worthy",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "DJ Moore",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Jerry Jeudy",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Zach Charbonnet",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Caleb Williams",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Ravens D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Cameron Dicker",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Dallas Goedert",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Darius Slayton",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Andy Dalton",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Isaiah Davis",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "49ers D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Alec Pierce",
+          "position": "WR",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 5,
+      "team_name": "Travis Hunter Kuck Club",
+      "owners": [
+        {
+          "displayName": "Lenz31",
+          "firstName": "Lawrence",
+          "id": "{6DF52985-B8B8-4CC3-8706-6E010A8133D7}",
+          "lastName": "Dobrosky",
+          "notificationSettings": [
+            {
+              "enabled": true,
+              "id": "a83dcc1d-3801-31af-9c8d-03ad54e5aab0",
+              "type": "TEAM_PLAYER_INJURY"
+            },
+            {
+              "enabled": true,
+              "id": "29932ab5-912a-3b75-9cb2-a179670135a2",
+              "type": "TEAM_PLAYER_AVAILABILITY"
+            },
+            {
+              "enabled": true,
+              "id": "1d6e4d19-a649-3724-b1cb-fe1fdd65a38e",
+              "type": "TEAM_PLAYER_NEWS"
+            },
+            {
+              "enabled": true,
+              "id": "48bcb6e1-313f-33fe-b02f-c43a41c620d4",
+              "type": "TEAM_PLAYER_STARTBENCH"
+            },
+            {
+              "enabled": true,
+              "id": "3923676f-ed5a-3c29-a21f-4b0d60859f9b",
+              "type": "TEAM_TRADE_OFFER"
+            },
+            {
+              "enabled": true,
+              "id": "4f5246e4-fd12-33ab-8aec-33abe63a85fd",
+              "type": "DRAFT"
+            },
+            {
+              "enabled": true,
+              "id": "9de4018b-3ab1-34e6-b642-84d5127b921f",
+              "type": "TEAM_MATCHUP_SCORE"
+            },
+            {
+              "enabled": true,
+              "id": "a68d47e9-eff1-3d69-b268-3d80f53c3ae4",
+              "type": "KEY_PLAY"
+            },
+            {
+              "enabled": true,
+              "id": "24315ba7-6199-38e8-b770-742edba3ccba",
+              "type": "REDZONE"
+            },
+            {
+              "enabled": true,
+              "id": "2f54c821-e194-38f9-95d7-c544700676b1",
+              "type": "ADD_DROP"
+            },
+            {
+              "enabled": true,
+              "id": "f19931d0-502b-3caa-a575-e23e6199d70f",
+              "type": "WEEKLY_RECAP"
+            },
+            {
+              "enabled": true,
+              "id": "c533a5f9-9d71-32ba-8c07-4ac8d3d393cc",
+              "type": "WAIVERS"
+            },
+            {
+              "enabled": true,
+              "id": "93b7ec2d-e2c8-3c47-a034-8022deffa12f",
+              "type": "CELEBRATION_SHARE"
+            }
+          ]
+        }
+      ],
+      "wins": 5,
+      "losses": 2,
+      "points_for": 715.1,
+      "points_against": 702.1,
+      "standing": 4,
+      "final_standing": 0,
+      "streak_length": 4,
+      "streak_type": "WIN",
+      "roster": [
+        {
+          "name": "Saquon Barkley",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Drake London",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Brian Thomas Jr.",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Garrett Wilson",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Tetairoa McMillan",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Bo Nix",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Tucker Kraft",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Quinshon Judkins",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Tyler Allgeier",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Packers D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Harrison Butker",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Tyjae Spears",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Bam Knight",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Brashard Smith",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Sam Darnold",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Kayshon Boutte",
+          "position": "WR",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 6,
+      "team_name": "The Tank",
+      "owners": [
+        {
+          "displayName": "ODPhrank23",
+          "firstName": "Frank",
+          "id": "{248E5388-B10C-48D2-90C8-86853478BDB2}",
+          "lastName": "Ballesteros",
+          "notificationSettings": [
+            {
+              "enabled": true,
+              "id": "c9e7f16f-feba-3bcd-b55b-221f74f764d4",
+              "type": "TEAM_PLAYER_INJURY"
+            },
+            {
+              "enabled": true,
+              "id": "1bf0da09-801c-3c91-bc58-2c149eda2a72",
+              "type": "TEAM_PLAYER_AVAILABILITY"
+            },
+            {
+              "enabled": true,
+              "id": "75c6216e-4a4f-340d-b584-5ffc4fb8a25e",
+              "type": "TEAM_PLAYER_NEWS"
+            },
+            {
+              "enabled": true,
+              "id": "1a7bfeef-5d6a-37e7-9565-ceb8e0affefb",
+              "type": "TEAM_PLAYER_STARTBENCH"
+            },
+            {
+              "enabled": true,
+              "id": "437981ea-bff7-3d6a-852e-b7d03ad58cc9",
+              "type": "TEAM_TRADE_OFFER"
+            },
+            {
+              "enabled": true,
+              "id": "803f91dd-6c67-36a4-8350-49ecc8fbfb62",
+              "type": "DRAFT"
+            },
+            {
+              "enabled": true,
+              "id": "efae365e-7b3e-3f68-a486-73d833cc0980",
+              "type": "TEAM_MATCHUP_SCORE"
+            },
+            {
+              "enabled": true,
+              "id": "4d6d1aba-f781-3a6c-984a-aadef1d01fb3",
+              "type": "KEY_PLAY"
+            },
+            {
+              "enabled": true,
+              "id": "ee55acd9-ae65-3388-a303-75947da0cf3c",
+              "type": "REDZONE"
+            },
+            {
+              "enabled": true,
+              "id": "2bda4e38-028e-33b5-8f4a-b3e271688400",
+              "type": "ADD_DROP"
+            },
+            {
+              "enabled": true,
+              "id": "842dc70c-22cf-360c-8f09-938a65dfedc3",
+              "type": "WEEKLY_RECAP"
+            },
+            {
+              "enabled": true,
+              "id": "cac1a1a5-8408-369a-83f2-1999f62653f4",
+              "type": "WAIVERS"
+            },
+            {
+              "enabled": true,
+              "id": "ab1416bb-be63-3d19-afb0-2d0cf10fe0a8",
+              "type": "CELEBRATION_SHARE"
+            }
+          ]
+        }
+      ],
+      "wins": 3,
+      "losses": 4,
+      "points_for": 650.5000000000001,
+      "points_against": 680.4,
+      "standing": 10,
+      "final_standing": 0,
+      "streak_length": 2,
+      "streak_type": "LOSS",
+      "roster": [
+        {
+          "name": "Nico Collins",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "David Montgomery",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Cam Skattebo",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Brock Purdy",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Stefon Diggs",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Jake Elliott",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Wan'Dale Robinson",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Will Shipley",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Rachaad White",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Jalen Coker",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Romeo Doubs",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Matt Gay",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Bryce Young",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "AJ Barner",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Pat Freiermuth",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Saints D/ST",
+          "position": "D/ST",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 8,
+      "team_name": "Team END-zone",
+      "owners": [
+        {
+          "displayName": "ESPNFAN44950476",
+          "firstName": "JRuben",
+          "id": "{FCBBB23B-B64C-452F-AE7F-3DCC0AC2D2BC}",
+          "lastName": "Alcantar",
+          "notificationSettings": [
+            {
+              "enabled": true,
+              "id": "9e751325-e51c-3077-9ddb-6d1173dd38ac",
+              "type": "TEAM_PLAYER_INJURY"
+            },
+            {
+              "enabled": true,
+              "id": "cef88d2d-9005-3163-8b7d-d016f7704302",
+              "type": "TEAM_PLAYER_AVAILABILITY"
+            },
+            {
+              "enabled": true,
+              "id": "628bcfae-1fd5-3c6b-b453-cfaed4b533eb",
+              "type": "TEAM_PLAYER_NEWS"
+            },
+            {
+              "enabled": true,
+              "id": "2fa7290d-9122-356c-b737-d0fe5aeedc24",
+              "type": "TEAM_PLAYER_STARTBENCH"
+            },
+            {
+              "enabled": true,
+              "id": "67b18059-8478-335a-8828-7aa31c1505bc",
+              "type": "TEAM_TRADE_OFFER"
+            },
+            {
+              "enabled": true,
+              "id": "3aa99afd-b825-3893-bbb0-6859d5e318a6",
+              "type": "DRAFT"
+            },
+            {
+              "enabled": true,
+              "id": "28881b31-6f6f-3520-96f9-cc48ea5c76a9",
+              "type": "TEAM_MATCHUP_SCORE"
+            },
+            {
+              "enabled": true,
+              "id": "956c853a-7c9b-3e86-80d9-71637d7530d1",
+              "type": "KEY_PLAY"
+            },
+            {
+              "enabled": true,
+              "id": "8a9b871d-41f0-3d69-8352-bbc17dcdd8aa",
+              "type": "REDZONE"
+            },
+            {
+              "enabled": true,
+              "id": "ada3ee18-1e6b-317b-911e-cb797fdbaa1a",
+              "type": "ADD_DROP"
+            },
+            {
+              "enabled": true,
+              "id": "340ab92f-1777-34fe-ada0-9b2a5b88764b",
+              "type": "WEEKLY_RECAP"
+            },
+            {
+              "enabled": true,
+              "id": "f373aa91-8ec7-3dfa-a360-fd3c17a20d51",
+              "type": "WAIVERS"
+            },
+            {
+              "enabled": true,
+              "id": "006b3a2b-968f-3c86-8c47-188801962418",
+              "type": "CELEBRATION_SHARE"
+            }
+          ]
+        }
+      ],
+      "wins": 4,
+      "losses": 3,
+      "points_for": 712.8000000000001,
+      "points_against": 723.4,
+      "standing": 6,
+      "final_standing": 0,
+      "streak_length": 1,
+      "streak_type": "LOSS",
+      "roster": [
+        {
+          "name": "Justin Jefferson",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Jayden Daniels",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Bucky Irving",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Breece Hall",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Rashee Rice",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Matthew Golden",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "J.K. Dobbins",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Jordan Addison",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Tyler Warren",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Brandon Aiyuk",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Isaiah Likely",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Kendrick Bourne",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Jaydon Blue",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Chiefs D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Eddy Pineiro",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Joe Flacco",
+          "position": "QB",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 9,
+      "team_name": "OG LA Raiders",
+      "owners": [
+        {
+          "displayName": "Izreal 187",
+          "firstName": "HAMILTON",
+          "id": "{63247C58-97AE-4AA3-8ACE-7F83568EA573}",
+          "lastName": "RAMIREZ",
+          "notificationSettings": [
+            {
+              "enabled": true,
+              "id": "8f57d963-3eb7-3fd4-bccb-b95e4038358c",
+              "type": "TEAM_PLAYER_INJURY"
+            },
+            {
+              "enabled": true,
+              "id": "b58f3cfc-21f2-3f05-b0f1-7e625df94e63",
+              "type": "TEAM_PLAYER_AVAILABILITY"
+            },
+            {
+              "enabled": true,
+              "id": "81a89be9-9616-34d1-9ee3-7d80806f99d2",
+              "type": "TEAM_PLAYER_NEWS"
+            },
+            {
+              "enabled": true,
+              "id": "dfcbcd45-7b9d-3638-9185-9ecc20858503",
+              "type": "TEAM_PLAYER_STARTBENCH"
+            },
+            {
+              "enabled": true,
+              "id": "ef3dbb10-adfc-367b-a607-8b0615005b53",
+              "type": "TEAM_TRADE_OFFER"
+            },
+            {
+              "enabled": true,
+              "id": "6226f764-c0f9-38e5-a0ad-055d62ec3f69",
+              "type": "DRAFT"
+            },
+            {
+              "enabled": true,
+              "id": "cba35b43-202f-39cc-a676-904349c2a2fe",
+              "type": "TEAM_MATCHUP_SCORE"
+            },
+            {
+              "enabled": true,
+              "id": "a7942b24-390c-333c-8bf9-27c032011b59",
+              "type": "KEY_PLAY"
+            },
+            {
+              "enabled": true,
+              "id": "05abb340-39a1-330f-b0d1-8f36d0d21862",
+              "type": "REDZONE"
+            },
+            {
+              "enabled": true,
+              "id": "ff115614-6490-39aa-9022-72ddd79d024c",
+              "type": "ADD_DROP"
+            },
+            {
+              "enabled": true,
+              "id": "5c03a17d-b1de-377c-9433-c474dcaec33a",
+              "type": "WEEKLY_RECAP"
+            },
+            {
+              "enabled": true,
+              "id": "edcf7d03-f462-3c11-9500-62f1f14219e3",
+              "type": "WAIVERS"
+            },
+            {
+              "enabled": true,
+              "id": "260714ff-8400-39c0-a2ad-99d86d70fdf4",
+              "type": "CELEBRATION_SHARE"
+            }
+          ]
+        }
+      ],
+      "wins": 2,
+      "losses": 5,
+      "points_for": 690.6,
+      "points_against": 814.1,
+      "standing": 12,
+      "final_standing": 0,
+      "streak_length": 1,
+      "streak_type": "LOSS",
+      "roster": [
+        {
+          "name": "Ashton Jeanty",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Brock Bowers",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "DK Metcalf",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "D'Andre Swift",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Travis Hunter",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Cooper Kupp",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Jaylen Warren",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Dak Prescott",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Kareem Hunt",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Hunter Henry",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Daniel Jones",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Kenneth Gainwell",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Aaron Rodgers",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Patriots D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Michael Badgley",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Josh Reynolds",
+          "position": "WR",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 10,
+      "team_name": "Ass N TD's",
+      "owners": [
+        {
+          "displayName": "azknighted",
+          "firstName": "dan",
+          "id": "{F72AA8AC-4D01-439D-A609-0AA5E875D8C4}",
+          "lastName": "larios",
+          "notificationSettings": [
+            {
+              "enabled": true,
+              "id": "73460aae-1cdb-3716-bcf2-2e80d6fa3b5a",
+              "type": "TEAM_PLAYER_INJURY"
+            },
+            {
+              "enabled": true,
+              "id": "a359ed77-ce90-3af7-ac3f-a4eb347bad47",
+              "type": "TEAM_PLAYER_AVAILABILITY"
+            },
+            {
+              "enabled": true,
+              "id": "72314755-5dba-39c9-a224-37098f789a6a",
+              "type": "TEAM_PLAYER_NEWS"
+            },
+            {
+              "enabled": true,
+              "id": "08d9b5b4-9c94-320c-b8ad-52d7e36968d3",
+              "type": "TEAM_PLAYER_STARTBENCH"
+            },
+            {
+              "enabled": true,
+              "id": "d26f9ad2-adac-33dd-9447-5b05842debee",
+              "type": "TEAM_TRADE_OFFER"
+            },
+            {
+              "enabled": true,
+              "id": "be3508a4-5cdf-363a-88ed-9e553d30c421",
+              "type": "DRAFT"
+            },
+            {
+              "enabled": true,
+              "id": "d8da3d66-9590-304f-ba37-95b308e7a84b",
+              "type": "TEAM_MATCHUP_SCORE"
+            },
+            {
+              "enabled": true,
+              "id": "da018e91-9aec-32b3-851b-3fa3bcc92468",
+              "type": "KEY_PLAY"
+            },
+            {
+              "enabled": true,
+              "id": "708dc9dd-0c17-3e22-a9a1-b8fb4b51ce30",
+              "type": "REDZONE"
+            },
+            {
+              "enabled": true,
+              "id": "9923644d-5195-382a-810a-e7f236d0a3be",
+              "type": "ADD_DROP"
+            },
+            {
+              "enabled": true,
+              "id": "c0b66ce9-f736-3eea-8052-32863eaa18ba",
+              "type": "WEEKLY_RECAP"
+            },
+            {
+              "enabled": true,
+              "id": "63e2a385-bdd4-34ab-a160-0247c1e72133",
+              "type": "WAIVERS"
+            },
+            {
+              "enabled": true,
+              "id": "36dce73f-de0f-3f7c-984b-45c480bca278",
+              "type": "CELEBRATION_SHARE"
+            }
+          ]
+        }
+      ],
+      "wins": 4,
+      "losses": 3,
+      "points_for": 687.8000000000001,
+      "points_against": 743.5,
+      "standing": 7,
+      "final_standing": 0,
+      "streak_length": 2,
+      "streak_type": "LOSS",
+      "roster": [
+        {
+          "name": "Derrick Henry",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Alvin Kamara",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Aaron Jones Sr.",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Baker Mayfield",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Michael Pittman Jr.",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Joe Mixon",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Zach Ertz",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Colts D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Texans D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Tre Tucker",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Michael Carter",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Tez Johnson",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Jauan Jennings",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Evan McPherson",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Marcus Mariota",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Courtland Sutton",
+          "position": "WR",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 11,
+      "team_name": "Wreaking Crew JDR",
+      "owners": [
+        {
+          "displayName": "jdramos88",
+          "firstName": "jorge",
+          "id": "{2A8CEE3C-7CC2-450E-89B7-4F3910616F0E}",
+          "lastName": "Ramos",
+          "notificationSettings": [
+            {
+              "enabled": true,
+              "id": "69f766a8-ef6a-3fa4-a4ea-a499c9044e20",
+              "type": "TEAM_PLAYER_INJURY"
+            },
+            {
+              "enabled": true,
+              "id": "f0f5ebfa-e392-33cd-9b8b-320a83544f8f",
+              "type": "TEAM_PLAYER_AVAILABILITY"
+            },
+            {
+              "enabled": true,
+              "id": "4a965dd0-bbd3-3f8a-9d32-5e4225c4d5e1",
+              "type": "TEAM_PLAYER_NEWS"
+            },
+            {
+              "enabled": true,
+              "id": "d175831f-7657-3bdf-8797-70382881b30b",
+              "type": "TEAM_PLAYER_STARTBENCH"
+            },
+            {
+              "enabled": true,
+              "id": "30030a05-8302-36c8-a542-e61b6abf09d1",
+              "type": "TEAM_TRADE_OFFER"
+            },
+            {
+              "enabled": true,
+              "id": "cdb2ce3e-82bc-3c8d-bbfa-950a0123fa1d",
+              "type": "DRAFT"
+            },
+            {
+              "enabled": true,
+              "id": "5e5e9fc0-ffef-3f90-bdb6-d859c570049b",
+              "type": "TEAM_MATCHUP_SCORE"
+            },
+            {
+              "enabled": true,
+              "id": "0a8fac12-53fb-38bf-a4c9-47fa6698847c",
+              "type": "KEY_PLAY"
+            },
+            {
+              "enabled": true,
+              "id": "a29ed8a3-bd73-3f89-b821-39d3c3d95430",
+              "type": "REDZONE"
+            },
+            {
+              "enabled": true,
+              "id": "e52ecc08-b938-3f27-95f8-b4efa495e5c1",
+              "type": "ADD_DROP"
+            },
+            {
+              "enabled": true,
+              "id": "c96732b2-1bd3-31c7-8e50-632f98d32e08",
+              "type": "WEEKLY_RECAP"
+            },
+            {
+              "enabled": true,
+              "id": "19871cf8-06f6-3bd3-b844-1bcc5a8bea5d",
+              "type": "WAIVERS"
+            },
+            {
+              "enabled": true,
+              "id": "2cc21589-e040-3ad2-95c8-a9f3ad656be2",
+              "type": "CELEBRATION_SHARE"
+            }
+          ]
+        }
+      ],
+      "wins": 3,
+      "losses": 4,
+      "points_for": 738.3000000000001,
+      "points_against": 709.9,
+      "standing": 8,
+      "final_standing": 0,
+      "streak_length": 1,
+      "streak_type": "WIN",
+      "roster": [
+        {
+          "name": "Ja'Marr Chase",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Omarion Hampton",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Davante Adams",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Isiah Pacheco",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Tyrone Tracy Jr.",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "David Njoku",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Nick Chubb",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Jared Goff",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Christian Kirk",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Brandon Aubrey",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Quentin Johnston",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "T.J. Hockenson",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Jeremy McNichols",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Kimani Vidal",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Chargers D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Carson Wentz",
+          "position": "QB",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 12,
+      "team_name": "Dillinger Escape Plan.",
+      "owners": [
+        {
+          "displayName": "crdns31mchl",
+          "firstName": "Michael",
+          "id": "{A64926AD-A3B8-4F79-BB00-7326C11DC741}",
+          "lastName": "cardenas",
+          "notificationSettings": [
+            {
+              "enabled": true,
+              "id": "e5f77c7e-63d1-3d7c-86fe-b55bbd17c1d5",
+              "type": "TEAM_PLAYER_INJURY"
+            },
+            {
+              "enabled": true,
+              "id": "97679612-b79d-34f8-84b6-1e1244d78620",
+              "type": "TEAM_PLAYER_AVAILABILITY"
+            },
+            {
+              "enabled": true,
+              "id": "95b6f100-0a7d-3f33-97e5-c681f09f9dfe",
+              "type": "TEAM_PLAYER_NEWS"
+            },
+            {
+              "enabled": true,
+              "id": "bbed2111-4115-3015-a560-a0b37d0f2f8f",
+              "type": "TEAM_PLAYER_STARTBENCH"
+            },
+            {
+              "enabled": true,
+              "id": "d1127924-49bc-3432-b733-e76b38b0d48e",
+              "type": "TEAM_TRADE_OFFER"
+            },
+            {
+              "enabled": true,
+              "id": "2f36599a-6ebd-3517-a3cb-ec7d86c347dd",
+              "type": "DRAFT"
+            },
+            {
+              "enabled": true,
+              "id": "28e7707c-de5f-3322-9b06-5b1643f57c53",
+              "type": "TEAM_MATCHUP_SCORE"
+            },
+            {
+              "enabled": true,
+              "id": "6cca5786-62e9-3ad5-ba7f-e4d8edfd3434",
+              "type": "KEY_PLAY"
+            },
+            {
+              "enabled": true,
+              "id": "be963de8-6714-341f-a5d6-6c23c3e5e8a7",
+              "type": "REDZONE"
+            },
+            {
+              "enabled": true,
+              "id": "7c19b096-430e-3c7e-a2a4-0e050d2279aa",
+              "type": "ADD_DROP"
+            },
+            {
+              "enabled": true,
+              "id": "2c04e81f-3e23-3037-866c-a99018491bd4",
+              "type": "WEEKLY_RECAP"
+            },
+            {
+              "enabled": true,
+              "id": "6883c446-c758-3735-af16-52b3fd8bc040",
+              "type": "WAIVERS"
+            },
+            {
+              "enabled": true,
+              "id": "b102ed79-ab3f-3e8d-9b92-31175a78360b",
+              "type": "CELEBRATION_SHARE"
+            }
+          ]
+        }
+      ],
+      "wins": 3,
+      "losses": 4,
+      "points_for": 712.1999999999999,
+      "points_against": 729.0,
+      "standing": 9,
+      "final_standing": 0,
+      "streak_length": 4,
+      "streak_type": "LOSS",
+      "roster": [
+        {
+          "name": "Amon-Ra St. Brown",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Terry McLaurin",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Jalen Hurts",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Chuba Hubbard",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Jaylen Waddle",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Travis Kelce",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Javonte Williams",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Keon Coleman",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Drake Maye",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Darnell Mooney",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Bhayshul Tuten",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Juwan Johnson",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Devin Singletary",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Luke McCaffrey",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Ryan Fitzgerald",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Eagles D/ST",
+          "position": "D/ST",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 13,
+      "team_name": "PDO_ File Blockers",
+      "owners": [
+        {
+          "displayName": "CeeLos1987",
+          "firstName": "Carlos J",
+          "id": "{21065FC8-3BA4-4C4A-865F-C83BA40C4A4E}",
+          "lastName": "Zubiate",
+          "notificationSettings": [
+            {
+              "enabled": true,
+              "id": "7076b49d-59be-3d67-904b-2c6707b2c10a",
+              "type": "TEAM_PLAYER_INJURY"
+            },
+            {
+              "enabled": true,
+              "id": "50e34bda-96fc-3aee-b225-53974c2ebf4b",
+              "type": "TEAM_PLAYER_AVAILABILITY"
+            },
+            {
+              "enabled": true,
+              "id": "430a9e3e-4873-32ad-8875-9f19308eb261",
+              "type": "TEAM_PLAYER_NEWS"
+            },
+            {
+              "enabled": true,
+              "id": "79c7ce04-aebd-3f1f-bf8a-c0b4fcfdc0ed",
+              "type": "TEAM_PLAYER_STARTBENCH"
+            },
+            {
+              "enabled": true,
+              "id": "8cbe81cd-9ab8-3f19-a9d6-f6577bf4630d",
+              "type": "TEAM_TRADE_OFFER"
+            },
+            {
+              "enabled": true,
+              "id": "e527bfa6-8ec4-3ef6-8e2b-a90239c2a2de",
+              "type": "DRAFT"
+            },
+            {
+              "enabled": true,
+              "id": "6352e840-b065-39b1-9e47-601305a29d32",
+              "type": "TEAM_MATCHUP_SCORE"
+            },
+            {
+              "enabled": true,
+              "id": "02c81833-79a8-304d-9c15-3a2ff7d2cc55",
+              "type": "KEY_PLAY"
+            },
+            {
+              "enabled": true,
+              "id": "380b20f5-f621-3eb9-8476-8305c8f75063",
+              "type": "REDZONE"
+            },
+            {
+              "enabled": true,
+              "id": "032517d3-53b7-3531-9cbe-a956bd47ccf5",
+              "type": "ADD_DROP"
+            },
+            {
+              "enabled": true,
+              "id": "48420af5-933f-36ec-b7a4-b804f96e9af0",
+              "type": "WEEKLY_RECAP"
+            },
+            {
+              "enabled": true,
+              "id": "6c407aae-c711-3bfd-bf0a-8ffe50d39f6f",
+              "type": "WAIVERS"
+            },
+            {
+              "enabled": true,
+              "id": "18986ef2-ce8c-370e-8b72-73a38620bbc7",
+              "type": "CELEBRATION_SHARE"
+            }
+          ]
+        }
+      ],
+      "wins": 5,
+      "losses": 2,
+      "points_for": 786.8,
+      "points_against": 683.2,
+      "standing": 3,
+      "final_standing": 0,
+      "streak_length": 1,
+      "streak_type": "WIN",
+      "roster": [
+        {
+          "name": "Jahmyr Gibbs",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Josh Allen",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "George Kittle",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Tee Higgins",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Jameson Williams",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Rome Odunze",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Jordan Mason",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Khalil Shakir",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "J.J. McCarthy",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Jake Ferguson",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Seahawks D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Troy Franklin",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Jaxson Dart",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Ka'imi Fairbairn",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Kyle Monangai",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Bengals D/ST",
+          "position": "D/ST",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 14,
+      "team_name": "Miami Big Sack Hard D",
+      "owners": [
+        {
+          "displayName": "Fly in ointment",
+          "firstName": "Gil",
+          "id": "{E06B6062-9305-4EAD-AB60-6293057EAD54}",
+          "lastName": "Ruiz",
+          "notificationSettings": [
+            {
+              "enabled": true,
+              "id": "66647f84-c505-3f0b-8a55-d3cf1e987a19",
+              "type": "TEAM_PLAYER_INJURY"
+            },
+            {
+              "enabled": true,
+              "id": "ed17c18e-2c8e-3c3e-8bb2-4fb3acf6d606",
+              "type": "TEAM_PLAYER_AVAILABILITY"
+            },
+            {
+              "enabled": true,
+              "id": "62e86b6a-731f-3cbd-a238-6b7259a514b3",
+              "type": "TEAM_PLAYER_NEWS"
+            },
+            {
+              "enabled": true,
+              "id": "140068dd-f9ea-318f-8542-8dde7871bb91",
+              "type": "TEAM_PLAYER_STARTBENCH"
+            },
+            {
+              "enabled": true,
+              "id": "d063800c-f9bb-3881-b954-31afbbd3e40e",
+              "type": "TEAM_TRADE_OFFER"
+            },
+            {
+              "enabled": true,
+              "id": "c48375a2-803a-3c8a-a444-57c0a14a8400",
+              "type": "DRAFT"
+            },
+            {
+              "enabled": true,
+              "id": "2333bdd7-2b08-3606-a4cb-a4d8fc2e5115",
+              "type": "TEAM_MATCHUP_SCORE"
+            },
+            {
+              "enabled": true,
+              "id": "08a8afdb-b270-380f-a54f-46bdfcb9fc16",
+              "type": "KEY_PLAY"
+            },
+            {
+              "enabled": true,
+              "id": "f3912ad3-d5ea-311d-88d6-771ddb00baf8",
+              "type": "REDZONE"
+            },
+            {
+              "enabled": true,
+              "id": "acb2de60-36c0-37b9-866b-b9f5ba1a4f55",
+              "type": "ADD_DROP"
+            },
+            {
+              "enabled": true,
+              "id": "60a6c205-e5af-3484-a887-b3104bffb540",
+              "type": "WEEKLY_RECAP"
+            },
+            {
+              "enabled": true,
+              "id": "819f3855-7390-3231-a0b8-5f7f91988252",
+              "type": "WAIVERS"
+            },
+            {
+              "enabled": true,
+              "id": "8c3e5f3f-1606-3fc1-bfee-30759d781c60",
+              "type": "CELEBRATION_SHARE"
+            }
+          ]
+        }
+      ],
+      "wins": 4,
+      "losses": 3,
+      "points_for": 755.5,
+      "points_against": 706.5,
+      "standing": 5,
+      "final_standing": 0,
+      "streak_length": 1,
+      "streak_type": "LOSS",
+      "roster": [
+        {
+          "name": "Lamar Jackson",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Kyren Williams",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "James Cook III",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Zay Flowers",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Deebo Samuel",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Evan Engram",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Broncos D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Josh Downs",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Marvin Mims Jr.",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Rashod Bateman",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Jonnu Smith",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Rico Dowdle",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Sterling Shepard",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Spencer Rattler",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Cairo Santos",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "Jaylin Noel",
+          "position": "WR",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "team_id": 15,
+      "team_name": "BigOLlantas",
+      "owners": [
+        {
+          "displayName": "BigOLlantas",
+          "firstName": "Andres",
+          "id": "{17892599-DACB-4A6F-B4EB-5C200E0B9152}",
+          "lastName": "Perez",
+          "notificationSettings": [
+            {
+              "enabled": true,
+              "id": "09c317c9-fa1f-311a-bc93-2cb87c57e950",
+              "type": "TEAM_PLAYER_INJURY"
+            },
+            {
+              "enabled": true,
+              "id": "3ffc54c5-bb45-3b2d-9882-517699ebac19",
+              "type": "TEAM_PLAYER_AVAILABILITY"
+            },
+            {
+              "enabled": true,
+              "id": "b9f2cc31-a525-33fe-a33c-cb8ecc6351c4",
+              "type": "TEAM_PLAYER_NEWS"
+            },
+            {
+              "enabled": true,
+              "id": "c7cec99d-110a-3bf8-9515-183c60b72020",
+              "type": "TEAM_PLAYER_STARTBENCH"
+            },
+            {
+              "enabled": true,
+              "id": "4fdf4f75-335c-3731-91a9-936feeba3a99",
+              "type": "TEAM_TRADE_OFFER"
+            },
+            {
+              "enabled": true,
+              "id": "d669df06-643d-3b10-93b3-cd81bcd8fde0",
+              "type": "DRAFT"
+            },
+            {
+              "enabled": true,
+              "id": "b71d188a-bf04-38a2-aed7-307eec13c2ad",
+              "type": "TEAM_MATCHUP_SCORE"
+            },
+            {
+              "enabled": true,
+              "id": "dd8d0e1c-5edb-3ebe-a2b0-22208b9de54e",
+              "type": "KEY_PLAY"
+            },
+            {
+              "enabled": true,
+              "id": "1e12c487-cc99-3fa9-96e6-a1eb96f6a6da",
+              "type": "REDZONE"
+            },
+            {
+              "enabled": true,
+              "id": "40e8dee5-b44f-3333-a531-f236888fd1b3",
+              "type": "ADD_DROP"
+            },
+            {
+              "enabled": true,
+              "id": "64d57150-26c3-3cfb-8f0c-c08530a06e91",
+              "type": "WEEKLY_RECAP"
+            },
+            {
+              "enabled": true,
+              "id": "c7329bdd-a334-3884-b9f0-f268f68b68d5",
+              "type": "WAIVERS"
+            },
+            {
+              "enabled": true,
+              "id": "cbbe381a-00e6-3712-a64a-05a2d5e68bcd",
+              "type": "CELEBRATION_SHARE"
+            }
+          ]
+        }
+      ],
+      "wins": 1,
+      "losses": 6,
+      "points_for": 686.5,
+      "points_against": 732.1,
+      "standing": 14,
+      "final_standing": 0,
+      "streak_length": 6,
+      "streak_type": "LOSS",
+      "roster": [
+        {
+          "name": "De'Von Achane",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Chase Brown",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Marvin Harrison Jr.",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "TreVeyon Henderson",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "DeVonta Smith",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Tony Pollard",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Keenan Allen",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Justin Herbert",
+          "position": "QB",
+          "points": 0
+        },
+        {
+          "name": "Chris Godwin Jr.",
+          "position": "WR",
+          "points": 0
+        },
+        {
+          "name": "Kyle Pitts Sr.",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Justice Hill",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Theo Johnson",
+          "position": "TE",
+          "points": 0
+        },
+        {
+          "name": "Wil Lutz",
+          "position": "K",
+          "points": 0
+        },
+        {
+          "name": "AJ Dillon",
+          "position": "RB",
+          "points": 0
+        },
+        {
+          "name": "Bills D/ST",
+          "position": "D/ST",
+          "points": 0
+        },
+        {
+          "name": "Travis Etienne Jr.",
+          "position": "RB",
+          "points": 0
+        }
+      ]
+    }
+  ],
+  "matchups": [
+    {
+      "week": 1,
+      "home_team": "OG LA Raiders",
+      "home_score": 75.6,
+      "away_team": "Dillinger Escape Plan.",
+      "away_score": 83.9
+    },
+    {
+      "week": 1,
+      "home_team": "Chandler TopFeeders",
+      "home_score": 91.8,
+      "away_team": "Ass N TD's",
+      "away_score": 116.2
+    },
+    {
+      "week": 1,
+      "home_team": "PDO_ File Blockers",
+      "home_score": 114.8,
+      "away_team": "Wreaking Crew JDR",
+      "away_score": 76.8
+    },
+    {
+      "week": 1,
+      "home_team": "The Tank",
+      "home_score": 61.2,
+      "away_team": "Travis Hunter Kuck Club",
+      "away_score": 84.7
+    },
+    {
+      "week": 1,
+      "home_team": "Team END-zone",
+      "home_score": 105.4,
+      "away_team": "Mad Men",
+      "away_score": 124.1
+    },
+    {
+      "week": 1,
+      "home_team": "Miami Big Sack Hard D",
+      "home_score": 138.1,
+      "away_team": "Killer Beers",
+      "away_score": 109.9
+    },
+    {
+      "week": 1,
+      "home_team": "BigOLlantas",
+      "home_score": 106.5,
+      "away_team": "South Side Delinquents",
+      "away_score": 81.7
+    },
+    {
+      "week": 2,
+      "home_team": "Dillinger Escape Plan.",
+      "home_score": 129.9,
+      "away_team": "Ass N TD's",
+      "away_score": 91.3
+    },
+    {
+      "week": 2,
+      "home_team": "Wreaking Crew JDR",
+      "home_score": 138.9,
+      "away_team": "OG LA Raiders",
+      "away_score": 94.9
+    },
+    {
+      "week": 2,
+      "home_team": "Travis Hunter Kuck Club",
+      "home_score": 77.4,
+      "away_team": "Chandler TopFeeders",
+      "away_score": 134.7
+    },
+    {
+      "week": 2,
+      "home_team": "Mad Men",
+      "home_score": 89.8,
+      "away_team": "PDO_ File Blockers",
+      "away_score": 129.1
+    },
+    {
+      "week": 2,
+      "home_team": "Killer Beers",
+      "home_score": 86.7,
+      "away_team": "The Tank",
+      "away_score": 109.0
+    },
+    {
+      "week": 2,
+      "home_team": "South Side Delinquents",
+      "home_score": 78.0,
+      "away_team": "Team END-zone",
+      "away_score": 89.6
+    },
+    {
+      "week": 2,
+      "home_team": "BigOLlantas",
+      "home_score": 103.8,
+      "away_team": "Miami Big Sack Hard D",
+      "away_score": 112.5
+    },
+    {
+      "week": 3,
+      "home_team": "Wreaking Crew JDR",
+      "home_score": 99.9,
+      "away_team": "Dillinger Escape Plan.",
+      "away_score": 107.0
+    },
+    {
+      "week": 3,
+      "home_team": "Ass N TD's",
+      "home_score": 106.3,
+      "away_team": "Travis Hunter Kuck Club",
+      "away_score": 95.1
+    },
+    {
+      "week": 3,
+      "home_team": "OG LA Raiders",
+      "home_score": 85.8,
+      "away_team": "Mad Men",
+      "away_score": 130.2
+    },
+    {
+      "week": 3,
+      "home_team": "Chandler TopFeeders",
+      "home_score": 122.1,
+      "away_team": "Killer Beers",
+      "away_score": 85.1
+    },
+    {
+      "week": 3,
+      "home_team": "PDO_ File Blockers",
+      "home_score": 132.0,
+      "away_team": "South Side Delinquents",
+      "away_score": 98.3
+    },
+    {
+      "week": 3,
+      "home_team": "The Tank",
+      "home_score": 79.3,
+      "away_team": "BigOLlantas",
+      "away_score": 72.2
+    },
+    {
+      "week": 3,
+      "home_team": "Team END-zone",
+      "home_score": 111.5,
+      "away_team": "Miami Big Sack Hard D",
+      "away_score": 99.2
+    },
+    {
+      "week": 4,
+      "home_team": "Dillinger Escape Plan.",
+      "home_score": 94.3,
+      "away_team": "Travis Hunter Kuck Club",
+      "away_score": 123.1
+    },
+    {
+      "week": 4,
+      "home_team": "Mad Men",
+      "home_score": 140.4,
+      "away_team": "Wreaking Crew JDR",
+      "away_score": 105.5
+    },
+    {
+      "week": 4,
+      "home_team": "Killer Beers",
+      "home_score": 95.2,
+      "away_team": "Ass N TD's",
+      "away_score": 108.7
+    },
+    {
+      "week": 4,
+      "home_team": "South Side Delinquents",
+      "home_score": 77.3,
+      "away_team": "OG LA Raiders",
+      "away_score": 108.2
+    },
+    {
+      "week": 4,
+      "home_team": "BigOLlantas",
+      "home_score": 104.0,
+      "away_team": "Chandler TopFeeders",
+      "away_score": 116.1
+    },
+    {
+      "week": 4,
+      "home_team": "Miami Big Sack Hard D",
+      "home_score": 102.2,
+      "away_team": "PDO_ File Blockers",
+      "away_score": 112.5
+    },
+    {
+      "week": 4,
+      "home_team": "Team END-zone",
+      "home_score": 111.5,
+      "away_team": "The Tank",
+      "away_score": 106.1
+    },
+    {
+      "week": 5,
+      "home_team": "Mad Men",
+      "home_score": 138.3,
+      "away_team": "Dillinger Escape Plan.",
+      "away_score": 117.5
+    },
+    {
+      "week": 5,
+      "home_team": "Travis Hunter Kuck Club",
+      "home_score": 112.8,
+      "away_team": "Killer Beers",
+      "away_score": 107.4
+    },
+    {
+      "week": 5,
+      "home_team": "Wreaking Crew JDR",
+      "home_score": 112.8,
+      "away_team": "South Side Delinquents",
+      "away_score": 68.5
+    },
+    {
+      "week": 5,
+      "home_team": "Ass N TD's",
+      "home_score": 114.4,
+      "away_team": "BigOLlantas",
+      "away_score": 104.6
+    },
+    {
+      "week": 5,
+      "home_team": "OG LA Raiders",
+      "home_score": 102.9,
+      "away_team": "Miami Big Sack Hard D",
+      "away_score": 133.8
+    },
+    {
+      "week": 5,
+      "home_team": "Chandler TopFeeders",
+      "home_score": 115.0,
+      "away_team": "Team END-zone",
+      "away_score": 102.2
+    },
+    {
+      "week": 5,
+      "home_team": "PDO_ File Blockers",
+      "home_score": 90.1,
+      "away_team": "The Tank",
+      "away_score": 121.6
+    },
+    {
+      "week": 6,
+      "home_team": "Dillinger Escape Plan.",
+      "home_score": 80.3,
+      "away_team": "Killer Beers",
+      "away_score": 94.9
+    },
+    {
+      "week": 6,
+      "home_team": "South Side Delinquents",
+      "home_score": 121.1,
+      "away_team": "Mad Men",
+      "away_score": 88.5
+    },
+    {
+      "week": 6,
+      "home_team": "BigOLlantas",
+      "home_score": 92.6,
+      "away_team": "Travis Hunter Kuck Club",
+      "away_score": 103.2
+    },
+    {
+      "week": 6,
+      "home_team": "Miami Big Sack Hard D",
+      "home_score": 113.6,
+      "away_team": "Wreaking Crew JDR",
+      "away_score": 83.2
+    },
+    {
+      "week": 6,
+      "home_team": "Team END-zone",
+      "home_score": 87.0,
+      "away_team": "Ass N TD's",
+      "away_score": 82.2
+    },
+    {
+      "week": 6,
+      "home_team": "The Tank",
+      "home_score": 102.6,
+      "away_team": "OG LA Raiders",
+      "away_score": 114.0
+    },
+    {
+      "week": 6,
+      "home_team": "PDO_ File Blockers",
+      "home_score": 68.4,
+      "away_team": "Chandler TopFeeders",
+      "away_score": 125.8
+    },
+    {
+      "week": 7,
+      "home_team": "South Side Delinquents",
+      "home_score": 105.9,
+      "away_team": "Dillinger Escape Plan.",
+      "away_score": 99.3
+    },
+    {
+      "week": 7,
+      "home_team": "Killer Beers",
+      "home_score": 124.9,
+      "away_team": "BigOLlantas",
+      "away_score": 102.8
+    },
+    {
+      "week": 7,
+      "home_team": "Mad Men",
+      "home_score": 82.7,
+      "away_team": "Miami Big Sack Hard D",
+      "away_score": 56.1
+    },
+    {
+      "week": 7,
+      "home_team": "Travis Hunter Kuck Club",
+      "home_score": 118.8,
+      "away_team": "Team END-zone",
+      "away_score": 105.6
+    },
+    {
+      "week": 7,
+      "home_team": "Wreaking Crew JDR",
+      "home_score": 121.2,
+      "away_team": "The Tank",
+      "away_score": 70.7
+    },
+    {
+      "week": 7,
+      "home_team": "Ass N TD's",
+      "home_score": 68.7,
+      "away_team": "PDO_ File Blockers",
+      "away_score": 139.9
+    },
+    {
+      "week": 7,
+      "home_team": "OG LA Raiders",
+      "home_score": 109.2,
+      "away_team": "Chandler TopFeeders",
+      "away_score": 147.4
+    },
+    {
+      "week": 8,
+      "home_team": "Dillinger Escape Plan.",
+      "home_score": 72.5,
+      "away_team": "BigOLlantas",
+      "away_score": 132.8
+    },
+    {
+      "week": 8,
+      "home_team": "Miami Big Sack Hard D",
+      "home_score": 75.7,
+      "away_team": "South Side Delinquents",
+      "away_score": 69.6
+    },
+    {
+      "week": 8,
+      "home_team": "Team END-zone",
+      "home_score": 103.5,
+      "away_team": "Killer Beers",
+      "away_score": 80.7
+    },
+    {
+      "week": 8,
+      "home_team": "The Tank",
+      "home_score": 39.7,
+      "away_team": "Mad Men",
+      "away_score": 77.9
+    },
+    {
+      "week": 8,
+      "home_team": "PDO_ File Blockers",
+      "home_score": 84.9,
+      "away_team": "Travis Hunter Kuck Club",
+      "away_score": 123.5
+    },
+    {
+      "week": 8,
+      "home_team": "Chandler TopFeeders",
+      "home_score": 118.6,
+      "away_team": "Wreaking Crew JDR",
+      "away_score": 71.8
+    },
+    {
+      "week": 8,
+      "home_team": "OG LA Raiders",
+      "home_score": 70.7,
+      "away_team": "Ass N TD's",
+      "away_score": 78.6
+    },
+    {
+      "week": 9,
+      "home_team": "Dillinger Escape Plan.",
+      "home_score": 72.5,
+      "away_team": "BigOLlantas",
+      "away_score": 132.8
+    },
+    {
+      "week": 9,
+      "home_team": "Miami Big Sack Hard D",
+      "home_score": 75.7,
+      "away_team": "South Side Delinquents",
+      "away_score": 69.6
+    },
+    {
+      "week": 9,
+      "home_team": "Team END-zone",
+      "home_score": 103.5,
+      "away_team": "Killer Beers",
+      "away_score": 80.7
+    },
+    {
+      "week": 9,
+      "home_team": "The Tank",
+      "home_score": 39.7,
+      "away_team": "Mad Men",
+      "away_score": 77.9
+    },
+    {
+      "week": 9,
+      "home_team": "PDO_ File Blockers",
+      "home_score": 84.9,
+      "away_team": "Travis Hunter Kuck Club",
+      "away_score": 123.5
+    },
+    {
+      "week": 9,
+      "home_team": "Chandler TopFeeders",
+      "home_score": 118.6,
+      "away_team": "Wreaking Crew JDR",
+      "away_score": 71.8
+    },
+    {
+      "week": 9,
+      "home_team": "OG LA Raiders",
+      "home_score": 70.7,
+      "away_team": "Ass N TD's",
+      "away_score": 78.6
+    },
+    {
+      "week": 10,
+      "home_team": "Dillinger Escape Plan.",
+      "home_score": 72.5,
+      "away_team": "BigOLlantas",
+      "away_score": 132.8
+    },
+    {
+      "week": 10,
+      "home_team": "Miami Big Sack Hard D",
+      "home_score": 75.7,
+      "away_team": "South Side Delinquents",
+      "away_score": 69.6
+    },
+    {
+      "week": 10,
+      "home_team": "Team END-zone",
+      "home_score": 103.5,
+      "away_team": "Killer Beers",
+      "away_score": 80.7
+    },
+    {
+      "week": 10,
+      "home_team": "The Tank",
+      "home_score": 39.7,
+      "away_team": "Mad Men",
+      "away_score": 77.9
+    },
+    {
+      "week": 10,
+      "home_team": "PDO_ File Blockers",
+      "home_score": 84.9,
+      "away_team": "Travis Hunter Kuck Club",
+      "away_score": 123.5
+    },
+    {
+      "week": 10,
+      "home_team": "Chandler TopFeeders",
+      "home_score": 118.6,
+      "away_team": "Wreaking Crew JDR",
+      "away_score": 71.8
+    },
+    {
+      "week": 10,
+      "home_team": "OG LA Raiders",
+      "home_score": 70.7,
+      "away_team": "Ass N TD's",
+      "away_score": 78.6
+    },
+    {
+      "week": 11,
+      "home_team": "Dillinger Escape Plan.",
+      "home_score": 72.5,
+      "away_team": "BigOLlantas",
+      "away_score": 132.8
+    },
+    {
+      "week": 11,
+      "home_team": "Miami Big Sack Hard D",
+      "home_score": 75.7,
+      "away_team": "South Side Delinquents",
+      "away_score": 69.6
+    },
+    {
+      "week": 11,
+      "home_team": "Team END-zone",
+      "home_score": 103.5,
+      "away_team": "Killer Beers",
+      "away_score": 80.7
+    },
+    {
+      "week": 11,
+      "home_team": "The Tank",
+      "home_score": 39.7,
+      "away_team": "Mad Men",
+      "away_score": 77.9
+    },
+    {
+      "week": 11,
+      "home_team": "PDO_ File Blockers",
+      "home_score": 84.9,
+      "away_team": "Travis Hunter Kuck Club",
+      "away_score": 123.5
+    },
+    {
+      "week": 11,
+      "home_team": "Chandler TopFeeders",
+      "home_score": 118.6,
+      "away_team": "Wreaking Crew JDR",
+      "away_score": 71.8
+    },
+    {
+      "week": 11,
+      "home_team": "OG LA Raiders",
+      "home_score": 70.7,
+      "away_team": "Ass N TD's",
+      "away_score": 78.6
+    },
+    {
+      "week": 12,
+      "home_team": "Dillinger Escape Plan.",
+      "home_score": 72.5,
+      "away_team": "BigOLlantas",
+      "away_score": 132.8
+    },
+    {
+      "week": 12,
+      "home_team": "Miami Big Sack Hard D",
+      "home_score": 75.7,
+      "away_team": "South Side Delinquents",
+      "away_score": 69.6
+    },
+    {
+      "week": 12,
+      "home_team": "Team END-zone",
+      "home_score": 103.5,
+      "away_team": "Killer Beers",
+      "away_score": 80.7
+    },
+    {
+      "week": 12,
+      "home_team": "The Tank",
+      "home_score": 39.7,
+      "away_team": "Mad Men",
+      "away_score": 77.9
+    },
+    {
+      "week": 12,
+      "home_team": "PDO_ File Blockers",
+      "home_score": 84.9,
+      "away_team": "Travis Hunter Kuck Club",
+      "away_score": 123.5
+    },
+    {
+      "week": 12,
+      "home_team": "Chandler TopFeeders",
+      "home_score": 118.6,
+      "away_team": "Wreaking Crew JDR",
+      "away_score": 71.8
+    },
+    {
+      "week": 12,
+      "home_team": "OG LA Raiders",
+      "home_score": 70.7,
+      "away_team": "Ass N TD's",
+      "away_score": 78.6
+    },
+    {
+      "week": 13,
+      "home_team": "Dillinger Escape Plan.",
+      "home_score": 72.5,
+      "away_team": "BigOLlantas",
+      "away_score": 132.8
+    },
+    {
+      "week": 13,
+      "home_team": "Miami Big Sack Hard D",
+      "home_score": 75.7,
+      "away_team": "South Side Delinquents",
+      "away_score": 69.6
+    },
+    {
+      "week": 13,
+      "home_team": "Team END-zone",
+      "home_score": 103.5,
+      "away_team": "Killer Beers",
+      "away_score": 80.7
+    },
+    {
+      "week": 13,
+      "home_team": "The Tank",
+      "home_score": 39.7,
+      "away_team": "Mad Men",
+      "away_score": 77.9
+    },
+    {
+      "week": 13,
+      "home_team": "PDO_ File Blockers",
+      "home_score": 84.9,
+      "away_team": "Travis Hunter Kuck Club",
+      "away_score": 123.5
+    },
+    {
+      "week": 13,
+      "home_team": "Chandler TopFeeders",
+      "home_score": 118.6,
+      "away_team": "Wreaking Crew JDR",
+      "away_score": 71.8
+    },
+    {
+      "week": 13,
+      "home_team": "OG LA Raiders",
+      "home_score": 70.7,
+      "away_team": "Ass N TD's",
+      "away_score": 78.6
+    },
+    {
+      "week": 14,
+      "home_team": "Dillinger Escape Plan.",
+      "home_score": 72.5,
+      "away_team": "BigOLlantas",
+      "away_score": 132.8
+    },
+    {
+      "week": 14,
+      "home_team": "Miami Big Sack Hard D",
+      "home_score": 75.7,
+      "away_team": "South Side Delinquents",
+      "away_score": 69.6
+    },
+    {
+      "week": 14,
+      "home_team": "Team END-zone",
+      "home_score": 103.5,
+      "away_team": "Killer Beers",
+      "away_score": 80.7
+    },
+    {
+      "week": 14,
+      "home_team": "The Tank",
+      "home_score": 39.7,
+      "away_team": "Mad Men",
+      "away_score": 77.9
+    },
+    {
+      "week": 14,
+      "home_team": "PDO_ File Blockers",
+      "home_score": 84.9,
+      "away_team": "Travis Hunter Kuck Club",
+      "away_score": 123.5
+    },
+    {
+      "week": 14,
+      "home_team": "Chandler TopFeeders",
+      "home_score": 118.6,
+      "away_team": "Wreaking Crew JDR",
+      "away_score": 71.8
+    },
+    {
+      "week": 14,
+      "home_team": "OG LA Raiders",
+      "home_score": 70.7,
+      "away_team": "Ass N TD's",
+      "away_score": 78.6
+    }
+  ],
+  "settings": {
+    "reg_season_count": 14,
+    "playoff_team_count": 6,
+    "team_count": 14
+  }
+}
