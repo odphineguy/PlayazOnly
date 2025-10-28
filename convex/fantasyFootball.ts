@@ -411,6 +411,14 @@ export const getAllMatchups = query({
   },
 });
 
+// Get matchup by ID
+export const getMatchupById = query({
+  args: { matchupId: v.id("matchups") },
+  handler: async (ctx, args) => {
+    return await ctx.db.get(args.matchupId);
+  },
+});
+
 // Clear all fantasy football data (for re-importing fresh data)
 export const clearAllData = mutation({
   args: {},
