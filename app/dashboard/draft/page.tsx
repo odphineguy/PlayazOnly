@@ -302,12 +302,12 @@ export default function DraftPage() {
                   <div key={pick._id || index} className="flex items-center justify-between p-3 border rounded-lg">
                     <div className="flex items-center space-x-3">
                       <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground text-sm font-bold">
-                        {pick.overallPick}
+                        {typeof pick.overallPick === 'number' ? pick.overallPick : index + 1}
                       </div>
                       <div>
-                        <div className="font-medium">Player {pick.overallPick}</div>
+                        <div className="font-medium">Pick {typeof pick.overallPick === 'number' ? pick.overallPick : index + 1}</div>
                         <div className="text-sm text-muted-foreground">
-                          Round {pick.round}, Pick {pick.pick}
+                          Round {typeof pick.round === 'number' ? pick.round : 'N/A'}, Pick {typeof pick.pick === 'number' ? pick.pick : 'N/A'}
                         </div>
                       </div>
                     </div>
