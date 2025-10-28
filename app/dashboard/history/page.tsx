@@ -30,8 +30,8 @@ export default function HistoryPage() {
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   // Fetch real data from Convex
-  const allTimeStandings = useQuery(api.importAllEspnData.getAllTimeStandings);
-  const allTeamsWithSeasons = useQuery(api.importAllEspnData.getAllTeamsWithSeasons);
+  const allTimeStandings = useMutation(api.importAllEspnData.getAllTimeStandings);
+  const allTeamsWithSeasons = useMutation(api.importAllEspnData.getAllTeamsWithSeasons);
   const importAllData = useMutation(api.importAllEspnData.importAllEspnData);
 
   // Initialize data if not loaded
