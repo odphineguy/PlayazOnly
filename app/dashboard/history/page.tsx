@@ -95,33 +95,33 @@ export default function HistoryPage() {
     const teamAllPlayStats = new Map();
 
     // Group matchups by season and week
-    const matchupsBySeasonWeek = new Map();
-    allMatchupsRaw.forEach(matchup => {
+    const matchupsBySeasonWeek = new Map<string, typeof allMatchupsRaw>();
+    allMatchupsRaw.forEach((matchup: any) => {
       const key = `${matchup.seasonId}-${matchup.week}`;
       if (!matchupsBySeasonWeek.has(key)) {
         matchupsBySeasonWeek.set(key, []);
       }
-      matchupsBySeasonWeek.get(key).push(matchup);
+      matchupsBySeasonWeek.get(key)!.push(matchup);
     });
 
     // For each week, calculate all-play wins/losses
-    matchupsBySeasonWeek.forEach((weekMatchups, key) => {
+    matchupsBySeasonWeek.forEach((weekMatchups: any, key: string) => {
       // Get all scores for this week
-      const teamScores = new Map();
-      weekMatchups.forEach(matchup => {
+      const teamScores = new Map<string, number>();
+      weekMatchups.forEach((matchup: any) => {
         teamScores.set(matchup.homeTeamId, matchup.homeScore);
         teamScores.set(matchup.awayTeamId, matchup.awayScore);
       });
 
       // For each team, count how many teams they beat
-      teamScores.forEach((score, teamId) => {
+      teamScores.forEach((score: number, teamId: string) => {
         if (!teamAllPlayStats.has(teamId)) {
           teamAllPlayStats.set(teamId, { wins: 0, losses: 0 });
         }
-        const stats = teamAllPlayStats.get(teamId);
+        const stats = teamAllPlayStats.get(teamId)!;
 
         // Compare against all other teams this week
-        teamScores.forEach((otherScore, otherTeamId) => {
+        teamScores.forEach((otherScore: number, otherTeamId: string) => {
           if (teamId !== otherTeamId) {
             if (score > otherScore) {
               stats.wins += 1;
@@ -552,7 +552,7 @@ export default function HistoryPage() {
 
     // Group matchups by season and week
     const matchupsByWeek = new Map<string, typeof allMatchupsRaw>();
-    allMatchupsRaw.forEach(matchup => {
+    allMatchupsRaw.forEach((matchup: any) => {
       const key = `${matchup.seasonId}-${matchup.week}`;
       if (!matchupsByWeek.has(key)) {
         matchupsByWeek.set(key, []);
@@ -561,20 +561,20 @@ export default function HistoryPage() {
     });
 
     // For each week, check if any of this owner's teams had the top score
-    matchupsByWeek.forEach((weekMatchups) => {
-      const ownerTeamIds = new Set(ownerTeams.map(t => t._id));
+    matchupsByWeek.forEach((weekMatchups: any) => {
+      const ownerTeamIds = new Set(ownerTeams.map((t: any) => t._id));
 
       // Get all scores for this week
-      const weekScores = weekMatchups.flatMap(m => [
+      const weekScores = weekMatchups.flatMap((m: any) => [
         { teamId: m.homeTeamId, score: m.homeScore },
         { teamId: m.awayTeamId, score: m.awayScore }
       ]);
 
       // Find the highest score
-      const maxScore = Math.max(...weekScores.map(s => s.score));
+      const maxScore = Math.max(...weekScores.map((s: any) => s.score));
 
       // Check if this owner had the highest score
-      const ownerHadTopScore = weekScores.some(s =>
+      const ownerHadTopScore = weekScores.some((s: any) =>
         ownerTeamIds.has(s.teamId) && s.score === maxScore
       );
 
