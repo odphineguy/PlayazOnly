@@ -37,10 +37,10 @@ export default function GamecenterPage() {
   const closestMatchups = useQuery(api.fantasyFootball.getClosestMatchups, { limit: 5 });
   const championshipMatchups = useQuery(api.fantasyFootball.getChampionshipMatchups, { limit: 5 });
   // These will be updated via useEffect when currentSeasonData is available
-  const [weeklyChampData, setWeeklyChampData] = useState(null);
-  const [mostDisappointingData, setMostDisappointingData] = useState(null);
-  const [mostDominatingData, setMostDominatingData] = useState(null);
-  const [luckiestData, setLuckiestData] = useState(null);
+  const [weeklyChampData, setWeeklyChampData] = useState<any>(null);
+  const [mostDisappointingData, setMostDisappointingData] = useState<any>(null);
+  const [mostDominatingData, setMostDominatingData] = useState<any>(null);
+  const [luckiestData, setLuckiestData] = useState<any>(null);
 
   // State for processed data
   const [seasons, setSeasons] = useState<any[]>([]);
