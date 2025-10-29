@@ -31,6 +31,33 @@ export default function DraftPage() {
   const worstPicks = useQuery(api.draftData.getWorstPicksAllTime, { limit: 50 });
   const draftRankings = useQuery(api.draftData.getAllTimeDraftRankings, { limit: 100, minPicks: 128 });
 
+  // Show loading state while queries are fetching
+  if (allTimeStats === undefined || draftValueByPosition === undefined) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="text-center space-y-4">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto" />
+          <p className="text-muted-foreground">Loading draft data...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show empty state if no draft data exists
+  if (allTimeStats.totalPicks === 0) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="text-center space-y-4">
+          <AlertCircle className="mx-auto h-12 w-12 text-muted-foreground" />
+          <h3 className="text-lg font-semibold">No Draft Data Available</h3>
+          <p className="text-muted-foreground max-w-md">
+            Draft data hasn't been imported yet. Please use the Import Data page to load your league data.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
 
   // Pt2: position-focused queries
   const positionAverages = useQuery(api.draftData.getPositionAverages, { position: selectedPosition });

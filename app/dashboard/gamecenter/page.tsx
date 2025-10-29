@@ -562,9 +562,10 @@ export default function GamecenterPage() {
                               const games = (homeTeam?.wins || 0) + (homeTeam?.losses || 0);
                               const teamAvg = games > 0 && homeTeam ? homeTeam.pointsFor / games : 0;
                               const luckFactor = teamAvg > 0 ? ((matchup.homeScore - teamAvg) / teamAvg * 100) : 0;
+                              const label = luckFactor > 0 ? "+" : "";
                               return (
-                                <span className={luckFactor > 0 ? "text-green-600" : "text-red-600"}>
-                                  {luckFactor.toFixed(2)}
+                                <span className={luckFactor > 0 ? "text-green-600" : luckFactor < 0 ? "text-red-600" : "text-muted-foreground"}>
+                                  {label}{luckFactor.toFixed(2)}%
                                 </span>
                               );
                             })()}
@@ -575,9 +576,10 @@ export default function GamecenterPage() {
                               const games = (awayTeam?.wins || 0) + (awayTeam?.losses || 0);
                               const teamAvg = games > 0 && awayTeam ? awayTeam.pointsFor / games : 0;
                               const luckFactor = teamAvg > 0 ? ((matchup.awayScore - teamAvg) / teamAvg * 100) : 0;
+                              const label = luckFactor > 0 ? "+" : "";
                               return (
-                                <span className={luckFactor > 0 ? "text-green-600" : "text-red-600"}>
-                                  {luckFactor.toFixed(2)}
+                                <span className={luckFactor > 0 ? "text-green-600" : luckFactor < 0 ? "text-red-600" : "text-muted-foreground"}>
+                                  {label}{luckFactor.toFixed(2)}%
                                 </span>
                               );
                             })()}

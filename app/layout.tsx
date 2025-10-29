@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 // Demo mode - temporarily disabled auth providers
 // import { ClerkProvider } from '@clerk/nextjs'
@@ -33,16 +34,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overscroll-none`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ConvexClientProvider>
-            {children}
-          </ConvexClientProvider>
-        </ThemeProvider>
+        <ErrorBoundary>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <ConvexClientProvider>
+              {children}
+            </ConvexClientProvider>
+          </ThemeProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );

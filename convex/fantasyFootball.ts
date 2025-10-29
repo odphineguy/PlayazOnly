@@ -216,6 +216,14 @@ export const getTransactionsBySeason = query({
   },
 });
 
+// Get all transactions
+export const getAllTransactions = query({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.db.query("transactions").order("desc").collect();
+  },
+});
+
 // Draft Pick Management Functions
 export const createDraftPick = mutation({
   args: {
