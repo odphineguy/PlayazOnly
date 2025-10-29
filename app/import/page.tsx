@@ -10,23 +10,27 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { 
-  Upload, 
-  FileText, 
-  CheckCircle, 
-  AlertCircle, 
+import {
+  Upload,
+  FileText,
+  CheckCircle,
+  AlertCircle,
   Download,
   Database,
   Calendar,
   Users
 } from "lucide-react";
 import { toast } from "sonner";
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
 export default function DataImport() {
   const [importStep, setImportStep] = useState(1);
   const [leagueData, setLeagueData] = useState<any>(null);
   const [isImporting, setIsImporting] = useState(false);
   const [importProgress, setImportProgress] = useState(0);
+
+  const importEspnData = useMutation(api.importAllEspnData.importAllEspnData);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -140,9 +144,82 @@ export default function DataImport() {
         <Tabs defaultValue="upload" className="space-y-4">
           <TabsList>
             <TabsTrigger value="upload">Upload Data</TabsTrigger>
+            <TabsTrigger value="quick-import">Quick Import ESPN Data</TabsTrigger>
             <TabsTrigger value="preview" disabled={importStep < 2}>Preview</TabsTrigger>
             <TabsTrigger value="sample">Sample Data</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="quick-import" className="space-y-4">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <Database className="h-5 w-5" />
+                  <span>Import ESPN Data</span>
+                </CardTitle>
+                <CardDescription>
+                  Import all ESPN league data from 2018-2025 with one click
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="p-4 bg-muted rounded-lg">
+                  <p className="text-sm text-muted-foreground mb-2">
+                    This will import all available ESPN data including:
+                  </p>
+                  <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
+                    <li>League settings and configuration</li>
+                    <li>Team data for all seasons (2018-2025)</li>
+                    <li>Weekly matchups and scores</li>
+                    <li>Player statistics and records</li>
+                  </ul>
+                </div>
+
+                {isImporting && (
+                  <div className="space-y-2">
+                    <Progress value={importProgress} className="w-full" />
+                    <p className="text-sm text-center text-muted-foreground">
+                      Importing data... {importProgress}%
+                    </p>
+                  </div>
+                )}
+
+                <Button
+                  onClick={async () => {
+                    setIsImporting(true);
+                    setImportProgress(0);
+
+                    try {
+                      const progressInterval = setInterval(() => {
+                        setImportProgress(prev => {
+                          if (prev >= 90) {
+                            clearInterval(progressInterval);
+                            return 90;
+                          }
+                          return prev + 10;
+                        });
+                      }, 500);
+
+                      const result = await importEspnData();
+
+                      setImportProgress(100);
+                      clearInterval(progressInterval);
+
+                      toast.success(result.message || "Data imported successfully!");
+                      console.log("Import result:", result);
+                    } catch (error) {
+                      toast.error("Import failed: " + (error as Error).message);
+                      console.error("Import error:", error);
+                    } finally {
+                      setIsImporting(false);
+                    }
+                  }}
+                  disabled={isImporting}
+                  className="w-full"
+                >
+                  {isImporting ? "Importing..." : "Import All ESPN Data"}
+                </Button>
+              </CardContent>
+            </Card>
+          </TabsContent>
 
           <TabsContent value="upload" className="space-y-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
