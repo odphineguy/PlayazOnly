@@ -17,13 +17,12 @@ import {
   ResponsiveContainer,
   Legend
 } from "recharts";
-import { useQuery, useMutation } from "convex/react";
+import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
 export default function GamecenterPage() {
   const [selectedSeason, setSelectedSeason] = useState("2020");
   const [selectedWeek, setSelectedWeek] = useState("1");
-  const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [hasAutoSelected, setHasAutoSelected] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<"all" | "disappointing" | "dominating" | "luckiest">("all");
 
@@ -32,29 +31,6 @@ export default function GamecenterPage() {
   const seasonsRaw = useQuery(api.fantasyFootball.getAllSeasons);
   const allMatchupsRaw = useQuery(api.fantasyFootball.getAllMatchups);
   const teamsRaw = useQuery(api.fantasyFootball.getAllTeams);
-
-  // Import ESPN data if no teams exist
-  const importEspnData = useMutation(api.importAllEspnData.importAllEspnData);
-  const hasData = teamsRaw && teamsRaw.length > 0;
-
-  // Auto-import data if database has insufficient data or missing matchups
-  useEffect(() => {
-    const needsImport =
-      (!teamsRaw || teamsRaw.length < 50) || // Less than 50 teams
-      (!allMatchupsRaw || allMatchupsRaw.length < 100); // Less than 100 matchups
-
-    if (needsImport && !isDataLoaded) {
-      console.log('Incomplete data detected, importing ESPN data...', {
-        teamsCount: teamsRaw?.length,
-        matchupsCount: allMatchupsRaw?.length
-      });
-      setIsDataLoaded(true);
-      importEspnData().catch((error) => {
-        console.error('Auto-import failed:', error);
-        setIsDataLoaded(false);
-      });
-    }
-  }, [teamsRaw, seasonsRaw, allMatchupsRaw, importEspnData, isDataLoaded]);
 
   // Deduplicate seasons by year (keep most recent)
   const seasons = (() => {
@@ -210,6 +186,36 @@ export default function GamecenterPage() {
   const getTeam = (teamId: string) => {
     return teams?.find(team => team._id === teamId);
   };
+
+  // Loading state - show when essential data is still loading
+  const isLoading = !leagues || !seasons || !teams || !allMatchups;
+
+  if (isLoading) {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Gamecenter</h1>
+            <p className="text-muted-foreground">Live games, scores, and real-time updates</p>
+          </div>
+        </div>
+        <Card>
+          <CardContent className="p-12">
+            <div className="flex flex-col items-center justify-center space-y-4">
+              <Clock className="w-12 h-12 animate-spin text-muted-foreground" />
+              <p className="text-lg text-muted-foreground">Loading game data...</p>
+              <p className="text-sm text-muted-foreground">
+                {!leagues && "Loading leagues..."}
+                {leagues && !seasons && "Loading seasons..."}
+                {seasons && !teams && "Loading teams..."}
+                {teams && !allMatchups && "Loading matchups..."}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
