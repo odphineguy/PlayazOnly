@@ -359,9 +359,9 @@ export default function GamecenterPage() {
                 >
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center text-sm">
-                      {mostDisappointing?.team?.name?.charAt(0) || "?"}
+                      {(mostDisappointing?.team as any)?.name?.charAt(0) || "?"}
                     </div>
-                    <span className="text-sm">{mostDisappointing?.team?.name || "Loading..."}</span>
+                    <span className="text-sm">{(mostDisappointing?.team as any)?.name || "Loading..."}</span>
                   </div>
                 </button>
               </div>
@@ -380,9 +380,9 @@ export default function GamecenterPage() {
                 >
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center text-sm">
-                      {mostDominating?.team?.name?.charAt(0) || "?"}
+                      {(mostDominating?.team as any)?.name?.charAt(0) || "?"}
                     </div>
-                    <span className="text-sm">{mostDominating?.team?.name || "Loading..."}</span>
+                    <span className="text-sm">{(mostDominating?.team as any)?.name || "Loading..."}</span>
                   </div>
                 </button>
               </div>
@@ -398,9 +398,9 @@ export default function GamecenterPage() {
                 >
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center text-sm">
-                      {luckiest?.team?.name?.charAt(0) || "?"}
+                      {(luckiest?.team as any)?.name?.charAt(0) || "?"}
                     </div>
-                    <span className="text-sm">{luckiest?.team?.name || "Loading..."}</span>
+                    <span className="text-sm">{(luckiest?.team as any)?.name || "Loading..."}</span>
                   </div>
                 </button>
               </div>
