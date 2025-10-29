@@ -34,7 +34,7 @@ export default function GamecenterPage() {
 
   // Deduplicate seasons by year (keep most recent)
   const seasons = (() => {
-    if (!seasonsRaw) return null;
+    if (!seasonsRaw) return [];
 
     const seasonsByYear = new Map();
     seasonsRaw.forEach(season => {
@@ -49,7 +49,7 @@ export default function GamecenterPage() {
 
   // Deduplicate teams by seasonId + name (keep most recent)
   const teams = (() => {
-    if (!teamsRaw) return null;
+    if (!teamsRaw) return [];
 
     const teamsBySeasonAndName = new Map();
     teamsRaw.forEach(team => {
@@ -64,8 +64,8 @@ export default function GamecenterPage() {
   })();
 
   // Use processed data
-  const allMatchups = allMatchupsRaw;
-  
+  const allMatchups = allMatchupsRaw || [];
+
   // Get categorized matchups for the "Matchups by Category" section
   const topMatchups = useQuery(api.fantasyFootball.getTopMatchups, { limit: 5 });
   const lowestMatchups = useQuery(api.fantasyFootball.getLowestMatchups, { limit: 5 });
@@ -73,30 +73,18 @@ export default function GamecenterPage() {
   const closestMatchups = useQuery(api.fantasyFootball.getClosestMatchups, { limit: 5 });
   const championshipMatchups = useQuery(api.fantasyFootball.getChampionshipMatchups, { limit: 5 });
 
-  // Debug logging
-  console.log('Gamecenter Debug:', {
-    topMatchups: topMatchups?.length,
-    lowestMatchups: lowestMatchups?.length,
-    biggestBlowouts: biggestBlowouts?.length,
-    closestMatchups: closestMatchups?.length,
-    championshipMatchups: championshipMatchups?.length,
-    teams: teams?.length,
-    seasons: seasons?.length,
-    allMatchups: allMatchups?.length
-  });
-
   // Get the current league (assuming first one for now)
   const currentLeague = leagues?.[0];
 
   // Get seasons for the current league
-  const leagueSeasons = seasons?.filter(season =>
+  const leagueSeasons = seasons.filter(season =>
     currentLeague && season.leagueId === currentLeague._id
-  ) || [];
+  );
 
   // Get current season data for queries
   const currentSeasonData = leagueSeasons.find(s => s.year.toString() === selectedSeason);
 
-  // Get weekly categories for sidebar
+  // Get weekly categories for sidebar - ALL HOOKS MUST BE CALLED BEFORE ANY CONDITIONAL RETURNS
   const weeklyChamp = useQuery(
     api.fantasyFootball.getWeeklyChamp,
     currentSeasonData ? { seasonId: currentSeasonData._id, week: parseInt(selectedWeek) } : "skip"
@@ -113,6 +101,30 @@ export default function GamecenterPage() {
     api.fantasyFootball.getLuckiest,
     currentSeasonData ? { seasonId: currentSeasonData._id, week: parseInt(selectedWeek) } : "skip"
   );
+
+  // NOW check loading state AFTER all hooks are defined
+  const isLoading = !leagues || !seasonsRaw || !teamsRaw || !allMatchupsRaw;
+
+  if (isLoading) {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Gamecenter</h1>
+            <p className="text-muted-foreground">Live games, scores, and real-time updates</p>
+          </div>
+        </div>
+        <Card>
+          <CardContent className="p-12">
+            <div className="flex flex-col items-center justify-center space-y-4">
+              <Clock className="w-12 h-12 animate-spin text-muted-foreground" />
+              <p className="text-lg text-muted-foreground">Loading game data...</p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   // Auto-select first available season and week with data (only on initial load)
   useEffect(() => {
@@ -186,36 +198,6 @@ export default function GamecenterPage() {
   const getTeam = (teamId: string) => {
     return teams?.find(team => team._id === teamId);
   };
-
-  // Loading state - show when essential data is still loading
-  const isLoading = !leagues || !seasons || !teams || !allMatchups;
-
-  if (isLoading) {
-    return (
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight">Gamecenter</h1>
-            <p className="text-muted-foreground">Live games, scores, and real-time updates</p>
-          </div>
-        </div>
-        <Card>
-          <CardContent className="p-12">
-            <div className="flex flex-col items-center justify-center space-y-4">
-              <Clock className="w-12 h-12 animate-spin text-muted-foreground" />
-              <p className="text-lg text-muted-foreground">Loading game data...</p>
-              <p className="text-sm text-muted-foreground">
-                {!leagues && "Loading leagues..."}
-                {leagues && !seasons && "Loading seasons..."}
-                {seasons && !teams && "Loading teams..."}
-                {teams && !allMatchups && "Loading matchups..."}
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-6">
