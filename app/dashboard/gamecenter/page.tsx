@@ -392,9 +392,9 @@ export default function GamecenterPage() {
                 >
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center text-sm">
-                      {(mostDominatingData?.team?.name || "?").charAt(0)}
+                      {("name" in (mostDominatingData?.team || {}) ? mostDominatingData?.team?.name : "?").charAt(0)}
                     </div>
-                    <span className="text-sm">{mostDominatingData?.team?.name || "Loading..."}</span>
+                    <span className="text-sm">{"name" in (mostDominatingData?.team || {}) ? mostDominatingData?.team?.name : "Loading..."}</span>
                   </div>
                 </button>
               </div>
