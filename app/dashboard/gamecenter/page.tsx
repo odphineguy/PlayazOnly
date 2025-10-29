@@ -43,12 +43,12 @@ export default function GamecenterPage() {
   const [luckiestData, setLuckiestData] = useState(null);
 
   // State for processed data
-  const [seasons, setSeasons] = useState([]);
-  const [teams, setTeams] = useState([]);
-  const [allMatchups, setAllMatchups] = useState([]);
-  const [currentLeague, setCurrentLeague] = useState(null);
-  const [leagueSeasons, setLeagueSeasons] = useState([]);
-  const [currentSeasonData, setCurrentSeasonData] = useState(null);
+  const [seasons, setSeasons] = useState<any[]>([]);
+  const [teams, setTeams] = useState<any[]>([]);
+  const [allMatchups, setAllMatchups] = useState<any[]>([]);
+  const [currentLeague, setCurrentLeague] = useState<any>(null);
+  const [leagueSeasons, setLeagueSeasons] = useState<any[]>([]);
+  const [currentSeasonData, setCurrentSeasonData] = useState<any>(null);
 
   // Process data in useEffect
   useEffect(() => {
