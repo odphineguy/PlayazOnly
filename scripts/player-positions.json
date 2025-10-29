@@ -1,0 +1,2320 @@
+{
+  "positionMapping": [
+    {
+      "playerName": "Dalvin Cook",
+      "position": "RB"
+    },
+    {
+      "playerName": "Keenan Allen",
+      "position": "WR"
+    },
+    {
+      "playerName": "Mark Ingram II",
+      "position": "RB"
+    },
+    {
+      "playerName": "Sony Michel",
+      "position": "RB"
+    },
+    {
+      "playerName": "George Kittle",
+      "position": "TE"
+    },
+    {
+      "playerName": "Bears D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Kenny Golladay",
+      "position": "WR"
+    },
+    {
+      "playerName": "Baker Mayfield",
+      "position": "QB"
+    },
+    {
+      "playerName": "Gus Edwards",
+      "position": "RB"
+    },
+    {
+      "playerName": "Ka'imi Fairbairn",
+      "position": "K"
+    },
+    {
+      "playerName": "Jamaal Williams",
+      "position": "RB"
+    },
+    {
+      "playerName": "Doug Baldwin",
+      "position": "WR"
+    },
+    {
+      "playerName": "Mike Williams",
+      "position": "WR"
+    },
+    {
+      "playerName": "Damien Williams",
+      "position": "RB"
+    },
+    {
+      "playerName": "C.J. Anderson",
+      "position": "RB"
+    },
+    {
+      "playerName": "Alfred Blue",
+      "position": "RB"
+    },
+    {
+      "playerName": "Antonio Brown",
+      "position": "WR"
+    },
+    {
+      "playerName": "Tom Brady",
+      "position": "QB"
+    },
+    {
+      "playerName": "Jordan Howard",
+      "position": "RB"
+    },
+    {
+      "playerName": "Drew Brees",
+      "position": "QB"
+    },
+    {
+      "playerName": "Lamar Miller",
+      "position": "RB"
+    },
+    {
+      "playerName": "Robert Woods",
+      "position": "WR"
+    },
+    {
+      "playerName": "Tyler Lockett",
+      "position": "WR"
+    },
+    {
+      "playerName": "T.J. Yeldon",
+      "position": "RB"
+    },
+    {
+      "playerName": "Robbie Gould",
+      "position": "K"
+    },
+    {
+      "playerName": "Christian Kirk",
+      "position": "WR"
+    },
+    {
+      "playerName": "James Conner",
+      "position": "RB"
+    },
+    {
+      "playerName": "Redskins D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Willie Snead IV",
+      "position": "WR"
+    },
+    {
+      "playerName": "Matt Bryant",
+      "position": "K"
+    },
+    {
+      "playerName": "Ricky Seals-Jones",
+      "position": "TE"
+    },
+    {
+      "playerName": "Tre'Quan Smith",
+      "position": "WR"
+    },
+    {
+      "playerName": "Todd Gurley II",
+      "position": "RB"
+    },
+    {
+      "playerName": "Davante Adams",
+      "position": "WR"
+    },
+    {
+      "playerName": "Travis Kelce",
+      "position": "TE"
+    },
+    {
+      "playerName": "Amari Cooper",
+      "position": "WR"
+    },
+    {
+      "playerName": "Royce Freeman",
+      "position": "RB"
+    },
+    {
+      "playerName": "Randall Cobb",
+      "position": "WR"
+    },
+    {
+      "playerName": "Nelson Agholor",
+      "position": "WR"
+    },
+    {
+      "playerName": "Danny Amendola",
+      "position": "WR"
+    },
+    {
+      "playerName": "Vikings D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Courtland Sutton",
+      "position": "WR"
+    },
+    {
+      "playerName": "Peyton Barber",
+      "position": "RB"
+    },
+    {
+      "playerName": "Mitchell Trubisky",
+      "position": "QB"
+    },
+    {
+      "playerName": "Michael Roberts",
+      "position": "TE"
+    },
+    {
+      "playerName": "Chase Daniel",
+      "position": "QB"
+    },
+    {
+      "playerName": "Jason Myers",
+      "position": "K"
+    },
+    {
+      "playerName": "Elijah McGuire",
+      "position": "RB"
+    },
+    {
+      "playerName": "Melvin Gordon",
+      "position": "RB"
+    },
+    {
+      "playerName": "Julio Jones",
+      "position": "WR"
+    },
+    {
+      "playerName": "Deshaun Watson",
+      "position": "QB"
+    },
+    {
+      "playerName": "Russell Wilson",
+      "position": "QB"
+    },
+    {
+      "playerName": "Jimmy Graham",
+      "position": "TE"
+    },
+    {
+      "playerName": "Devin Funchess",
+      "position": "WR"
+    },
+    {
+      "playerName": "Jaguars D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Justin Tucker",
+      "position": "K"
+    },
+    {
+      "playerName": "Chris Godwin",
+      "position": "WR"
+    },
+    {
+      "playerName": "Tyrell Williams",
+      "position": "WR"
+    },
+    {
+      "playerName": "Titans D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Anthony Miller",
+      "position": "WR"
+    },
+    {
+      "playerName": "Trey Burton",
+      "position": "TE"
+    },
+    {
+      "playerName": "Theo Riddick",
+      "position": "RB"
+    },
+    {
+      "playerName": "Frank Gore",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jaylen Samuels",
+      "position": "RB"
+    },
+    {
+      "playerName": "Odell Beckham Jr.",
+      "position": "WR"
+    },
+    {
+      "playerName": "Adam Thielen",
+      "position": "WR"
+    },
+    {
+      "playerName": "Jarvis Landry",
+      "position": "WR"
+    },
+    {
+      "playerName": "Matt Ryan",
+      "position": "QB"
+    },
+    {
+      "playerName": "Rams D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Nick Chubb",
+      "position": "RB"
+    },
+    {
+      "playerName": "Alvin Kamara",
+      "position": "RB"
+    },
+    {
+      "playerName": "Ezekiel Elliott",
+      "position": "RB"
+    },
+    {
+      "playerName": "Rod Smith",
+      "position": "RB"
+    },
+    {
+      "playerName": "David Njoku",
+      "position": "TE"
+    },
+    {
+      "playerName": "Cameron Brate",
+      "position": "TE"
+    },
+    {
+      "playerName": "Jameis Winston",
+      "position": "QB"
+    },
+    {
+      "playerName": "Greg Zuerlein",
+      "position": "K"
+    },
+    {
+      "playerName": "Spencer Ware",
+      "position": "RB"
+    },
+    {
+      "playerName": "Seahawks D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "DJ Moore",
+      "position": "WR"
+    },
+    {
+      "playerName": "Larry Fitzgerald",
+      "position": "WR"
+    },
+    {
+      "playerName": "Brandin Cooks",
+      "position": "WR"
+    },
+    {
+      "playerName": "Tevin Coleman",
+      "position": "RB"
+    },
+    {
+      "playerName": "Corey Davis",
+      "position": "WR"
+    },
+    {
+      "playerName": "Dak Prescott",
+      "position": "QB"
+    },
+    {
+      "playerName": "Stephen Gostkowski",
+      "position": "K"
+    },
+    {
+      "playerName": "Corey Clement",
+      "position": "RB"
+    },
+    {
+      "playerName": "Marquise Goodwin",
+      "position": "WR"
+    },
+    {
+      "playerName": "Phillip Lindsay",
+      "position": "RB"
+    },
+    {
+      "playerName": "DeAndre Hopkins",
+      "position": "WR"
+    },
+    {
+      "playerName": "Matthew Stafford",
+      "position": "QB"
+    },
+    {
+      "playerName": "Devontae Booker",
+      "position": "RB"
+    },
+    {
+      "playerName": "Brett Maher",
+      "position": "K"
+    },
+    {
+      "playerName": "Steelers D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Ian Thomas",
+      "position": "TE"
+    },
+    {
+      "playerName": "Chris Thompson",
+      "position": "RB"
+    },
+    {
+      "playerName": "Allen Robinson",
+      "position": "WR"
+    },
+    {
+      "playerName": "Josh Gordon",
+      "position": "WR"
+    },
+    {
+      "playerName": "Dion Lewis",
+      "position": "RB"
+    },
+    {
+      "playerName": "Michael Crabtree",
+      "position": "WR"
+    },
+    {
+      "playerName": "Andrew Luck",
+      "position": "QB"
+    },
+    {
+      "playerName": "Sterling Shepard",
+      "position": "WR"
+    },
+    {
+      "playerName": "Ravens D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Chris Boswell",
+      "position": "K"
+    },
+    {
+      "playerName": "Wendell Smallwood",
+      "position": "RB"
+    },
+    {
+      "playerName": "Kenyan Drake",
+      "position": "RB"
+    },
+    {
+      "playerName": "C.J. Uzomah",
+      "position": "TE"
+    },
+    {
+      "playerName": "Marquez Valdes-Scantling",
+      "position": "WR"
+    },
+    {
+      "playerName": "Bills D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Alshon Jeffery",
+      "position": "WR"
+    },
+    {
+      "playerName": "Jordy Nelson",
+      "position": "WR"
+    },
+    {
+      "playerName": "Benjamin Watson",
+      "position": "TE"
+    },
+    {
+      "playerName": "Rob Gronkowski",
+      "position": "TE"
+    },
+    {
+      "playerName": "Stefon Diggs",
+      "position": "WR"
+    },
+    {
+      "playerName": "Golden Tate",
+      "position": "WR"
+    },
+    {
+      "playerName": "JuJu Smith-Schuster",
+      "position": "WR"
+    },
+    {
+      "playerName": "Matt Breida",
+      "position": "RB"
+    },
+    {
+      "playerName": "Taylor Gabriel",
+      "position": "WR"
+    },
+    {
+      "playerName": "Kenjon Barner",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jack Doyle",
+      "position": "TE"
+    },
+    {
+      "playerName": "Kerryon Johnson",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jared Goff",
+      "position": "QB"
+    },
+    {
+      "playerName": "Doug Martin",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jalen Richard",
+      "position": "RB"
+    },
+    {
+      "playerName": "Adam Vinatieri",
+      "position": "K"
+    },
+    {
+      "playerName": "Nick Mullens",
+      "position": "QB"
+    },
+    {
+      "playerName": "Saints D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "LeGarrette Blount",
+      "position": "RB"
+    },
+    {
+      "playerName": "Leonard Fournette",
+      "position": "RB"
+    },
+    {
+      "playerName": "Christian McCaffrey",
+      "position": "RB"
+    },
+    {
+      "playerName": "Zach Ertz",
+      "position": "TE"
+    },
+    {
+      "playerName": "T.Y. Hilton",
+      "position": "WR"
+    },
+    {
+      "playerName": "Adrian Peterson",
+      "position": "RB"
+    },
+    {
+      "playerName": "Julian Edelman",
+      "position": "WR"
+    },
+    {
+      "playerName": "Patrick Mahomes",
+      "position": "QB"
+    },
+    {
+      "playerName": "Texans D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Patriots D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "David Johnson",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jared Cook",
+      "position": "TE"
+    },
+    {
+      "playerName": "Mike Evans",
+      "position": "WR"
+    },
+    {
+      "playerName": "Dede Westbrook",
+      "position": "WR"
+    },
+    {
+      "playerName": "Aldrick Rosas",
+      "position": "K"
+    },
+    {
+      "playerName": "Derrick Henry",
+      "position": "RB"
+    },
+    {
+      "playerName": "Chandler Catanzaro",
+      "position": "K"
+    },
+    {
+      "playerName": "Saquon Barkley",
+      "position": "RB"
+    },
+    {
+      "playerName": "A.J. Green",
+      "position": "WR"
+    },
+    {
+      "playerName": "Aaron Rodgers",
+      "position": "QB"
+    },
+    {
+      "playerName": "Demaryius Thomas",
+      "position": "WR"
+    },
+    {
+      "playerName": "Kyle Rudolph",
+      "position": "TE"
+    },
+    {
+      "playerName": "Sammy Watkins",
+      "position": "WR"
+    },
+    {
+      "playerName": "James White",
+      "position": "RB"
+    },
+    {
+      "playerName": "Eagles D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Chris Carson",
+      "position": "RB"
+    },
+    {
+      "playerName": "John Brown",
+      "position": "WR"
+    },
+    {
+      "playerName": "Matt Prater",
+      "position": "K"
+    },
+    {
+      "playerName": "Eric Ebron",
+      "position": "TE"
+    },
+    {
+      "playerName": "Duke Johnson Jr.",
+      "position": "RB"
+    },
+    {
+      "playerName": "Adam Humphries",
+      "position": "WR"
+    },
+    {
+      "playerName": "Donte Moncrief",
+      "position": "WR"
+    },
+    {
+      "playerName": "Falcons D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Le'Veon Bell",
+      "position": "RB"
+    },
+    {
+      "playerName": "LeSean McCoy",
+      "position": "RB"
+    },
+    {
+      "playerName": "Greg Olsen",
+      "position": "TE"
+    },
+    {
+      "playerName": "Ben Roethlisberger",
+      "position": "QB"
+    },
+    {
+      "playerName": "Jordan Reed",
+      "position": "TE"
+    },
+    {
+      "playerName": "Tarik Cohen",
+      "position": "RB"
+    },
+    {
+      "playerName": "Kirk Cousins",
+      "position": "QB"
+    },
+    {
+      "playerName": "Mohamed Sanu",
+      "position": "WR"
+    },
+    {
+      "playerName": "Wil Lutz",
+      "position": "K"
+    },
+    {
+      "playerName": "DeSean Jackson",
+      "position": "WR"
+    },
+    {
+      "playerName": "Vance McDonald",
+      "position": "TE"
+    },
+    {
+      "playerName": "Mike Davis",
+      "position": "RB"
+    },
+    {
+      "playerName": "Panthers D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Marlon Mack",
+      "position": "RB"
+    },
+    {
+      "playerName": "Javorius Allen",
+      "position": "RB"
+    },
+    {
+      "playerName": "Blake Bortles",
+      "position": "QB"
+    },
+    {
+      "playerName": "Michael Thomas",
+      "position": "WR"
+    },
+    {
+      "playerName": "Joe Mixon",
+      "position": "RB"
+    },
+    {
+      "playerName": "Tyreek Hill",
+      "position": "WR"
+    },
+    {
+      "playerName": "Cam Newton",
+      "position": "QB"
+    },
+    {
+      "playerName": "Evan Engram",
+      "position": "TE"
+    },
+    {
+      "playerName": "Philip Rivers",
+      "position": "QB"
+    },
+    {
+      "playerName": "Calvin Ridley",
+      "position": "WR"
+    },
+    {
+      "playerName": "Harrison Butker",
+      "position": "K"
+    },
+    {
+      "playerName": "Austin Ekeler",
+      "position": "RB"
+    },
+    {
+      "playerName": "Austin Hooper",
+      "position": "TE"
+    },
+    {
+      "playerName": "Broncos D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Dolphins D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Lamar Jackson",
+      "position": "QB"
+    },
+    {
+      "playerName": "Keke Coutee",
+      "position": "WR"
+    },
+    {
+      "playerName": "Jeff Wilson Jr.",
+      "position": "RB"
+    },
+    {
+      "playerName": "Dante Pettis",
+      "position": "WR"
+    },
+    {
+      "playerName": "Allen Robinson II",
+      "position": "WR"
+    },
+    {
+      "playerName": "Devin Singletary",
+      "position": "RB"
+    },
+    {
+      "playerName": "Darren Waller",
+      "position": "TE"
+    },
+    {
+      "playerName": "DeVante Parker",
+      "position": "WR"
+    },
+    {
+      "playerName": "Packers D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Will Fuller V",
+      "position": "WR"
+    },
+    {
+      "playerName": "Josh Lambo",
+      "position": "K"
+    },
+    {
+      "playerName": "David Montgomery",
+      "position": "RB"
+    },
+    {
+      "playerName": "Carson Wentz",
+      "position": "QB"
+    },
+    {
+      "playerName": "Jamison Crowder",
+      "position": "WR"
+    },
+    {
+      "playerName": "Mohamed Sanu Sr.",
+      "position": "WR"
+    },
+    {
+      "playerName": "Phillip Dorsett II",
+      "position": "WR"
+    },
+    {
+      "playerName": "Latavius Murray",
+      "position": "RB"
+    },
+    {
+      "playerName": "Darren Fells",
+      "position": "TE"
+    },
+    {
+      "playerName": "Carlos Hyde",
+      "position": "RB"
+    },
+    {
+      "playerName": "O.J. Howard",
+      "position": "TE"
+    },
+    {
+      "playerName": "Younghoe Koo",
+      "position": "K"
+    },
+    {
+      "playerName": "Ryan Tannehill",
+      "position": "QB"
+    },
+    {
+      "playerName": "Raheem Mostert",
+      "position": "RB"
+    },
+    {
+      "playerName": "Aaron Jones",
+      "position": "RB"
+    },
+    {
+      "playerName": "Tyler Boyd",
+      "position": "WR"
+    },
+    {
+      "playerName": "Jacoby Brissett",
+      "position": "QB"
+    },
+    {
+      "playerName": "A.J. Brown",
+      "position": "WR"
+    },
+    {
+      "playerName": "Buccaneers D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Breshad Perriman",
+      "position": "WR"
+    },
+    {
+      "playerName": "Kyler Murray",
+      "position": "QB"
+    },
+    {
+      "playerName": "Mark Andrews",
+      "position": "TE"
+    },
+    {
+      "playerName": "Deebo Samuel",
+      "position": "WR"
+    },
+    {
+      "playerName": "Alexander Mattison",
+      "position": "RB"
+    },
+    {
+      "playerName": "Tony Pollard",
+      "position": "RB"
+    },
+    {
+      "playerName": "49ers D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Matt Gay",
+      "position": "K"
+    },
+    {
+      "playerName": "Robby Anderson",
+      "position": "WR"
+    },
+    {
+      "playerName": "Tyler Higbee",
+      "position": "TE"
+    },
+    {
+      "playerName": "Mike Boone",
+      "position": "RB"
+    },
+    {
+      "playerName": "DeAndre Washington",
+      "position": "RB"
+    },
+    {
+      "playerName": "Devonta Freeman",
+      "position": "RB"
+    },
+    {
+      "playerName": "Giovani Bernard",
+      "position": "RB"
+    },
+    {
+      "playerName": "Mason Crosby",
+      "position": "K"
+    },
+    {
+      "playerName": "Rex Burkhead",
+      "position": "RB"
+    },
+    {
+      "playerName": "Mason Rudolph",
+      "position": "QB"
+    },
+    {
+      "playerName": "Josh Allen",
+      "position": "QB"
+    },
+    {
+      "playerName": "Nick Folk",
+      "position": "K"
+    },
+    {
+      "playerName": "Jets D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Josh Jacobs",
+      "position": "RB"
+    },
+    {
+      "playerName": "DJ Chark Jr.",
+      "position": "WR"
+    },
+    {
+      "playerName": "Curtis Samuel",
+      "position": "WR"
+    },
+    {
+      "playerName": "Colts D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Zach Pascal",
+      "position": "WR"
+    },
+    {
+      "playerName": "Mike Gesicki",
+      "position": "TE"
+    },
+    {
+      "playerName": "Demarcus Robinson",
+      "position": "WR"
+    },
+    {
+      "playerName": "Auden Tate",
+      "position": "WR"
+    },
+    {
+      "playerName": "Miles Sanders",
+      "position": "RB"
+    },
+    {
+      "playerName": "Dallas Goedert",
+      "position": "TE"
+    },
+    {
+      "playerName": "Duke Johnson",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jimmy Garoppolo",
+      "position": "QB"
+    },
+    {
+      "playerName": "Browns D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Jacob Hollister",
+      "position": "TE"
+    },
+    {
+      "playerName": "Bilal Powell",
+      "position": "RB"
+    },
+    {
+      "playerName": "Cooper Kupp",
+      "position": "WR"
+    },
+    {
+      "playerName": "Kareem Hunt",
+      "position": "RB"
+    },
+    {
+      "playerName": "Michael Gallup",
+      "position": "WR"
+    },
+    {
+      "playerName": "Hunter Henry",
+      "position": "TE"
+    },
+    {
+      "playerName": "James Washington",
+      "position": "WR"
+    },
+    {
+      "playerName": "Emmanuel Sanders",
+      "position": "WR"
+    },
+    {
+      "playerName": "Zane Gonzalez",
+      "position": "K"
+    },
+    {
+      "playerName": "Chiefs D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Jason Witten",
+      "position": "TE"
+    },
+    {
+      "playerName": "Derek Carr",
+      "position": "QB"
+    },
+    {
+      "playerName": "Ronald Jones II",
+      "position": "RB"
+    },
+    {
+      "playerName": "Derrius Guice",
+      "position": "RB"
+    },
+    {
+      "playerName": "Delanie Walker",
+      "position": "TE"
+    },
+    {
+      "playerName": "Terry McLaurin",
+      "position": "WR"
+    },
+    {
+      "playerName": "Darrel Williams",
+      "position": "RB"
+    },
+    {
+      "playerName": "Diontae Johnson",
+      "position": "WR"
+    },
+    {
+      "playerName": "Darius Slayton",
+      "position": "WR"
+    },
+    {
+      "playerName": "Cowboys D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Austin Seibert",
+      "position": "K"
+    },
+    {
+      "playerName": "DK Metcalf",
+      "position": "WR"
+    },
+    {
+      "playerName": "Marquise Brown",
+      "position": "WR"
+    },
+    {
+      "playerName": "Gerald Everett",
+      "position": "TE"
+    },
+    {
+      "playerName": "Noah Fant",
+      "position": "TE"
+    },
+    {
+      "playerName": "Patrick Laird",
+      "position": "RB"
+    },
+    {
+      "playerName": "Clyde Edwards-Helaire",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jason Sanders",
+      "position": "K"
+    },
+    {
+      "playerName": "Taysom Hill",
+      "position": "TE"
+    },
+    {
+      "playerName": "Cam Akers",
+      "position": "RB"
+    },
+    {
+      "playerName": "J.K. Dobbins",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jerry Jeudy",
+      "position": "WR"
+    },
+    {
+      "playerName": "Cardinals D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Marvin Jones Jr.",
+      "position": "WR"
+    },
+    {
+      "playerName": "T.J. Hockenson",
+      "position": "TE"
+    },
+    {
+      "playerName": "Justin Jefferson",
+      "position": "WR"
+    },
+    {
+      "playerName": "Brandon Aiyuk",
+      "position": "WR"
+    },
+    {
+      "playerName": "Malcolm Brown",
+      "position": "RB"
+    },
+    {
+      "playerName": "La'Mical Perine",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jerick McKinnon",
+      "position": "RB"
+    },
+    {
+      "playerName": "James Robinson",
+      "position": "RB"
+    },
+    {
+      "playerName": "Hayden Hurst",
+      "position": "TE"
+    },
+    {
+      "playerName": "Michael Pittman Jr.",
+      "position": "WR"
+    },
+    {
+      "playerName": "Chase Edmonds",
+      "position": "RB"
+    },
+    {
+      "playerName": "Wayne Gallman",
+      "position": "RB"
+    },
+    {
+      "playerName": "Washington D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Rodrigo Blankenship",
+      "position": "K"
+    },
+    {
+      "playerName": "Damien Harris",
+      "position": "RB"
+    },
+    {
+      "playerName": "Tee Higgins",
+      "position": "WR"
+    },
+    {
+      "playerName": "Logan Thomas",
+      "position": "TE"
+    },
+    {
+      "playerName": "Darrell Henderson Jr.",
+      "position": "RB"
+    },
+    {
+      "playerName": "Benny Snell Jr.",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jonnu Smith",
+      "position": "TE"
+    },
+    {
+      "playerName": "Joe Burrow",
+      "position": "QB"
+    },
+    {
+      "playerName": "Justin Herbert",
+      "position": "QB"
+    },
+    {
+      "playerName": "Lions D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Brandon McManus",
+      "position": "K"
+    },
+    {
+      "playerName": "KJ Hamler",
+      "position": "WR"
+    },
+    {
+      "playerName": "Nyheim Hines",
+      "position": "RB"
+    },
+    {
+      "playerName": "Myles Gaskin",
+      "position": "RB"
+    },
+    {
+      "playerName": "Greg Ward",
+      "position": "WR"
+    },
+    {
+      "playerName": "Michael Badgley",
+      "position": "K"
+    },
+    {
+      "playerName": "Daniel Carlson",
+      "position": "K"
+    },
+    {
+      "playerName": "Hunter Renfrow",
+      "position": "WR"
+    },
+    {
+      "playerName": "J.D. McKissic",
+      "position": "RB"
+    },
+    {
+      "playerName": "Henry Ruggs III",
+      "position": "WR"
+    },
+    {
+      "playerName": "Jakobi Meyers",
+      "position": "WR"
+    },
+    {
+      "playerName": "Cole Beasley",
+      "position": "WR"
+    },
+    {
+      "playerName": "Harrison Bryant",
+      "position": "TE"
+    },
+    {
+      "playerName": "Russell Gage",
+      "position": "WR"
+    },
+    {
+      "playerName": "Jonathan Taylor",
+      "position": "RB"
+    },
+    {
+      "playerName": "Robert Tonyan",
+      "position": "TE"
+    },
+    {
+      "playerName": "Zack Moss",
+      "position": "RB"
+    },
+    {
+      "playerName": "Kalen Ballage",
+      "position": "RB"
+    },
+    {
+      "playerName": "CeeDee Lamb",
+      "position": "WR"
+    },
+    {
+      "playerName": "Melvin Gordon III",
+      "position": "RB"
+    },
+    {
+      "playerName": "D'Andre Swift",
+      "position": "RB"
+    },
+    {
+      "playerName": "Cordarrelle Patterson",
+      "position": "RB"
+    },
+    {
+      "playerName": "Tyler Bass",
+      "position": "K"
+    },
+    {
+      "playerName": "Raiders D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Antonio Gibson",
+      "position": "RB"
+    },
+    {
+      "playerName": "Chase Claypool",
+      "position": "WR"
+    },
+    {
+      "playerName": "Ryan Succop",
+      "position": "K"
+    },
+    {
+      "playerName": "Dalton Schultz",
+      "position": "TE"
+    },
+    {
+      "playerName": "Jalen Hurts",
+      "position": "QB"
+    },
+    {
+      "playerName": "D'Ernest Johnson",
+      "position": "RB"
+    },
+    {
+      "playerName": "Greg Joseph",
+      "position": "K"
+    },
+    {
+      "playerName": "Tua Tagovailoa",
+      "position": "QB"
+    },
+    {
+      "playerName": "D'Onta Foreman",
+      "position": "RB"
+    },
+    {
+      "playerName": "Bengals D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Najee Harris",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jalen Reagor",
+      "position": "WR"
+    },
+    {
+      "playerName": "Randy Bullock",
+      "position": "K"
+    },
+    {
+      "playerName": "Daniel Jones",
+      "position": "QB"
+    },
+    {
+      "playerName": "Javonte Williams",
+      "position": "RB"
+    },
+    {
+      "playerName": "Teddy Bridgewater",
+      "position": "QB"
+    },
+    {
+      "playerName": "Darnell Mooney",
+      "position": "WR"
+    },
+    {
+      "playerName": "Amon-Ra St. Brown",
+      "position": "WR"
+    },
+    {
+      "playerName": "Cole Kmet",
+      "position": "TE"
+    },
+    {
+      "playerName": "AJ Dillon",
+      "position": "RB"
+    },
+    {
+      "playerName": "Pat Freiermuth",
+      "position": "TE"
+    },
+    {
+      "playerName": "Ja'Marr Chase",
+      "position": "WR"
+    },
+    {
+      "playerName": "Michael Carter",
+      "position": "RB"
+    },
+    {
+      "playerName": "Mecole Hardman",
+      "position": "WR"
+    },
+    {
+      "playerName": "Sam Darnold",
+      "position": "QB"
+    },
+    {
+      "playerName": "Boston Scott",
+      "position": "RB"
+    },
+    {
+      "playerName": "Brian Johnson",
+      "position": "K"
+    },
+    {
+      "playerName": "Kadarius Toney",
+      "position": "WR"
+    },
+    {
+      "playerName": "Chargers D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Kyle Pitts",
+      "position": "TE"
+    },
+    {
+      "playerName": "DeVonta Smith",
+      "position": "WR"
+    },
+    {
+      "playerName": "Rondale Moore",
+      "position": "WR"
+    },
+    {
+      "playerName": "Van Jefferson",
+      "position": "WR"
+    },
+    {
+      "playerName": "Jaylen Waddle",
+      "position": "WR"
+    },
+    {
+      "playerName": "Kendrick Bourne",
+      "position": "WR"
+    },
+    {
+      "playerName": "Chuba Hubbard",
+      "position": "RB"
+    },
+    {
+      "playerName": "Taylor Heinicke",
+      "position": "QB"
+    },
+    {
+      "playerName": "Rashaad Penny",
+      "position": "RB"
+    },
+    {
+      "playerName": "Parris Campbell",
+      "position": "WR"
+    },
+    {
+      "playerName": "Elijah Moore",
+      "position": "WR"
+    },
+    {
+      "playerName": "Elijah Mitchell",
+      "position": "RB"
+    },
+    {
+      "playerName": "Dawson Knox",
+      "position": "TE"
+    },
+    {
+      "playerName": "Rashod Bateman",
+      "position": "WR"
+    },
+    {
+      "playerName": "Rhamondre Stevenson",
+      "position": "RB"
+    },
+    {
+      "playerName": "Evan McPherson",
+      "position": "K"
+    },
+    {
+      "playerName": "Tyler Conklin",
+      "position": "TE"
+    },
+    {
+      "playerName": "Craig Reynolds",
+      "position": "RB"
+    },
+    {
+      "playerName": "Zonovan Knight",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jordan Mason",
+      "position": "RB"
+    },
+    {
+      "playerName": "Khalil Herbert",
+      "position": "RB"
+    },
+    {
+      "playerName": "Allen Lazard",
+      "position": "WR"
+    },
+    {
+      "playerName": "Justice Hill",
+      "position": "RB"
+    },
+    {
+      "playerName": "Ronnie Rivers",
+      "position": "RB"
+    },
+    {
+      "playerName": "Matthew Wright",
+      "position": "K"
+    },
+    {
+      "playerName": "Giants D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Gabe Davis",
+      "position": "WR"
+    },
+    {
+      "playerName": "Zay Jones",
+      "position": "WR"
+    },
+    {
+      "playerName": "Graham Gano",
+      "position": "K"
+    },
+    {
+      "playerName": "Devin Duvernay",
+      "position": "WR"
+    },
+    {
+      "playerName": "Geno Smith",
+      "position": "QB"
+    },
+    {
+      "playerName": "Greg Dulcich",
+      "position": "TE"
+    },
+    {
+      "playerName": "Christian Watson",
+      "position": "WR"
+    },
+    {
+      "playerName": "DeAndre Carter",
+      "position": "WR"
+    },
+    {
+      "playerName": "Travis Etienne Jr.",
+      "position": "RB"
+    },
+    {
+      "playerName": "Rachaad White",
+      "position": "RB"
+    },
+    {
+      "playerName": "Kenneth Walker III",
+      "position": "RB"
+    },
+    {
+      "playerName": "Brian Robinson Jr.",
+      "position": "RB"
+    },
+    {
+      "playerName": "Gardner Minshew",
+      "position": "QB"
+    },
+    {
+      "playerName": "Joshua Palmer",
+      "position": "WR"
+    },
+    {
+      "playerName": "Justin Fields",
+      "position": "QB"
+    },
+    {
+      "playerName": "Cairo Santos",
+      "position": "K"
+    },
+    {
+      "playerName": "Trevor Lawrence",
+      "position": "QB"
+    },
+    {
+      "playerName": "Isiah Pacheco",
+      "position": "RB"
+    },
+    {
+      "playerName": "Dameon Pierce",
+      "position": "RB"
+    },
+    {
+      "playerName": "George Pickens",
+      "position": "WR"
+    },
+    {
+      "playerName": "Donovan Peoples-Jones",
+      "position": "WR"
+    },
+    {
+      "playerName": "Jahan Dotson",
+      "position": "WR"
+    },
+    {
+      "playerName": "Tyler Huntley",
+      "position": "QB"
+    },
+    {
+      "playerName": "Kyren Williams",
+      "position": "RB"
+    },
+    {
+      "playerName": "James Cook",
+      "position": "RB"
+    },
+    {
+      "playerName": "Garrett Wilson",
+      "position": "WR"
+    },
+    {
+      "playerName": "Chris Moore",
+      "position": "WR"
+    },
+    {
+      "playerName": "Tyler Allgeier",
+      "position": "RB"
+    },
+    {
+      "playerName": "Cade York",
+      "position": "K"
+    },
+    {
+      "playerName": "Drake London",
+      "position": "WR"
+    },
+    {
+      "playerName": "Mike White",
+      "position": "QB"
+    },
+    {
+      "playerName": "Desmond Ridder",
+      "position": "QB"
+    },
+    {
+      "playerName": "Brock Purdy",
+      "position": "QB"
+    },
+    {
+      "playerName": "Brandon Aubrey",
+      "position": "K"
+    },
+    {
+      "playerName": "Sam Howell",
+      "position": "QB"
+    },
+    {
+      "playerName": "Trey McBride",
+      "position": "TE"
+    },
+    {
+      "playerName": "Keaton Mitchell",
+      "position": "RB"
+    },
+    {
+      "playerName": "Sam LaPorta",
+      "position": "TE"
+    },
+    {
+      "playerName": "Jayden Reed",
+      "position": "WR"
+    },
+    {
+      "playerName": "Rashee Rice",
+      "position": "WR"
+    },
+    {
+      "playerName": "Breece Hall",
+      "position": "RB"
+    },
+    {
+      "playerName": "Nico Collins",
+      "position": "WR"
+    },
+    {
+      "playerName": "Cade Otton",
+      "position": "TE"
+    },
+    {
+      "playerName": "Dustin Hopkins",
+      "position": "K"
+    },
+    {
+      "playerName": "DeMario Douglas",
+      "position": "WR"
+    },
+    {
+      "playerName": "Jake Browning",
+      "position": "QB"
+    },
+    {
+      "playerName": "Jerome Ford",
+      "position": "RB"
+    },
+    {
+      "playerName": "Isaiah Likely",
+      "position": "TE"
+    },
+    {
+      "playerName": "Zamir White",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jaylen Warren",
+      "position": "RB"
+    },
+    {
+      "playerName": "Puka Nacua",
+      "position": "WR"
+    },
+    {
+      "playerName": "Dalton Kincaid",
+      "position": "TE"
+    },
+    {
+      "playerName": "Jake Moody",
+      "position": "K"
+    },
+    {
+      "playerName": "Jordan Addison",
+      "position": "WR"
+    },
+    {
+      "playerName": "Kenny Pickett",
+      "position": "QB"
+    },
+    {
+      "playerName": "Commanders D/ST",
+      "position": "D/ST"
+    },
+    {
+      "playerName": "Donald Parham Jr.",
+      "position": "TE"
+    },
+    {
+      "playerName": "Bijan Robinson",
+      "position": "RB"
+    },
+    {
+      "playerName": "Tyjae Spears",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jaxon Smith-Njigba",
+      "position": "WR"
+    },
+    {
+      "playerName": "Zach Charbonnet",
+      "position": "RB"
+    },
+    {
+      "playerName": "Michael Wilson",
+      "position": "WR"
+    },
+    {
+      "playerName": "Tucker Kraft",
+      "position": "TE"
+    },
+    {
+      "playerName": "Chase McLaughlin",
+      "position": "K"
+    },
+    {
+      "playerName": "K.J. Osborn",
+      "position": "WR"
+    },
+    {
+      "playerName": "Jordan Love",
+      "position": "QB"
+    },
+    {
+      "playerName": "Emari Demercado",
+      "position": "RB"
+    },
+    {
+      "playerName": "Chigoziem Okonkwo",
+      "position": "TE"
+    },
+    {
+      "playerName": "Romeo Doubs",
+      "position": "WR"
+    },
+    {
+      "playerName": "Chris Olave",
+      "position": "WR"
+    },
+    {
+      "playerName": "Marcus Mariota",
+      "position": "QB"
+    },
+    {
+      "playerName": "Jahmyr Gibbs",
+      "position": "RB"
+    },
+    {
+      "playerName": "Josh Downs",
+      "position": "WR"
+    },
+    {
+      "playerName": "Joshua Dobbs",
+      "position": "QB"
+    },
+    {
+      "playerName": "Ty Chandler",
+      "position": "RB"
+    },
+    {
+      "playerName": "Greg Dortch",
+      "position": "WR"
+    },
+    {
+      "playerName": "Skyy Moore",
+      "position": "WR"
+    },
+    {
+      "playerName": "Jonathan Mingo",
+      "position": "WR"
+    },
+    {
+      "playerName": "Zach Evans",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jake Elliott",
+      "position": "K"
+    },
+    {
+      "playerName": "Noah Brown",
+      "position": "WR"
+    },
+    {
+      "playerName": "Tanner Hudson",
+      "position": "TE"
+    },
+    {
+      "playerName": "De'Von Achane",
+      "position": "RB"
+    },
+    {
+      "playerName": "Zay Flowers",
+      "position": "WR"
+    },
+    {
+      "playerName": "Jake Ferguson",
+      "position": "TE"
+    },
+    {
+      "playerName": "Roschon Johnson",
+      "position": "RB"
+    },
+    {
+      "playerName": "Marvin Harrison Jr.",
+      "position": "WR"
+    },
+    {
+      "playerName": "C.J. Stroud",
+      "position": "QB"
+    },
+    {
+      "playerName": "Brian Thomas Jr.",
+      "position": "WR"
+    },
+    {
+      "playerName": "Bucky Irving",
+      "position": "RB"
+    },
+    {
+      "playerName": "Xavier Worthy",
+      "position": "WR"
+    },
+    {
+      "playerName": "Kimani Vidal",
+      "position": "RB"
+    },
+    {
+      "playerName": "Quentin Johnston",
+      "position": "WR"
+    },
+    {
+      "playerName": "Caleb Williams",
+      "position": "QB"
+    },
+    {
+      "playerName": "Ray-Ray McCloud III",
+      "position": "WR"
+    },
+    {
+      "playerName": "Chad Ryland",
+      "position": "K"
+    },
+    {
+      "playerName": "Ladd McConkey",
+      "position": "WR"
+    },
+    {
+      "playerName": "Cameron Dicker",
+      "position": "K"
+    },
+    {
+      "playerName": "Andrei Iosivas",
+      "position": "WR"
+    },
+    {
+      "playerName": "Bryce Young",
+      "position": "QB"
+    },
+    {
+      "playerName": "Braelon Allen",
+      "position": "RB"
+    },
+    {
+      "playerName": "Blake Grupe",
+      "position": "K"
+    },
+    {
+      "playerName": "Jameson Williams",
+      "position": "WR"
+    },
+    {
+      "playerName": "Tyrone Tracy Jr.",
+      "position": "RB"
+    },
+    {
+      "playerName": "Sincere McCormick",
+      "position": "RB"
+    },
+    {
+      "playerName": "Malik Nabers",
+      "position": "WR"
+    },
+    {
+      "playerName": "Keon Coleman",
+      "position": "WR"
+    },
+    {
+      "playerName": "Marvin Mims Jr.",
+      "position": "WR"
+    },
+    {
+      "playerName": "Carson Steele",
+      "position": "RB"
+    },
+    {
+      "playerName": "Khalil Shakir",
+      "position": "WR"
+    },
+    {
+      "playerName": "Will Dissly",
+      "position": "TE"
+    },
+    {
+      "playerName": "Jalen Tolbert",
+      "position": "WR"
+    },
+    {
+      "playerName": "Tank Dell",
+      "position": "WR"
+    },
+    {
+      "playerName": "Ricky Pearsall",
+      "position": "WR"
+    },
+    {
+      "playerName": "Drake Maye",
+      "position": "QB"
+    },
+    {
+      "playerName": "Deebo Samuel Sr.",
+      "position": "WR"
+    },
+    {
+      "playerName": "Brock Bowers",
+      "position": "TE"
+    },
+    {
+      "playerName": "Jayden Daniels",
+      "position": "QB"
+    },
+    {
+      "playerName": "Jauan Jennings",
+      "position": "WR"
+    },
+    {
+      "playerName": "Wan'Dale Robinson",
+      "position": "WR"
+    },
+    {
+      "playerName": "Jake Bates",
+      "position": "K"
+    },
+    {
+      "playerName": "Juwan Johnson",
+      "position": "TE"
+    },
+    {
+      "playerName": "Ameer Abdullah",
+      "position": "RB"
+    },
+    {
+      "playerName": "Kendre Miller",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jalen Coker",
+      "position": "WR"
+    },
+    {
+      "playerName": "Raheem Blackshear",
+      "position": "RB"
+    },
+    {
+      "playerName": "Rico Dowdle",
+      "position": "RB"
+    },
+    {
+      "playerName": "Tank Bigsby",
+      "position": "RB"
+    },
+    {
+      "playerName": "Patrick Taylor Jr.",
+      "position": "RB"
+    },
+    {
+      "playerName": "Calvin Austin III",
+      "position": "WR"
+    },
+    {
+      "playerName": "Audric Estime",
+      "position": "RB"
+    },
+    {
+      "playerName": "Chase Brown",
+      "position": "RB"
+    },
+    {
+      "playerName": "Rome Odunze",
+      "position": "WR"
+    },
+    {
+      "playerName": "Bo Nix",
+      "position": "QB"
+    },
+    {
+      "playerName": "Isaac Guerendo",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jalen McMillan",
+      "position": "WR"
+    },
+    {
+      "playerName": "Cooper Rush",
+      "position": "QB"
+    },
+    {
+      "playerName": "Jonathon Brooks",
+      "position": "RB"
+    },
+    {
+      "playerName": "Xavier Legette",
+      "position": "WR"
+    },
+    {
+      "playerName": "Dontayvion Wicks",
+      "position": "WR"
+    },
+    {
+      "playerName": "Cam Little",
+      "position": "K"
+    },
+    {
+      "playerName": "Davis Allen",
+      "position": "TE"
+    },
+    {
+      "playerName": "Trey Benson",
+      "position": "RB"
+    },
+    {
+      "playerName": "Mac Jones",
+      "position": "QB"
+    },
+    {
+      "playerName": "Hollywood Brown",
+      "position": "WR"
+    },
+    {
+      "playerName": "RJ Harvey",
+      "position": "RB"
+    },
+    {
+      "playerName": "Emeka Egbuka",
+      "position": "WR"
+    },
+    {
+      "playerName": "Jacory Croskey-Merritt",
+      "position": "RB"
+    },
+    {
+      "playerName": "Ollie Gordon II",
+      "position": "RB"
+    },
+    {
+      "playerName": "Blake Corum",
+      "position": "RB"
+    },
+    {
+      "playerName": "Tyquan Thornton",
+      "position": "WR"
+    },
+    {
+      "playerName": "Malik Washington",
+      "position": "WR"
+    },
+    {
+      "playerName": "Rashid Shaheed",
+      "position": "WR"
+    },
+    {
+      "playerName": "Woody Marks",
+      "position": "RB"
+    },
+    {
+      "playerName": "Oronde Gadsden II",
+      "position": "TE"
+    },
+    {
+      "playerName": "Will Reichard",
+      "position": "K"
+    },
+    {
+      "playerName": "Andy Dalton",
+      "position": "QB"
+    },
+    {
+      "playerName": "Isaiah Davis",
+      "position": "RB"
+    },
+    {
+      "playerName": "Alec Pierce",
+      "position": "WR"
+    },
+    {
+      "playerName": "Tetairoa McMillan",
+      "position": "WR"
+    },
+    {
+      "playerName": "Quinshon Judkins",
+      "position": "RB"
+    },
+    {
+      "playerName": "Bam Knight",
+      "position": "RB"
+    },
+    {
+      "playerName": "Brashard Smith",
+      "position": "RB"
+    },
+    {
+      "playerName": "Kayshon Boutte",
+      "position": "WR"
+    },
+    {
+      "playerName": "Cam Skattebo",
+      "position": "RB"
+    },
+    {
+      "playerName": "Will Shipley",
+      "position": "RB"
+    },
+    {
+      "playerName": "AJ Barner",
+      "position": "TE"
+    },
+    {
+      "playerName": "Matthew Golden",
+      "position": "WR"
+    },
+    {
+      "playerName": "Tyler Warren",
+      "position": "TE"
+    },
+    {
+      "playerName": "Jaydon Blue",
+      "position": "RB"
+    },
+    {
+      "playerName": "Eddy Pineiro",
+      "position": "K"
+    },
+    {
+      "playerName": "Joe Flacco",
+      "position": "QB"
+    },
+    {
+      "playerName": "Ashton Jeanty",
+      "position": "RB"
+    },
+    {
+      "playerName": "Travis Hunter",
+      "position": "WR"
+    },
+    {
+      "playerName": "Kenneth Gainwell",
+      "position": "RB"
+    },
+    {
+      "playerName": "Josh Reynolds",
+      "position": "WR"
+    },
+    {
+      "playerName": "Aaron Jones Sr.",
+      "position": "RB"
+    },
+    {
+      "playerName": "Tre Tucker",
+      "position": "WR"
+    },
+    {
+      "playerName": "Tez Johnson",
+      "position": "WR"
+    },
+    {
+      "playerName": "Omarion Hampton",
+      "position": "RB"
+    },
+    {
+      "playerName": "Jeremy McNichols",
+      "position": "RB"
+    },
+    {
+      "playerName": "Bhayshul Tuten",
+      "position": "RB"
+    },
+    {
+      "playerName": "Luke McCaffrey",
+      "position": "WR"
+    },
+    {
+      "playerName": "Ryan Fitzgerald",
+      "position": "K"
+    },
+    {
+      "playerName": "J.J. McCarthy",
+      "position": "QB"
+    },
+    {
+      "playerName": "Troy Franklin",
+      "position": "WR"
+    },
+    {
+      "playerName": "Jaxson Dart",
+      "position": "QB"
+    },
+    {
+      "playerName": "Kyle Monangai",
+      "position": "RB"
+    },
+    {
+      "playerName": "James Cook III",
+      "position": "RB"
+    },
+    {
+      "playerName": "Spencer Rattler",
+      "position": "QB"
+    },
+    {
+      "playerName": "Jaylin Noel",
+      "position": "WR"
+    },
+    {
+      "playerName": "TreVeyon Henderson",
+      "position": "RB"
+    },
+    {
+      "playerName": "Chris Godwin Jr.",
+      "position": "WR"
+    },
+    {
+      "playerName": "Kyle Pitts Sr.",
+      "position": "TE"
+    },
+    {
+      "playerName": "Theo Johnson",
+      "position": "TE"
+    }
+  ]
+}
