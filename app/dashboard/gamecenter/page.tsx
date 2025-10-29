@@ -36,11 +36,6 @@ export default function GamecenterPage() {
   const biggestBlowouts = useQuery(api.fantasyFootball.getBiggestBlowouts, { limit: 5 });
   const closestMatchups = useQuery(api.fantasyFootball.getClosestMatchups, { limit: 5 });
   const championshipMatchups = useQuery(api.fantasyFootball.getChampionshipMatchups, { limit: 5 });
-  // These will be updated via useEffect when currentSeasonData is available
-  const [weeklyChampData, setWeeklyChampData] = useState<any>(null);
-  const [mostDisappointingData, setMostDisappointingData] = useState<any>(null);
-  const [mostDominatingData, setMostDominatingData] = useState<any>(null);
-  const [luckiestData, setLuckiestData] = useState<any>(null);
 
   // State for processed data
   const [seasons, setSeasons] = useState<any[]>([]);
@@ -49,6 +44,40 @@ export default function GamecenterPage() {
   const [currentLeague, setCurrentLeague] = useState<any>(null);
   const [leagueSeasons, setLeagueSeasons] = useState<any[]>([]);
   const [currentSeasonData, setCurrentSeasonData] = useState<any>(null);
+  
+  // Weekly-specific queries that need seasonId and week
+  // We'll use a computed value to avoid the initialization issue
+  const currentSeasonId = currentSeasonData?._id;
+  const currentWeek = selectedWeek ? parseInt(selectedWeek) : null;
+  
+  const weeklyChampData = useQuery(
+    api.fantasyFootball.getWeeklyChamp, 
+    currentSeasonId && currentWeek ? { 
+      seasonId: currentSeasonId, 
+      week: currentWeek 
+    } : "skip"
+  );
+  const mostDisappointingData = useQuery(
+    api.fantasyFootball.getMostDisappointing, 
+    currentSeasonId && currentWeek ? { 
+      seasonId: currentSeasonId, 
+      week: currentWeek 
+    } : "skip"
+  );
+  const mostDominatingData = useQuery(
+    api.fantasyFootball.getMostDominating, 
+    currentSeasonId && currentWeek ? { 
+      seasonId: currentSeasonId, 
+      week: currentWeek 
+    } : "skip"
+  );
+  const luckiestData = useQuery(
+    api.fantasyFootball.getLuckiest, 
+    currentSeasonId && currentWeek ? { 
+      seasonId: currentSeasonId, 
+      week: currentWeek 
+    } : "skip"
+  );
 
   // Process data in useEffect
   useEffect(() => {
@@ -98,17 +127,6 @@ export default function GamecenterPage() {
     }
   }, [leagueSeasons, selectedSeason]);
 
-  // Fetch weekly data when currentSeasonData is available
-  useEffect(() => {
-    if (currentSeasonData) {
-      // These would need to be implemented as separate queries or API calls
-      // For now, we'll set them to null to avoid the hooks order issue
-      setWeeklyChampData(null);
-      setMostDisappointingData(null);
-      setMostDominatingData(null);
-      setLuckiestData(null);
-    }
-  }, [currentSeasonData, selectedWeek]);
 
   // Auto-select first available season and week with data (only on initial load)
   useEffect(() => {
@@ -353,9 +371,9 @@ export default function GamecenterPage() {
                 >
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center text-sm">
-                      {mostDisappointingData && 'team' in mostDisappointingData && mostDisappointingData.team && 'name' in mostDisappointingData.team ? mostDisappointingData.team.name.charAt(0) : "?"}
+                      {mostDisappointingData?.team?.name ? mostDisappointingData.team.name.charAt(0) : "?"}
                     </div>
-                    <span className="text-sm">{mostDisappointingData && 'team' in mostDisappointingData && mostDisappointingData.team && 'name' in mostDisappointingData.team ? mostDisappointingData.team.name : "Loading..."}</span>
+                    <span className="text-sm">{mostDisappointingData?.team?.name || "Loading..."}</span>
                   </div>
                 </button>
               </div>
@@ -374,9 +392,9 @@ export default function GamecenterPage() {
                 >
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center text-sm">
-                      {mostDominatingData && 'team' in mostDominatingData && mostDominatingData.team && 'name' in mostDominatingData.team ? mostDominatingData.team.name.charAt(0) : "?"}
+                      {mostDominatingData?.team?.name ? mostDominatingData.team.name.charAt(0) : "?"}
                     </div>
-                    <span className="text-sm">{mostDominatingData && 'team' in mostDominatingData && mostDominatingData.team && 'name' in mostDominatingData.team ? mostDominatingData.team.name : "Loading..."}</span>
+                    <span className="text-sm">{mostDominatingData?.team?.name || "Loading..."}</span>
                   </div>
                 </button>
               </div>
@@ -392,9 +410,9 @@ export default function GamecenterPage() {
                 >
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center text-sm">
-                      {luckiestData && 'team' in luckiestData && luckiestData.team && 'name' in luckiestData.team ? luckiestData.team.name.charAt(0) : "?"}
+                      {luckiestData?.team?.name ? luckiestData.team.name.charAt(0) : "?"}
                     </div>
-                    <span className="text-sm">{luckiestData && 'team' in luckiestData && luckiestData.team && 'name' in luckiestData.team ? luckiestData.team.name : "Loading..."}</span>
+                    <span className="text-sm">{luckiestData?.team?.name || "Loading..."}</span>
                   </div>
                 </button>
               </div>

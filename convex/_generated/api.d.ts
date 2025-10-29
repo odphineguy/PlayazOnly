@@ -8,10 +8,12 @@
  * @module
  */
 
+import type * as draftData from "../draftData.js";
 import type * as espnImport from "../espnImport.js";
 import type * as fantasyFootball from "../fantasyFootball.js";
 import type * as http from "../http.js";
 import type * as importAllEspnData from "../importAllEspnData.js";
+import type * as importDraftData from "../importDraftData.js";
 import type * as paymentAttemptTypes from "../paymentAttemptTypes.js";
 import type * as paymentAttempts from "../paymentAttempts.js";
 import type * as users from "../users.js";
@@ -31,10 +33,12 @@ import type {
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  draftData: typeof draftData;
   espnImport: typeof espnImport;
   fantasyFootball: typeof fantasyFootball;
   http: typeof http;
   importAllEspnData: typeof importAllEspnData;
+  importDraftData: typeof importDraftData;
   paymentAttemptTypes: typeof paymentAttemptTypes;
   paymentAttempts: typeof paymentAttempts;
   users: typeof users;
