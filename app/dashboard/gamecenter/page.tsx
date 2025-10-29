@@ -41,14 +41,12 @@ export default function GamecenterPage() {
   useEffect(() => {
     const needsImport =
       (!teamsRaw || teamsRaw.length < 50) || // Less than 50 teams
-      (!allMatchupsRaw || allMatchupsRaw.length < 100) || // Less than 100 matchups
-      (teamsRaw && teamsRaw.length > 0 && !teamsRaw[0].ownerDisplayName); // Missing owner data
+      (!allMatchupsRaw || allMatchupsRaw.length < 100); // Less than 100 matchups
 
     if (needsImport && !isDataLoaded) {
       console.log('Incomplete data detected, importing ESPN data...', {
         teamsCount: teamsRaw?.length,
-        matchupsCount: allMatchupsRaw?.length,
-        hasOwnerData: teamsRaw?.[0]?.ownerDisplayName
+        matchupsCount: allMatchupsRaw?.length
       });
       setIsDataLoaded(true);
       importEspnData().catch((error) => {
