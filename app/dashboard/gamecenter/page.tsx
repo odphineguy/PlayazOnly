@@ -24,6 +24,8 @@ export default function GamecenterPage() {
   const [selectedSeason, setSelectedSeason] = useState("2020");
   const [selectedWeek, setSelectedWeek] = useState("1");
   const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [hasAutoSelected, setHasAutoSelected] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<"all" | "disappointing" | "dominating" | "luckiest">("all");
 
   // Get all seasons and leagues
   const leagues = useQuery(api.fantasyFootball.getAllLeagues);
@@ -117,9 +119,30 @@ export default function GamecenterPage() {
     currentLeague && season.leagueId === currentLeague._id
   ) || [];
 
-  // Auto-select first available season and week with data
+  // Get current season data for queries
+  const currentSeasonData = leagueSeasons.find(s => s.year.toString() === selectedSeason);
+
+  // Get weekly categories for sidebar
+  const weeklyChamp = useQuery(
+    api.fantasyFootball.getWeeklyChamp,
+    currentSeasonData ? { seasonId: currentSeasonData._id, week: parseInt(selectedWeek) } : "skip"
+  );
+  const mostDisappointing = useQuery(
+    api.fantasyFootball.getMostDisappointing,
+    currentSeasonData ? { seasonId: currentSeasonData._id, week: parseInt(selectedWeek) } : "skip"
+  );
+  const mostDominating = useQuery(
+    api.fantasyFootball.getMostDominating,
+    currentSeasonData ? { seasonId: currentSeasonData._id, week: parseInt(selectedWeek) } : "skip"
+  );
+  const luckiest = useQuery(
+    api.fantasyFootball.getLuckiest,
+    currentSeasonData ? { seasonId: currentSeasonData._id, week: parseInt(selectedWeek) } : "skip"
+  );
+
+  // Auto-select first available season and week with data (only on initial load)
   useEffect(() => {
-    if (leagueSeasons.length > 0 && allMatchups && allMatchups.length > 0) {
+    if (!hasAutoSelected && leagueSeasons.length > 0 && allMatchups && allMatchups.length > 0) {
       // Find the first season with matchups
       const seasonWithData = leagueSeasons.find(season => {
         const seasonMatchups = allMatchups.filter(matchup => matchup.seasonId === season._id);
@@ -128,16 +151,17 @@ export default function GamecenterPage() {
 
       if (seasonWithData) {
         setSelectedSeason(seasonWithData.year.toString());
-        
+
         // Find the first week with matchups for this season
         const seasonMatchups = allMatchups.filter(matchup => matchup.seasonId === seasonWithData._id);
         const weeks = [...new Set(seasonMatchups.map(m => m.week))].sort((a, b) => a - b);
         if (weeks.length > 0) {
           setSelectedWeek(weeks[0].toString());
         }
+        setHasAutoSelected(true);
       }
     }
-  }, [leagueSeasons, allMatchups]);
+  }, [leagueSeasons, allMatchups, hasAutoSelected]);
 
   // Get matchups for the selected season
   const selectedSeasonData = leagueSeasons.find(s => s.year.toString() === selectedSeason);
@@ -307,17 +331,93 @@ export default function GamecenterPage() {
             </div>
           </div>
         </CardHeader>
-        <CardContent>
-          <div className="space-y-6">
-            {currentMatchups.length === 0 ? (
-              <div className="text-center py-8 text-gray-500">
-                {availableWeeks.length === 0 ? 
-                  `No matchups found for ${selectedSeason}` : 
-                  `No matchups found for ${selectedSeason} Week ${selectedWeek}. Available weeks: ${availableWeeks.join(', ')}`
-                }
+        <CardContent className="p-0">
+          <div className="flex">
+            {/* Left Sidebar */}
+            <div className="w-64 bg-muted/50 border-r p-4 space-y-2 rounded-bl-lg">
+              {/* Week Matchups */}
+              <button
+                onClick={() => setSelectedCategory("all")}
+                className={`w-full text-left p-3 rounded-lg transition-colors ${
+                  selectedCategory === "all" ? "bg-primary/10 text-primary" : "hover:bg-muted"
+                }`}
+              >
+                <div className="flex items-center space-x-2">
+                  <Circle className={`w-4 h-4 ${selectedCategory === "all" ? "text-primary" : ""}`} />
+                  <span className="text-sm font-semibold">WEEK {selectedWeek} MATCHUPS</span>
+                </div>
+              </button>
+
+              {/* Most Disappointing */}
+              <div className="py-2">
+                <div className="text-xs text-muted-foreground mb-1 px-3">MOST DISAPPOINTING</div>
+                <button
+                  onClick={() => setSelectedCategory("disappointing")}
+                  className={`w-full text-left p-3 rounded-lg transition-colors ${
+                    selectedCategory === "disappointing" ? "bg-primary/10 text-primary" : "hover:bg-muted"
+                  }`}
+                >
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center text-sm">
+                      {mostDisappointing?.team?.name?.charAt(0) || "?"}
+                    </div>
+                    <span className="text-sm">{mostDisappointing?.team?.name || "Loading..."}</span>
+                  </div>
+                </button>
               </div>
-            ) : (
-              currentMatchups.map((matchup, index) => {
+
+              {/* Most Dominating */}
+              <div className="py-2">
+                <div className="text-xs text-muted-foreground mb-1 px-3 flex items-center space-x-1">
+                  <Zap className="w-3 h-3" />
+                  <span>MOST DOMINATING</span>
+                </div>
+                <button
+                  onClick={() => setSelectedCategory("dominating")}
+                  className={`w-full text-left p-3 rounded-lg transition-colors ${
+                    selectedCategory === "dominating" ? "bg-primary/10 text-primary" : "hover:bg-muted"
+                  }`}
+                >
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center text-sm">
+                      {mostDominating?.team?.name?.charAt(0) || "?"}
+                    </div>
+                    <span className="text-sm">{mostDominating?.team?.name || "Loading..."}</span>
+                  </div>
+                </button>
+              </div>
+
+              {/* Luckiest */}
+              <div className="py-2">
+                <div className="text-xs text-muted-foreground mb-1 px-3">🍀 LUCKIEST</div>
+                <button
+                  onClick={() => setSelectedCategory("luckiest")}
+                  className={`w-full text-left p-3 rounded-lg transition-colors ${
+                    selectedCategory === "luckiest" ? "bg-primary/10 text-primary" : "hover:bg-muted"
+                  }`}
+                >
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center text-sm">
+                      {luckiest?.team?.name?.charAt(0) || "?"}
+                    </div>
+                    <span className="text-sm">{luckiest?.team?.name || "Loading..."}</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            {/* Main Content Area */}
+            <div className="flex-1 p-6">
+              <div className="grid grid-cols-2 gap-4">
+                {currentMatchups.length === 0 ? (
+                  <div className="col-span-2 text-center py-8 text-gray-500">
+                    {availableWeeks.length === 0 ?
+                      `No matchups found for ${selectedSeason}` :
+                      `No matchups found for ${selectedSeason} Week ${selectedWeek}. Available weeks: ${availableWeeks.join(', ')}`
+                    }
+                  </div>
+                ) : (
+                  currentMatchups.map((matchup, index) => {
                 const homeTeam = getTeam(matchup.homeTeamId);
                 const awayTeam = getTeam(matchup.awayTeamId);
                 const homeTeamName = getTeamName(matchup.homeTeamId);
@@ -329,68 +429,123 @@ export default function GamecenterPage() {
                 const awayWon = matchup.awayScore > matchup.homeScore;
                 
                 return (
-                  <Link 
+                  <Link
                     key={matchup._id}
                     href={`/dashboard/gamecenter/${selectedSeason}/${selectedWeek}/${matchup._id}`}
                     className="block"
                   >
-                    <div 
-                      className={`${isChampionship ? 'bg-orange-50 border border-orange-200' : 'border'} rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer`}
-                    >
-                    <div className={`${isChampionship ? 'text-orange-600' : isPlayoff ? 'text-blue-600' : 'text-gray-600'} font-semibold text-sm mb-3`}>
-                      {isChampionship ? 'Championship' : isPlayoff ? 'Playoff Matchup' : 'Regular Season'}
-                    </div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center space-x-3">
-                        <div className={`w-8 h-8 ${homeWon ? 'bg-green-500' : 'bg-gray-400'} rounded-full flex items-center justify-center text-white text-sm font-bold`}>
-                          {homeTeamName.charAt(0)}
+                    <div className="rounded-lg overflow-hidden border hover:shadow-lg transition-shadow">
+                      {/* Header with team names */}
+                      <div className="border-b p-3 flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center font-bold text-sm">
+                            {homeTeamName.charAt(0)}
+                          </div>
+                          <span className="font-semibold">{homeTeamName}</span>
                         </div>
-                        <span className="font-medium">{homeTeamName}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <span className={`${homeWon ? 'text-green-600' : 'text-red-600'} font-bold text-lg`}>
-                          {matchup.homeScore.toFixed(2)}
-                        </span>
-                        <div className={`w-2 h-2 ${homeWon ? 'bg-green-500' : 'bg-red-500'} rounded-full`}></div>
-                        <span className={`${awayWon ? 'text-green-600' : 'text-red-600'} font-bold text-lg`}>
-                          {matchup.awayScore.toFixed(2)}
-                        </span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <span className="font-medium">{awayTeamName}</span>
-                        <div className={`w-8 h-8 ${awayWon ? 'bg-green-500' : 'bg-gray-400'} rounded-full flex items-center justify-center text-white text-sm font-bold`}>
-                          {awayTeamName.charAt(0)}
+                        <span className="text-sm text-muted-foreground">vs</span>
+                        <div className="flex items-center space-x-2">
+                          <span className="font-semibold">{awayTeamName}</span>
+                          <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center font-bold text-sm">
+                            {awayTeamName.charAt(0)}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-6 text-sm">
-                      <div className="space-y-2">
-                        <div className="font-medium text-gray-700">{homeTeamName}</div>
-                        <div>vs Team Avg: <span className={homeWon ? "text-green-600" : "text-red-600"}>{(homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 0).toFixed(2)} ({homeWon ? '+' : '-'}{((matchup.homeScore - (homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 0)) / (homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 1) * 100).toFixed(2)}%)</span></div>
-                        <div>vs League Avg: <span className={homeWon ? "text-green-600" : "text-red-600"}>{(matchupScoreData.find(d => d.year === selectedSeason)?.avgScore || 0).toFixed(2)} ({homeWon ? '+' : '-'}{((matchup.homeScore - (matchupScoreData.find(d => d.year === selectedSeason)?.avgScore || 0)) / (matchupScoreData.find(d => d.year === selectedSeason)?.avgScore || 1) * 100).toFixed(2)}%)</span></div>
-                        <div>Points Share: <span className="text-gray-600">{((homeTeam?.pointsFor || 0) / (seasonMatchups.reduce((sum, m) => sum + m.homeScore + m.awayScore, 0)) * 100).toFixed(2)}% · {homeTeam?.standing || 'N/A'}th (Rank)</span></div>
-                        <div>Coach Score: <span className="text-gray-600">{((homeTeam?.wins || 0) / ((homeTeam?.wins || 0) + (homeTeam?.losses || 0)) * 100).toFixed(2)} · {homeTeam?.standing || 'N/A'}th (Rank)</span></div>
-                        <div>Luck Factor: <span className={Math.random() > 0.5 ? "text-green-600" : "text-red-600"}>{(Math.random() * 100 - 50).toFixed(2)}</span></div>
+
+                      {/* Scores */}
+                      <div className="flex items-center border-b">
+                        <div className={`flex-1 ${homeWon ? 'bg-green-500/10' : 'bg-red-500/10'} p-3 text-center border-r`}>
+                          <span className={`text-2xl font-bold ${homeWon ? 'text-green-600' : 'text-red-600'}`}>
+                            {matchup.homeScore.toFixed(2)}
+                          </span>
+                          <span className="text-xs ml-1">{homeWon ? '●' : '●'}</span>
+                        </div>
+                        <div className={`flex-1 ${awayWon ? 'bg-green-500/10' : 'bg-red-500/10'} p-3 text-center`}>
+                          <span className="text-xs mr-1">{awayWon ? '●' : '●'}</span>
+                          <span className={`text-2xl font-bold ${awayWon ? 'text-green-600' : 'text-red-600'}`}>
+                            {matchup.awayScore.toFixed(2)}
+                          </span>
+                        </div>
                       </div>
-                      <div className="space-y-2">
-                        <div className="font-medium text-gray-700">{awayTeamName}</div>
-                        <div>vs Team Avg: <span className={awayWon ? "text-green-600" : "text-red-600"}>{(awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 0).toFixed(2)} ({awayWon ? '+' : '-'}{((matchup.awayScore - (awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 0)) / (awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 1) * 100).toFixed(2)}%)</span></div>
-                        <div>vs League Avg: <span className={awayWon ? "text-green-600" : "text-red-600"}>{(matchupScoreData.find(d => d.year === selectedSeason)?.avgScore || 0).toFixed(2)} ({awayWon ? '+' : '-'}{((matchup.awayScore - (matchupScoreData.find(d => d.year === selectedSeason)?.avgScore || 0)) / (matchupScoreData.find(d => d.year === selectedSeason)?.avgScore || 1) * 100).toFixed(2)}%)</span></div>
-                        <div>Points Share: <span className="text-gray-600">{((awayTeam?.pointsFor || 0) / (seasonMatchups.reduce((sum, m) => sum + m.homeScore + m.awayScore, 0)) * 100).toFixed(2)}% · {awayTeam?.standing || 'N/A'}th (Rank)</span></div>
-                        <div>Coach Score: <span className="text-gray-600">{((awayTeam?.wins || 0) / ((awayTeam?.wins || 0) + (awayTeam?.losses || 0)) * 100).toFixed(2)} · {awayTeam?.standing || 'N/A'}th (Rank)</span></div>
-                        <div>Luck Factor: <span className={Math.random() > 0.5 ? "text-green-600" : "text-red-600"}>{(Math.random() * 100 - 50).toFixed(2)}</span></div>
+
+                      {/* Stats */}
+                      <div className="p-3 space-y-2 text-xs">
+                        <div className="grid grid-cols-3 gap-2 items-center text-center">
+                          <div className="text-left">
+                            <span className={homeWon ? "text-green-600" : "text-muted-foreground"}>
+                              {(homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 0).toFixed(2)} ({((matchup.homeScore - (homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 0)) / (homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 1) * 100).toFixed(2)}%)
+                            </span>
+                          </div>
+                          <div className="text-muted-foreground font-semibold">vs Team Avg</div>
+                          <div className="text-right">
+                            <span className={awayWon ? "text-green-600" : "text-muted-foreground"}>
+                              {(awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 0).toFixed(2)} ({((matchup.awayScore - (awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 0)) / (awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 1) * 100).toFixed(2)}%)
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-3 gap-2 items-center text-center">
+                          <div className="text-left">
+                            <span className={homeWon ? "text-green-600" : "text-muted-foreground"}>
+                              {(matchupScoreData.find(d => d.year === selectedSeason)?.avgScore || 0).toFixed(2)} ({((matchup.homeScore - (matchupScoreData.find(d => d.year === selectedSeason)?.avgScore || 0)) / (matchupScoreData.find(d => d.year === selectedSeason)?.avgScore || 1) * 100).toFixed(2)}%)
+                            </span>
+                          </div>
+                          <div className="text-muted-foreground font-semibold">vs League Avg</div>
+                          <div className="text-right">
+                            <span className={awayWon ? "text-green-600" : "text-muted-foreground"}>
+                              {(matchupScoreData.find(d => d.year === selectedSeason)?.avgScore || 0).toFixed(2)} ({((matchup.awayScore - (matchupScoreData.find(d => d.year === selectedSeason)?.avgScore || 0)) / (matchupScoreData.find(d => d.year === selectedSeason)?.avgScore || 1) * 100).toFixed(2)}%)
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-3 gap-2 items-center text-center">
+                          <div className="text-left text-muted-foreground">
+                            {((homeTeam?.pointsFor || 0) / (seasonMatchups.reduce((sum, m) => sum + m.homeScore + m.awayScore, 0)) * 100).toFixed(2)}% · {homeTeam?.standing || 'N/A'}th (Rank)
+                          </div>
+                          <div className="text-muted-foreground font-semibold">Points Share</div>
+                          <div className="text-right text-muted-foreground">
+                            {((awayTeam?.pointsFor || 0) / (seasonMatchups.reduce((sum, m) => sum + m.homeScore + m.awayScore, 0)) * 100).toFixed(2)}% · {awayTeam?.standing || 'N/A'}th (Rank)
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-3 gap-2 items-center text-center">
+                          <div className="text-left text-muted-foreground">
+                            {((homeTeam?.wins || 0) / ((homeTeam?.wins || 0) + (homeTeam?.losses || 0)) * 100).toFixed(2)} · {homeTeam?.standing || 'N/A'}th (Rank)
+                          </div>
+                          <div className="text-muted-foreground font-semibold">Coach Score</div>
+                          <div className="text-right text-muted-foreground">
+                            {((awayTeam?.wins || 0) / ((awayTeam?.wins || 0) + (awayTeam?.losses || 0)) * 100).toFixed(2)} · {awayTeam?.standing || 'N/A'}th (Rank)
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-3 gap-2 items-center text-center">
+                          <div className="text-left">
+                            <span className={((matchup.homeScore - (homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 0)) / (homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 1) * 100) > 0 ? "text-green-600" : "text-red-600"}>
+                              {((matchup.homeScore - (homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 0)) / (homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 1) * 100).toFixed(2)}
+                            </span>
+                          </div>
+                          <div className="text-muted-foreground font-semibold">Luck Factor</div>
+                          <div className="text-right">
+                            <span className={((matchup.awayScore - (awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 0)) / (awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 1) * 100) > 0 ? "text-green-600" : "text-red-600"}>
+                              {((matchup.awayScore - (awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 0)) / (awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 1) * 100).toFixed(2)}
+                            </span>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="mt-4">
-                      <Button variant="ghost" className="text-blue-600 hover:text-blue-700 p-0 h-auto">
-                        View Matchup Details <ArrowRight className="w-4 h-4 ml-1" />
-                      </Button>
-                    </div>
+
+                      {/* Footer */}
+                      <div className="border-t p-3 text-center">
+                        <span className="font-medium text-sm flex items-center justify-center hover:text-primary transition-colors">
+                          View Matchup Details <ArrowRight className="w-4 h-4 ml-1" />
+                        </span>
+                      </div>
                     </div>
                   </Link>
                 );
               })
             )}
+              </div>
+            </div>
           </div>
         </CardContent>
       </Card>

@@ -715,3 +715,180 @@ export const cleanupDuplicates = mutation({
     };
   },
 });
+
+// Get weekly champion (highest scoring team in a specific week)
+export const getWeeklyChamp = query({
+  args: {
+    seasonId: v.id("seasons"),
+    week: v.number()
+  },
+  handler: async (ctx, args) => {
+    const matchups = await ctx.db.query("matchups")
+      .withIndex("bySeasonAndWeek", (q) => q.eq("seasonId", args.seasonId).eq("week", args.week))
+      .collect();
+
+    if (matchups.length === 0) return null;
+
+    // Find the highest score across all matchups
+    let highestScore = 0;
+    let champTeamId = null;
+
+    matchups.forEach(matchup => {
+      if (matchup.homeScore > highestScore) {
+        highestScore = matchup.homeScore;
+        champTeamId = matchup.homeTeamId;
+      }
+      if (matchup.awayScore > highestScore) {
+        highestScore = matchup.awayScore;
+        champTeamId = matchup.awayTeamId;
+      }
+    });
+
+    if (!champTeamId) return null;
+
+    const team = await ctx.db.get(champTeamId);
+    return { team, score: highestScore };
+  },
+});
+
+// Get most disappointing team (biggest underperformance vs team average)
+export const getMostDisappointing = query({
+  args: {
+    seasonId: v.id("seasons"),
+    week: v.number()
+  },
+  handler: async (ctx, args) => {
+    const matchups = await ctx.db.query("matchups")
+      .withIndex("bySeasonAndWeek", (q) => q.eq("seasonId", args.seasonId).eq("week", args.week))
+      .collect();
+
+    if (matchups.length === 0) return null;
+
+    let worstPerformance = 0;
+    let disappointingTeamId = null;
+    let disappointingScore = 0;
+
+    for (const matchup of matchups) {
+      // Check home team
+      const homeTeam = await ctx.db.get(matchup.homeTeamId);
+      if (homeTeam) {
+        const homeAvg = homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses);
+        const homeDiff = matchup.homeScore - homeAvg;
+        if (homeDiff < worstPerformance) {
+          worstPerformance = homeDiff;
+          disappointingTeamId = matchup.homeTeamId;
+          disappointingScore = matchup.homeScore;
+        }
+      }
+
+      // Check away team
+      const awayTeam = await ctx.db.get(matchup.awayTeamId);
+      if (awayTeam) {
+        const awayAvg = awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses);
+        const awayDiff = matchup.awayScore - awayAvg;
+        if (awayDiff < worstPerformance) {
+          worstPerformance = awayDiff;
+          disappointingTeamId = matchup.awayTeamId;
+          disappointingScore = matchup.awayScore;
+        }
+      }
+    }
+
+    if (!disappointingTeamId) return null;
+
+    const team = await ctx.db.get(disappointingTeamId);
+    return { team, score: disappointingScore, underperformance: worstPerformance };
+  },
+});
+
+// Get most dominating team (biggest margin of victory)
+export const getMostDominating = query({
+  args: {
+    seasonId: v.id("seasons"),
+    week: v.number()
+  },
+  handler: async (ctx, args) => {
+    const matchups = await ctx.db.query("matchups")
+      .withIndex("bySeasonAndWeek", (q) => q.eq("seasonId", args.seasonId).eq("week", args.week))
+      .collect();
+
+    if (matchups.length === 0) return null;
+
+    let biggestMargin = 0;
+    let dominatingTeamId = null;
+    let dominatingScore = 0;
+
+    matchups.forEach(matchup => {
+      const margin = Math.abs(matchup.homeScore - matchup.awayScore);
+      if (margin > biggestMargin) {
+        biggestMargin = margin;
+        if (matchup.homeScore > matchup.awayScore) {
+          dominatingTeamId = matchup.homeTeamId;
+          dominatingScore = matchup.homeScore;
+        } else {
+          dominatingTeamId = matchup.awayTeamId;
+          dominatingScore = matchup.awayScore;
+        }
+      }
+    });
+
+    if (!dominatingTeamId) return null;
+
+    const team = await ctx.db.get(dominatingTeamId);
+    return { team, score: dominatingScore, margin: biggestMargin };
+  },
+});
+
+// Get luckiest team (highest positive luck factor)
+export const getLuckiest = query({
+  args: {
+    seasonId: v.id("seasons"),
+    week: v.number()
+  },
+  handler: async (ctx, args) => {
+    const matchups = await ctx.db.query("matchups")
+      .withIndex("bySeasonAndWeek", (q) => q.eq("seasonId", args.seasonId).eq("week", args.week))
+      .collect();
+
+    if (matchups.length === 0) return null;
+
+    let highestLuck = -Infinity;
+    let luckiestTeamId = null;
+    let luckiestScore = 0;
+
+    for (const matchup of matchups) {
+      // Check home team (only if they won)
+      if (matchup.homeScore > matchup.awayScore) {
+        const homeTeam = await ctx.db.get(matchup.homeTeamId);
+        if (homeTeam) {
+          const homeAvg = homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses);
+          const homeLuck = ((matchup.homeScore - homeAvg) / homeAvg) * 100;
+          if (homeLuck > highestLuck) {
+            highestLuck = homeLuck;
+            luckiestTeamId = matchup.homeTeamId;
+            luckiestScore = matchup.homeScore;
+          }
+        }
+      }
+
+      // Check away team (only if they won)
+      if (matchup.awayScore > matchup.homeScore) {
+        const awayTeam = await ctx.db.get(matchup.awayTeamId);
+        if (awayTeam) {
+          const awayAvg = awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses);
+          const awayLuck = ((matchup.awayScore - awayAvg) / awayAvg) * 100;
+          if (awayLuck > highestLuck) {
+            highestLuck = awayLuck;
+            luckiestTeamId = matchup.awayTeamId;
+            luckiestScore = matchup.awayScore;
+          }
+        }
+      }
+    }
+
+    if (!luckiestTeamId) return null;
+
+    const team = await ctx.db.get(luckiestTeamId);
+    return { team, score: luckiestScore, luckFactor: highestLuck };
+  },
+});

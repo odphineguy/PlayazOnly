@@ -7,6 +7,7 @@ import espnData2021 from "../EspnData/espn_league_2021.json";
 import espnData2022 from "../EspnData/espn_league_2022.json";
 import espnData2023 from "../EspnData/espn_league_2023.json";
 import espnData2024 from "../EspnData/espn_league_2024.json";
+import espnData2025 from "../EspnData/espn_league_2025.json";
 
 // Import all ESPN data for all seasons
 export const importAllEspnData = mutation({
@@ -33,9 +34,9 @@ export const importAllEspnData = mutation({
         .withIndex("byLeague", (q) => q.eq("leagueId", existingLeague._id))
         .collect();
 
-      // Check if data is complete (7 seasons, 80+ teams, 500+ matchups, and has owner data)
+      // Check if data is complete (8 seasons, 80+ teams, 500+ matchups, and has owner data)
       const hasCompleteData =
-        existingSeasons.length >= 7 &&
+        existingSeasons.length >= 8 &&
         existingTeams.length >= 80 &&
         existingMatchups.length >= 500 &&
         existingTeams[0]?.ownerDisplayName;
@@ -104,6 +105,7 @@ export const importAllEspnData = mutation({
       "2022": espnData2022 as any,
       "2023": espnData2023 as any,
       "2024": espnData2024 as any,
+      "2025": espnData2025 as any,
     };
 
     const seasons = [];
@@ -119,13 +121,13 @@ export const importAllEspnData = mutation({
       const seasonId = await ctx.db.insert("seasons", {
         leagueId,
         year,
-        isActive: year === 2024,
+        isActive: year === 2025,
         totalTeams: seasonData.teams.length,
         playoffTeams: 6,
         regularSeasonWeeks: 14,
         playoffWeeks: 3,
         dataSource: "ESPN",
-        hasCompleteData: year !== 2024,
+        hasCompleteData: year !== 2025,
         createdAt: now,
         updatedAt: now,
       });
