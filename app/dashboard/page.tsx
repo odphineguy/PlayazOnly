@@ -36,8 +36,8 @@ export default function LeagueHome() {
   const matchups = useQuery(api.fantasyFootball.getAllMatchups);
   const transactions = useQuery(api.fantasyFootball.getAllTransactions);
 
-  // Loading state
-  if (!leagues || !seasons || !teams || !matchups || !transactions) {
+  // Loading state - only check required queries, transactions is optional
+  if (!leagues || !seasons || !teams || !matchups) {
     return (
       <div className="min-h-screen bg-background">
         <div className="container mx-auto p-6 space-y-6">
@@ -116,7 +116,7 @@ export default function LeagueHome() {
 
   // Transaction types distribution
   const transactionTypes = useMemo(() => {
-    if (!transactions) return [];
+    if (!transactions || transactions.length === 0) return [];
     
     const typeCounts = new Map<string, number>();
     transactions.forEach(t => {
