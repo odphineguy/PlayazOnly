@@ -7,12 +7,6 @@ import { Badge } from '@/components/ui/badge'
 import React from 'react'
 import { cn } from '@/lib/utils'
 import { ModeToggle } from '@/components/mode-toggle'
-
-// Demo mode - temporarily disabled auth components
-// import { Authenticated, Unauthenticated, AuthLoading } from "convex/react";
-// import { SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
-
-import { dark } from '@clerk/themes'
 import { useTheme } from "next-themes"
 
 
@@ -28,10 +22,6 @@ export const HeroHeader = () => {
     const [menuState, setMenuState] = React.useState(false)
     const [isScrolled, setIsScrolled] = React.useState(false)
     const { theme } = useTheme()
-
-    const appearance = {
-        baseTheme: theme === "dark" ? dark : undefined,
-    }
 
     React.useEffect(() => {
         const handleScroll = () => {

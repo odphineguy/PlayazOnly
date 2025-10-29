@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { JSX } from "react";
 
 class Pixel {
@@ -188,11 +188,13 @@ export default function PixelCard({
     null
   );
   const timePreviousRef = useRef(performance.now());
-  const reducedMotion = useRef(
-    typeof window !== "undefined" 
-      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      : false
-  ).current;
+  const [reducedMotion, setReducedMotion] = React.useState(false);
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    }
+  }, []);
 
   const variantCfg: VariantConfig = VARIANTS[variant] || VARIANTS.default;
   const finalGap = gap ?? variantCfg.gap;

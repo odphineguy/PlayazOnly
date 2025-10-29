@@ -12,6 +12,7 @@ if (!convexUrl) {
 const convex = convexUrl ? new ConvexReactClient(convexUrl) : null
 
 export default function ConvexClientProvider({ children }: { children: ReactNode }) {
+  // Always render children, but only wrap with ConvexProvider if we have a valid client
   if (!convex) {
     return <>{children}</>
   }
