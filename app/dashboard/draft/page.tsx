@@ -50,19 +50,19 @@ export default function DraftPage() {
 
   // Filter helpers based on selected member
   const filteredRankings = useMemo(() => {
-    if (!draftRankings) return [] as typeof draftRankings;
+    if (!draftRankings) return [];
     if (selectedMember === "Overview") return draftRankings;
     return draftRankings.filter(r => (r.team.ownerDisplayName || r.team.name) === selectedMember);
   }, [draftRankings, selectedMember]);
 
   const filteredTopPicks = useMemo(() => {
-    if (!topPicks) return [] as typeof topPicks;
+    if (!topPicks) return [];
     if (selectedMember === "Overview") return topPicks;
     return topPicks.filter(p => (p.team.ownerDisplayName || p.team.name) === selectedMember);
   }, [topPicks, selectedMember]);
 
   const filteredWorstPicks = useMemo(() => {
-    if (!worstPicks) return [] as typeof worstPicks;
+    if (!worstPicks) return [];
     if (selectedMember === "Overview") return worstPicks;
     return worstPicks.filter(p => (p.team.ownerDisplayName || p.team.name) === selectedMember);
   }, [worstPicks, selectedMember]);
