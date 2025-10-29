@@ -723,6 +723,10 @@ export const getWeeklyChamp = query({
     week: v.number()
   },
   handler: async (ctx, args) => {
+    // Validate season exists
+    const season = await ctx.db.get(args.seasonId);
+    if (!season) return null;
+
     const matchups = await ctx.db.query("matchups")
       .withIndex("bySeasonAndWeek", (q) => q.eq("seasonId", args.seasonId).eq("week", args.week))
       .collect();
@@ -758,6 +762,10 @@ export const getMostDisappointing = query({
     week: v.number()
   },
   handler: async (ctx, args) => {
+    // Validate season exists
+    const season = await ctx.db.get(args.seasonId);
+    if (!season) return null;
+
     const matchups = await ctx.db.query("matchups")
       .withIndex("bySeasonAndWeek", (q) => q.eq("seasonId", args.seasonId).eq("week", args.week))
       .collect();
@@ -772,24 +780,30 @@ export const getMostDisappointing = query({
       // Check home team
       const homeTeam = await ctx.db.get(matchup.homeTeamId);
       if (homeTeam) {
-        const homeAvg = homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses);
-        const homeDiff = matchup.homeScore - homeAvg;
-        if (homeDiff < worstPerformance) {
-          worstPerformance = homeDiff;
-          disappointingTeamId = matchup.homeTeamId;
-          disappointingScore = matchup.homeScore;
+        const games = homeTeam.wins + homeTeam.losses;
+        if (games > 0) {
+          const homeAvg = homeTeam.pointsFor / games;
+          const homeDiff = matchup.homeScore - homeAvg;
+          if (homeDiff < worstPerformance) {
+            worstPerformance = homeDiff;
+            disappointingTeamId = matchup.homeTeamId;
+            disappointingScore = matchup.homeScore;
+          }
         }
       }
 
       // Check away team
       const awayTeam = await ctx.db.get(matchup.awayTeamId);
       if (awayTeam) {
-        const awayAvg = awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses);
-        const awayDiff = matchup.awayScore - awayAvg;
-        if (awayDiff < worstPerformance) {
-          worstPerformance = awayDiff;
-          disappointingTeamId = matchup.awayTeamId;
-          disappointingScore = matchup.awayScore;
+        const games = awayTeam.wins + awayTeam.losses;
+        if (games > 0) {
+          const awayAvg = awayTeam.pointsFor / games;
+          const awayDiff = matchup.awayScore - awayAvg;
+          if (awayDiff < worstPerformance) {
+            worstPerformance = awayDiff;
+            disappointingTeamId = matchup.awayTeamId;
+            disappointingScore = matchup.awayScore;
+          }
         }
       }
     }
@@ -808,6 +822,10 @@ export const getMostDominating = query({
     week: v.number()
   },
   handler: async (ctx, args) => {
+    // Validate season exists
+    const season = await ctx.db.get(args.seasonId);
+    if (!season) return null;
+
     const matchups = await ctx.db.query("matchups")
       .withIndex("bySeasonAndWeek", (q) => q.eq("seasonId", args.seasonId).eq("week", args.week))
       .collect();
@@ -846,6 +864,10 @@ export const getLuckiest = query({
     week: v.number()
   },
   handler: async (ctx, args) => {
+    // Validate season exists
+    const season = await ctx.db.get(args.seasonId);
+    if (!season) return null;
+
     const matchups = await ctx.db.query("matchups")
       .withIndex("bySeasonAndWeek", (q) => q.eq("seasonId", args.seasonId).eq("week", args.week))
       .collect();
@@ -861,12 +883,17 @@ export const getLuckiest = query({
       if (matchup.homeScore > matchup.awayScore) {
         const homeTeam = await ctx.db.get(matchup.homeTeamId);
         if (homeTeam) {
-          const homeAvg = homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses);
-          const homeLuck = ((matchup.homeScore - homeAvg) / homeAvg) * 100;
-          if (homeLuck > highestLuck) {
-            highestLuck = homeLuck;
-            luckiestTeamId = matchup.homeTeamId;
-            luckiestScore = matchup.homeScore;
+          const games = homeTeam.wins + homeTeam.losses;
+          if (games > 0) {
+            const homeAvg = homeTeam.pointsFor / games;
+            if (homeAvg > 0) {
+              const homeLuck = ((matchup.homeScore - homeAvg) / homeAvg) * 100;
+              if (homeLuck > highestLuck) {
+                highestLuck = homeLuck;
+                luckiestTeamId = matchup.homeTeamId;
+                luckiestScore = matchup.homeScore;
+              }
+            }
           }
         }
       }
@@ -875,12 +902,17 @@ export const getLuckiest = query({
       if (matchup.awayScore > matchup.homeScore) {
         const awayTeam = await ctx.db.get(matchup.awayTeamId);
         if (awayTeam) {
-          const awayAvg = awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses);
-          const awayLuck = ((matchup.awayScore - awayAvg) / awayAvg) * 100;
-          if (awayLuck > highestLuck) {
-            highestLuck = awayLuck;
-            luckiestTeamId = matchup.awayTeamId;
-            luckiestScore = matchup.awayScore;
+          const games = awayTeam.wins + awayTeam.losses;
+          if (games > 0) {
+            const awayAvg = awayTeam.pointsFor / games;
+            if (awayAvg > 0) {
+              const awayLuck = ((matchup.awayScore - awayAvg) / awayAvg) * 100;
+              if (awayLuck > highestLuck) {
+                highestLuck = awayLuck;
+                luckiestTeamId = matchup.awayTeamId;
+                luckiestScore = matchup.awayScore;
+              }
+            }
           }
         }
       }

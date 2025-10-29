@@ -345,9 +345,9 @@ export default function GamecenterPage() {
                 >
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center text-sm">
-                      {(mostDisappointing?.team as any)?.name?.charAt(0) || "?"}
+                      {mostDisappointing?.team?.name?.charAt(0) || "?"}
                     </div>
-                    <span className="text-sm">{(mostDisappointing?.team as any)?.name || "Loading..."}</span>
+                    <span className="text-sm">{mostDisappointing?.team?.name || "Loading..."}</span>
                   </div>
                 </button>
               </div>
@@ -366,9 +366,9 @@ export default function GamecenterPage() {
                 >
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center text-sm">
-                      {(mostDominating?.team as any)?.name?.charAt(0) || "?"}
+                      {mostDominating?.team?.name?.charAt(0) || "?"}
                     </div>
-                    <span className="text-sm">{(mostDominating?.team as any)?.name || "Loading..."}</span>
+                    <span className="text-sm">{mostDominating?.team?.name || "Loading..."}</span>
                   </div>
                 </button>
               </div>
@@ -384,9 +384,9 @@ export default function GamecenterPage() {
                 >
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center text-sm">
-                      {(luckiest?.team as any)?.name?.charAt(0) || "?"}
+                      {luckiest?.team?.name?.charAt(0) || "?"}
                     </div>
-                    <span className="text-sm">{(luckiest?.team as any)?.name || "Loading..."}</span>
+                    <span className="text-sm">{luckiest?.team?.name || "Loading..."}</span>
                   </div>
                 </button>
               </div>
@@ -459,13 +459,23 @@ export default function GamecenterPage() {
                         <div className="grid grid-cols-3 gap-2 items-center text-center">
                           <div className="text-left">
                             <span className={homeWon ? "text-green-600" : "text-muted-foreground"}>
-                              {(homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 0).toFixed(2)} ({((matchup.homeScore - (homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 0)) / (homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 1) * 100).toFixed(2)}%)
+                              {(() => {
+                                const games = (homeTeam?.wins || 0) + (homeTeam?.losses || 0);
+                                const teamAvg = games > 0 && homeTeam ? homeTeam.pointsFor / games : 0;
+                                const diffPct = teamAvg > 0 ? ((matchup.homeScore - teamAvg) / teamAvg * 100) : 0;
+                                return `${teamAvg.toFixed(2)} (${diffPct.toFixed(2)}%)`;
+                              })()}
                             </span>
                           </div>
                           <div className="text-muted-foreground font-semibold">vs Team Avg</div>
                           <div className="text-right">
                             <span className={awayWon ? "text-green-600" : "text-muted-foreground"}>
-                              {(awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 0).toFixed(2)} ({((matchup.awayScore - (awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 0)) / (awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 1) * 100).toFixed(2)}%)
+                              {(() => {
+                                const games = (awayTeam?.wins || 0) + (awayTeam?.losses || 0);
+                                const teamAvg = games > 0 && awayTeam ? awayTeam.pointsFor / games : 0;
+                                const diffPct = teamAvg > 0 ? ((matchup.awayScore - teamAvg) / teamAvg * 100) : 0;
+                                return `${teamAvg.toFixed(2)} (${diffPct.toFixed(2)}%)`;
+                              })()}
                             </span>
                           </div>
                         </div>
@@ -486,35 +496,65 @@ export default function GamecenterPage() {
 
                         <div className="grid grid-cols-3 gap-2 items-center text-center">
                           <div className="text-left text-muted-foreground">
-                            {((homeTeam?.pointsFor || 0) / (seasonMatchups.reduce((sum, m) => sum + m.homeScore + m.awayScore, 0)) * 100).toFixed(2)}% · {homeTeam?.standing || 'N/A'}th (Rank)
+                            {(() => {
+                              const totalPoints = seasonMatchups.reduce((sum, m) => sum + m.homeScore + m.awayScore, 0);
+                              const pointsShare = totalPoints > 0 ? ((homeTeam?.pointsFor || 0) / totalPoints * 100) : 0;
+                              return `${pointsShare.toFixed(2)}% · ${homeTeam?.standing || 'N/A'}th (Rank)`;
+                            })()}
                           </div>
                           <div className="text-muted-foreground font-semibold">Points Share</div>
                           <div className="text-right text-muted-foreground">
-                            {((awayTeam?.pointsFor || 0) / (seasonMatchups.reduce((sum, m) => sum + m.homeScore + m.awayScore, 0)) * 100).toFixed(2)}% · {awayTeam?.standing || 'N/A'}th (Rank)
+                            {(() => {
+                              const totalPoints = seasonMatchups.reduce((sum, m) => sum + m.homeScore + m.awayScore, 0);
+                              const pointsShare = totalPoints > 0 ? ((awayTeam?.pointsFor || 0) / totalPoints * 100) : 0;
+                              return `${pointsShare.toFixed(2)}% · ${awayTeam?.standing || 'N/A'}th (Rank)`;
+                            })()}
                           </div>
                         </div>
 
                         <div className="grid grid-cols-3 gap-2 items-center text-center">
                           <div className="text-left text-muted-foreground">
-                            {((homeTeam?.wins || 0) / ((homeTeam?.wins || 0) + (homeTeam?.losses || 0)) * 100).toFixed(2)} · {homeTeam?.standing || 'N/A'}th (Rank)
+                            {(() => {
+                              const games = (homeTeam?.wins || 0) + (homeTeam?.losses || 0);
+                              const winPct = games > 0 ? ((homeTeam?.wins || 0) / games * 100) : 0;
+                              return `${winPct.toFixed(2)} · ${homeTeam?.standing || 'N/A'}th (Rank)`;
+                            })()}
                           </div>
                           <div className="text-muted-foreground font-semibold">Coach Score</div>
                           <div className="text-right text-muted-foreground">
-                            {((awayTeam?.wins || 0) / ((awayTeam?.wins || 0) + (awayTeam?.losses || 0)) * 100).toFixed(2)} · {awayTeam?.standing || 'N/A'}th (Rank)
+                            {(() => {
+                              const games = (awayTeam?.wins || 0) + (awayTeam?.losses || 0);
+                              const winPct = games > 0 ? ((awayTeam?.wins || 0) / games * 100) : 0;
+                              return `${winPct.toFixed(2)} · ${awayTeam?.standing || 'N/A'}th (Rank)`;
+                            })()}
                           </div>
                         </div>
 
                         <div className="grid grid-cols-3 gap-2 items-center text-center">
                           <div className="text-left">
-                            <span className={((matchup.homeScore - (homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 0)) / (homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 1) * 100) > 0 ? "text-green-600" : "text-red-600"}>
-                              {((matchup.homeScore - (homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 0)) / (homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 1) * 100).toFixed(2)}
-                            </span>
+                            {(() => {
+                              const games = (homeTeam?.wins || 0) + (homeTeam?.losses || 0);
+                              const teamAvg = games > 0 && homeTeam ? homeTeam.pointsFor / games : 0;
+                              const luckFactor = teamAvg > 0 ? ((matchup.homeScore - teamAvg) / teamAvg * 100) : 0;
+                              return (
+                                <span className={luckFactor > 0 ? "text-green-600" : "text-red-600"}>
+                                  {luckFactor.toFixed(2)}
+                                </span>
+                              );
+                            })()}
                           </div>
                           <div className="text-muted-foreground font-semibold">Luck Factor</div>
                           <div className="text-right">
-                            <span className={((matchup.awayScore - (awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 0)) / (awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 1) * 100) > 0 ? "text-green-600" : "text-red-600"}>
-                              {((matchup.awayScore - (awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 0)) / (awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 1) * 100).toFixed(2)}
-                            </span>
+                            {(() => {
+                              const games = (awayTeam?.wins || 0) + (awayTeam?.losses || 0);
+                              const teamAvg = games > 0 && awayTeam ? awayTeam.pointsFor / games : 0;
+                              const luckFactor = teamAvg > 0 ? ((matchup.awayScore - teamAvg) / teamAvg * 100) : 0;
+                              return (
+                                <span className={luckFactor > 0 ? "text-green-600" : "text-red-600"}>
+                                  {luckFactor.toFixed(2)}
+                                </span>
+                              );
+                            })()}
                           </div>
                         </div>
                       </div>
@@ -849,4 +889,3 @@ export default function GamecenterPage() {
     </div>
   );
 }
-console.log('NEXT_PUBLIC_CONVEX_URL:', process.env.NEXT_PUBLIC_CONVEX_URL);
