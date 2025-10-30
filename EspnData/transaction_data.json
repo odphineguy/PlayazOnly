@@ -1,0 +1,5552 @@
+{
+  "2019": [],
+  "2020": [],
+  "2021": [],
+  "2022": [],
+  "2023": [],
+  "2024": [],
+  "2025": [
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761799215225,
+      "actions": [
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Dylan Sampson",
+          "player_id": 5081397,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Bengals D/ST",
+          "player_id": -16004,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "PDO_ File Blockers FA ADDED Dylan Sampson | PDO_ File Blockers DROPPED Bengals D/ST",
+      "involved_teams": [
+        13,
+        13
+      ],
+      "involved_players": [
+        5081397,
+        -16004
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761786585104,
+      "actions": [
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Samaje Perine",
+          "player_id": 3116389,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Matthew Golden",
+          "player_id": 4701936,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Team END-zone FA ADDED Samaje Perine | Team END-zone DROPPED Matthew Golden",
+      "involved_teams": [
+        8,
+        8
+      ],
+      "involved_players": [
+        3116389,
+        4701936
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761758810743,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Harrison Butker",
+          "player_id": 3055899,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Tyler Loop",
+          "player_id": 4697745,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club DROPPED Harrison Butker | Travis Hunter Kuck Club FA ADDED Tyler Loop",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        3055899,
+        4697745
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761746018026,
+      "actions": [
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Jaguars D/ST",
+          "player_id": -16030,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Cardinals D/ST",
+          "player_id": -16022,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Chandler TopFeeders FA ADDED Jaguars D/ST | Chandler TopFeeders DROPPED Cardinals D/ST",
+      "involved_teams": [
+        2,
+        2
+      ],
+      "involved_players": [
+        -16030,
+        -16022
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761741114215,
+      "actions": [
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Patriots D/ST",
+          "player_id": -16017,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Raiders D/ST",
+          "player_id": -16013,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "OG LA Raiders DROPPED Patriots D/ST | OG LA Raiders FA ADDED Raiders D/ST",
+      "involved_teams": [
+        9,
+        9
+      ],
+      "involved_players": [
+        -16017,
+        -16013
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761722042694,
+      "actions": [
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Tua Tagovailoa",
+          "player_id": 4241479,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Marcus Mariota",
+          "player_id": 2576980,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Ass N TD's WAIVER ADDED Tua Tagovailoa | Ass N TD's DROPPED Marcus Mariota",
+      "involved_teams": [
+        10,
+        10
+      ],
+      "involved_players": [
+        4241479,
+        2576980
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761722042694,
+      "actions": [
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Lions D/ST",
+          "player_id": -16008,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Ass N TD's WAIVER ADDED Lions D/ST",
+      "involved_teams": [
+        10
+      ],
+      "involved_players": [
+        -16008
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761722042694,
+      "actions": [
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Christian Watson",
+          "player_id": 4248528,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Tre Tucker",
+          "player_id": 4428718,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Ass N TD's WAIVER ADDED Christian Watson | Ass N TD's DROPPED Tre Tucker",
+      "involved_teams": [
+        10,
+        10
+      ],
+      "involved_players": [
+        4248528,
+        4428718
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761722042694,
+      "actions": [
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Isaiah Likely",
+          "player_id": 4361050,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Tank Bigsby",
+          "player_id": 4429013,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Team END-zone DROPPED Isaiah Likely | Team END-zone WAIVER ADDED Tank Bigsby",
+      "involved_teams": [
+        8,
+        8
+      ],
+      "involved_players": [
+        4361050,
+        4429013
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761722042694,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Brashard Smith",
+          "player_id": 4596602,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Trey Benson",
+          "player_id": 4429275,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Travis Hunter Kuck Club DROPPED Brashard Smith | Travis Hunter Kuck Club WAIVER ADDED Trey Benson",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        4596602,
+        4429275
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761722042694,
+      "actions": [
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "AJ Dillon",
+          "player_id": 4239934,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Calvin Ridley",
+          "player_id": 3925357,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "BigOLlantas DROPPED AJ Dillon | BigOLlantas WAIVER ADDED Calvin Ridley",
+      "involved_teams": [
+        15,
+        15
+      ],
+      "involved_players": [
+        4239934,
+        3925357
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761607022927,
+      "actions": [
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Michael Carter",
+          "player_id": 4240657,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "DROP",
+      "description": "Ass N TD's DROPPED Michael Carter",
+      "involved_teams": [
+        10
+      ],
+      "involved_players": [
+        4240657
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761505926381,
+      "actions": [
+        {
+          "team_id": 6,
+          "team_name": "The Tank",
+          "player_name": "Lions D/ST",
+          "player_id": -16008,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 6,
+          "team_name": "The Tank",
+          "player_name": "Saints D/ST",
+          "player_id": -16018,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "The Tank DROPPED Lions D/ST | The Tank FA ADDED Saints D/ST",
+      "involved_teams": [
+        6,
+        6
+      ],
+      "involved_players": [
+        -16008,
+        -16018
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761505870212,
+      "actions": [
+        {
+          "team_id": 6,
+          "team_name": "The Tank",
+          "player_name": "Pat Freiermuth",
+          "player_id": 4361411,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "The Tank FA ADDED Pat Freiermuth",
+      "involved_teams": [
+        6
+      ],
+      "involved_players": [
+        4361411
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761495329882,
+      "actions": [
+        {
+          "team_id": 14,
+          "team_name": "Miami Big Sack Hard D",
+          "player_name": "Jaylin Noel",
+          "player_id": 4586312,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 14,
+          "team_name": "Miami Big Sack Hard D",
+          "player_name": "Kirk Cousins",
+          "player_id": 14880,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Miami Big Sack Hard D FA ADDED Jaylin Noel | Miami Big Sack Hard D DROPPED Kirk Cousins",
+      "involved_teams": [
+        14,
+        14
+      ],
+      "involved_players": [
+        4586312,
+        14880
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761495259378,
+      "actions": [
+        {
+          "team_id": 14,
+          "team_name": "Miami Big Sack Hard D",
+          "player_name": "Kirk Cousins",
+          "player_id": 14880,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Miami Big Sack Hard D FA ADDED Kirk Cousins",
+      "involved_teams": [
+        14
+      ],
+      "involved_players": [
+        14880
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761495213307,
+      "actions": [
+        {
+          "team_id": 14,
+          "team_name": "Miami Big Sack Hard D",
+          "player_name": "Trey Benson",
+          "player_id": 4429275,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 14,
+          "team_name": "Miami Big Sack Hard D",
+          "player_name": "Jake Bates",
+          "player_id": 4689936,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 14,
+          "team_name": "Miami Big Sack Hard D",
+          "player_name": "Cairo Santos",
+          "player_id": 17427,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Miami Big Sack Hard D DROPPED Trey Benson | Miami Big Sack Hard D DROPPED Jake Bates | Miami Big Sack Hard D FA ADDED Cairo Santos",
+      "involved_teams": [
+        14,
+        14,
+        14
+      ],
+      "involved_players": [
+        4429275,
+        4689936,
+        17427
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761495166585,
+      "actions": [
+        {
+          "team_id": 14,
+          "team_name": "Miami Big Sack Hard D",
+          "player_name": "Trevor Lawrence",
+          "player_id": 4360310,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 14,
+          "team_name": "Miami Big Sack Hard D",
+          "player_name": "Spencer Rattler",
+          "player_id": 4426339,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Miami Big Sack Hard D DROPPED Trevor Lawrence | Miami Big Sack Hard D FA ADDED Spencer Rattler",
+      "involved_teams": [
+        14,
+        14
+      ],
+      "involved_players": [
+        4360310,
+        4426339
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761494464080,
+      "actions": [
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Justin Fields",
+          "player_id": 4362887,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Mad Men FA ADDED Justin Fields",
+      "involved_teams": [
+        1
+      ],
+      "involved_players": [
+        4362887
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761494395884,
+      "actions": [
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Michael Penix Jr.",
+          "player_id": 4360423,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "DROP",
+      "description": "Mad Men DROPPED Michael Penix Jr.",
+      "involved_teams": [
+        1
+      ],
+      "involved_players": [
+        4360423
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761493141494,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Calvin Ridley",
+          "player_id": 3925357,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Kayshon Boutte",
+          "player_id": 4429022,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club DROPPED Calvin Ridley | Travis Hunter Kuck Club FA ADDED Kayshon Boutte",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        3925357,
+        4429022
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761308346135,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Sam Darnold",
+          "player_id": 3912547,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Justin Fields",
+          "player_id": 4362887,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club FA ADDED Sam Darnold | Travis Hunter Kuck Club DROPPED Justin Fields",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        3912547,
+        4362887
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761264660556,
+      "actions": [
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Josh Reynolds",
+          "player_id": 3115306,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "JuJu Smith-Schuster",
+          "player_id": 3120348,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "OG LA Raiders FA ADDED Josh Reynolds | OG LA Raiders DROPPED JuJu Smith-Schuster",
+      "involved_teams": [
+        9,
+        9
+      ],
+      "involved_players": [
+        3115306,
+        3120348
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761259204341,
+      "actions": [
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Courtland Sutton",
+          "player_id": 3128429,
+          "action_type": "TRADED",
+          "week": 0
+        },
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Travis Etienne Jr.",
+          "player_id": 4239996,
+          "action_type": "TRADED",
+          "week": 0
+        }
+      ],
+      "type": "TRADE",
+      "description": "BigOLlantas TRADED Courtland Sutton | Ass N TD's TRADED Travis Etienne Jr.",
+      "involved_teams": [
+        15,
+        10
+      ],
+      "involved_players": [
+        3128429,
+        4239996
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761253435022,
+      "actions": [
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Brenton Strange",
+          "player_id": 4430539,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Carson Wentz",
+          "player_id": 2573079,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Wreaking Crew JDR DROPPED Brenton Strange | Wreaking Crew JDR FA ADDED Carson Wentz",
+      "involved_teams": [
+        11,
+        11
+      ],
+      "involved_players": [
+        4430539,
+        2573079
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761228236387,
+      "actions": [
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Darren Waller",
+          "player_id": 2576925,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Marcus Mariota",
+          "player_id": 2576980,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Ass N TD's DROPPED Darren Waller | Ass N TD's FA ADDED Marcus Mariota",
+      "involved_teams": [
+        10,
+        10
+      ],
+      "involved_players": [
+        2576925,
+        2576980
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761208227620,
+      "actions": [
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Rams D/ST",
+          "player_id": -16014,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Emanuel Wilson",
+          "player_id": 4887558,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Mad Men FA ADDED Rams D/ST | Mad Men DROPPED Emanuel Wilson",
+      "involved_teams": [
+        1,
+        1
+      ],
+      "involved_players": [
+        -16014,
+        4887558
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761196114586,
+      "actions": [
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Alec Pierce",
+          "player_id": 4360078,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Kameron Johnson",
+          "player_id": 5097554,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "South Side Delinquents FA ADDED Alec Pierce | South Side Delinquents DROPPED Kameron Johnson",
+      "involved_teams": [
+        4,
+        4
+      ],
+      "involved_players": [
+        4360078,
+        5097554
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761195970987,
+      "actions": [
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "49ers D/ST",
+          "player_id": -16025,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Browns D/ST",
+          "player_id": -16005,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "South Side Delinquents FA ADDED 49ers D/ST | South Side Delinquents DROPPED Browns D/ST",
+      "involved_teams": [
+        4,
+        4
+      ],
+      "involved_players": [
+        -16025,
+        -16005
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761195934699,
+      "actions": [
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Sean Tucker",
+          "player_id": 4430871,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Isaiah Davis",
+          "player_id": 4695404,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "South Side Delinquents DROPPED Sean Tucker | South Side Delinquents FA ADDED Isaiah Davis",
+      "involved_teams": [
+        4,
+        4
+      ],
+      "involved_players": [
+        4430871,
+        4695404
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761195784204,
+      "actions": [
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Andy Dalton",
+          "player_id": 14012,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Sam Darnold",
+          "player_id": 3912547,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "South Side Delinquents FA ADDED Andy Dalton | South Side Delinquents DROPPED Sam Darnold",
+      "involved_teams": [
+        4,
+        4
+      ],
+      "involved_players": [
+        14012,
+        3912547
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761190742505,
+      "actions": [
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Buccaneers D/ST",
+          "player_id": -16027,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Titans D/ST",
+          "player_id": -16010,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Chandler TopFeeders FA ADDED Buccaneers D/ST | Chandler TopFeeders DROPPED Titans D/ST",
+      "involved_teams": [
+        2,
+        2
+      ],
+      "involved_players": [
+        -16027,
+        -16010
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761158174990,
+      "actions": [
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Steelers D/ST",
+          "player_id": -16023,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Bills D/ST",
+          "player_id": -16002,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "BigOLlantas DROPPED Steelers D/ST | BigOLlantas FA ADDED Bills D/ST",
+      "involved_teams": [
+        15,
+        15
+      ],
+      "involved_players": [
+        -16023,
+        -16002
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761142692917,
+      "actions": [
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Brian Robinson Jr.",
+          "player_id": 4241474,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Bengals D/ST",
+          "player_id": -16004,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "PDO_ File Blockers DROPPED Brian Robinson Jr. | PDO_ File Blockers FA ADDED Bengals D/ST",
+      "involved_teams": [
+        13,
+        13
+      ],
+      "involved_players": [
+        4241474,
+        -16004
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761136304508,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Brashard Smith",
+          "player_id": 4596602,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Harold Fannin Jr.",
+          "player_id": 5083076,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club FA ADDED Brashard Smith | Travis Hunter Kuck Club DROPPED Harold Fannin Jr.",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        4596602,
+        5083076
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761134559882,
+      "actions": [
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Evan McPherson",
+          "player_id": 4360234,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Joshua Karty",
+          "player_id": 4566192,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Ass N TD's FA ADDED Evan McPherson | Ass N TD's DROPPED Joshua Karty",
+      "involved_teams": [
+        10,
+        10
+      ],
+      "involved_players": [
+        4360234,
+        4566192
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761118939152,
+      "actions": [
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "Will Reichard",
+          "player_id": 4567104,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "Jaguars D/ST",
+          "player_id": -16030,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Killer Beers WAIVER ADDED Will Reichard | Killer Beers DROPPED Jaguars D/ST",
+      "involved_teams": [
+        3,
+        3
+      ],
+      "involved_players": [
+        4567104,
+        -16030
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761118939152,
+      "actions": [
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Chargers D/ST",
+          "player_id": -16024,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Rams D/ST",
+          "player_id": -16014,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Wreaking Crew JDR WAIVER ADDED Chargers D/ST | Wreaking Crew JDR DROPPED Rams D/ST",
+      "involved_teams": [
+        11,
+        11
+      ],
+      "involved_players": [
+        -16024,
+        -16014
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761118939152,
+      "actions": [
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Mike Evans",
+          "player_id": 16737,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Jauan Jennings",
+          "player_id": 3886598,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Ass N TD's DROPPED Mike Evans | Ass N TD's WAIVER ADDED Jauan Jennings",
+      "involved_teams": [
+        10,
+        10
+      ],
+      "involved_players": [
+        16737,
+        3886598
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761118939152,
+      "actions": [
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Joe Flacco",
+          "player_id": 11252,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Elic Ayomanor",
+          "player_id": 4883647,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Team END-zone WAIVER ADDED Joe Flacco | Team END-zone DROPPED Elic Ayomanor",
+      "involved_teams": [
+        8,
+        8
+      ],
+      "involved_players": [
+        11252,
+        4883647
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761118939152,
+      "actions": [
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Kyle Monangai",
+          "player_id": 4608686,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "PDO_ File Blockers WAIVER ADDED Kyle Monangai",
+      "involved_teams": [
+        13
+      ],
+      "involved_players": [
+        4608686
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761118939152,
+      "actions": [
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "Oronde Gadsden II",
+          "player_id": 4595342,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "Jayden Higgins",
+          "player_id": 4877706,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Killer Beers WAIVER ADDED Oronde Gadsden II | Killer Beers DROPPED Jayden Higgins",
+      "involved_teams": [
+        3,
+        3
+      ],
+      "involved_players": [
+        4595342,
+        4877706
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1761058753186,
+      "actions": [
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Kendre Miller",
+          "player_id": 4599739,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "DROP",
+      "description": "PDO_ File Blockers DROPPED Kendre Miller",
+      "involved_teams": [
+        13
+      ],
+      "involved_players": [
+        4599739
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760892531606,
+      "actions": [
+        {
+          "team_id": 12,
+          "team_name": "Dillinger Escape Plan.",
+          "player_name": "Eagles D/ST",
+          "player_id": -16021,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 12,
+          "team_name": "Dillinger Escape Plan.",
+          "player_name": "Bills D/ST",
+          "player_id": -16002,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Dillinger Escape Plan. FA ADDED Eagles D/ST | Dillinger Escape Plan. DROPPED Bills D/ST",
+      "involved_teams": [
+        12,
+        12
+      ],
+      "involved_players": [
+        -16021,
+        -16002
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760670543614,
+      "actions": [
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Kimani Vidal",
+          "player_id": 4430968,
+          "action_type": "TRADED",
+          "week": 0
+        },
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Courtland Sutton",
+          "player_id": 3128429,
+          "action_type": "TRADED",
+          "week": 0
+        }
+      ],
+      "type": "TRADE",
+      "description": "BigOLlantas TRADED Kimani Vidal | Wreaking Crew JDR TRADED Courtland Sutton",
+      "involved_teams": [
+        15,
+        11
+      ],
+      "involved_players": [
+        4430968,
+        3128429
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760660819640,
+      "actions": [
+        {
+          "team_id": 6,
+          "team_name": "The Tank",
+          "player_name": "Malik Nabers",
+          "player_id": 4595348,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "DROP",
+      "description": "The Tank DROPPED Malik Nabers",
+      "involved_teams": [
+        6
+      ],
+      "involved_players": [
+        4595348
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760658261667,
+      "actions": [
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Cam Little",
+          "player_id": 4686361,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Ka'imi Fairbairn",
+          "player_id": 2971573,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "PDO_ File Blockers DROPPED Cam Little | PDO_ File Blockers FA ADDED Ka'imi Fairbairn",
+      "involved_teams": [
+        13,
+        13
+      ],
+      "involved_players": [
+        4686361,
+        2971573
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760643070280,
+      "actions": [
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Calvin Austin III",
+          "player_id": 4243389,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Browns D/ST",
+          "player_id": -16005,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "South Side Delinquents DROPPED Calvin Austin III | South Side Delinquents FA ADDED Browns D/ST",
+      "involved_teams": [
+        4,
+        4
+      ],
+      "involved_players": [
+        4243389,
+        -16005
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760643024308,
+      "actions": [
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Kameron Johnson",
+          "player_id": 5097554,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "South Side Delinquents FA ADDED Kameron Johnson",
+      "involved_teams": [
+        4
+      ],
+      "involved_players": [
+        5097554
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760642941491,
+      "actions": [
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Miles Sanders",
+          "player_id": 4045163,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "DROP",
+      "description": "South Side Delinquents DROPPED Miles Sanders",
+      "involved_teams": [
+        4
+      ],
+      "involved_players": [
+        4045163
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760575012016,
+      "actions": [
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Jeremy McNichols",
+          "player_id": 3127586,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Isaiah Davis",
+          "player_id": 4695404,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Wreaking Crew JDR FA ADDED Jeremy McNichols | Wreaking Crew JDR DROPPED Isaiah Davis",
+      "involved_teams": [
+        11,
+        11
+      ],
+      "involved_players": [
+        3127586,
+        4695404
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760574742795,
+      "actions": [
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Jake Tonges",
+          "player_id": 4259147,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "T.J. Hockenson",
+          "player_id": 4036133,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Wreaking Crew JDR DROPPED Jake Tonges | Wreaking Crew JDR FA ADDED T.J. Hockenson",
+      "involved_teams": [
+        11,
+        11
+      ],
+      "involved_players": [
+        4259147,
+        4036133
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760568720075,
+      "actions": [
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Michael Penix Jr.",
+          "player_id": 4360423,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Mac Jones",
+          "player_id": 4241464,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Mad Men FA ADDED Michael Penix Jr. | Mad Men DROPPED Mac Jones",
+      "involved_teams": [
+        1,
+        1
+      ],
+      "involved_players": [
+        4360423,
+        4241464
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760568620352,
+      "actions": [
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Commanders D/ST",
+          "player_id": -16028,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Cade Otton",
+          "player_id": 4243331,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Mad Men DROPPED Commanders D/ST | Mad Men FA ADDED Cade Otton",
+      "involved_teams": [
+        1,
+        1
+      ],
+      "involved_players": [
+        -16028,
+        4243331
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760564229628,
+      "actions": [
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Jauan Jennings",
+          "player_id": 3886598,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Tez Johnson",
+          "player_id": 4608810,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Ass N TD's DROPPED Jauan Jennings | Ass N TD's FA ADDED Tez Johnson",
+      "involved_teams": [
+        10,
+        10
+      ],
+      "involved_players": [
+        3886598,
+        4608810
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760562381079,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Harold Fannin Jr.",
+          "player_id": 5083076,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Hassan Haskins",
+          "player_id": 4372071,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club FA ADDED Harold Fannin Jr. | Travis Hunter Kuck Club DROPPED Hassan Haskins",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        5083076,
+        4372071
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760550701814,
+      "actions": [
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Michael Badgley",
+          "player_id": 3123052,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Matt Prater",
+          "player_id": 11122,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "OG LA Raiders FA ADDED Michael Badgley | OG LA Raiders DROPPED Matt Prater",
+      "involved_teams": [
+        9,
+        9
+      ],
+      "involved_players": [
+        3123052,
+        11122
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760540368853,
+      "actions": [
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Tyler Loop",
+          "player_id": 4697745,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Eddy Pineiro",
+          "player_id": 4034949,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Team END-zone DROPPED Tyler Loop | Team END-zone FA ADDED Eddy Pineiro",
+      "involved_teams": [
+        8,
+        8
+      ],
+      "involved_players": [
+        4697745,
+        4034949
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760540351430,
+      "actions": [
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Cowboys D/ST",
+          "player_id": -16006,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Chiefs D/ST",
+          "player_id": -16012,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Team END-zone DROPPED Cowboys D/ST | Team END-zone FA ADDED Chiefs D/ST",
+      "involved_teams": [
+        8,
+        8
+      ],
+      "involved_players": [
+        -16006,
+        -16012
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760528808162,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Bam Knight",
+          "player_id": 4427728,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Eagles D/ST",
+          "player_id": -16021,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club FA ADDED Bam Knight | Travis Hunter Kuck Club DROPPED Eagles D/ST",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        4427728,
+        -16021
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760528710672,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Kyle Monangai",
+          "player_id": 4608686,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Tyjae Spears",
+          "player_id": 4428557,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club DROPPED Kyle Monangai | Travis Hunter Kuck Club FA ADDED Tyjae Spears",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        4608686,
+        4428557
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760287288365,
+      "actions": [
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Buccaneers D/ST",
+          "player_id": -16027,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Vikings D/ST",
+          "player_id": -16016,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Mad Men DROPPED Buccaneers D/ST | Mad Men FA ADDED Vikings D/ST",
+      "involved_teams": [
+        1,
+        1
+      ],
+      "involved_players": [
+        -16027,
+        -16016
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760287161648,
+      "actions": [
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Mac Jones",
+          "player_id": 4241464,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Mad Men FA ADDED Mac Jones",
+      "involved_teams": [
+        1
+      ],
+      "involved_players": [
+        4241464
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760286387387,
+      "actions": [
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Jaydon Blue",
+          "player_id": 4685279,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Emari Demercado",
+          "player_id": 4362478,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Team END-zone FA ADDED Jaydon Blue | Team END-zone DROPPED Emari Demercado",
+      "involved_teams": [
+        8,
+        8
+      ],
+      "involved_players": [
+        4685279,
+        4362478
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760234892964,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Brandon McManus",
+          "player_id": 16339,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Harrison Butker",
+          "player_id": 3055899,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club DROPPED Brandon McManus | Travis Hunter Kuck Club FA ADDED Harrison Butker",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        16339,
+        3055899
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760058723107,
+      "actions": [
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Adam Thielen",
+          "player_id": 16460,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Isaiah Davis",
+          "player_id": 4695404,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Wreaking Crew JDR DROPPED Adam Thielen | Wreaking Crew JDR FA ADDED Isaiah Davis",
+      "involved_teams": [
+        11,
+        11
+      ],
+      "involved_players": [
+        16460,
+        4695404
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760056246825,
+      "actions": [
+        {
+          "team_id": 6,
+          "team_name": "The Tank",
+          "player_name": "AJ Barner",
+          "player_id": 4576297,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 6,
+          "team_name": "The Tank",
+          "player_name": "T.J. Hockenson",
+          "player_id": 4036133,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "The Tank FA ADDED AJ Barner | The Tank DROPPED T.J. Hockenson",
+      "involved_teams": [
+        6,
+        6
+      ],
+      "involved_players": [
+        4576297,
+        4036133
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760054056895,
+      "actions": [
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Xavier Legette",
+          "player_id": 4430034,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Mad Men FA ADDED Xavier Legette",
+      "involved_teams": [
+        1
+      ],
+      "involved_players": [
+        4430034
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760053156415,
+      "actions": [
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Giants D/ST",
+          "player_id": -16019,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Titans D/ST",
+          "player_id": -16010,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Chandler TopFeeders DROPPED Giants D/ST | Chandler TopFeeders FA ADDED Titans D/ST",
+      "involved_teams": [
+        2,
+        2
+      ],
+      "involved_players": [
+        -16019,
+        -16010
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760049929096,
+      "actions": [
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Vikings D/ST",
+          "player_id": -16016,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Cowboys D/ST",
+          "player_id": -16006,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Team END-zone DROPPED Vikings D/ST | Team END-zone FA ADDED Cowboys D/ST",
+      "involved_teams": [
+        8,
+        8
+      ],
+      "involved_players": [
+        -16016,
+        -16006
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760049777314,
+      "actions": [
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Kendrick Bourne",
+          "player_id": 3045523,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Geno Smith",
+          "player_id": 15864,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Team END-zone FA ADDED Kendrick Bourne | Team END-zone DROPPED Geno Smith",
+      "involved_teams": [
+        8,
+        8
+      ],
+      "involved_players": [
+        3045523,
+        15864
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760048337912,
+      "actions": [
+        {
+          "team_id": 12,
+          "team_name": "Dillinger Escape Plan.",
+          "player_name": "Will Reichard",
+          "player_id": 4567104,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 12,
+          "team_name": "Dillinger Escape Plan.",
+          "player_name": "Ryan Fitzgerald",
+          "player_id": 4568263,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Dillinger Escape Plan. DROPPED Will Reichard | Dillinger Escape Plan. FA ADDED Ryan Fitzgerald",
+      "involved_teams": [
+        12,
+        12
+      ],
+      "involved_players": [
+        4567104,
+        4568263
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760034448700,
+      "actions": [
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Browns D/ST",
+          "player_id": -16005,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Patriots D/ST",
+          "player_id": -16017,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "OG LA Raiders DROPPED Browns D/ST | OG LA Raiders FA ADDED Patriots D/ST",
+      "involved_teams": [
+        9,
+        9
+      ],
+      "involved_players": [
+        -16005,
+        -16017
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1760025649589,
+      "actions": [
+        {
+          "team_id": 14,
+          "team_name": "Miami Big Sack Hard D",
+          "player_name": "Trevor Lawrence",
+          "player_id": 4360310,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 14,
+          "team_name": "Miami Big Sack Hard D",
+          "player_name": "Carson Wentz",
+          "player_id": 2573079,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Miami Big Sack Hard D FA ADDED Trevor Lawrence | Miami Big Sack Hard D DROPPED Carson Wentz",
+      "involved_teams": [
+        14,
+        14
+      ],
+      "involved_players": [
+        4360310,
+        2573079
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759986338397,
+      "actions": [
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Braelon Allen",
+          "player_id": 4685247,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "DROP",
+      "description": "Mad Men DROPPED Braelon Allen",
+      "involved_teams": [
+        1
+      ],
+      "involved_players": [
+        4685247
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759986310473,
+      "actions": [
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Russell Wilson",
+          "player_id": 14881,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "DROP",
+      "description": "Mad Men DROPPED Russell Wilson",
+      "involved_teams": [
+        1
+      ],
+      "involved_players": [
+        14881
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759984107828,
+      "actions": [
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "DeAndre Hopkins",
+          "player_id": 15795,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "AJ Dillon",
+          "player_id": 4239934,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "BigOLlantas DROPPED DeAndre Hopkins | BigOLlantas FA ADDED AJ Dillon",
+      "involved_teams": [
+        15,
+        15
+      ],
+      "involved_players": [
+        15795,
+        4239934
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759953609094,
+      "actions": [
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Chiefs D/ST",
+          "player_id": -16012,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Steelers D/ST",
+          "player_id": -16023,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "BigOLlantas DROPPED Chiefs D/ST | BigOLlantas FA ADDED Steelers D/ST",
+      "involved_teams": [
+        15,
+        15
+      ],
+      "involved_players": [
+        -16012,
+        -16023
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759953536719,
+      "actions": [
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Chris Rodriguez Jr.",
+          "player_id": 4362619,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Kimani Vidal",
+          "player_id": 4430968,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "BigOLlantas DROPPED Chris Rodriguez Jr. | BigOLlantas FA ADDED Kimani Vidal",
+      "involved_teams": [
+        15,
+        15
+      ],
+      "involved_players": [
+        4362619,
+        4430968
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759925205488,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Kyle Monangai",
+          "player_id": 4608686,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Mason Taylor",
+          "player_id": 4808766,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club FA ADDED Kyle Monangai | Travis Hunter Kuck Club DROPPED Mason Taylor",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        4608686,
+        4808766
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759924295152,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Spencer Shrader",
+          "player_id": 4571557,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Brandon McManus",
+          "player_id": 16339,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club DROPPED Spencer Shrader | Travis Hunter Kuck Club FA ADDED Brandon McManus",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        4571557,
+        16339
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759924065549,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Taysom Hill",
+          "player_id": 2468609,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Packers D/ST",
+          "player_id": -16009,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club DROPPED Taysom Hill | Travis Hunter Kuck Club FA ADDED Packers D/ST",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        2468609,
+        -16009
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759923818223,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Hassan Haskins",
+          "player_id": 4372071,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Tyjae Spears",
+          "player_id": 4428557,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club FA ADDED Hassan Haskins | Travis Hunter Kuck Club DROPPED Tyjae Spears",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        4372071,
+        4428557
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759910546488,
+      "actions": [
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Jake Tonges",
+          "player_id": 4259147,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Bears D/ST",
+          "player_id": -16003,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Wreaking Crew JDR WAIVER ADDED Jake Tonges | Wreaking Crew JDR DROPPED Bears D/ST",
+      "involved_teams": [
+        11,
+        11
+      ],
+      "involved_players": [
+        4259147,
+        -16003
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759693969191,
+      "actions": [
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Emanuel Wilson",
+          "player_id": 4887558,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Chris Brooks",
+          "player_id": 3149687,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Mad Men FA ADDED Emanuel Wilson | Mad Men DROPPED Chris Brooks",
+      "involved_teams": [
+        1,
+        1
+      ],
+      "involved_players": [
+        4887558,
+        3149687
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759674835801,
+      "actions": [
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Chiefs D/ST",
+          "player_id": -16012,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Chargers D/ST",
+          "player_id": -16024,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "BigOLlantas FA ADDED Chiefs D/ST | BigOLlantas DROPPED Chargers D/ST",
+      "involved_teams": [
+        15,
+        15
+      ],
+      "involved_players": [
+        -16012,
+        -16024
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759643982076,
+      "actions": [
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Ray Davis",
+          "player_id": 4429501,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Sean Tucker",
+          "player_id": 4430871,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "South Side Delinquents DROPPED Ray Davis | South Side Delinquents FA ADDED Sean Tucker",
+      "involved_teams": [
+        4,
+        4
+      ],
+      "involved_players": [
+        4429501,
+        4430871
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759631853320,
+      "actions": [
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Darius Slayton",
+          "player_id": 3916945,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Evan McPherson",
+          "player_id": 4360234,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "South Side Delinquents FA ADDED Darius Slayton | South Side Delinquents DROPPED Evan McPherson",
+      "involved_teams": [
+        4,
+        4
+      ],
+      "involved_players": [
+        3916945,
+        4360234
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759605111551,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Harold Fannin Jr.",
+          "player_id": 5083076,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Mason Taylor",
+          "player_id": 4808766,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club DROPPED Harold Fannin Jr. | Travis Hunter Kuck Club FA ADDED Mason Taylor",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        5083076,
+        4808766
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759464002915,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Packers D/ST",
+          "player_id": -16009,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Calvin Ridley",
+          "player_id": 3925357,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club DROPPED Packers D/ST | Travis Hunter Kuck Club FA ADDED Calvin Ridley",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        -16009,
+        3925357
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759451481465,
+      "actions": [
+        {
+          "team_id": 6,
+          "team_name": "The Tank",
+          "player_name": "Bryce Young",
+          "player_id": 4685720,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 6,
+          "team_name": "The Tank",
+          "player_name": "Michael Penix Jr.",
+          "player_id": 4360423,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "The Tank FA ADDED Bryce Young | The Tank DROPPED Michael Penix Jr.",
+      "involved_teams": [
+        6,
+        6
+      ],
+      "involved_players": [
+        4685720,
+        4360423
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759445558446,
+      "actions": [
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Malik Washington",
+          "player_id": 4569603,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Chandler TopFeeders FA ADDED Malik Washington",
+      "involved_teams": [
+        2
+      ],
+      "involved_players": [
+        4569603
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759445466088,
+      "actions": [
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Nick Folk",
+          "player_id": 10621,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Chandler TopFeeders FA ADDED Nick Folk",
+      "involved_teams": [
+        2
+      ],
+      "involved_players": [
+        10621
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759445433854,
+      "actions": [
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Giants D/ST",
+          "player_id": -16019,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Chandler TopFeeders FA ADDED Giants D/ST",
+      "involved_teams": [
+        2
+      ],
+      "involved_players": [
+        -16019
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759445408634,
+      "actions": [
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Cedric Tillman",
+          "player_id": 4369863,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "DROP",
+      "description": "Chandler TopFeeders DROPPED Cedric Tillman",
+      "involved_teams": [
+        2
+      ],
+      "involved_players": [
+        4369863
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759445370947,
+      "actions": [
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Patriots D/ST",
+          "player_id": -16017,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "DROP",
+      "description": "Chandler TopFeeders DROPPED Patriots D/ST",
+      "involved_teams": [
+        2
+      ],
+      "involved_players": [
+        -16017
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759445330077,
+      "actions": [
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Jayden Reed",
+          "player_id": 4362249,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "DROP",
+      "description": "Chandler TopFeeders DROPPED Jayden Reed",
+      "involved_teams": [
+        2
+      ],
+      "involved_players": [
+        4362249
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759438756065,
+      "actions": [
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Jake Browning",
+          "player_id": 3886812,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Sam Darnold",
+          "player_id": 3912547,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "South Side Delinquents DROPPED Jake Browning | South Side Delinquents FA ADDED Sam Darnold",
+      "involved_teams": [
+        4,
+        4
+      ],
+      "involved_players": [
+        3886812,
+        3912547
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759358089103,
+      "actions": [
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "Jason Myers",
+          "player_id": 2473037,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "Cairo Santos",
+          "player_id": 17427,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Killer Beers FA ADDED Jason Myers | Killer Beers DROPPED Cairo Santos",
+      "involved_teams": [
+        3,
+        3
+      ],
+      "involved_players": [
+        2473037,
+        17427
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759358064682,
+      "actions": [
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "Jaguars D/ST",
+          "player_id": -16030,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "Kayshon Boutte",
+          "player_id": 4429022,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Killer Beers FA ADDED Jaguars D/ST | Killer Beers DROPPED Kayshon Boutte",
+      "involved_teams": [
+        3,
+        3
+      ],
+      "involved_players": [
+        -16030,
+        4429022
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759356461044,
+      "actions": [
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Brandon McManus",
+          "player_id": 16339,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Wil Lutz",
+          "player_id": 2985659,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "BigOLlantas DROPPED Brandon McManus | BigOLlantas FA ADDED Wil Lutz",
+      "involved_teams": [
+        15,
+        15
+      ],
+      "involved_players": [
+        16339,
+        2985659
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759356354264,
+      "actions": [
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Theo Johnson",
+          "player_id": 4429148,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Samaje Perine",
+          "player_id": 3116389,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "BigOLlantas FA ADDED Theo Johnson | BigOLlantas DROPPED Samaje Perine",
+      "involved_teams": [
+        15,
+        15
+      ],
+      "involved_players": [
+        4429148,
+        3116389
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759340855734,
+      "actions": [
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Raheem Mostert",
+          "player_id": 2576414,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Michael Carter",
+          "player_id": 4240657,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Ass N TD's DROPPED Raheem Mostert | Ass N TD's FA ADDED Michael Carter",
+      "involved_teams": [
+        10,
+        10
+      ],
+      "involved_players": [
+        2576414,
+        4240657
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759325570975,
+      "actions": [
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Chig Okonkwo",
+          "player_id": 4360635,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Kendre Miller",
+          "player_id": 4599739,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "PDO_ File Blockers DROPPED Chig Okonkwo | PDO_ File Blockers FA ADDED Kendre Miller",
+      "involved_teams": [
+        13,
+        13
+      ],
+      "involved_players": [
+        4360635,
+        4599739
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759311234589,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Taysom Hill",
+          "player_id": 2468609,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Kyle Monangai",
+          "player_id": 4608686,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club FA ADDED Taysom Hill | Travis Hunter Kuck Club DROPPED Kyle Monangai",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        2468609,
+        4608686
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759311181032,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Harold Fannin Jr.",
+          "player_id": 5083076,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Tory Horton",
+          "player_id": 4597703,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club FA ADDED Harold Fannin Jr. | Travis Hunter Kuck Club DROPPED Tory Horton",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        5083076,
+        4597703
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759303608825,
+      "actions": [
+        {
+          "team_id": 14,
+          "team_name": "Miami Big Sack Hard D",
+          "player_name": "Carson Wentz",
+          "player_id": 2573079,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 14,
+          "team_name": "Miami Big Sack Hard D",
+          "player_name": "Calvin Ridley",
+          "player_id": 3925357,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Miami Big Sack Hard D WAIVER ADDED Carson Wentz | Miami Big Sack Hard D DROPPED Calvin Ridley",
+      "involved_teams": [
+        14,
+        14
+      ],
+      "involved_players": [
+        2573079,
+        3925357
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759303608825,
+      "actions": [
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Raheem Mostert",
+          "player_id": 2576414,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Tyreek Hill",
+          "player_id": 3116406,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Ass N TD's WAIVER ADDED Raheem Mostert | Ass N TD's DROPPED Tyreek Hill",
+      "involved_teams": [
+        10,
+        10
+      ],
+      "involved_players": [
+        2576414,
+        3116406
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759303608825,
+      "actions": [
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Steelers D/ST",
+          "player_id": -16023,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Browns D/ST",
+          "player_id": -16005,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "OG LA Raiders DROPPED Steelers D/ST | OG LA Raiders WAIVER ADDED Browns D/ST",
+      "involved_teams": [
+        9,
+        9
+      ],
+      "involved_players": [
+        -16023,
+        -16005
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759303608825,
+      "actions": [
+        {
+          "team_id": 12,
+          "team_name": "Dillinger Escape Plan.",
+          "player_name": "Luke McCaffrey",
+          "player_id": 4426948,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 12,
+          "team_name": "Dillinger Escape Plan.",
+          "player_name": "Nick Westbrook-Ikhine",
+          "player_id": 3929785,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Dillinger Escape Plan. WAIVER ADDED Luke McCaffrey | Dillinger Escape Plan. DROPPED Nick Westbrook-Ikhine",
+      "involved_teams": [
+        12,
+        12
+      ],
+      "involved_players": [
+        4426948,
+        3929785
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1759303608825,
+      "actions": [
+        {
+          "team_id": 14,
+          "team_name": "Miami Big Sack Hard D",
+          "player_name": "Josh Reynolds",
+          "player_id": 3115306,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 14,
+          "team_name": "Miami Big Sack Hard D",
+          "player_name": "Sterling Shepard",
+          "player_id": 2976592,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Miami Big Sack Hard D DROPPED Josh Reynolds | Miami Big Sack Hard D WAIVER ADDED Sterling Shepard",
+      "involved_teams": [
+        14,
+        14
+      ],
+      "involved_players": [
+        3115306,
+        2976592
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758845410531,
+      "actions": [
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Jaguars D/ST",
+          "player_id": -16030,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Bears D/ST",
+          "player_id": -16003,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Wreaking Crew JDR DROPPED Jaguars D/ST | Wreaking Crew JDR FA ADDED Bears D/ST",
+      "involved_teams": [
+        11,
+        11
+      ],
+      "involved_players": [
+        -16030,
+        -16003
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758836016751,
+      "actions": [
+        {
+          "team_id": 12,
+          "team_name": "Dillinger Escape Plan.",
+          "player_name": "Devin Singletary",
+          "player_id": 4040761,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 12,
+          "team_name": "Dillinger Escape Plan.",
+          "player_name": "Trevor Lawrence",
+          "player_id": 4360310,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Dillinger Escape Plan. FA ADDED Devin Singletary | Dillinger Escape Plan. DROPPED Trevor Lawrence",
+      "involved_teams": [
+        12,
+        12
+      ],
+      "involved_players": [
+        4040761,
+        4360310
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758826359727,
+      "actions": [
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Chiefs D/ST",
+          "player_id": -16012,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Vikings D/ST",
+          "player_id": -16016,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Team END-zone DROPPED Chiefs D/ST | Team END-zone FA ADDED Vikings D/ST",
+      "involved_teams": [
+        8,
+        8
+      ],
+      "involved_players": [
+        -16012,
+        -16016
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758822695863,
+      "actions": [
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Mason Taylor",
+          "player_id": 4808766,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Tyquan Thornton",
+          "player_id": 4362921,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Chandler TopFeeders DROPPED Mason Taylor | Chandler TopFeeders FA ADDED Tyquan Thornton",
+      "involved_teams": [
+        2,
+        2
+      ],
+      "involved_players": [
+        4808766,
+        4362921
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758819349560,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Tyjae Spears",
+          "player_id": 4428557,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Kaleb Johnson",
+          "player_id": 4819231,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club FA ADDED Tyjae Spears | Travis Hunter Kuck Club DROPPED Kaleb Johnson",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        4428557,
+        4819231
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758762957271,
+      "actions": [
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Roschon Johnson",
+          "player_id": 4426386,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Jaxson Dart",
+          "player_id": 4689114,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "PDO_ File Blockers DROPPED Roschon Johnson | PDO_ File Blockers FA ADDED Jaxson Dart",
+      "involved_teams": [
+        13,
+        13
+      ],
+      "involved_players": [
+        4426386,
+        4689114
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758756316770,
+      "actions": [
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Justice Hill",
+          "player_id": 4038441,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Dameon Pierce",
+          "player_id": 4360238,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "BigOLlantas FA ADDED Justice Hill | BigOLlantas DROPPED Dameon Pierce",
+      "involved_teams": [
+        15,
+        15
+      ],
+      "involved_players": [
+        4038441,
+        4360238
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758756234441,
+      "actions": [
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Chris Rodriguez Jr.",
+          "player_id": 4362619,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Najee Harris",
+          "player_id": 4241457,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "BigOLlantas FA ADDED Chris Rodriguez Jr. | BigOLlantas DROPPED Najee Harris",
+      "involved_teams": [
+        15,
+        15
+      ],
+      "involved_players": [
+        4362619,
+        4241457
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758745136233,
+      "actions": [
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "Matthew Stafford",
+          "player_id": 12483,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "James Conner",
+          "player_id": 3045147,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Killer Beers FA ADDED Matthew Stafford | Killer Beers DROPPED James Conner",
+      "involved_teams": [
+        3,
+        3
+      ],
+      "involved_players": [
+        12483,
+        3045147
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758722328369,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Dylan Sampson",
+          "player_id": 5081397,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Tory Horton",
+          "player_id": 4597703,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club DROPPED Dylan Sampson | Travis Hunter Kuck Club FA ADDED Tory Horton",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        5081397,
+        4597703
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758722218542,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Harold Fannin Jr.",
+          "player_id": 5083076,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Kyle Monangai",
+          "player_id": 4608686,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club DROPPED Harold Fannin Jr. | Travis Hunter Kuck Club FA ADDED Kyle Monangai",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        5083076,
+        4608686
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758715832576,
+      "actions": [
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Tua Tagovailoa",
+          "player_id": 4241479,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Emari Demercado",
+          "player_id": 4362478,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Team END-zone DROPPED Tua Tagovailoa | Team END-zone FA ADDED Emari Demercado",
+      "involved_teams": [
+        8,
+        8
+      ],
+      "involved_players": [
+        4241479,
+        4362478
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758715614150,
+      "actions": [
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Tre Tucker",
+          "player_id": 4428718,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Zavier Scott",
+          "player_id": 4257364,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Ass N TD's FA ADDED Tre Tucker | Ass N TD's DROPPED Zavier Scott",
+      "involved_teams": [
+        10,
+        10
+      ],
+      "involved_players": [
+        4428718,
+        4257364
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758700508838,
+      "actions": [
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Bengals D/ST",
+          "player_id": -16004,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Texans D/ST",
+          "player_id": -16034,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Ass N TD's DROPPED Bengals D/ST | Ass N TD's WAIVER ADDED Texans D/ST",
+      "involved_teams": [
+        10,
+        10
+      ],
+      "involved_players": [
+        -16004,
+        -16034
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758700508838,
+      "actions": [
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Tank Bigsby",
+          "player_id": 4429013,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Isaiah Likely",
+          "player_id": 4361050,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Team END-zone DROPPED Tank Bigsby | Team END-zone WAIVER ADDED Isaiah Likely",
+      "involved_teams": [
+        8,
+        8
+      ],
+      "involved_players": [
+        4429013,
+        4361050
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758485758009,
+      "actions": [
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Isaiah Likely",
+          "player_id": 4361050,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Chiefs D/ST",
+          "player_id": -16012,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Team END-zone DROPPED Isaiah Likely | Team END-zone FA ADDED Chiefs D/ST",
+      "involved_teams": [
+        8,
+        8
+      ],
+      "involved_players": [
+        4361050,
+        -16012
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758470496997,
+      "actions": [
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Elijah Higgins",
+          "player_id": 4426844,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Dalton Schultz",
+          "player_id": 3117256,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Chandler TopFeeders DROPPED Elijah Higgins | Chandler TopFeeders FA ADDED Dalton Schultz",
+      "involved_teams": [
+        2,
+        2
+      ],
+      "involved_players": [
+        4426844,
+        3117256
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758427426053,
+      "actions": [
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Geno Smith",
+          "player_id": 15864,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Vikings D/ST",
+          "player_id": -16016,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Team END-zone FA ADDED Geno Smith | Team END-zone DROPPED Vikings D/ST",
+      "involved_teams": [
+        8,
+        8
+      ],
+      "involved_players": [
+        15864,
+        -16016
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758395034302,
+      "actions": [
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Tre' Harris",
+          "player_id": 4686612,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Miles Sanders",
+          "player_id": 4045163,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "South Side Delinquents DROPPED Tre' Harris | South Side Delinquents FA ADDED Miles Sanders",
+      "involved_teams": [
+        4,
+        4
+      ],
+      "involved_players": [
+        4686612,
+        4045163
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758333824720,
+      "actions": [
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Dont'e Thornton Jr.",
+          "player_id": 4432775,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Chig Okonkwo",
+          "player_id": 4360635,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "PDO_ File Blockers DROPPED Dont'e Thornton Jr. | PDO_ File Blockers FA ADDED Chig Okonkwo",
+      "involved_teams": [
+        13,
+        13
+      ],
+      "involved_players": [
+        4432775,
+        4360635
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758240796829,
+      "actions": [
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Jake Browning",
+          "player_id": 3886812,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "DeMario Douglas",
+          "player_id": 4427095,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "South Side Delinquents FA ADDED Jake Browning | South Side Delinquents DROPPED DeMario Douglas",
+      "involved_teams": [
+        4,
+        4
+      ],
+      "involved_players": [
+        3886812,
+        4427095
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758239352176,
+      "actions": [
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "Texans D/ST",
+          "player_id": -16034,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "Falcons D/ST",
+          "player_id": -16001,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Killer Beers DROPPED Texans D/ST | Killer Beers FA ADDED Falcons D/ST",
+      "involved_teams": [
+        3,
+        3
+      ],
+      "involved_players": [
+        -16034,
+        -16001
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758181104163,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Miles Sanders",
+          "player_id": 4045163,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Tyler Allgeier",
+          "player_id": 4373626,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club DROPPED Miles Sanders | Travis Hunter Kuck Club FA ADDED Tyler Allgeier",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        4045163,
+        4373626
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758131506676,
+      "actions": [
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Xavier Legette",
+          "player_id": 4430034,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Russell Wilson",
+          "player_id": 14881,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Mad Men DROPPED Xavier Legette | Mad Men FA ADDED Russell Wilson",
+      "involved_teams": [
+        1,
+        1
+      ],
+      "involved_players": [
+        4430034,
+        14881
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758131437990,
+      "actions": [
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Blake Corum",
+          "player_id": 4429096,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Kendre Miller",
+          "player_id": 4599739,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Mad Men FA ADDED Blake Corum | Mad Men DROPPED Kendre Miller",
+      "involved_teams": [
+        1,
+        1
+      ],
+      "involved_players": [
+        4429096,
+        4599739
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758131372240,
+      "actions": [
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Emanuel Wilson",
+          "player_id": 4887558,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Chris Brooks",
+          "player_id": 3149687,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Mad Men DROPPED Emanuel Wilson | Mad Men FA ADDED Chris Brooks",
+      "involved_teams": [
+        1,
+        1
+      ],
+      "involved_players": [
+        4887558,
+        3149687
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758099416679,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Harold Fannin Jr.",
+          "player_id": 5083076,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "49ers D/ST",
+          "player_id": -16025,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club FA ADDED Harold Fannin Jr. | Travis Hunter Kuck Club DROPPED 49ers D/ST",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        5083076,
+        -16025
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758099403251,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Spencer Shrader",
+          "player_id": 4571557,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Wil Lutz",
+          "player_id": 2985659,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club FA ADDED Spencer Shrader | Travis Hunter Kuck Club DROPPED Wil Lutz",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        4571557,
+        2985659
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758096502598,
+      "actions": [
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Jaguars D/ST",
+          "player_id": -16030,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Jets D/ST",
+          "player_id": -16020,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Wreaking Crew JDR WAIVER ADDED Jaguars D/ST | Wreaking Crew JDR DROPPED Jets D/ST",
+      "involved_teams": [
+        11,
+        11
+      ],
+      "involved_players": [
+        -16030,
+        -16020
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758096502598,
+      "actions": [
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Matthew Stafford",
+          "player_id": 12483,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Zavier Scott",
+          "player_id": 4257364,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Ass N TD's DROPPED Matthew Stafford | Ass N TD's WAIVER ADDED Zavier Scott",
+      "involved_teams": [
+        10,
+        10
+      ],
+      "involved_players": [
+        12483,
+        4257364
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758096502598,
+      "actions": [
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Isaiah Likely",
+          "player_id": 4361050,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 8,
+          "team_name": "Team END-zone",
+          "player_name": "Harrison Butker",
+          "player_id": 3055899,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Team END-zone WAIVER ADDED Isaiah Likely | Team END-zone DROPPED Harrison Butker",
+      "involved_teams": [
+        8,
+        8
+      ],
+      "involved_players": [
+        4361050,
+        3055899
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758096502598,
+      "actions": [
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Troy Franklin",
+          "player_id": 4431280,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Austin Ekeler",
+          "player_id": 3068267,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "PDO_ File Blockers WAIVER ADDED Troy Franklin | PDO_ File Blockers DROPPED Austin Ekeler",
+      "involved_teams": [
+        13,
+        13
+      ],
+      "involved_players": [
+        4431280,
+        3068267
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1758096502598,
+      "actions": [
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Elijah Higgins",
+          "player_id": 4426844,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 2,
+          "team_name": "Chandler TopFeeders",
+          "player_name": "Tyler Allgeier",
+          "player_id": 4373626,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Chandler TopFeeders WAIVER ADDED Elijah Higgins | Chandler TopFeeders DROPPED Tyler Allgeier",
+      "involved_teams": [
+        2,
+        2
+      ],
+      "involved_players": [
+        4426844,
+        4373626
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757703587473,
+      "actions": [
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Darius Slayton",
+          "player_id": 3916945,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Buccaneers D/ST",
+          "player_id": -16027,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Mad Men DROPPED Darius Slayton | Mad Men FA ADDED Buccaneers D/ST",
+      "involved_teams": [
+        1,
+        1
+      ],
+      "involved_players": [
+        3916945,
+        -16027
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757661754299,
+      "actions": [
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Tutu Atwell",
+          "player_id": 4360797,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Adam Thielen",
+          "player_id": 16460,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Wreaking Crew JDR DROPPED Tutu Atwell | Wreaking Crew JDR WAIVER ADDED Adam Thielen",
+      "involved_teams": [
+        11,
+        11
+      ],
+      "involved_players": [
+        4360797,
+        16460
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757609587852,
+      "actions": [
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Joshua Palmer",
+          "player_id": 4242433,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Aaron Rodgers",
+          "player_id": 8439,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "OG LA Raiders DROPPED Joshua Palmer | OG LA Raiders FA ADDED Aaron Rodgers",
+      "involved_teams": [
+        9,
+        9
+      ],
+      "involved_players": [
+        4242433,
+        8439
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757599543408,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Cam Ward",
+          "player_id": 4688380,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Packers D/ST",
+          "player_id": -16009,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club DROPPED Cam Ward | Travis Hunter Kuck Club FA ADDED Packers D/ST",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        4688380,
+        -16009
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757599465184,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Jaydon Blue",
+          "player_id": 4685279,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Miles Sanders",
+          "player_id": 4045163,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club DROPPED Jaydon Blue | Travis Hunter Kuck Club FA ADDED Miles Sanders",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        4685279,
+        4045163
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757599139021,
+      "actions": [
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "49ers D/ST",
+          "player_id": -16025,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 5,
+          "team_name": "Travis Hunter Kuck Club",
+          "player_name": "Jaleel McLaughlin",
+          "player_id": 4722893,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Travis Hunter Kuck Club FA ADDED 49ers D/ST | Travis Hunter Kuck Club DROPPED Jaleel McLaughlin",
+      "involved_teams": [
+        5,
+        5
+      ],
+      "involved_players": [
+        -16025,
+        4722893
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757575972617,
+      "actions": [
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Jauan Jennings",
+          "player_id": 3886598,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Hunter Renfrow",
+          "player_id": 3135321,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Ass N TD's WAIVER ADDED Jauan Jennings | Ass N TD's DROPPED Hunter Renfrow",
+      "involved_teams": [
+        10,
+        10
+      ],
+      "involved_players": [
+        3886598,
+        3135321
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757530588441,
+      "actions": [
+        {
+          "team_id": 12,
+          "team_name": "Dillinger Escape Plan.",
+          "player_name": "Colston Loveland",
+          "player_id": 4723086,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 12,
+          "team_name": "Dillinger Escape Plan.",
+          "player_name": "Juwan Johnson",
+          "player_id": 3929645,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Dillinger Escape Plan. DROPPED Colston Loveland | Dillinger Escape Plan. FA ADDED Juwan Johnson",
+      "involved_teams": [
+        12,
+        12
+      ],
+      "involved_players": [
+        4723086,
+        3929645
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757529908556,
+      "actions": [
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Chargers D/ST",
+          "player_id": -16024,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 15,
+          "team_name": "BigOLlantas",
+          "player_name": "Buccaneers D/ST",
+          "player_id": -16027,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "BigOLlantas FA ADDED Chargers D/ST | BigOLlantas DROPPED Buccaneers D/ST",
+      "involved_teams": [
+        15,
+        15
+      ],
+      "involved_players": [
+        -16024,
+        -16027
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757508207637,
+      "actions": [
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Adam Thielen",
+          "player_id": 16460,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "JuJu Smith-Schuster",
+          "player_id": 3120348,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "OG LA Raiders DROPPED Adam Thielen | OG LA Raiders FA ADDED JuJu Smith-Schuster",
+      "involved_teams": [
+        9,
+        9
+      ],
+      "involved_players": [
+        16460,
+        3120348
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757490402371,
+      "actions": [
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Matt Prater",
+          "player_id": 11122,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Jason Myers",
+          "player_id": 2473037,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "OG LA Raiders WAIVER ADDED Matt Prater | OG LA Raiders DROPPED Jason Myers",
+      "involved_teams": [
+        9,
+        9
+      ],
+      "involved_players": [
+        11122,
+        2473037
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757490402371,
+      "actions": [
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "Ka'imi Fairbairn",
+          "player_id": 2971573,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "Cairo Santos",
+          "player_id": 17427,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Killer Beers DROPPED Ka'imi Fairbairn | Killer Beers WAIVER ADDED Cairo Santos",
+      "involved_teams": [
+        3,
+        3
+      ],
+      "involved_players": [
+        2971573,
+        17427
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757490402371,
+      "actions": [
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Justice Hill",
+          "player_id": 4038441,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Kenneth Gainwell",
+          "player_id": 4371733,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "OG LA Raiders DROPPED Justice Hill | OG LA Raiders WAIVER ADDED Kenneth Gainwell",
+      "involved_teams": [
+        9,
+        9
+      ],
+      "involved_players": [
+        4038441,
+        4371733
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757490402371,
+      "actions": [
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "Texans D/ST",
+          "player_id": -16034,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "Packers D/ST",
+          "player_id": -16009,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Killer Beers WAIVER ADDED Texans D/ST | Killer Beers DROPPED Packers D/ST",
+      "involved_teams": [
+        3,
+        3
+      ],
+      "involved_players": [
+        -16034,
+        -16009
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757490402371,
+      "actions": [
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Daniel Jones",
+          "player_id": 3917792,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Joe Flacco",
+          "player_id": 11252,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "OG LA Raiders WAIVER ADDED Daniel Jones | OG LA Raiders DROPPED Joe Flacco",
+      "involved_teams": [
+        9,
+        9
+      ],
+      "involved_players": [
+        3917792,
+        11252
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757490402371,
+      "actions": [
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Jauan Jennings",
+          "player_id": 3886598,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Quentin Johnston",
+          "player_id": 4429025,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Wreaking Crew JDR DROPPED Jauan Jennings | Wreaking Crew JDR WAIVER ADDED Quentin Johnston",
+      "involved_teams": [
+        11,
+        11
+      ],
+      "involved_players": [
+        3886598,
+        4429025
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757490402371,
+      "actions": [
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "49ers D/ST",
+          "player_id": -16025,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Calvin Austin III",
+          "player_id": 4243389,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "South Side Delinquents DROPPED 49ers D/ST | South Side Delinquents WAIVER ADDED Calvin Austin III",
+      "involved_teams": [
+        4,
+        4
+      ],
+      "involved_players": [
+        -16025,
+        4243389
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757490402371,
+      "actions": [
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "Kayshon Boutte",
+          "player_id": 4429022,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 3,
+          "team_name": "Killer Beers",
+          "player_name": "Michael Wilson",
+          "player_id": 4360761,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Killer Beers WAIVER ADDED Kayshon Boutte | Killer Beers DROPPED Michael Wilson",
+      "involved_teams": [
+        3,
+        3
+      ],
+      "involved_players": [
+        4429022,
+        4360761
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757490402371,
+      "actions": [
+        {
+          "team_id": 12,
+          "team_name": "Dillinger Escape Plan.",
+          "player_name": "Will Reichard",
+          "player_id": 4567104,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 12,
+          "team_name": "Dillinger Escape Plan.",
+          "player_name": "Tyler Bass",
+          "player_id": 3917232,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Dillinger Escape Plan. WAIVER ADDED Will Reichard | Dillinger Escape Plan. DROPPED Tyler Bass",
+      "involved_teams": [
+        12,
+        12
+      ],
+      "involved_players": [
+        4567104,
+        3917232
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757026173251,
+      "actions": [
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "49ers D/ST",
+          "player_id": -16025,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Pat Bryant",
+          "player_id": 4600981,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "South Side Delinquents FA ADDED 49ers D/ST | South Side Delinquents DROPPED Pat Bryant",
+      "involved_teams": [
+        4,
+        4
+      ],
+      "involved_players": [
+        -16025,
+        4600981
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757026085693,
+      "actions": [
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Evan McPherson",
+          "player_id": 4360234,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 4,
+          "team_name": "South Side Delinquents",
+          "player_name": "Cairo Santos",
+          "player_id": 17427,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "South Side Delinquents FA ADDED Evan McPherson | South Side Delinquents DROPPED Cairo Santos",
+      "involved_teams": [
+        4,
+        4
+      ],
+      "involved_players": [
+        4360234,
+        17427
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1757012220859,
+      "actions": [
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Hunter Renfrow",
+          "player_id": 3135321,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Amari Cooper",
+          "player_id": 2976499,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Ass N TD's FA ADDED Hunter Renfrow | Ass N TD's DROPPED Amari Cooper",
+      "involved_teams": [
+        10,
+        10
+      ],
+      "involved_players": [
+        3135321,
+        2976499
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1756930600860,
+      "actions": [
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Texans D/ST",
+          "player_id": -16034,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 11,
+          "team_name": "Wreaking Crew JDR",
+          "player_name": "Rams D/ST",
+          "player_id": -16014,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Wreaking Crew JDR DROPPED Texans D/ST | Wreaking Crew JDR FA ADDED Rams D/ST",
+      "involved_teams": [
+        11,
+        11
+      ],
+      "involved_players": [
+        -16034,
+        -16014
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1756867578459,
+      "actions": [
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Bengals D/ST",
+          "player_id": -16004,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 10,
+          "team_name": "Ass N TD's",
+          "player_name": "Tyler Lockett",
+          "player_id": 2577327,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "Ass N TD's FA ADDED Bengals D/ST | Ass N TD's DROPPED Tyler Lockett",
+      "involved_teams": [
+        10,
+        10
+      ],
+      "involved_players": [
+        -16004,
+        2577327
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1756831173952,
+      "actions": [
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Adam Thielen",
+          "player_id": 16460,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Luther Burden III",
+          "player_id": 4685278,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "OG LA Raiders FA ADDED Adam Thielen | OG LA Raiders DROPPED Luther Burden III",
+      "involved_teams": [
+        9,
+        9
+      ],
+      "involved_players": [
+        16460,
+        4685278
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1756830983423,
+      "actions": [
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Joe Flacco",
+          "player_id": 11252,
+          "action_type": "FA ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 9,
+          "team_name": "OG LA Raiders",
+          "player_name": "Jaxson Dart",
+          "player_id": 4689114,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "OG LA Raiders FA ADDED Joe Flacco | OG LA Raiders DROPPED Jaxson Dart",
+      "involved_teams": [
+        9,
+        9
+      ],
+      "involved_players": [
+        11252,
+        4689114
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1756748416743,
+      "actions": [
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Cade Otton",
+          "player_id": 4243331,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Dont'e Thornton Jr.",
+          "player_id": 4432775,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "PDO_ File Blockers DROPPED Cade Otton | PDO_ File Blockers FA ADDED Dont'e Thornton Jr.",
+      "involved_teams": [
+        13,
+        13
+      ],
+      "involved_players": [
+        4243331,
+        4432775
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1756748134713,
+      "actions": [
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Nick Folk",
+          "player_id": 10621,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 13,
+          "team_name": "PDO_ File Blockers",
+          "player_name": "Cam Little",
+          "player_id": 4686361,
+          "action_type": "FA ADDED",
+          "week": 0
+        }
+      ],
+      "type": "FREE_AGENT",
+      "description": "PDO_ File Blockers DROPPED Nick Folk | PDO_ File Blockers FA ADDED Cam Little",
+      "involved_teams": [
+        13,
+        13
+      ],
+      "involved_players": [
+        10621,
+        4686361
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1756711553570,
+      "actions": [
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Commanders D/ST",
+          "player_id": -16028,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        },
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Giants D/ST",
+          "player_id": -16019,
+          "action_type": "DROPPED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Mad Men WAIVER ADDED Commanders D/ST | Mad Men DROPPED Giants D/ST",
+      "involved_teams": [
+        1,
+        1
+      ],
+      "involved_players": [
+        -16028,
+        -16019
+      ]
+    },
+    {
+      "transaction_id": null,
+      "date": null,
+      "date_timestamp": 1756711553570,
+      "actions": [
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Adam Thielen",
+          "player_id": 16460,
+          "action_type": "DROPPED",
+          "week": 0
+        },
+        {
+          "team_id": 1,
+          "team_name": "Mad Men",
+          "player_name": "Emanuel Wilson",
+          "player_id": 4887558,
+          "action_type": "WAIVER ADDED",
+          "week": 0
+        }
+      ],
+      "type": "WAIVER",
+      "description": "Mad Men DROPPED Adam Thielen | Mad Men WAIVER ADDED Emanuel Wilson",
+      "involved_teams": [
+        1,
+        1
+      ],
+      "involved_players": [
+        16460,
+        4887558
+      ]
+    }
+  ]
+}

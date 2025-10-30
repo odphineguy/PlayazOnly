@@ -147,7 +147,7 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
         <div className="px-3 py-2">
           <div className="mb-4 px-4 flex items-center justify-center">
             <Image
-              src="/PlayazLogoNoBackground.png"
+              src="/images/PlayazLogoNoBackground.png"
               alt="Playaz Only Logo"
               width={120}
               height={120}

@@ -74,8 +74,11 @@ export default function LeagueHome() {
     };
   }).sort((a, b) => b.year - a.year) : [];
 
-  // Get available years
-  const availableYears = ["all", ...processedSeasons.map(s => s.year.toString())];
+  // Get available years (unique)
+  const availableYears = [
+    "all",
+    ...Array.from(new Set(processedSeasons.map(s => s.year.toString())))
+  ];
 
   // Filter data by selected year
   const filteredSeasons = selectedYear === "all" ? processedSeasons : processedSeasons.filter(s => s.year.toString() === selectedYear);

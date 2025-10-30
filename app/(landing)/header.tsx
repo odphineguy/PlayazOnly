@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ChatMaxingIconColoured } from '@/components/logo'
 import { Loader2, Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -42,7 +43,14 @@ export const HeroHeader = () => {
                                 href="/"
                                 aria-label="home"
                                 className="flex items-center space-x-2">
-                                {/* Logo can be added here if needed */}
+                                <Image
+                                    src="/images/PlayazLogoNoBackground.png"
+                                    alt="Playaz Only"
+                                    width={36}
+                                    height={36}
+                                    priority
+                                    className="h-9 w-9 object-contain"
+                                />
                             </Link>
 
                             <button

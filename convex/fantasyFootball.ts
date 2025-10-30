@@ -224,6 +224,145 @@ export const getAllTransactions = query({
   },
 });
 
+// Get transactions by type and season
+export const getTransactionsByTypeAndSeason = query({
+  args: { 
+    seasonId: v.optional(v.id("seasons")),
+    type: v.optional(v.string())
+  },
+  handler: async (ctx, args) => {
+    let transactions;
+    
+    if (args.seasonId) {
+      transactions = await ctx.db
+        .query("transactions")
+        .withIndex("bySeason", (q) => q.eq("seasonId", args.seasonId!))
+        .collect();
+    } else {
+      transactions = await ctx.db.query("transactions").collect();
+    }
+    
+    if (args.type) {
+      return transactions.filter(t => t.type === args.type).sort((a, b) => b.createdAt - a.createdAt);
+    }
+    
+    return transactions.sort((a, b) => b.createdAt - a.createdAt);
+  },
+});
+
+// Get transaction statistics (aggregated counts by type)
+export const getTransactionStats = query({
+  args: { 
+    seasonId: v.optional(v.id("seasons")),
+    teamId: v.optional(v.id("teams"))
+  },
+  handler: async (ctx, args) => {
+    let allTransactions;
+    
+    if (args.seasonId) {
+      allTransactions = await ctx.db
+        .query("transactions")
+        .withIndex("bySeason", (q) => q.eq("seasonId", args.seasonId!))
+        .collect();
+    } else {
+      allTransactions = await ctx.db.query("transactions").collect();
+    }
+    
+    // Filter by team if specified
+    const transactions = args.teamId 
+      ? allTransactions.filter(t => t.involvedTeams.includes(args.teamId!))
+      : allTransactions;
+    
+    // Count by type
+    const stats = {
+      total: transactions.length,
+      waivers: 0,
+      trades: 0,
+      freeAgents: 0,
+      drops: 0,
+      other: 0,
+    };
+    
+    transactions.forEach(t => {
+      const type = t.type.toUpperCase();
+      if (type.includes("WAIVER")) {
+        stats.waivers++;
+      } else if (type.includes("TRADE")) {
+        stats.trades++;
+      } else if (type.includes("FREE_AGENT") || type.includes("ADD")) {
+        stats.freeAgents++;
+      } else if (type.includes("DROP")) {
+        stats.drops++;
+      } else {
+        stats.other++;
+      }
+    });
+    
+    return stats;
+  },
+});
+
+// Get transaction rankings by team (top performers in transactions)
+export const getTransactionRankings = query({
+  args: { 
+    seasonId: v.optional(v.id("seasons")),
+    type: v.optional(v.string()) // "WAIVER", "TRADE", etc.
+  },
+  handler: async (ctx, args) => {
+    const seasons = await ctx.db.query("seasons").collect();
+    const seasonMap = new Map(seasons.map(s => [s._id, s]));
+    
+    let transactions;
+    if (args.seasonId) {
+      transactions = await ctx.db
+        .query("transactions")
+        .withIndex("bySeason", (q) => q.eq("seasonId", args.seasonId!))
+        .collect();
+    } else {
+      transactions = await ctx.db.query("transactions").collect();
+    }
+    
+    // Filter by type if specified
+    if (args.type) {
+      transactions = transactions.filter(t => t.type.toUpperCase().includes(args.type!.toUpperCase()));
+    }
+    
+    // Count transactions per team
+    const teamStats = new Map<string, { teamId: string; count: number; seasonIds: Set<any> }>();
+    
+    transactions.forEach(t => {
+      t.involvedTeams.forEach(teamId => {
+        if (!teamStats.has(teamId)) {
+          teamStats.set(teamId, { teamId, count: 0, seasonIds: new Set() });
+        }
+        const stats = teamStats.get(teamId)!;
+        stats.count++;
+        stats.seasonIds.add(t.seasonId);
+      });
+    });
+    
+    // Convert to array and calculate per-season averages
+    const rankings = Array.from(teamStats.values()).map(stats => {
+      const seasonsCount = args.seasonId ? 1 : stats.seasonIds.size;
+      return {
+        teamId: stats.teamId,
+        count: stats.count,
+        avgPerSeason: stats.count / Math.max(seasonsCount, 1),
+      };
+    }).sort((a, b) => b.avgPerSeason - a.avgPerSeason);
+    
+    // Get team details for top rankings
+    const teams = await ctx.db.query("teams").collect();
+    const teamMap = new Map(teams.map(t => [t._id, t]));
+    
+    return rankings.slice(0, 10).map(rank => ({
+      team: teamMap.get(rank.teamId as any),
+      count: rank.count,
+      avgPerSeason: rank.avgPerSeason,
+    })).filter(r => r.team);
+  },
+});
+
 // Draft Pick Management Functions
 export const createDraftPick = mutation({
   args: {
