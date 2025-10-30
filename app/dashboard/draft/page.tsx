@@ -26,9 +26,26 @@ export default function DraftPage() {
   const [selectedMember, setSelectedMember] = useState<string>("Overview");
   const [selectedPosition, setSelectedPosition] = useState<string>("QB");
 
+  // Temperature color scale for rankings: #1 dark green -> #10 red
+  const getRankColor = (rankIndex: number, total: number = 10) => {
+    const clampedIdx = Math.max(0, Math.min(rankIndex, total - 1));
+    const t = total > 1 ? clampedIdx / (total - 1) : 1; // 0 -> 1
+    // Hue 120 (green) to 0 (red) via yellow/orange in between
+    const hue = 120 - 120 * t; // 120 -> 0
+    const saturation = 85; // keep vivid
+    const lightness = 45; // balanced brightness
+    return `hsl(${hue.toFixed(0)} ${saturation}% ${lightness}%)`;
+  };
+
   // Get all-time draft statistics
-  const allTimeStats = useQuery(api.draftData.getAllTimeDraftStats);
-  const draftValueByPosition = useQuery(api.draftData.getDraftValueByPosition);
+  const allTimeStats = useQuery(api.draftData.getAllTimeDraftStats, {
+    year: selectedSeason !== "Overview" ? Number(selectedSeason) : undefined,
+    memberName: selectedMember !== "Overview" ? selectedMember : undefined,
+  });
+  const draftValueByPosition = useQuery(api.draftData.getDraftValueByPosition, {
+    year: selectedSeason !== "Overview" ? Number(selectedSeason) : undefined,
+    memberName: selectedMember !== "Overview" ? selectedMember : undefined,
+  });
   const topPicks = useQuery(api.draftData.getTopPicksAllTime, { limit: 50 });
   const worstPicks = useQuery(api.draftData.getWorstPicksAllTime, { limit: 50 });
   const draftRankings = useQuery(api.draftData.getAllTimeDraftRankings, { limit: 100, minPicks: 128 });
@@ -237,7 +254,10 @@ export default function DraftPage() {
                   <div key={pick._id} className="p-4 bg-muted/50 rounded-lg space-y-2">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <div className="font-semibold text-sm">{pick.player.name} {pick.player.position} ({pick.player.team || 'N/A'})</div>
+                        <div className="font-semibold text-sm">
+                          {pick.player.name} {pick.player.position}
+                          {pick.player.team ? ` (${pick.player.team})` : ''}
+                        </div>
                         <div className="text-xs text-muted-foreground mt-1">{pick.season.year} · {pick.value.toFixed(1)}</div>
                       </div>
                     </div>
@@ -272,7 +292,10 @@ export default function DraftPage() {
                   <div key={pick._id} className="p-4 bg-muted/50 rounded-lg space-y-2">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <div className="font-semibold text-sm">{pick.player.name} · {pick.player.position} ({pick.player.team || 'N/A'})</div>
+                        <div className="font-semibold text-sm">
+                          {pick.player.name} · {pick.player.position}
+                          {pick.player.team ? ` (${pick.player.team})` : ''}
+                        </div>
                         <div className="text-xs text-muted-foreground mt-1">{pick.season.year} · {pick.value.toFixed(1)}</div>
                       </div>
                     </div>
@@ -303,7 +326,7 @@ export default function DraftPage() {
           <CardContent>
             <div className="space-y-3">
               {filteredRankings && filteredRankings.length > 0 ? (
-                filteredRankings.slice(0, 8).map((ranking, idx) => (
+                filteredRankings.slice(0, 10).map((ranking, idx) => (
                   <div key={ranking.team._id} className="p-3 bg-muted/50 rounded-lg flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       <div className="flex items-center space-x-2">
@@ -311,11 +334,14 @@ export default function DraftPage() {
                         <Avatar className="w-6 h-6">
                           <AvatarFallback className="text-xs">{(ranking.team.ownerDisplayName || ranking.team.name || 'U').substring(0, 2).toUpperCase()}</AvatarFallback>
                         </Avatar>
-                        <span className="text-xs font-medium">{ranking.team.ownerDisplayName || ranking.team.name}</span>
+                        <div className="flex flex-col">
+                          <span className="text-xs font-medium">{ranking.team.ownerDisplayName || ranking.team.name}</span>
+                          <span className="text-[10px] text-muted-foreground">{ranking.totalSeasons} seasons</span>
+                        </div>
                       </div>
                     </div>
                     <div className="text-right">
-                      <Badge className="bg-green-500 text-white text-xs">{ranking.avgValue}</Badge>
+                      <Badge className="text-white text-xs" style={{ background: getRankColor(idx, Math.min(10, filteredRankings.length)) }}>{ranking.avgValue}</Badge>
                     </div>
                   </div>
                 ))

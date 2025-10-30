@@ -248,8 +248,8 @@ export const importDraftData = mutation({
 
 // Get all-time draft statistics
 export const getAllTimeDraftStats = query({
-  args: {},
-  handler: async (ctx) => {
+  args: { year: v.optional(v.number()), memberName: v.optional(v.string()) },
+  handler: async (ctx, args) => {
     // Get all draft picks across all seasons
     const allDraftPicks = await ctx.db.query("draftPicks").collect();
 
@@ -284,55 +284,60 @@ export const getAllTimeDraftStats = query({
       playerSeasonPoints.set(key, currentPoints + entry.points);
     });
 
-    // Calculate pick values
-    const pickValues: number[] = [];
-    const teamValues = new Map<string, number[]>();
-    const seasonValues = new Map<string, number[]>();
+    // Helper: expected points curve by overall pick
+    const expectedPointsAtPick = (overallPick: number) => 180 * Math.exp(-0.012 * (overallPick - 1));
 
-    // Build VOR context
-    const replacement = computeReplacementLevels(playerSeasonPoints, allDraftPicks, playerMap);
-    const expectedVor = buildExpectedVorMap(allDraftPicks, playerSeasonPoints, playerMap, replacement);
+    // Optional filters
+    const seasonMap = new Map(seasons.map(s => [s._id, s]));
+    const memberName = args?.memberName;
+    const year = args?.year;
+
+    // Calculate ratio-based pick values
+    const pickValues: number[] = [];
+    const teamSums = new Map<string, number>();
+    const seasonSums = new Map<string, number>();
 
     allDraftPicks.forEach(pick => {
       const player = playerMap.get(pick.playerId);
       if (!player) return;
+
+      // Filter by year if provided
+      if (year) {
+        const season = seasonMap.get(pick.seasonId);
+        if (!season || season.year !== year) return;
+      }
+
+      // Filter by memberName if provided
+      if (memberName) {
+        const team = teams.find(t => t._id === pick.teamId);
+        const ownerDisplay = team?.ownerDisplayName || team?.name;
+        if (!ownerDisplay || ownerDisplay !== memberName) return;
+      }
+
       const key = `${pick.playerId}_${pick.seasonId}`;
       const actualPoints = playerSeasonPoints.get(key) || 0;
-      const pos = normalizePosition(player.position);
-      const vor = actualPoints - replacement[pos];
-      const expected = getExpectedVorAtPick(expectedVor, pos, pick.overallPick);
-      const pickValue = vor - expected;
+      const expectedPoints = expectedPointsAtPick(pick.overallPick);
+      const ratio = expectedPoints > 0 ? actualPoints / expectedPoints : 0;
 
-      pickValues.push(pickValue);
+      pickValues.push(ratio);
 
-      // Track by team
-      if (!teamValues.has(pick.teamId)) {
-        teamValues.set(pick.teamId, []);
-      }
-      teamValues.get(pick.teamId)!.push(pickValue);
-
-      // Track by season
-      if (!seasonValues.has(pick.seasonId)) {
-        seasonValues.set(pick.seasonId, []);
-      }
-      seasonValues.get(pick.seasonId)!.push(pickValue);
+      // Track sums by team
+      teamSums.set(pick.teamId, (teamSums.get(pick.teamId) || 0) + ratio);
+      // Track sums by season
+      seasonSums.set(pick.seasonId, (seasonSums.get(pick.seasonId) || 0) + ratio);
     });
 
-    // Calibrate magnitude to target ranges
-    const scale = computeCalibrationScale(pickValues);
-    const scaledPickValues = pickValues.map(v => v * scale);
+    const avgPickValue = pickValues.length > 0
+      ? pickValues.reduce((sum, val) => sum + val, 0) / pickValues.length
+      : 0;
 
-    const avgPickValue = scaledPickValues.reduce((sum, val) => sum + Math.abs(val), 0) / scaledPickValues.length;
+    // Avg team value: average of team sums (not absolute), as requested
+    const avgTeamValue = teamSums.size > 0
+      ? Array.from(teamSums.values()).reduce((s, v) => s + v, 0) / teamSums.size
+      : 0;
 
-    // Avg team value: average of absolute scaled team totals
-    const avgTeamValue = Array.from(teamValues.values())
-      .map(values => Math.abs(values.reduce((sum, val) => sum + val * scale, 0)))
-      .reduce((sum, val) => sum + val, 0) / teamValues.size;
-
-    // Avg season value: average of absolute scaled season totals
-    const avgSeasonValue = Array.from(seasonValues.values())
-      .map(values => Math.abs(values.reduce((sum, val) => sum + val * scale, 0)))
-      .reduce((sum, val) => sum + val, 0) / seasonValues.size;
+    // Avg season value (sum of all values) across filters; if filtering by year, this will be that season's total
+    const avgSeasonValue = Array.from(seasonSums.values()).reduce((s, v) => s + v, 0);
 
     return {
       totalPicks: allDraftPicks.length,
@@ -347,13 +352,14 @@ export const getAllTimeDraftStats = query({
 
 // Get draft value by position and year
 export const getDraftValueByPosition = query({
-  args: {},
-  handler: async (ctx) => {
-    const [allDraftPicks, players, seasons, rosterEntries] = await Promise.all([
+  args: { year: v.optional(v.number()), memberName: v.optional(v.string()) },
+  handler: async (ctx, args) => {
+    const [allDraftPicks, players, seasons, rosterEntries, teams] = await Promise.all([
       ctx.db.query("draftPicks").collect(),
       ctx.db.query("players").collect(),
       ctx.db.query("seasons").collect(),
       ctx.db.query("rosterEntries").collect(),
+      ctx.db.query("teams").collect(),
     ]);
 
     // Create maps for quick lookup
@@ -368,13 +374,12 @@ export const getDraftValueByPosition = query({
       playerSeasonPoints.set(key, currentPoints + entry.points);
     });
 
-    // Build VOR context once
-    const replacement = computeReplacementLevels(playerSeasonPoints, allDraftPicks, playerMap);
-    const expectedVor = buildExpectedVorMap(allDraftPicks, playerSeasonPoints, playerMap, replacement);
-
-    // Group by year and position with real pick values
+    // Group by year and position using ratio-based value
     const dataByYear = new Map();
-    const allPickValues: number[] = [];
+    const expectedPointsAtPick = (overallPick: number) => 180 * Math.exp(-0.012 * (overallPick - 1));
+
+    // Build team owner name map for member filtering
+    const teamMap = new Map(teams.map(t => [t._id, t]));
 
     allDraftPicks.forEach(pick => {
       const player = playerMap.get(pick.playerId);
@@ -382,14 +387,19 @@ export const getDraftValueByPosition = query({
 
       if (!player || !season) return;
 
-      // Get actual points and calculate VOR-based pick value
+      // Filters
+      if (args?.year && season.year !== args.year) return;
+      if (args?.memberName) {
+        const team = teamMap.get(pick.teamId);
+        const ownerDisplay = team?.ownerDisplayName || team?.name;
+        if (!ownerDisplay || ownerDisplay !== args.memberName) return;
+      }
+
+      // Get actual points and calculate ratio-based pick value
       const key = `${pick.playerId}_${pick.seasonId}`;
       const actualPoints = playerSeasonPoints.get(key) || 0;
-      const pos = normalizePosition(player.position);
-      const vor = actualPoints - replacement[pos];
-      const expected = getExpectedVorAtPick(expectedVor, pos, pick.overallPick);
-      const pickValue = vor - expected;
-      allPickValues.push(pickValue);
+      const expected = expectedPointsAtPick(pick.overallPick);
+      const pickValue = expected > 0 ? actualPoints / expected : 0;
 
       const year = season.year;
       if (!dataByYear.has(year)) {
@@ -409,15 +419,13 @@ export const getDraftValueByPosition = query({
     const years = Array.from(dataByYear.keys()).sort();
     const positions = ['QB', 'RB', 'WR', 'TE', 'K', 'DST'];
 
-    const scale = computeCalibrationScale(allPickValues);
-
     years.forEach(year => {
       const yearData = dataByYear.get(year);
       const yearEntry: any = { year: year.toString() };
 
       positions.forEach(position => {
         const pickValues = yearData.get(position) || [];
-        const totalValue = pickValues.reduce((sum: number, val: number) => sum + val * scale, 0);
+        const totalValue = pickValues.reduce((sum: number, val: number) => sum + val, 0);
         const avgValue = pickValues.length > 0 ? totalValue / pickValues.length : 0;
 
         yearEntry[`${position}_total`] = parseFloat(totalValue.toFixed(2));
@@ -487,11 +495,21 @@ export const getTopPicksAllTime = query({
       };
     }).filter(Boolean);
 
+    // Deduplicate by composite key to avoid duplicates in UI (season, player, team, overallPick)
+    const seen = new Set<string>();
+    const uniquePicks = (picksWithValue
+      .filter((pick): pick is NonNullable<typeof pick> => pick !== null) as Array<any>)
+      .filter((p) => {
+        const key = `${p.season._id}_${p.player._id}_${p.team._id}_${p.overallPick}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+
     // Scale values to target magnitude (consistent across dataset)
-    const rawValues = picksWithValue.map(p => (p as any).value as number);
+    const rawValues = uniquePicks.map(p => (p as any).value as number);
     const scale = computeCalibrationScale(rawValues);
-    const scaled = picksWithValue
-      .filter((pick): pick is NonNullable<typeof pick> => pick !== null)
+    const scaled = uniquePicks
       .map(p => ({ ...p, value: parseFloat(((p as any).value * scale).toFixed(2)) }));
 
     // Sort by value (highest first) and take top picks
@@ -557,11 +575,21 @@ export const getWorstPicksAllTime = query({
       };
     }).filter(Boolean);
 
+    // Deduplicate by composite key to avoid duplicates in UI (season, player, team, overallPick)
+    const seen = new Set<string>();
+    const uniquePicks = (picksWithValue
+      .filter((pick): pick is NonNullable<typeof pick> => pick !== null) as Array<any>)
+      .filter((p) => {
+        const key = `${p.season._id}_${p.player._id}_${p.team._id}_${p.overallPick}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+
     // Scale values
-    const rawValues = picksWithValue.map(p => (p as any).value as number);
+    const rawValues = uniquePicks.map(p => (p as any).value as number);
     const scale = computeCalibrationScale(rawValues);
-    const scaled = picksWithValue
-      .filter((pick): pick is NonNullable<typeof pick> => pick !== null)
+    const scaled = uniquePicks
       .map(p => ({ ...p, value: parseFloat(((p as any).value * scale).toFixed(2)) }));
 
     // Sort by value (lowest first) and take worst picks
