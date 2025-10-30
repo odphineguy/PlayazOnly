@@ -11,11 +11,13 @@ import {
   Tooltip, 
   ResponsiveContainer,
   ComposedChart,
-  Legend
+  Legend,
+  Line
 } from "recharts";
 import { AlertCircle } from "lucide-react";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const COLORS = ['#ef4444', '#3b82f6', '#8b5cf6', '#f59e0b', '#6b7280', '#10b981'];
 
@@ -30,40 +32,18 @@ export default function DraftPage() {
   const topPicks = useQuery(api.draftData.getTopPicksAllTime, { limit: 50 });
   const worstPicks = useQuery(api.draftData.getWorstPicksAllTime, { limit: 50 });
   const draftRankings = useQuery(api.draftData.getAllTimeDraftRankings, { limit: 100, minPicks: 128 });
+  
+  // Part 2: Player and Team Stats
+  const mostDraftedPlayer = useQuery(api.draftData.getMostDraftedPlayer);
+  const mostValuablePlayer = useQuery(api.draftData.getMostValuablePlayer);
+  const mostDraftedTeam = useQuery(api.draftData.getMostDraftedTeam);
+  const mostValuableTeam = useQuery(api.draftData.getMostValuableTeam);
 
-  // Show loading state while queries are fetching
-  if (allTimeStats === undefined || draftValueByPosition === undefined) {
-    return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="text-center space-y-4">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto" />
-          <p className="text-muted-foreground">Loading draft data...</p>
-        </div>
-      </div>
-    );
-  }
-
-  // Show empty state if no draft data exists
-  if (allTimeStats.totalPicks === 0) {
-    return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="text-center space-y-4">
-          <AlertCircle className="mx-auto h-12 w-12 text-muted-foreground" />
-          <h3 className="text-lg font-semibold">No Draft Data Available</h3>
-          <p className="text-muted-foreground max-w-md">
-            Draft data hasn't been imported yet. Please use the Import Data page to load your league data.
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-
-  // Pt2: position-focused queries
+  // Part 3: Position-scoped queries
   const positionAverages = useQuery(api.draftData.getPositionAverages, { position: selectedPosition });
-  const positionTopPicks = useQuery(api.draftData.getTopPicksAllTime, { limit: 5, position: selectedPosition });
-  const positionWorstPicks = useQuery(api.draftData.getWorstPicksAllTime, { limit: 5, position: selectedPosition });
-  const positionRankings = useQuery(api.draftData.getAllTimeDraftRankings, { limit: 10, position: selectedPosition });
+  const positionTopPicks = useQuery(api.draftData.getTopPicksAllTime, { limit: 8, position: selectedPosition });
+  const positionWorstPicks = useQuery(api.draftData.getWorstPicksAllTime, { limit: 8, position: selectedPosition });
+  const positionRankings = useQuery(api.draftData.getAllTimeDraftRankings, { limit: 8, position: selectedPosition });
 
   // Derive member list from rankings data
   const memberOptions = useMemo(() => {
@@ -94,28 +74,53 @@ export default function DraftPage() {
     return worstPicks.filter(p => (p.team.ownerDisplayName || p.team.name) === selectedMember);
   }, [worstPicks, selectedMember]);
 
+  // Show loading state while queries are fetching
+  if (allTimeStats === undefined || draftValueByPosition === undefined) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="text-center space-y-4">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto" />
+          <p className="text-muted-foreground">Loading draft data...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show empty state if no draft data exists
+  if (allTimeStats.totalPicks === 0) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="text-center space-y-4">
+          <AlertCircle className="mx-auto h-12 w-12 text-muted-foreground" />
+          <h3 className="text-lg font-semibold">No Draft Data Available</h3>
+          <p className="text-muted-foreground max-w-md">
+            Draft data hasn't been imported yet. Please use the Import Data page to load your league data.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
+      {/* Page Header */}
+      <div className="flex items-start justify-between">
         <div className="flex items-center space-x-4">
-          <div className="w-16 h-16 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-2xl font-bold text-primary-foreground">LL</span>
-          </div>
+          <div className="text-6xl font-bold text-primary">LL</div>
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">The Draft</h1>
-            <p className="text-muted-foreground flex items-center">
-              Playaz Only <span className="ml-2">🏈</span>
-            </p>
+            <h1 className="text-4xl font-bold tracking-tight">The Draft</h1>
+            <p className="text-sm text-muted-foreground mt-1">Playaz Only</p>
           </div>
         </div>
-        <div className="flex items-center space-x-4">
+        
+        {/* Season and Member Dropdowns */}
+        <div className="flex items-center space-x-3">
           <div className="flex items-center space-x-2">
-            <span className="text-sm text-muted-foreground">SEASON</span>
+            <span className="text-sm font-semibold text-muted-foreground">SEASON</span>
             <select 
               value={selectedSeason} 
               onChange={(e) => setSelectedSeason(e.target.value)}
-              className="px-3 py-1 border rounded-md text-sm"
+              className="px-3 py-2 border rounded-md text-sm font-medium"
             >
               <option value="Overview">Overview</option>
               <option value="2018">2018</option>
@@ -129,11 +134,11 @@ export default function DraftPage() {
             </select>
           </div>
           <div className="flex items-center space-x-2">
-            <span className="text-sm text-muted-foreground">MEMBER</span>
+            <span className="text-sm font-semibold text-muted-foreground">MEMBER</span>
             <select 
               value={selectedMember} 
               onChange={(e) => setSelectedMember(e.target.value)}
-              className="px-3 py-1 border rounded-md text-sm"
+              className="px-3 py-2 border rounded-md text-sm font-medium"
             >
               <option value="Overview">Overview</option>
               {memberOptions.map((name) => (
@@ -144,228 +149,245 @@ export default function DraftPage() {
         </div>
       </div>
 
-      {/* All-Time Draft Stats & Records */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-xl">ALL-TIME DRAFT STATS & RECORDS</CardTitle>
-          <CardDescription>View stats and records from all drafts throughout the history of the league.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {/* Stats Cards */}
-            <div className="space-y-4">
-              <div className="bg-muted/50 rounded-lg p-6 text-center">
-                <div className="text-3xl font-bold text-primary">{allTimeStats?.avgPickValue ?? "-"}</div>
-                <div className="text-sm text-muted-foreground mt-1">AVG. PICK VALUE</div>
-              </div>
-              <div className="bg-muted/50 rounded-lg p-6 text-center">
-                <div className="text-3xl font-bold text-primary">{allTimeStats?.avgTeamValue ?? "-"}</div>
-                <div className="text-sm text-muted-foreground mt-1">AVG. TEAM VALUE</div>
-              </div>
-              <div className="bg-muted/50 rounded-lg p-6 text-center">
-                <div className="text-3xl font-bold text-primary">{allTimeStats?.avgSeasonValue ?? "-"}</div>
-                <div className="text-sm text-muted-foreground mt-1">AVG. SEASON VALUE</div>
-              </div>
-            </div>
-            
-            {/* Chart */}
-            <div className="md:col-span-3">
-              <div className="h-80 w-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <ComposedChart data={draftValueByPosition || []} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="year" />
-                    <YAxis yAxisId="left" />
-                    <YAxis yAxisId="right" orientation="right" />
-                    <Tooltip />
-                    <Legend />
-                    <Bar yAxisId="left" dataKey="QB_total" stackId="a" fill="#ef4444" name="QB" />
-                    <Bar yAxisId="left" dataKey="RB_total" stackId="a" fill="#3b82f6" name="RB" />
-                    <Bar yAxisId="left" dataKey="WR_total" stackId="a" fill="#8b5cf6" name="WR" />
-                    <Bar yAxisId="left" dataKey="TE_total" stackId="a" fill="#f59e0b" name="TE" />
-                    <Bar yAxisId="left" dataKey="K_total" stackId="a" fill="#6b7280" name="K" />
-                    <Bar yAxisId="left" dataKey="DST_total" stackId="a" fill="#10b981" name="DST" />
-                  </ComposedChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      
-
-      {/* All-Time Draft Analysis */}
+      {/* All-Time Draft Stats & Records Section */}
       <div className="space-y-4">
-        {/* Header Card */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-xl">ALL-TIME DRAFT ANALYSIS</CardTitle>
-            <CardDescription>Comprehensive analysis of draft performance across all seasons.</CardDescription>
+            <CardTitle className="text-xl">ALL-TIME DRAFT STATS & RECORDS</CardTitle>
+            <CardDescription>View stats and records from all drafts throughout the history of the league.</CardDescription>
           </CardHeader>
         </Card>
 
-        {/* Three Vertical Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Top Picks All-Time */}
+        {/* Stats Cards Row */}
+        <div className="grid grid-cols-3 gap-4">
           <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">TOP PICKS ALL-TIME</CardTitle>
-              <CardDescription>Best value picks by position.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {filteredTopPicks && filteredTopPicks.length > 0 ? (
-                  filteredTopPicks.slice(0, 10).map((pick, idx) => (
-                    <div key={pick._id} className="p-3 bg-muted/50 rounded-lg flex items-center justify-between">
-                      <div>
-                        <div className="font-semibold">{pick.player.name}</div>
-                        <div className="text-sm text-muted-foreground">{pick.season.year} · #{pick.overallPick} · {pick.team.name}</div>
-                      </div>
-                      <Badge className={`${
-                        idx <= 4 ? 'text-white' : 'text-gray-800' // White text for dark greens, dark text for light greens
-                      } ${
-                        idx === 0 ? 'bg-green-900' : // Best - darkest green
-                        idx === 1 ? 'bg-green-800' : // #2 - very dark green
-                        idx === 2 ? 'bg-green-700' : // #3 - dark green
-                        idx === 3 ? 'bg-green-600' : // #4 - green
-                        idx === 4 ? 'bg-green-500' : // #5 - medium green
-                        idx === 5 ? 'bg-green-400' : // #6 - light green
-                        idx === 6 ? 'bg-green-300' : // #7 - lighter green
-                        idx === 7 ? 'bg-green-200' : // #8 - even lighter green
-                        idx === 8 ? 'bg-green-100' : // #9 - very light green
-                        'bg-gray-200' // #10+ - light gray
-                      }`}>{pick.value}</Badge>
-                    </div>
-                  ))
-                ) : (
-                  <div className="text-sm text-muted-foreground">No data</div>
-                )}
+            <CardContent className="pt-6">
+              <div className="text-center">
+                <div className="text-4xl font-bold text-primary">{allTimeStats?.avgPickValue ?? "-"}</div>
+                <div className="text-sm text-muted-foreground mt-2">AVG. PICK VALUE</div>
               </div>
             </CardContent>
           </Card>
-
-          {/* Worst Picks All-Time */}
           <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">WORST PICKS ALL-TIME</CardTitle>
-              <CardDescription>Lowest value picks by position.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {filteredWorstPicks && filteredWorstPicks.length > 0 ? (
-                  filteredWorstPicks.slice(0, 10).map((pick, idx) => (
-                    <div key={pick._id} className="p-3 bg-muted/50 rounded-lg flex items-center justify-between">
-                      <div>
-                        <div className="font-semibold">{pick.player.name}</div>
-                        <div className="text-sm text-muted-foreground">{pick.season.year} · #{pick.overallPick} · {pick.team.name}</div>
-                      </div>
-                      <Badge className={`${
-                        idx <= 4 ? 'text-white' : 'text-gray-800' // White text for dark reds, dark text for light reds
-                      } ${
-                        idx === 0 ? 'bg-red-900' : // Worst - darkest red
-                        idx === 1 ? 'bg-red-800' : // #2 - very dark red
-                        idx === 2 ? 'bg-red-700' : // #3 - dark red
-                        idx === 3 ? 'bg-red-600' : // #4 - red
-                        idx === 4 ? 'bg-red-500' : // #5 - medium red
-                        idx === 5 ? 'bg-red-400' : // #6 - light red
-                        idx === 6 ? 'bg-red-300' : // #7 - lighter red
-                        idx === 7 ? 'bg-red-200' : // #8 - even lighter red
-                        idx === 8 ? 'bg-red-100' : // #9 - very light red
-                        'bg-gray-200' // #10+ - light gray
-                      }`}>{pick.value}</Badge>
-                    </div>
-                  ))
-                ) : (
-                  <div className="text-sm text-muted-foreground">No data</div>
-                )}
+            <CardContent className="pt-6">
+              <div className="text-center">
+                <div className="text-4xl font-bold text-primary">{allTimeStats?.avgTeamValue ?? "-"}</div>
+                <div className="text-sm text-muted-foreground mt-2">AVG. TEAM VALUE</div>
               </div>
             </CardContent>
           </Card>
-
-          {/* All-Time Draft Rankings */}
           <Card>
-            <CardHeader>
+            <CardContent className="pt-6">
+              <div className="text-center">
+                <div className="text-4xl font-bold text-primary">{allTimeStats?.avgSeasonValue ?? "-"}</div>
+                <div className="text-sm text-muted-foreground mt-2">AVG. SEASON VALUE</div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Chart Section */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">League Total & Avg Draft Value by Position</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="h-96 w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <ComposedChart data={draftValueByPosition || []} margin={{ top: 20, right: 80, left: 20, bottom: 20 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="year" />
+                  <YAxis yAxisId="left" label={{ value: 'Total Value', angle: -90, position: 'insideLeft' }} />
+                  <YAxis yAxisId="right" orientation="right" label={{ value: 'Avg Value', angle: 90, position: 'insideRight' }} />
+                  <Tooltip />
+                  <Legend />
+                  <Bar yAxisId="left" dataKey="QB_total" stackId="a" fill="#ef4444" name="QB" />
+                  <Bar yAxisId="left" dataKey="RB_total" stackId="a" fill="#3b82f6" name="RB" />
+                  <Bar yAxisId="left" dataKey="WR_total" stackId="a" fill="#8b5cf6" name="WR" />
+                  <Bar yAxisId="left" dataKey="TE_total" stackId="a" fill="#f59e0b" name="TE" />
+                  <Bar yAxisId="left" dataKey="K_total" stackId="a" fill="#6b7280" name="K" />
+                  <Bar yAxisId="left" dataKey="DST_total" stackId="a" fill="#10b981" name="DST" />
+                  <Line yAxisId="right" type="monotone" dataKey="QB_avg" stroke="#ef4444" strokeWidth={2} dot={false} name="Avg Value" />
+                  <Line yAxisId="right" type="monotone" dataKey="RB_avg" stroke="#3b82f6" strokeWidth={2} dot={false} />
+                  <Line yAxisId="right" type="monotone" dataKey="WR_avg" stroke="#8b5cf6" strokeWidth={2} dot={false} />
+                  <Line yAxisId="right" type="monotone" dataKey="TE_avg" stroke="#f59e0b" strokeWidth={2} dot={false} />
+                  <Line yAxisId="right" type="monotone" dataKey="K_avg" stroke="#6b7280" strokeWidth={2} dot={false} />
+                  <Line yAxisId="right" type="monotone" dataKey="DST_avg" stroke="#10b981" strokeWidth={2} dot={false} />
+                </ComposedChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      
+
+      {/* Three Column Display */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Top Picks All-Time */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">TOP PICKS ALL-TIME</CardTitle>
+            <CardDescription>Top draft picks by value all-time.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {filteredTopPicks && filteredTopPicks.length > 0 ? (
+                filteredTopPicks.slice(0, 8).map((pick, idx) => (
+                  <div key={pick._id} className="p-4 bg-muted/50 rounded-lg space-y-2">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="font-semibold text-sm">{pick.player.name} {pick.player.position} ({pick.player.team || 'N/A'})</div>
+                        <div className="text-xs text-muted-foreground mt-1">{pick.season.year} · {pick.value.toFixed(1)}</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <Avatar className="w-6 h-6">
+                          <AvatarFallback className="text-xs">{pick.team.name.substring(0, 2).toUpperCase()}</AvatarFallback>
+                        </Avatar>
+                        <span className="text-xs font-medium">{pick.team.ownerDisplayName || pick.team.name}</span>
+                      </div>
+                      <Badge className="bg-green-500 text-white text-xs">{pick.value > 0 ? '+' : ''}{pick.value.toFixed(2)}</Badge>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="text-sm text-muted-foreground">No data available</div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Worst Picks All-Time */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">WORST PICKS ALL-TIME</CardTitle>
+            <CardDescription>Worst draft picks by value all-time.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {filteredWorstPicks && filteredWorstPicks.length > 0 ? (
+                filteredWorstPicks.slice(0, 8).map((pick, idx) => (
+                  <div key={pick._id} className="p-4 bg-muted/50 rounded-lg space-y-2">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="font-semibold text-sm">{pick.player.name} · {pick.player.position} ({pick.player.team || 'N/A'})</div>
+                        <div className="text-xs text-muted-foreground mt-1">{pick.season.year} · {pick.value.toFixed(1)}</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <Avatar className="w-6 h-6">
+                          <AvatarFallback className="text-xs">{pick.team.name.substring(0, 2).toUpperCase()}</AvatarFallback>
+                        </Avatar>
+                        <span className="text-xs font-medium">{pick.team.ownerDisplayName || pick.team.name}</span>
+                      </div>
+                      <Badge className="bg-red-500 text-white text-xs">{pick.value.toFixed(2)}</Badge>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="text-sm text-muted-foreground">No data available</div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* All-Time Draft Rankings */}
+        <Card>
+          <CardHeader>
             <CardTitle className="text-lg">ALL-TIME DRAFT RANKINGS</CardTitle>
-            <CardDescription>Teams ranked by avg value at this position.</CardDescription>
+            <CardDescription>Members ranked by all-time avg. draft pick value.</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
               {filteredRankings && filteredRankings.length > 0 ? (
-                filteredRankings.slice(0, 10).map((ranking, idx) => (
+                filteredRankings.slice(0, 8).map((ranking, idx) => (
                   <div key={ranking.team._id} className="p-3 bg-muted/50 rounded-lg flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-sm font-bold text-primary-foreground">#{idx+1}</div>
-                      <div>
-                        <div className="font-semibold">{ranking.team.ownerDisplayName || ranking.team.name}</div>
-                        <div className="text-sm text-muted-foreground">{ranking.totalSeasons ?? '-'} seasons</div>
+                      <div className="flex items-center space-x-2">
+                        <span className="text-xs font-bold text-muted-foreground">#{idx + 1}</span>
+                        <Avatar className="w-6 h-6">
+                          <AvatarFallback className="text-xs">{(ranking.team.ownerDisplayName || ranking.team.name || 'U').substring(0, 2).toUpperCase()}</AvatarFallback>
+                        </Avatar>
+                        <span className="text-xs font-medium">{ranking.team.ownerDisplayName || ranking.team.name}</span>
                       </div>
                     </div>
-                    <Badge variant="secondary" className={`text-white ${
-                      idx === 0 ? 'bg-green-600' : // #1 - dark green
-                      idx === 1 ? 'bg-green-500' : // #2 - medium green
-                      idx === 2 ? 'bg-green-400' : // #3 - light green
-                      idx === 3 ? 'bg-yellow-400' : // #4 - yellow
-                      idx === 4 ? 'bg-yellow-300' : // #5 - light yellow
-                      idx === 5 ? 'bg-orange-400' : // #6 - orange
-                      idx === 6 ? 'bg-orange-500' : // #7 - dark orange
-                      idx === 7 ? 'bg-pink-400' : // #8 - pink
-                      idx === 8 ? 'bg-red-400' : // #9 - light red
-                      'bg-red-500' // #10+ - red
-                    }`}>{ranking.avgValue}</Badge>
+                    <div className="text-right">
+                      <Badge className="bg-green-500 text-white text-xs">{ranking.avgValue}</Badge>
+                    </div>
                   </div>
                 ))
               ) : (
-                <div className="text-sm text-muted-foreground">No data</div>
+                <div className="text-sm text-muted-foreground">No data available</div>
               )}
             </div>
           </CardContent>
-          </Card>
-        </div>
+        </Card>
       </div>
 
-      {/* Pt2: Position Drilldown (moved below existing sections) */}
+      {/* Part 3: Position Drilldown */}
       <div className="space-y-4">
-        {/* Tabs */}
-        <div className="flex flex-wrap gap-2">
-          {['QB','RB','WR','TE','K','DST'].map(pos => (
+        {/* Position Tabs */}
+        <div className="flex flex-wrap items-center gap-2">
+          {[
+            { label: "QB PICKS", value: "QB" },
+            { label: "RB PICKS", value: "RB" },
+            { label: "WR PICKS", value: "WR" },
+            { label: "TE PICKS", value: "TE" },
+            { label: "K PICKS", value: "K" },
+            { label: "DEF PICKS", value: "DST" },
+          ].map((tab) => (
             <button
-              key={pos}
-              onClick={() => setSelectedPosition(pos)}
-              className={`px-3 py-1 rounded-md border text-sm ${selectedPosition===pos ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'}`}
+              key={tab.value}
+              onClick={() => setSelectedPosition(tab.value)}
+              className={`px-3 py-1.5 rounded-md border text-xs font-semibold tracking-wide ${
+                selectedPosition === tab.value
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "bg-background text-muted-foreground hover:bg-muted"
+              }`}
             >
-              {pos}
+              {tab.label}
             </button>
           ))}
         </div>
 
-        {/* Position Header & Metrics */}
+        {/* Header + Summary Metrics */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-xl">{selectedPosition}</CardTitle>
-            <CardDescription>Position drilldown across all drafts.</CardDescription>
+            <CardTitle className="text-xl">{selectedPosition} Draft Overview</CardTitle>
+            <CardDescription>High-level {selectedPosition} draft statistics across all seasons.</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-muted/50 rounded-lg p-6 text-center">
-                <div className="text-sm text-muted-foreground">AVG. DRAFT VALUE</div>
-                <div className="mt-1 text-3xl font-bold text-primary">{positionAverages?.avgDraftValue ?? '-'}</div>
-              </div>
-              <div className="bg-muted/50 rounded-lg p-6 text-center">
-                <div className="text-sm text-muted-foreground">AVG. DRAFT ROUND</div>
-                <div className="mt-1 text-3xl font-bold text-primary">{positionAverages?.avgDraftRound ?? '-'}</div>
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-center">
+                    <div className="text-sm text-muted-foreground">AVG. DRAFT VALUE</div>
+                    <div className="mt-1 text-3xl font-bold text-primary">{positionAverages?.avgDraftValue ?? '-'}</div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-center">
+                    <div className="text-sm text-muted-foreground">AVG. DRAFT ROUND</div>
+                    <div className="mt-1 text-3xl font-bold text-primary">{positionAverages?.avgDraftRound ?? '-'}</div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </CardContent>
         </Card>
 
-        {/* Position Top/Worst/Rankings */}
+        {/* Three Panel lists for position */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Top Picks by Position */}
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">TOP PICKS - {selectedPosition}</CardTitle>
-              <CardDescription>Best value picks by position.</CardDescription>
+              <CardDescription>Best {selectedPosition} value picks all-time.</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
@@ -373,10 +395,10 @@ export default function DraftPage() {
                   positionTopPicks.map((pick) => (
                     <div key={pick._id} className="p-3 bg-muted/50 rounded-lg flex items-center justify-between">
                       <div>
-                        <div className="font-semibold">{pick.player.name}</div>
-                        <div className="text-sm text-muted-foreground">{pick.season.year} · #{pick.overallPick} · {pick.team.name}</div>
+                        <div className="font-semibold text-sm">{pick.player.name}</div>
+                        <div className="text-xs text-muted-foreground">{pick.season.year} · #{pick.overallPick} · {pick.team.name}</div>
                       </div>
-                      <Badge variant="secondary" className="bg-green-100 text-green-800">{pick.value}</Badge>
+                      <Badge className="bg-green-500 text-white text-xs">{pick.value > 0 ? '+' : ''}{pick.value}</Badge>
                     </div>
                   ))
                 ) : (
@@ -390,7 +412,7 @@ export default function DraftPage() {
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">WORST PICKS - {selectedPosition}</CardTitle>
-              <CardDescription>Lowest value picks by position.</CardDescription>
+              <CardDescription>Lowest {selectedPosition} value picks all-time.</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
@@ -398,10 +420,10 @@ export default function DraftPage() {
                   positionWorstPicks.map((pick) => (
                     <div key={pick._id} className="p-3 bg-muted/50 rounded-lg flex items-center justify-between">
                       <div>
-                        <div className="font-semibold">{pick.player.name}</div>
-                        <div className="text-sm text-muted-foreground">{pick.season.year} · #{pick.overallPick} · {pick.team.name}</div>
+                        <div className="font-semibold text-sm">{pick.player.name}</div>
+                        <div className="text-xs text-muted-foreground">{pick.season.year} · #{pick.overallPick} · {pick.team.name}</div>
                       </div>
-                      <Badge variant="destructive" className="bg-red-100 text-red-800">{pick.value}</Badge>
+                      <Badge className="bg-red-500 text-white text-xs">{pick.value}</Badge>
                     </div>
                   ))
                 ) : (
@@ -411,11 +433,11 @@ export default function DraftPage() {
             </CardContent>
           </Card>
 
-          {/* Draft Best - Rankings by Position */}
+          {/* Rankings by Position */}
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">DRAFT BEST - {selectedPosition}</CardTitle>
-              <CardDescription>Teams ranked by avg value at this position.</CardDescription>
+              <CardDescription>Teams ranked by average value drafting {selectedPosition}s.</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
@@ -423,13 +445,13 @@ export default function DraftPage() {
                   positionRankings.map((ranking, idx) => (
                     <div key={ranking.team._id} className="p-3 bg-muted/50 rounded-lg flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-sm font-bold text-primary-foreground">#{idx+1}</div>
+                        <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-xs font-bold text-primary-foreground">#{idx+1}</div>
                         <div>
-                          <div className="font-semibold">{ranking.team.ownerDisplayName || ranking.team.name}</div>
-                          <div className="text-sm text-muted-foreground">{ranking.totalPicks} picks</div>
+                          <div className="font-semibold text-sm">{ranking.team.ownerDisplayName || ranking.team.name}</div>
+                          <div className="text-xs text-muted-foreground">{ranking.totalPicks} picks</div>
                         </div>
                       </div>
-                      <Badge variant="secondary" className="bg-green-100 text-green-800">{ranking.avgValue}</Badge>
+                      <Badge className="bg-green-500 text-white text-xs">{ranking.avgValue}</Badge>
                     </div>
                   ))
                 ) : (
@@ -440,6 +462,7 @@ export default function DraftPage() {
           </Card>
         </div>
       </div>
+
     </div>
   );
 }

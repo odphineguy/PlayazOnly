@@ -790,3 +790,215 @@ export const clearAllDraftData = mutation({
     };
   },
 });
+
+// Get most drafted player (player with most draft appearances)
+export const getMostDraftedPlayer = query({
+  args: {},
+  handler: async (ctx) => {
+    const [allDraftPicks, players] = await Promise.all([
+      ctx.db.query("draftPicks").collect(),
+      ctx.db.query("players").collect(),
+    ]);
+
+    const playerMap = new Map(players.map(p => [p._id, p]));
+    const playerCounts = new Map<string, number>();
+
+    // Count drafts per player
+    allDraftPicks.forEach(pick => {
+      const player = playerMap.get(pick.playerId);
+      if (player) {
+        const current = playerCounts.get(pick.playerId) || 0;
+        playerCounts.set(pick.playerId, current + 1);
+      }
+    });
+
+    // Find player with most drafts
+    let maxCount = 0;
+    let mostDraftedPlayerId: any = null;
+    playerCounts.forEach((count, playerId) => {
+      if (count > maxCount) {
+        maxCount = count;
+        mostDraftedPlayerId = playerId as any;
+      }
+    });
+
+    if (!mostDraftedPlayerId) {
+      return { player: null, count: 0 };
+    }
+
+    return {
+      player: playerMap.get(mostDraftedPlayerId),
+      count: maxCount
+    };
+  },
+});
+
+// Get player with most total value across all drafts
+export const getMostValuablePlayer = query({
+  args: {},
+  handler: async (ctx) => {
+    const [allDraftPicks, players, rosterEntries] = await Promise.all([
+      ctx.db.query("draftPicks").collect(),
+      ctx.db.query("players").collect(),
+      ctx.db.query("rosterEntries").collect(),
+    ]);
+
+    const playerMap = new Map(players.map(p => [p._id, p]));
+    
+    // Create a map: playerId+seasonId -> total points
+    const playerSeasonPoints = new Map<string, number>();
+    rosterEntries.forEach(entry => {
+      const key = `${entry.playerId}_${entry.seasonId}`;
+      const currentPoints = playerSeasonPoints.get(key) || 0;
+      playerSeasonPoints.set(key, currentPoints + entry.points);
+    });
+
+    // Build VOR context
+    const replacement = computeReplacementLevels(playerSeasonPoints, allDraftPicks, playerMap);
+    const expectedVor = buildExpectedVorMap(allDraftPicks, playerSeasonPoints, playerMap, replacement);
+
+    // Calculate total value per player
+    const playerValues = new Map<string, number>();
+    const allValues: number[] = [];
+
+    allDraftPicks.forEach(pick => {
+      const player = playerMap.get(pick.playerId);
+      if (!player) return;
+
+      const key = `${pick.playerId}_${pick.seasonId}`;
+      const actualPoints = playerSeasonPoints.get(key) || 0;
+      const pos = normalizePosition(player.position);
+      const vor = actualPoints - replacement[pos];
+      const expected = getExpectedVorAtPick(expectedVor, pos, pick.overallPick);
+      const pickValue = vor - expected;
+      allValues.push(pickValue);
+
+      const current = playerValues.get(pick.playerId) || 0;
+      playerValues.set(pick.playerId, current + pickValue);
+    });
+
+    const scale = computeCalibrationScale(allValues);
+
+    // Find player with highest total value
+    let maxValue = -Infinity;
+    let mostValuablePlayerId: any = null;
+    playerValues.forEach((value, playerId) => {
+      const scaledValue = value * scale;
+      if (scaledValue > maxValue) {
+        maxValue = scaledValue;
+        mostValuablePlayerId = playerId as any;
+      }
+    });
+
+    if (!mostValuablePlayerId) {
+      return { player: null, totalValue: 0 };
+    }
+
+    return {
+      player: playerMap.get(mostValuablePlayerId),
+      totalValue: parseFloat(maxValue.toFixed(2))
+    };
+  },
+});
+
+// Get most drafted NFL team (by player's NFL team field)
+export const getMostDraftedTeam = query({
+  args: {},
+  handler: async (ctx) => {
+    const [allDraftPicks, players] = await Promise.all([
+      ctx.db.query("draftPicks").collect(),
+      ctx.db.query("players").collect(),
+    ]);
+
+    const playerMap = new Map(players.map(p => [p._id, p]));
+    const teamCounts = new Map<string, number>();
+
+    // Count drafts per NFL team
+    allDraftPicks.forEach(pick => {
+      const player = playerMap.get(pick.playerId);
+      if (player && player.team) {
+        const current = teamCounts.get(player.team) || 0;
+        teamCounts.set(player.team, current + 1);
+      }
+    });
+
+    // Find team with most drafts
+    let maxCount = 0;
+    let mostDraftedTeam = "";
+    teamCounts.forEach((count, team) => {
+      if (count > maxCount) {
+        maxCount = count;
+        mostDraftedTeam = team;
+      }
+    });
+
+    return {
+      team: mostDraftedTeam || "",
+      count: maxCount
+    };
+  },
+});
+
+// Get NFL team with most total value from drafted players
+export const getMostValuableTeam = query({
+  args: {},
+  handler: async (ctx) => {
+    const [allDraftPicks, players, rosterEntries] = await Promise.all([
+      ctx.db.query("draftPicks").collect(),
+      ctx.db.query("players").collect(),
+      ctx.db.query("rosterEntries").collect(),
+    ]);
+
+    const playerMap = new Map(players.map(p => [p._id, p]));
+    
+    // Create a map: playerId+seasonId -> total points
+    const playerSeasonPoints = new Map<string, number>();
+    rosterEntries.forEach(entry => {
+      const key = `${entry.playerId}_${entry.seasonId}`;
+      const currentPoints = playerSeasonPoints.get(key) || 0;
+      playerSeasonPoints.set(key, currentPoints + entry.points);
+    });
+
+    // Build VOR context
+    const replacement = computeReplacementLevels(playerSeasonPoints, allDraftPicks, playerMap);
+    const expectedVor = buildExpectedVorMap(allDraftPicks, playerSeasonPoints, playerMap, replacement);
+
+    // Calculate total value per NFL team
+    const teamValues = new Map<string, number>();
+    const allValues: number[] = [];
+
+    allDraftPicks.forEach(pick => {
+      const player = playerMap.get(pick.playerId);
+      if (!player || !player.team) return;
+
+      const key = `${pick.playerId}_${pick.seasonId}`;
+      const actualPoints = playerSeasonPoints.get(key) || 0;
+      const pos = normalizePosition(player.position);
+      const vor = actualPoints - replacement[pos];
+      const expected = getExpectedVorAtPick(expectedVor, pos, pick.overallPick);
+      const pickValue = vor - expected;
+      allValues.push(pickValue);
+
+      const current = teamValues.get(player.team) || 0;
+      teamValues.set(player.team, current + pickValue);
+    });
+
+    const scale = computeCalibrationScale(allValues);
+
+    // Find team with highest total value
+    let maxValue = -Infinity;
+    let mostValuableTeam = "";
+    teamValues.forEach((value, team) => {
+      const scaledValue = value * scale;
+      if (scaledValue > maxValue) {
+        maxValue = scaledValue;
+        mostValuableTeam = team;
+      }
+    });
+
+    return {
+      team: mostValuableTeam || "",
+      totalValue: parseFloat((maxValue || 0).toFixed(2))
+    };
+  },
+});
