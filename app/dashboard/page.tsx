@@ -36,23 +36,7 @@ export default function LeagueHome() {
   const matchups = useQuery(api.fantasyFootball.getAllMatchups);
   const transactions = useQuery(api.fantasyFootball.getAllTransactions);
 
-  // Loading state - only check required queries, transactions is optional
-  if (!leagues || !seasons || !teams || !matchups) {
-    return (
-      <div className="min-h-screen bg-background">
-        <div className="container mx-auto p-6 space-y-6">
-          <div className="flex items-center justify-center min-h-[400px]">
-            <div className="text-center space-y-4">
-              <Clock className="w-12 h-12 animate-spin text-muted-foreground mx-auto" />
-              <p className="text-muted-foreground">Loading league data...</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Process data
+  // Process data - handle undefined cases
   const processedSeasons = useMemo(() => {
     if (!seasons || !teams || !matchups) return [];
 
@@ -172,6 +156,22 @@ export default function LeagueHome() {
       };
     });
   }, [transactions, seasons]);
+
+  // Loading state - check after all hooks
+  if (!leagues || !seasons || !teams || !matchups) {
+    return (
+      <div className="min-h-screen bg-background">
+        <div className="container mx-auto p-6 space-y-6">
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="text-center space-y-4">
+              <Clock className="w-12 h-12 animate-spin text-muted-foreground mx-auto" />
+              <p className="text-muted-foreground">Loading league data...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
