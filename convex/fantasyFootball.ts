@@ -302,6 +302,61 @@ export const getTransactionStats = query({
   },
 });
 
+// Get transaction statistics by year for charts
+// This query aggregates transactions by year for display in the chart
+export const getTransactionStatsByYear = query({
+  args: {},
+  handler: async (ctx) => {
+    const seasons = await ctx.db.query("seasons").collect();
+    const transactions = await ctx.db.query("transactions").collect();
+    
+    // Group transactions by season
+    const transactionsBySeason = new Map<any, typeof transactions>();
+    transactions.forEach(t => {
+      const existing = transactionsBySeason.get(t.seasonId) || [];
+      existing.push(t);
+      transactionsBySeason.set(t.seasonId, existing);
+    });
+    
+    // Create season map for quick lookup
+    const seasonMap = new Map<any, (typeof seasons)[number]>();
+    seasons.forEach(s => seasonMap.set(s._id, s));
+    
+    // Aggregate stats by year
+    const statsByYear = new Map<number, { year: number; totalTransactions: number; totalTrades: number; totalWaivers: number }>();
+    
+    transactionsBySeason.forEach((txns, seasonId) => {
+      const season = seasonMap.get(seasonId);
+      if (!season) return;
+      
+      const year = season.year;
+      if (!statsByYear.has(year)) {
+        statsByYear.set(year, {
+          year,
+          totalTransactions: 0,
+          totalTrades: 0,
+          totalWaivers: 0,
+        });
+      }
+      
+      const stats = statsByYear.get(year)!;
+      stats.totalTransactions += txns.length;
+      
+      txns.forEach(t => {
+        const type = t.type.toUpperCase();
+        if (type.includes("TRADE")) {
+          stats.totalTrades++;
+        } else if (type.includes("WAIVER")) {
+          stats.totalWaivers++;
+        }
+      });
+    });
+    
+    // Convert to array and sort by year
+    return Array.from(statsByYear.values()).sort((a, b) => a.year - b.year);
+  },
+});
+
 // Get transaction rankings by team (top performers in transactions)
 export const getTransactionRankings = query({
   args: { 

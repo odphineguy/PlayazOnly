@@ -14,12 +14,11 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  LineChart,
-  Line,
   ComposedChart,
-  Area
+  Line,
+  Legend
 } from "recharts";
-import { Calendar, Activity, TrendingUp } from "lucide-react";
+import { Calendar, Activity } from "lucide-react";
 
 export default function TransactionsPage() {
   const [selectedSeason, setSelectedSeason] = useState<string>("overview");
@@ -29,6 +28,7 @@ export default function TransactionsPage() {
   const seasons = useQuery(api.fantasyFootball.getAllSeasons);
   const teams = useQuery(api.fantasyFootball.getAllTeams);
   const stats = useQuery(api.fantasyFootball.getTransactionStats, {});
+  const chartDataQuery = useQuery(api.fantasyFootball.getTransactionStatsByYear);
   const waiverRankings = useQuery(api.fantasyFootball.getTransactionRankings, { type: "WAIVER" });
   const tradeRankings = useQuery(api.fantasyFootball.getTransactionRankings, { type: "TRADE" });
 
@@ -36,6 +36,13 @@ export default function TransactionsPage() {
     const map = new Map<string, string>();
     (teams || []).forEach(t => map.set(t._id, t.name));
     return map;
+  }, [teams]);
+
+  // Get unique teams for the member dropdown
+  const availableTeams = useMemo(() => {
+    if (!teams) return ["Overview"];
+    const uniqueTeams = [...new Set(teams.map(t => t.name))].sort();
+    return ["Overview", ...uniqueTeams];
   }, [teams]);
 
   const recentTransactions = useMemo(() => {
@@ -56,18 +63,13 @@ export default function TransactionsPage() {
     return ["Overview", ...years.map(y => y.toString())];
   }, [seasons]);
 
-  // Generate mock chart data for illustration (since we don't have historical transaction data)
+  // Use real chart data from the query
   const chartData = useMemo(() => {
-    if (!seasons || seasons.length === 0) return [];
-    const sortedSeasons = [...seasons].sort((a, b) => a.year - b.year);
-    return sortedSeasons.map(season => ({
-      year: season.year,
-      totalTransactions: Math.floor(Math.random() * 100) + 150,
-      totalTrades: Math.floor(Math.random() * 8) + 2,
-    })).slice(-5); // Last 5 years
-  }, [seasons]);
+    if (!chartDataQuery) return [];
+    return chartDataQuery.slice(-5); // Last 5 years
+  }, [chartDataQuery]);
 
-  const loading = transactions === undefined || seasons === undefined || teams === undefined;
+  const loading = transactions === undefined || seasons === undefined || teams === undefined || stats === undefined || chartDataQuery === undefined;
 
   if (loading) {
     return (
@@ -82,16 +84,15 @@ export default function TransactionsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {/* Header with Title and Filters */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">League Transactions</h1>
-          <p className="text-muted-foreground">Playaz Only</p>
         </div>
         <div className="flex gap-4">
           <Select value={selectedSeason} onValueChange={setSelectedSeason}>
             <SelectTrigger className="w-40">
-              <SelectValue />
+              <SelectValue placeholder="SEASON" />
             </SelectTrigger>
             <SelectContent>
               {availableYears.map(year => (
@@ -103,95 +104,97 @@ export default function TransactionsPage() {
           </Select>
           <Select value={selectedMember} onValueChange={setSelectedMember}>
             <SelectTrigger className="w-40">
-              <SelectValue />
+              <SelectValue placeholder="MEMBER" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="overview">Overview</SelectItem>
-              <SelectItem value="member1">Member 1</SelectItem>
-              <SelectItem value="member2">Member 2</SelectItem>
+              {availableTeams.map(team => (
+                <SelectItem key={team} value={team.toLowerCase()}>
+                  {team}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
       </div>
 
-      {/* All-Time Transaction Stats & Records */}
-      <div className="space-y-4">
-        <div>
-          <h2 className="text-2xl font-bold">ALL-TIME TRANSACTION STATS & RECORDS</h2>
-          <p className="text-sm text-muted-foreground">
-            View stats and records from all transactions throughout the history of your league.
-          </p>
-        </div>
-
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-sm font-medium text-muted-foreground">
-                TOTAL WAIVER MOVES
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-4xl font-bold">{stats?.waivers || 0}</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-sm font-medium text-muted-foreground">
-                TOTAL TRADES
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-4xl font-bold">{stats?.trades || 0}</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-sm font-medium text-muted-foreground">
-                TOTAL TRANSACTIONS
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-4xl font-bold">{stats?.total || 0}</div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Chart */}
-        {chartData.length > 0 && (
-          <Card>
-            <CardHeader>
-              <CardTitle>Transaction Trends</CardTitle>
-              <CardDescription>Historical transaction activity by year</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <ComposedChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="year" />
-                  <YAxis yAxisId="left" label={{ value: 'Total Transactions', angle: -90, position: 'insideLeft' }} />
-                  <YAxis yAxisId="right" orientation="right" label={{ value: 'Total Trades', angle: 90, position: 'insideRight' }} />
-                  <Tooltip />
-                  <Area 
-                    yAxisId="left" 
-                    type="monotone" 
-                    dataKey="totalTransactions" 
-                    fill="#3b82f6" 
-                    fillOpacity={0.3}
-                    stroke="#3b82f6"
-                  />
-                  <Bar 
-                    yAxisId="right" 
-                    dataKey="totalTrades" 
-                    fill="#f59e0b"
-                    radius={[8, 8, 0, 0]}
-                  />
-                </ComposedChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-        )}
+      {/* Stats Cards - Three Horizontal Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              TOTAL WAIVER MOVES
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-4xl font-bold">{stats?.waivers || 0}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              TOTAL TRADES
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-4xl font-bold">{stats?.trades || 0}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              TOTAL TRANSACTIONS
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-4xl font-bold">{stats?.total || 0}</div>
+          </CardContent>
+        </Card>
       </div>
+
+      {/* Chart - Combination Line and Bar Chart */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Transaction Trends</CardTitle>
+          <CardDescription>Historical transaction activity by year</CardDescription>
+        </CardHeader>
+        <CardContent>
+          {chartData.length > 0 ? (
+            <ResponsiveContainer width="100%" height={300}>
+              <ComposedChart data={chartData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="year" />
+                <YAxis yAxisId="left" label={{ value: 'Total Transactions', angle: -90, position: 'insideLeft' }} />
+                <YAxis yAxisId="right" orientation="right" label={{ value: 'Trades', angle: 90, position: 'insideRight' }} />
+                <Tooltip />
+                <Legend />
+                <Line 
+                  yAxisId="left" 
+                  type="monotone" 
+                  dataKey="totalTransactions" 
+                  stroke="#3b82f6" 
+                  strokeWidth={2}
+                  dot={{ fill: '#3b82f6', r: 4 }}
+                  name="Total Transactions"
+                />
+                <Bar 
+                  yAxisId="right" 
+                  dataKey="totalTrades" 
+                  fill="#f59e0b"
+                  radius={[8, 8, 0, 0]}
+                  name="Trades"
+                />
+              </ComposedChart>
+            </ResponsiveContainer>
+          ) : (
+            <div className="flex items-center justify-center h-[300px] text-muted-foreground">
+              <div className="text-center">
+                <p>No transaction data available for chart</p>
+                <p className="text-sm mt-2">Transaction data needs to be imported from ESPN</p>
+              </div>
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       {/* Rankings Tables */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
