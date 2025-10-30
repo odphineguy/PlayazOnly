@@ -87,18 +87,20 @@ export default function LeagueHome() {
 
   // Get available years for sorting
   const availableYears = useMemo(() => {
+    if (!processedSeasons || processedSeasons.length === 0) return ["all"];
     const years = processedSeasons.map(s => s.year);
     return ["all", ...years.map(y => y.toString())];
   }, [processedSeasons]);
 
   // Filter data based on selected year
   const filteredData = useMemo(() => {
+    if (!processedSeasons || processedSeasons.length === 0) return [];
     if (selectedYear === "all") return processedSeasons;
     return processedSeasons.filter(s => s.year.toString() === selectedYear);
   }, [processedSeasons, selectedYear]);
 
   // Get current/most recent season
-  const currentSeason = processedSeasons[0];
+  const currentSeason = processedSeasons?.[0];
 
   // Calculate league stats
   const leagueStats = useMemo(() => {
@@ -140,6 +142,8 @@ export default function LeagueHome() {
 
   // Get standings for selected year
   const standings = useMemo(() => {
+    if (!processedSeasons || !teams) return [];
+    
     if (selectedYear === "all") {
       // Show current season
       const season = processedSeasons[0];
