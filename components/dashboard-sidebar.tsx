@@ -1,14 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { 
-  Home, 
-  History, 
-  Users, 
-  FileText, 
+import {
+  Home,
+  History,
+  Users,
+  FileText,
   BarChart3,
   Trophy,
   Calendar,
@@ -144,9 +145,16 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
     <div className={cn("flex flex-col h-full", className)}>
       <div className="flex-1 space-y-4 py-4">
         <div className="px-3 py-2">
-          <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
-            Playaz Only
-          </h2>
+          <div className="mb-4 px-4 flex items-center justify-center">
+            <Image
+              src="/PlayazLogoNoBackground.png"
+              alt="Playaz Only Logo"
+              width={120}
+              height={120}
+              priority
+              className="object-contain"
+            />
+          </div>
           <div className="space-y-1">
             {navigationItems.map((item) => (
               <div key={item.title}>

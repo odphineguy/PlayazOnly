@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,13 +8,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
   ResponsiveContainer,
   LineChart,
   Line,
@@ -34,132 +34,10 @@ export default function LeagueHome() {
   const seasons = useQuery(api.fantasyFootball.getAllSeasons);
   const teams = useQuery(api.fantasyFootball.getAllTeams);
   const matchups = useQuery(api.fantasyFootball.getAllMatchups);
-  // const transactions = useQuery(api.fantasyFootball.getAllTransactions);
-  const transactions: any[] = [];
+  const transactions = useQuery(api.fantasyFootball.getAllTransactions);
 
-  // Process data - handle undefined cases
-  const processedSeasons = useMemo(() => {
-    if (!seasons || !teams || !matchups) return [];
-
-    return seasons.map(season => {
-      const seasonTeams = teams.filter(t => t.seasonId === season._id);
-      const seasonMatchups = matchups.filter(m => m.seasonId === season._id);
-      
-      // Calculate total points for the season
-      let totalPoints = 0;
-      seasonMatchups.forEach(matchup => {
-        totalPoints += matchup.homeScore + matchup.awayScore;
-      });
-      
-      const avgPoints = seasonTeams.length > 0 ? totalPoints / (seasonTeams.length * seasonMatchups.length) : 0;
-
-      // Find champion (team with finalStanding === 1 or highest standing)
-      const champion = seasonTeams.find(t => t.finalStanding === 1) || 
-                      seasonTeams.sort((a, b) => a.standing - b.standing)[0];
-
-      // Find championship matchup
-      const championshipMatchup = seasonMatchups.find(m => m.gameType === "CHAMPIONSHIP");
-
-      return {
-        ...season,
-        champion: champion?.name || "TBD",
-        totalPoints,
-        avgPoints,
-        championshipMatchup
-      };
-    }).sort((a, b) => b.year - a.year);
-  }, [seasons, teams, matchups]);
-
-  // Get available years for sorting
-  const availableYears = useMemo(() => {
-    if (!processedSeasons || processedSeasons.length === 0) return ["all"];
-    const years = processedSeasons.map(s => s.year);
-    return ["all", ...years.map(y => y.toString())];
-  }, [processedSeasons]);
-
-  // Filter data based on selected year
-  const filteredData = useMemo(() => {
-    if (!processedSeasons || processedSeasons.length === 0) return [];
-    if (selectedYear === "all") return processedSeasons;
-    return processedSeasons.filter(s => s.year.toString() === selectedYear);
-  }, [processedSeasons, selectedYear]);
-
-  // Get current/most recent season
-  const currentSeason = processedSeasons?.[0];
-
-  // Calculate league stats
-  const leagueStats = useMemo(() => {
-    if (!seasons || !teams) {
-      return {
-        totalSeasons: 0,
-        activeTeams: 0,
-        totalTransactions: 0,
-        currentSeason: 2024
-      };
-    }
-    const totalSeasons = seasons.length;
-    const uniqueTeams = new Set(teams.map(t => t.name)).size;
-    const totalTransactions = transactions?.length || 0;
-    
-    return {
-      totalSeasons,
-      activeTeams: uniqueTeams,
-      totalTransactions,
-      currentSeason: currentSeason?.year || 2024
-    };
-  }, [seasons, teams, transactions, currentSeason]);
-
-  // Transaction types distribution
-  const transactionTypes = useMemo(() => {
-    if (!transactions || transactions.length === 0) return [];
-    
-    const typeCounts = new Map<string, number>();
-    transactions.forEach(t => {
-      typeCounts.set(t.type, (typeCounts.get(t.type) || 0) + 1);
-    });
-
-    return Array.from(typeCounts.entries()).map(([name, value]) => ({
-      name: name.replace('_', ' '),
-      value,
-      color: COLORS[typeCounts.size % COLORS.length]
-    }));
-  }, [transactions]);
-
-  // Get standings for selected year
-  const standings = useMemo(() => {
-    if (!processedSeasons || !teams) return [];
-    
-    if (selectedYear === "all") {
-      // Show current season
-      const season = processedSeasons[0];
-      if (!season) return [];
-      return teams
-        .filter(t => t.seasonId === season._id)
-        .sort((a, b) => a.standing - b.standing);
-    }
-    
-    const season = processedSeasons.find(s => s.year.toString() === selectedYear);
-    if (!season) return [];
-    
-    return teams
-      .filter(t => t.seasonId === season._id)
-      .sort((a, b) => a.standing - b.standing);
-  }, [selectedYear, processedSeasons, teams]);
-
-  // Recent transactions
-  const recentTransactions = useMemo(() => {
-    if (!transactions) return [];
-    return transactions.slice(0, 10).map(t => {
-      const season = seasons.find(s => s._id === t.seasonId);
-      return {
-        ...t,
-        year: season?.year || "Unknown"
-      };
-    });
-  }, [transactions, seasons]);
-
-  // Loading state - check after all hooks
-  if (!leagues || !seasons || !teams || !matchups || processedSeasons.length === 0) {
+  // Loading state
+  if (leagues === undefined || seasons === undefined || teams === undefined || matchups === undefined) {
     return (
       <div className="min-h-screen bg-background">
         <div className="container mx-auto p-6 space-y-6">
@@ -173,6 +51,74 @@ export default function LeagueHome() {
       </div>
     );
   }
+
+  // Process season data
+  const processedSeasons = seasons && teams && matchups ? seasons.map(season => {
+    const seasonTeams = teams.filter(t => t.seasonId === season._id);
+    const seasonMatchups = matchups.filter(m => m.seasonId === season._id);
+
+    let totalPoints = 0;
+    seasonMatchups.forEach(matchup => {
+      totalPoints += matchup.homeScore + matchup.awayScore;
+    });
+
+    const avgPoints = seasonTeams.length > 0 ? totalPoints / (seasonTeams.length * seasonMatchups.length) : 0;
+    const champion = seasonTeams.find(t => t.finalStanding === 1) ||
+                    seasonTeams.sort((a, b) => a.standing - b.standing)[0];
+
+    return {
+      ...season,
+      champion: champion?.name || "TBD",
+      totalPoints,
+      avgPoints,
+    };
+  }).sort((a, b) => b.year - a.year) : [];
+
+  // Get available years
+  const availableYears = ["all", ...processedSeasons.map(s => s.year.toString())];
+
+  // Filter data by selected year
+  const filteredSeasons = selectedYear === "all" ? processedSeasons : processedSeasons.filter(s => s.year.toString() === selectedYear);
+
+  // Get current season
+  const currentSeason = processedSeasons[0];
+
+  // Calculate league stats
+  const leagueStats = {
+    totalSeasons: seasons?.length || 0,
+    activeTeams: teams ? new Set(teams.map(t => t.name)).size : 0,
+    totalTransactions: transactions?.length || 0,
+    currentSeason: currentSeason?.year || 2024
+  };
+
+  // Transaction types distribution
+  const transactionTypes = transactions && transactions.length > 0 ? (() => {
+    const typeCounts = new Map<string, number>();
+    transactions.forEach(t => {
+      typeCounts.set(t.type, (typeCounts.get(t.type) || 0) + 1);
+    });
+    return Array.from(typeCounts.entries()).map(([name, value]) => ({
+      name: name.replace('_', ' '),
+      value,
+      color: COLORS[typeCounts.size % COLORS.length]
+    }));
+  })() : [];
+
+  // Get standings for selected year
+  const standings = teams && processedSeasons.length > 0 ? (() => {
+    const season = selectedYear === "all" ? processedSeasons[0] : processedSeasons.find(s => s.year.toString() === selectedYear);
+    if (!season) return [];
+    return teams.filter(t => t.seasonId === season._id).sort((a, b) => a.standing - b.standing);
+  })() : [];
+
+  // Recent transactions
+  const recentTransactions = transactions && seasons ? transactions.slice(0, 10).map(t => {
+    const season = seasons.find(s => s._id === t.seasonId);
+    return {
+      ...t,
+      year: season?.year || "Unknown"
+    };
+  }) : [];
 
   return (
     <div className="min-h-screen bg-background">
@@ -196,9 +142,6 @@ export default function LeagueHome() {
                 ))}
               </SelectContent>
             </Select>
-            <Badge variant="outline" className="text-sm">
-              Season {leagueStats.currentSeason}
-            </Badge>
           </div>
         </div>
 
@@ -277,7 +220,7 @@ export default function LeagueHome() {
                 </CardHeader>
                 <CardContent>
                   <ResponsiveContainer width="100%" height={300}>
-                    <LineChart data={filteredData}>
+                    <LineChart data={filteredSeasons}>
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis dataKey="year" />
                       <YAxis />
@@ -339,7 +282,7 @@ export default function LeagueHome() {
                 {standings.length > 0 ? (
                   <ScrollArea className="h-[400px]">
                     <div className="space-y-2">
-                      {standings.map((team, index) => {
+                      {standings.map((team) => {
                         const streak = team.streakType === "WIN" ? `W${team.streakLength}` : `L${team.streakLength}`;
                         return (
                           <div key={team._id} className="flex items-center justify-between p-3 border rounded-lg">
@@ -386,10 +329,10 @@ export default function LeagueHome() {
                   <CardDescription>Past champions and their seasons</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {filteredData.length > 0 ? (
+                  {filteredSeasons.length > 0 ? (
                     <ScrollArea className="h-[300px]">
                       <div className="space-y-3">
-                        {filteredData.map((season) => (
+                        {filteredSeasons.map((season) => (
                           <div key={season._id} className="flex items-center justify-between p-3 border rounded-lg">
                             <div className="flex items-center space-x-3">
                               <Trophy className="h-5 w-5 text-yellow-500" />
@@ -421,9 +364,9 @@ export default function LeagueHome() {
                   <CardDescription>Average points by season</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {filteredData.length > 0 ? (
+                  {filteredSeasons.length > 0 ? (
                     <ResponsiveContainer width="100%" height={300}>
-                      <BarChart data={filteredData}>
+                      <BarChart data={filteredSeasons}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="year" />
                         <YAxis />
