@@ -158,7 +158,7 @@ export default function LeagueHome() {
   }, [transactions, seasons]);
 
   // Loading state - check after all hooks
-  if (!leagues || !seasons || !teams || !matchups) {
+  if (!leagues || !seasons || !teams || !matchups || processedSeasons.length === 0) {
     return (
       <div className="min-h-screen bg-background">
         <div className="container mx-auto p-6 space-y-6">
