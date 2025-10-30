@@ -102,6 +102,14 @@ export default function LeagueHome() {
 
   // Calculate league stats
   const leagueStats = useMemo(() => {
+    if (!seasons || !teams) {
+      return {
+        totalSeasons: 0,
+        activeTeams: 0,
+        totalTransactions: 0,
+        currentSeason: 2024
+      };
+    }
     const totalSeasons = seasons.length;
     const uniqueTeams = new Set(teams.map(t => t.name)).size;
     const totalTransactions = transactions?.length || 0;
