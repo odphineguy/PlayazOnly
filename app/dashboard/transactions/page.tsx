@@ -28,7 +28,7 @@ export default function TransactionsPage() {
   const transactions = useQuery(api.fantasyFootball.getAllTransactions);
   const seasons = useQuery(api.fantasyFootball.getAllSeasons);
   const teams = useQuery(api.fantasyFootball.getAllTeams);
-  const stats = useQuery(api.fantasyFootball.getTransactionStats);
+  const stats = useQuery(api.fantasyFootball.getTransactionStats, {});
   const waiverRankings = useQuery(api.fantasyFootball.getTransactionRankings, { type: "WAIVER" });
   const tradeRankings = useQuery(api.fantasyFootball.getTransactionRankings, { type: "TRADE" });
 
