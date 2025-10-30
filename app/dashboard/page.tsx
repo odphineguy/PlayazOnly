@@ -104,7 +104,7 @@ export default function LeagueHome() {
   const leagueStats = useMemo(() => {
     const totalSeasons = seasons.length;
     const uniqueTeams = new Set(teams.map(t => t.name)).size;
-    const totalTransactions = transactions.length;
+    const totalTransactions = transactions?.length || 0;
     
     return {
       totalSeasons,
@@ -151,6 +151,7 @@ export default function LeagueHome() {
 
   // Recent transactions
   const recentTransactions = useMemo(() => {
+    if (!transactions) return [];
     return transactions.slice(0, 10).map(t => {
       const season = seasons.find(s => s._id === t.seasonId);
       return {
