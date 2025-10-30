@@ -22,7 +22,7 @@ import {
   Pie,
   Cell
 } from "recharts";
-import { Trophy, Users, TrendingUp, Calendar, Target, Zap, Clock } from "lucide-react";
+import { Trophy, Users, TrendingUp, Calendar, Zap, Clock } from "lucide-react";
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D'];
 
@@ -88,10 +88,10 @@ export default function LeagueHome() {
 
   // Calculate league stats
   const leagueStats = {
-    totalSeasons: seasons?.length || 0,
-    activeTeams: teams ? new Set(teams.map(t => t.name)).size : 0,
-    totalTransactions: transactions?.length || 0,
-    currentSeason: currentSeason?.year || 2024
+    totalSeasons: 0,
+    activeTeams: 0,
+    totalTransactions: 0,
+    currentSeason: undefined
   };
 
   // Transaction types distribution
@@ -129,8 +129,7 @@ export default function LeagueHome() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">Playaz Only Fantasy League</h1>
-            <p className="text-muted-foreground">League Legacy Dashboard</p>
+            <h1 className="text-3xl font-bold tracking-tight">{leagues?.[0]?.name ?? "0"}</h1>
           </div>
           <div className="flex items-center space-x-4">
             <Select value={selectedYear} onValueChange={setSelectedYear}>
@@ -157,9 +156,7 @@ export default function LeagueHome() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{leagueStats.totalSeasons}</div>
-              <p className="text-xs text-muted-foreground">
-                Since {processedSeasons[processedSeasons.length - 1]?.year || 2018}
-              </p>
+              <p className="text-xs text-muted-foreground">Since 0</p>
             </CardContent>
           </Card>
 
@@ -189,18 +186,7 @@ export default function LeagueHome() {
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">League Activity</CardTitle>
-              <TrendingUp className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">High</div>
-              <p className="text-xs text-muted-foreground">
-                Very active league
-              </p>
-            </CardContent>
-          </Card>
+          {/* Removed mock "League Activity" card */}
         </div>
 
         {/* Main Dashboard Content */}
@@ -423,16 +409,11 @@ export default function LeagueHome() {
             <Card>
               <CardHeader>
                 <CardTitle>Draft Analysis</CardTitle>
-                <CardDescription>Visit The Draft page for comprehensive analysis</CardDescription>
+                <CardDescription>Draft data</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-8">
-                  <Target className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                  <h3 className="text-lg font-medium mb-2">Draft Analysis Available</h3>
-                  <p className="text-muted-foreground">
-                    Visit The Draft page to see detailed analysis of draft picks, 
-                    positional trends, and team strategies.
-                  </p>
+                <div className="text-center py-8 text-muted-foreground">
+                  No draft data available
                 </div>
               </CardContent>
             </Card>

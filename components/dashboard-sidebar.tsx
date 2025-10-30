@@ -8,28 +8,17 @@ import { Button } from "@/components/ui/button";
 import {
   Home,
   History,
-  Users,
   FileText,
   BarChart3,
-  Trophy,
-  Calendar,
-  Settings,
   Gamepad2,
   Sword,
-  DollarSign,
-  StickyNote,
-  BookOpen,
-  Clock,
-  Mail,
-  Award,
-  BookMarked,
   User,
   Shield
 } from "lucide-react";
 
 const navigationItems = [
   {
-    title: "League Home",
+    title: "Dashboard",
     href: "/dashboard",
     icon: Home,
     description: "Overview and stats"
@@ -64,60 +53,7 @@ const navigationItems = [
     icon: Sword,
     description: "Head-to-head matchups"
   },
-  {
-    title: "Finances",
-    href: "/dashboard/finances",
-    icon: DollarSign,
-    description: "League finances and payments"
-  },
-  {
-    title: "Notes",
-    href: "/dashboard/notes",
-    icon: StickyNote,
-    description: "League notes and announcements"
-  },
-  {
-    title: "Rules",
-    href: "/dashboard/rules",
-    icon: BookOpen,
-    description: "League rules and settings"
-  },
-  {
-    title: "Schedule",
-    href: "/dashboard/schedule",
-    icon: Clock,
-    description: "Season schedule and matchups"
-  },
-  {
-    title: "Newsletter",
-    href: "/dashboard/newsletter",
-    icon: Mail,
-    description: "League newsletter and updates"
-  },
-  {
-    title: "Achievements",
-    href: "/dashboard/achievements",
-    icon: Award,
-    description: "League achievements and awards"
-  },
-  {
-    title: "Record Book",
-    href: "/dashboard/record-book",
-    icon: BookMarked,
-    description: "League records and milestones"
-  },
-  {
-    title: "Import Data",
-    href: "/import",
-    icon: Calendar,
-    description: "Import ESPN data"
-  },
-  {
-    title: "Manual Entry",
-    href: "/manual-entry",
-    icon: Settings,
-    description: "Manual data entry"
-  }
+  
 ];
 
 const userSection = {

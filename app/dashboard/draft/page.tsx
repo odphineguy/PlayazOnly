@@ -121,13 +121,9 @@ export default function DraftPage() {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="flex items-start justify-between">
-        <div className="flex items-center space-x-4">
-          <div className="text-6xl font-bold text-primary">LL</div>
-          <div>
-            <h1 className="text-4xl font-bold tracking-tight">The Draft</h1>
-            <p className="text-sm text-muted-foreground mt-1">Playaz Only</p>
-          </div>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">The Draft</h1>
         </div>
         
         {/* Season and Member Dropdowns */}

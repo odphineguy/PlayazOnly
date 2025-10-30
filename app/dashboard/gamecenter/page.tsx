@@ -233,9 +233,6 @@ export default function GamecenterPage() {
           <h1 className="text-3xl font-bold tracking-tight">Gamecenter</h1>
           <p className="text-muted-foreground">Live games, scores, and real-time updates</p>
         </div>
-        <Badge variant="outline" className="text-sm">
-          Live
-        </Badge>
       </div>
 
       {/* Average Matchup Score Chart */}
@@ -466,13 +463,13 @@ export default function GamecenterPage() {
 
                       {/* Scores */}
                       <div className="flex items-center border-b">
-                        <div className={`flex-1 ${homeWon ? 'bg-green-500/10' : 'bg-red-500/10'} p-3 text-center border-r`}>
+                        <div className={`flex-1 p-3 text-center border-r`}>
                           <span className={`text-2xl font-bold ${homeWon ? 'text-green-600' : 'text-red-600'}`}>
                             {matchup.homeScore.toFixed(2)}
                           </span>
                           <span className="text-xs ml-1">{homeWon ? '●' : '●'}</span>
                         </div>
-                        <div className={`flex-1 ${awayWon ? 'bg-green-500/10' : 'bg-red-500/10'} p-3 text-center`}>
+                        <div className={`flex-1 p-3 text-center`}>
                           <span className="text-xs mr-1">{awayWon ? '●' : '●'}</span>
                           <span className={`text-2xl font-bold ${awayWon ? 'text-green-600' : 'text-red-600'}`}>
                             {matchup.awayScore.toFixed(2)}

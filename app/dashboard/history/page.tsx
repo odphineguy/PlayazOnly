@@ -700,40 +700,8 @@ export default function HistoryPage() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-primary rounded flex items-center justify-center text-primary-foreground font-bold text-sm">
-              LL
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold tracking-tight">League History</h1>
-              <p className="text-sm text-muted-foreground">Playaz Only • 7 Seasons</p>
-            </div>
-          </div>
-        </div>
-        <div className="text-right">
-          {(() => {
-            // Get the most recent completed season's top 3
-            const mostRecentSeason = seasonChampionsData && seasonChampionsData.length > 0
-              ? seasonChampionsData[seasonChampionsData.length - 1]
-              : null;
-
-            if (!mostRecentSeason) return null;
-
-            return (
-              <>
-                <div className="text-sm font-medium">{mostRecentSeason.season} CHAMPIONS</div>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                  <Trophy className="h-4 w-4 text-yellow-500" />
-                  <span>{mostRecentSeason.champion}</span>
-                  <span className="text-lg">🥈</span>
-                  <span>{mostRecentSeason.secondPlace}</span>
-                  <span className="text-lg">🥉</span>
-                  <span>{mostRecentSeason.thirdPlace}</span>
-                </div>
-              </>
-            );
-          })()}
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">League History</h1>
         </div>
       </div>
 
