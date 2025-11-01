@@ -34,8 +34,10 @@ export default function GameDetailPage() {
     ? seasonMatchups.reduce((sum, m) => sum + m.homeScore + m.awayScore, 0) / (seasonMatchups.length * 2)
     : 0;
 
-  const homeTeamAvg = homeTeam ? homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses) : 0;
-  const awayTeamAvg = awayTeam ? awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses) : 0;
+  const homeTeamGames = homeTeam ? ((homeTeam.wins || 0) + (homeTeam.losses || 0)) : 0;
+  const awayTeamGames = awayTeam ? ((awayTeam.wins || 0) + (awayTeam.losses || 0)) : 0;
+  const homeTeamAvg = homeTeam && homeTeam.pointsFor && homeTeamGames > 0 ? homeTeam.pointsFor / homeTeamGames : 0;
+  const awayTeamAvg = awayTeam && awayTeam.pointsFor && awayTeamGames > 0 ? awayTeam.pointsFor / awayTeamGames : 0;
 
   if (!matchup || !homeTeam || !awayTeam) {
     return (
@@ -65,13 +67,13 @@ export default function GameDetailPage() {
       color: matchup.homeScore > matchup.awayScore ? "green" : "red",
       stats: {
         vsTeamAvg: homeTeamAvg,
-        vsTeamAvgPct: ((matchup.homeScore - homeTeamAvg) / homeTeamAvg) * 100,
+        vsTeamAvgPct: homeTeamAvg > 0 ? ((matchup.homeScore - homeTeamAvg) / homeTeamAvg) * 100 : 0,
         vsLeagueAvg: leagueAvgScore,
-        vsLeagueAvgPct: ((matchup.homeScore - leagueAvgScore) / leagueAvgScore) * 100,
-        pointsShare: (homeTeam.pointsFor / seasonMatchups.reduce((sum, m) => sum + m.homeScore + m.awayScore, 0)) * 100,
-        pointsRank: homeTeam.standing,
-        coachScore: (homeTeam.wins / (homeTeam.wins + homeTeam.losses)) * 100,
-        coachRank: homeTeam.standing,
+        vsLeagueAvgPct: leagueAvgScore > 0 ? ((matchup.homeScore - leagueAvgScore) / leagueAvgScore) * 100 : 0,
+        pointsShare: homeTeam.pointsFor && seasonMatchups.length > 0 ? (homeTeam.pointsFor / seasonMatchups.reduce((sum, m) => sum + m.homeScore + m.awayScore, 0)) * 100 : 0,
+        pointsRank: homeTeam.standing || 0,
+        coachScore: homeTeamGames > 0 ? ((homeTeam.wins || 0) / homeTeamGames) * 100 : 0,
+        coachRank: homeTeam.standing || 0,
         luckFactor: matchupStats?.homeLuckFactor || 0,
         totalYards: Math.floor(matchup.homeScore * 2.5), // Estimate based on score
         touchdowns: Math.floor(matchup.homeScore / 6), // Estimate based on score
@@ -88,13 +90,13 @@ export default function GameDetailPage() {
       color: matchup.awayScore > matchup.homeScore ? "green" : "red",
       stats: {
         vsTeamAvg: awayTeamAvg,
-        vsTeamAvgPct: ((matchup.awayScore - awayTeamAvg) / awayTeamAvg) * 100,
+        vsTeamAvgPct: awayTeamAvg > 0 ? ((matchup.awayScore - awayTeamAvg) / awayTeamAvg) * 100 : 0,
         vsLeagueAvg: leagueAvgScore,
-        vsLeagueAvgPct: ((matchup.awayScore - leagueAvgScore) / leagueAvgScore) * 100,
-        pointsShare: (awayTeam.pointsFor / seasonMatchups.reduce((sum, m) => sum + m.homeScore + m.awayScore, 0)) * 100,
-        pointsRank: awayTeam.standing,
-        coachScore: (awayTeam.wins / (awayTeam.wins + awayTeam.losses)) * 100,
-        coachRank: awayTeam.standing,
+        vsLeagueAvgPct: leagueAvgScore > 0 ? ((matchup.awayScore - leagueAvgScore) / leagueAvgScore) * 100 : 0,
+        pointsShare: awayTeam.pointsFor && seasonMatchups.length > 0 ? (awayTeam.pointsFor / seasonMatchups.reduce((sum, m) => sum + m.homeScore + m.awayScore, 0)) * 100 : 0,
+        pointsRank: awayTeam.standing || 0,
+        coachScore: awayTeamGames > 0 ? ((awayTeam.wins || 0) / awayTeamGames) * 100 : 0,
+        coachRank: awayTeam.standing || 0,
         luckFactor: matchupStats?.awayLuckFactor || 0,
         totalYards: Math.floor(matchup.awayScore * 2.5), // Estimate based on score
         touchdowns: Math.floor(matchup.awayScore / 6), // Estimate based on score

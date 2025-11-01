@@ -282,7 +282,7 @@ export default function LeagueHome() {
                               <div>
                                 <div className="font-medium">{team.name}</div>
                                 <div className="text-sm text-muted-foreground">
-                                  {team.wins}-{team.losses} • {team.pointsFor.toFixed(1)} PF
+                                  {team.wins}-{team.losses} • {team.pointsFor ? team.pointsFor.toFixed(1) : '0.0'} PF
                                 </div>
                               </div>
                             </div>
@@ -291,7 +291,7 @@ export default function LeagueHome() {
                                 {streak}
                               </Badge>
                               <div className="text-right">
-                                <div className="text-sm font-medium">{team.pointsFor.toFixed(1)}</div>
+                                <div className="text-sm font-medium">{team.pointsFor ? team.pointsFor.toFixed(1) : '0.0'}</div>
                                 <div className="text-xs text-muted-foreground">Points For</div>
                               </div>
                             </div>
@@ -389,7 +389,7 @@ export default function LeagueHome() {
                           <div>
                             <div className="font-medium">{transaction.description}</div>
                             <div className="text-sm text-muted-foreground">
-                              {new Date(transaction.createdAt).toLocaleDateString()} • {transaction.year}
+                              {transaction.createdAt ? new Date(transaction.createdAt).toLocaleDateString() : 'Unknown date'} • {transaction.year}
                             </div>
                           </div>
                         </div>

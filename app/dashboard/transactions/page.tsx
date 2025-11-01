@@ -305,7 +305,7 @@ export default function TransactionsPage() {
                       <div className="font-medium">{tx.description}</div>
                       <div className="text-sm text-muted-foreground flex items-center gap-2">
                         <span className="inline-flex items-center gap-1">
-                          <Calendar className="w-3 h-3" /> {new Date(tx.createdAt).toLocaleDateString()}
+                          <Calendar className="w-3 h-3" /> {tx.createdAt ? new Date(tx.createdAt).toLocaleDateString() : 'Unknown date'}
                         </span>
                         {tx.week ? <span>• W{tx.week}</span> : null}
                         {tx.teams.length ? <span>• {tx.teams.join(" • ")}</span> : null}
