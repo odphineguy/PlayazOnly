@@ -220,13 +220,16 @@ export default function HistoryPage() {
     const allPlayTotal = team.allPlayWins + team.allPlayLosses;
     const allPlayWinPct = allPlayTotal > 0 ? team.allPlayWins / allPlayTotal : 0;
 
+    const totalGames = team.totalWins + team.totalLosses;
+    const winPctNum = totalGames > 0 ? team.totalWins / totalGames : 0;
+
     return {
       team: team.teamName,
       avatar: "🟢", // Default avatar, could be customized per team
       seasons: `${team.seasons} seasons`,
       record: `${team.totalWins}-${team.totalLosses}`,
-      winPct: (team.totalWins / (team.totalWins + team.totalLosses)).toFixed(3),
-      winPctNum: team.totalWins / (team.totalWins + team.totalLosses),
+      winPct: winPctNum.toFixed(3),
+      winPctNum: winPctNum,
       allPlayRecord: allPlayTotal > 0 ? `${team.allPlayWins}-${team.allPlayLosses}` : "N/A",
       allPlayWinPct: allPlayTotal > 0 ? allPlayWinPct.toFixed(3) : "N/A",
       allPlayWinPctNum: allPlayWinPct,
@@ -412,13 +415,13 @@ export default function HistoryPage() {
       switch (leagueRatingTab) {
         case "league-rating":
           // Simple ELO-style rating based on wins/losses
-          const rating = 1500 + (team.wins - team.losses) * 10;
+          const rating = 1500 + ((team.wins || 0) - (team.losses || 0)) * 10;
           yearData[owner] = rating;
           break;
 
         case "season-score":
           // Total points for the season
-          yearData[owner] = parseFloat(team.pointsFor.toFixed(2));
+          yearData[owner] = team.pointsFor ? parseFloat(team.pointsFor.toFixed(2)) : 0;
           break;
 
         case "points-share":
@@ -428,8 +431,8 @@ export default function HistoryPage() {
               const s = allSeasons.find(season => season._id === t.seasonId);
               return s?.year === year;
             })
-            .reduce((sum, t) => sum + t.pointsFor, 0);
-          const share = allPointsForYear > 0 ? (team.pointsFor / allPointsForYear) * 100 : 0;
+            .reduce((sum, t) => sum + (t.pointsFor || 0), 0);
+          const share = allPointsForYear > 0 && team.pointsFor ? (team.pointsFor / allPointsForYear) * 100 : 0;
           yearData[owner] = parseFloat(share.toFixed(2));
           break;
 
@@ -518,18 +521,19 @@ export default function HistoryPage() {
     const records = team.championships + team.secondPlace + team.thirdPlace;
 
     // Calculate actual win percentage
-    const winPct = team.totalWins / (team.totalWins + team.totalLosses);
+    const totalGames = team.totalWins + team.totalLosses;
+    const winPct = totalGames > 0 ? team.totalWins / totalGames : 0;
 
     // Calculate expected wins based on points (simple luck metric)
-    const avgPointsFor = team.totalPointsFor / team.seasons;
-    const avgPointsAgainst = team.totalPointsAgainst / team.seasons;
+    const avgPointsFor = team.seasons > 0 ? team.totalPointsFor / team.seasons : 0;
+    const avgPointsAgainst = team.seasons > 0 ? team.totalPointsAgainst / team.seasons : 0;
 
     // Estimate strength of schedule (higher points against = harder schedule)
     const strengthOfSchedule = avgPointsAgainst.toFixed(1);
 
     // Luck calculation: actual wins vs expected wins based on points
     // Simple formula: if you score more than average but have fewer wins, you're unlucky
-    const expectedWinPct = 0.5 + ((avgPointsFor - avgPointsAgainst) / avgPointsFor) * 0.3;
+    const expectedWinPct = avgPointsFor > 0 ? 0.5 + ((avgPointsFor - avgPointsAgainst) / avgPointsFor) * 0.3 : 0.5;
     const luckIndex = ((winPct - expectedWinPct) * 100).toFixed(1);
 
     // Get owner's teams to calculate draft/manager/coach rankings
