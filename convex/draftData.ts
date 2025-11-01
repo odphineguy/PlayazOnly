@@ -117,7 +117,7 @@ function getExpectedVorAtPick(
 }
 
 // Calibration: scale pick values so AVG. PICK VALUE lands in a friendly range
-const TARGET_AVG_PICK_ABS = 10; // aim for ~10 points per pick on average
+const TARGET_AVG_PICK_ABS = 25; // aim for ~25 points per pick on average for better spread
 function computeCalibrationScale(pickValues: Array<number>): number {
   const avgAbs = pickValues.length > 0
     ? pickValues.reduce((s, v) => s + Math.abs(v), 0) / pickValues.length
@@ -156,7 +156,7 @@ export const importDraftData = mutation({
     }
     
     // Find the league (use the existing league from the season)
-    const league = await ctx.db.get(existingSeason.leagueId);
+    let league = existingSeason.leagueId ? await ctx.db.get(existingSeason.leagueId) : null;
     if (!league) {
       // If league not found by season's leagueId, try to find any "Playaz Only" league
       const fallbackLeague = await ctx.db.query("leagues")
@@ -167,6 +167,7 @@ export const importDraftData = mutation({
       }
       // Update the season to use the correct league
       await ctx.db.patch(existingSeason._id, { leagueId: fallbackLeague._id });
+      league = fallbackLeague;
     }
     
     // Get all teams for this season
@@ -224,7 +225,7 @@ export const importDraftData = mutation({
       
       // Create the draft pick
       const draftPickId = await ctx.db.insert("draftPicks", {
-        leagueId: existingSeason.leagueId,
+        leagueId: existingSeason.leagueId ?? undefined,
         seasonId: existingSeason._id,
         teamId: teamId,
         playerId: playerId,
@@ -241,7 +242,7 @@ export const importDraftData = mutation({
       message: `Imported ${importedPicks.length} draft picks for ${year}`,
       picksImported: importedPicks.length,
       seasonId: existingSeason._id,
-      leagueId: existingSeason.leagueId
+      leagueId: existingSeason.leagueId ?? undefined
     };
   },
 });
@@ -264,14 +265,16 @@ export const getAllTimeDraftStats = query({
       };
     }
 
-    // Get all seasons, teams, players
-    const [seasons, teams, players] = await Promise.all([
+    // Get all seasons, teams, players, owners
+    const [seasons, teams, players, owners] = await Promise.all([
       ctx.db.query("seasons").collect(),
       ctx.db.query("teams").collect(),
       ctx.db.query("players").collect(),
+      ctx.db.query("owners").collect(),
     ]);
 
     const playerMap = new Map(players.map(p => [p._id, p]));
+    const ownerMap = new Map(owners.map(o => [o._id, o]));
 
     // Get all roster entries to calculate actual fantasy points
     const rosterEntries = await ctx.db.query("rosterEntries").collect();
@@ -310,7 +313,8 @@ export const getAllTimeDraftStats = query({
       // Filter by memberName if provided
       if (memberName) {
         const team = teams.find(t => t._id === pick.teamId);
-        const ownerDisplay = team?.ownerDisplayName || team?.name;
+        const owner = team ? ownerMap.get(team.ownerId) : null;
+        const ownerDisplay = owner?.displayName || team?.name;
         if (!ownerDisplay || ownerDisplay !== memberName) return;
       }
 
@@ -354,17 +358,19 @@ export const getAllTimeDraftStats = query({
 export const getDraftValueByPosition = query({
   args: { year: v.optional(v.number()), memberName: v.optional(v.string()) },
   handler: async (ctx, args) => {
-    const [allDraftPicks, players, seasons, rosterEntries, teams] = await Promise.all([
+    const [allDraftPicks, players, seasons, rosterEntries, teams, owners] = await Promise.all([
       ctx.db.query("draftPicks").collect(),
       ctx.db.query("players").collect(),
       ctx.db.query("seasons").collect(),
       ctx.db.query("rosterEntries").collect(),
       ctx.db.query("teams").collect(),
+      ctx.db.query("owners").collect(),
     ]);
 
     // Create maps for quick lookup
     const playerMap = new Map(players.map(p => [p._id, p]));
     const seasonMap = new Map(seasons.map(s => [s._id, s]));
+    const ownerMap = new Map(owners.map(o => [o._id, o]));
 
     // Create a map: playerId+seasonId -> total points
     const playerSeasonPoints = new Map<string, number>();
@@ -391,7 +397,8 @@ export const getDraftValueByPosition = query({
       if (args?.year && season.year !== args.year) return;
       if (args?.memberName) {
         const team = teamMap.get(pick.teamId);
-        const ownerDisplay = team?.ownerDisplayName || team?.name;
+        const owner = team ? ownerMap.get(team.ownerId) : null;
+        const ownerDisplay = owner?.displayName || team?.name;
         if (!ownerDisplay || ownerDisplay !== args.memberName) return;
       }
 
@@ -605,14 +612,16 @@ export const getAllTimeDraftRankings = query({
   handler: async (ctx, args) => {
     const limit = args.limit || 20;
     const minPicks = args.minPicks ?? 128;
-    const [allDraftPicks, players, teams, rosterEntries] = await Promise.all([
+    const [allDraftPicks, players, teams, rosterEntries, owners] = await Promise.all([
       ctx.db.query("draftPicks").collect(),
       ctx.db.query("players").collect(),
       ctx.db.query("teams").collect(),
       ctx.db.query("rosterEntries").collect(),
+      ctx.db.query("owners").collect(),
     ]);
 
     const playerMap = new Map(players.map(p => [p._id, p]));
+    const ownerMap = new Map(owners.map(o => [o._id, o]));
 
     // Create a map: playerId+seasonId -> total points
     const playerSeasonPoints = new Map<string, number>();
@@ -645,7 +654,8 @@ export const getAllTimeDraftRankings = query({
       allValues.push(pickValue);
 
       const team = teams.find(t => t._id === pick.teamId);
-      const ownerName = team?.ownerDisplayName || team?.name || "Unknown";
+      const owner = team ? ownerMap.get(team.ownerId) : null;
+      const ownerName = owner?.displayName || team?.name || "Unknown";
       const ownerKey = ownerName.toString();
       if (!ownerPicks.has(ownerKey)) ownerPicks.set(ownerKey, { name: ownerName, values: [], seasons: new Set<string>() });
       const agg = ownerPicks.get(ownerKey)!;
@@ -702,10 +712,6 @@ export const getPositionAverages = query({
       playerSeasonPoints.set(key, currentPoints + entry.points);
     });
 
-    // Build VOR context
-    const replacement = computeReplacementLevels(playerSeasonPoints, allDraftPicks, playerMap);
-    const expectedVor = buildExpectedVorMap(allDraftPicks, playerSeasonPoints, playerMap, replacement);
-
     // Filter picks for this position
     const picks = allDraftPicks.filter(p => {
       const player = playerMap.get(p.playerId);
@@ -716,28 +722,35 @@ export const getPositionAverages = query({
       return { avgDraftValue: 0, avgDraftRound: 0, totalPicks: 0 };
     }
 
-    // Calculate real pick values
-    let totalValue = 0;
+    // Calculate position-specific draft statistics
+    const expectedPointsAtPick = (overallPick: number) => 180 * Math.exp(-0.012 * (overallPick - 1));
+
+    let totalRatio = 0;
     let totalRounds = 0;
-    const allValues: number[] = [];
+    let validPicks = 0;
 
     picks.forEach(pick => {
       const key = `${pick.playerId}_${pick.seasonId}`;
       const actualPoints = playerSeasonPoints.get(key) || 0;
-      const pos = normalizePosition(playerMap.get(pick.playerId)!.position);
-      const vor = actualPoints - replacement[pos];
-      const expected = getExpectedVorAtPick(expectedVor, pos, pick.overallPick);
-      const pickValue = vor - expected;
-      allValues.push(pickValue);
+      const expected = expectedPointsAtPick(pick.overallPick);
 
-      totalValue += pickValue;
+      // Calculate ratio of actual to expected points
+      if (expected > 0) {
+        const ratio = actualPoints / expected;
+        totalRatio += ratio;
+        validPicks++;
+      }
+
       totalRounds += pick.round;
     });
 
-    const scale = computeCalibrationScale(allValues);
+    // Scale the average ratio to be in the 3.5-4.5 range
+    // Average ratio is typically around 0.8-1.2, so multiply by ~4 to get to 3.5-4.5 range
+    const avgRatio = validPicks > 0 ? totalRatio / validPicks : 1;
+    const scaledValue = avgRatio * 4;
 
     return {
-      avgDraftValue: parseFloat(((totalValue * scale) / picks.length).toFixed(2)),
+      avgDraftValue: parseFloat(scaledValue.toFixed(2)),
       avgDraftRound: parseFloat((totalRounds / picks.length).toFixed(2)),
       totalPicks: picks.length,
     };

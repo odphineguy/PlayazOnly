@@ -89,7 +89,6 @@ export const importPlayerSeasonStats = mutation({
           playerId: player._id,
           seasonId: season._id,
           points: playerStat.total_points,
-          isStarter: false, // We don't have this info from season totals
           createdAt: Date.now(),
           updatedAt: Date.now(),
         });

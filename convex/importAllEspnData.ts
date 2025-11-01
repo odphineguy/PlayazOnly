@@ -39,7 +39,7 @@ export const importAllEspnData = mutation({
         existingSeasons.length >= 8 &&
         existingTeams.length >= 80 &&
         existingMatchups.length >= 500 &&
-        existingTeams[0]?.ownerDisplayName;
+        existingTeams[0]?.ownerId;
 
       if (hasCompleteData) {
         return {
@@ -122,12 +122,10 @@ export const importAllEspnData = mutation({
         leagueId,
         year,
         isActive: year === 2025,
-        totalTeams: seasonData.teams.length,
         playoffTeams: 6,
         regularSeasonWeeks: 14,
         playoffWeeks: 3,
         dataSource: "ESPN",
-        hasCompleteData: year !== 2025,
         createdAt: now,
         updatedAt: now,
       });
@@ -141,22 +139,30 @@ export const importAllEspnData = mutation({
       for (const teamData of seasonData.teams) {
         const ownerDisplayName = teamData.owners?.[0]?.displayName || "Unknown";
 
+        // Find or create owner
+        let owner = await ctx.db
+          .query("owners")
+          .withIndex("byDisplayName", (q) => q.eq("displayName", ownerDisplayName))
+          .first();
+
+        if (!owner) {
+          const ownerId = await ctx.db.insert("owners", {
+            displayName: ownerDisplayName,
+            userId: tempUserId,
+            createdAt: now,
+            updatedAt: now,
+          });
+          owner = await ctx.db.get(ownerId);
+        }
+
         const teamId = await ctx.db.insert("teams", {
           leagueId,
           seasonId,
           espnTeamId: teamData.team_id,
           name: teamData.team_name,
-          ownerId: tempUserId as any, // Use temp user ID
-          ownerDisplayName, // Save owner display name for aggregation
-          wins: teamData.wins,
-          losses: teamData.losses,
-          ties: 0,
-          pointsFor: teamData.points_for,
-          pointsAgainst: teamData.points_against,
+          ownerId: owner!._id,
           standing: teamData.standing,
           finalStanding: teamData.final_standing,
-          streakLength: teamData.streak_length,
-          streakType: teamData.streak_type,
           createdAt: now,
           updatedAt: now,
         });
@@ -271,12 +277,35 @@ export const getAllTimeStandings = mutation({
     // Group teams by owner name (assuming same owner across seasons)
     const ownerStats = new Map();
     
+    // Get all matchups to calculate team stats
+    const allMatchups = await ctx.db.query("matchups").collect();
+
+    // Calculate stats for each team from matchups
+    const teamStatsMap = new Map();
+    teams.forEach(team => {
+      const teamMatchups = allMatchups.filter(m => m.homeTeamId === team._id || m.awayTeamId === team._id);
+      let wins = 0, losses = 0, pointsFor = 0, pointsAgainst = 0;
+
+      teamMatchups.forEach(m => {
+        const isHome = m.homeTeamId === team._id;
+        const teamScore = isHome ? m.homeScore : m.awayScore;
+        const oppScore = isHome ? m.awayScore : m.homeScore;
+
+        pointsFor += teamScore;
+        pointsAgainst += oppScore;
+        if (teamScore > oppScore) wins++;
+        else if (teamScore < oppScore) losses++;
+      });
+
+      teamStatsMap.set(team._id, { wins, losses, pointsFor, pointsAgainst });
+    });
+
     teams.forEach(team => {
       const season = seasonMap.get(team.seasonId);
       if (!season) return;
-      
+
       const ownerKey = team.name; // Using team name as key for now
-      
+
       if (!ownerStats.has(ownerKey)) {
         ownerStats.set(ownerKey, {
           teamName: ownerKey,
@@ -290,12 +319,13 @@ export const getAllTimeStandings = mutation({
           thirdPlace: 0
         });
       }
-      
+
+      const teamStats = teamStatsMap.get(team._id) || { wins: 0, losses: 0, pointsFor: 0, pointsAgainst: 0 };
       const stats = ownerStats.get(ownerKey);
-      stats.totalWins += team.wins;
-      stats.totalLosses += team.losses;
-      stats.totalPointsFor += team.pointsFor;
-      stats.totalPointsAgainst += team.pointsAgainst;
+      stats.totalWins += teamStats.wins;
+      stats.totalLosses += teamStats.losses;
+      stats.totalPointsFor += teamStats.pointsFor;
+      stats.totalPointsAgainst += teamStats.pointsAgainst;
       stats.seasons += 1;
       
       if (team.finalStanding === 1) stats.championships += 1;

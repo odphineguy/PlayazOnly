@@ -60,7 +60,7 @@ export default function DraftPage() {
   const positionAverages = useQuery(api.draftData.getPositionAverages, { position: selectedPosition });
   const positionTopPicks = useQuery(api.draftData.getTopPicksAllTime, { limit: 8, position: selectedPosition });
   const positionWorstPicks = useQuery(api.draftData.getWorstPicksAllTime, { limit: 8, position: selectedPosition });
-  const positionRankings = useQuery(api.draftData.getAllTimeDraftRankings, { limit: 8, position: selectedPosition });
+  const positionRankings = useQuery(api.draftData.getAllTimeDraftRankings, { limit: 8, position: selectedPosition, minPicks: 20 });
 
   // Derive member list from rankings data
   const memberOptions = useMemo(() => {
@@ -218,14 +218,10 @@ export default function DraftPage() {
                   <Bar yAxisId="left" dataKey="RB_total" stackId="a" fill="#3b82f6" name="RB" />
                   <Bar yAxisId="left" dataKey="WR_total" stackId="a" fill="#8b5cf6" name="WR" />
                   <Bar yAxisId="left" dataKey="TE_total" stackId="a" fill="#f59e0b" name="TE" />
-                  <Bar yAxisId="left" dataKey="K_total" stackId="a" fill="#6b7280" name="K" />
-                  <Bar yAxisId="left" dataKey="DST_total" stackId="a" fill="#10b981" name="DST" />
                   <Line yAxisId="right" type="monotone" dataKey="QB_avg" stroke="#ef4444" strokeWidth={2} dot={false} name="Avg Value" />
                   <Line yAxisId="right" type="monotone" dataKey="RB_avg" stroke="#3b82f6" strokeWidth={2} dot={false} />
                   <Line yAxisId="right" type="monotone" dataKey="WR_avg" stroke="#8b5cf6" strokeWidth={2} dot={false} />
                   <Line yAxisId="right" type="monotone" dataKey="TE_avg" stroke="#f59e0b" strokeWidth={2} dot={false} />
-                  <Line yAxisId="right" type="monotone" dataKey="K_avg" stroke="#6b7280" strokeWidth={2} dot={false} />
-                  <Line yAxisId="right" type="monotone" dataKey="DST_avg" stroke="#10b981" strokeWidth={2} dot={false} />
                 </ComposedChart>
               </ResponsiveContainer>
             </div>
@@ -244,28 +240,15 @@ export default function DraftPage() {
             <CardDescription>Top draft picks by value all-time.</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {filteredTopPicks && filteredTopPicks.length > 0 ? (
                 filteredTopPicks.slice(0, 8).map((pick, idx) => (
-                  <div key={pick._id} className="p-4 bg-muted/50 rounded-lg space-y-2">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="font-semibold text-sm">
-                          {pick.player.name} {pick.player.position}
-                          {pick.player.team ? ` (${pick.player.team})` : ''}
-                        </div>
-                        <div className="text-xs text-muted-foreground mt-1">{pick.season.year} · {pick.value.toFixed(1)}</div>
-                      </div>
+                  <div key={pick._id} className="p-3 bg-muted/50 rounded-lg flex items-center justify-between">
+                    <div>
+                      <div className="font-semibold text-sm">{pick.player.name}</div>
+                      <div className="text-xs text-muted-foreground">{pick.season.year} · #{pick.overallPick} · {pick.team.ownerDisplayName || pick.team.name}</div>
                     </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <Avatar className="w-6 h-6">
-                          <AvatarFallback className="text-xs">{pick.team.name.substring(0, 2).toUpperCase()}</AvatarFallback>
-                        </Avatar>
-                        <span className="text-xs font-medium">{pick.team.ownerDisplayName || pick.team.name}</span>
-                      </div>
-                      <Badge className="bg-green-500 text-white text-xs">{pick.value > 0 ? '+' : ''}{pick.value.toFixed(2)}</Badge>
-                    </div>
+                    <Badge className="bg-green-500 text-white text-xs">{pick.value > 0 ? '+' : ''}{pick.value.toFixed(2)}</Badge>
                   </div>
                 ))
               ) : (
@@ -282,28 +265,15 @@ export default function DraftPage() {
             <CardDescription>Worst draft picks by value all-time.</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {filteredWorstPicks && filteredWorstPicks.length > 0 ? (
                 filteredWorstPicks.slice(0, 8).map((pick, idx) => (
-                  <div key={pick._id} className="p-4 bg-muted/50 rounded-lg space-y-2">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="font-semibold text-sm">
-                          {pick.player.name} · {pick.player.position}
-                          {pick.player.team ? ` (${pick.player.team})` : ''}
-                        </div>
-                        <div className="text-xs text-muted-foreground mt-1">{pick.season.year} · {pick.value.toFixed(1)}</div>
-                      </div>
+                  <div key={pick._id} className="p-3 bg-muted/50 rounded-lg flex items-center justify-between">
+                    <div>
+                      <div className="font-semibold text-sm">{pick.player.name}</div>
+                      <div className="text-xs text-muted-foreground">{pick.season.year} · #{pick.overallPick} · {pick.team.ownerDisplayName || pick.team.name}</div>
                     </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <Avatar className="w-6 h-6">
-                          <AvatarFallback className="text-xs">{pick.team.name.substring(0, 2).toUpperCase()}</AvatarFallback>
-                        </Avatar>
-                        <span className="text-xs font-medium">{pick.team.ownerDisplayName || pick.team.name}</span>
-                      </div>
-                      <Badge className="bg-red-500 text-white text-xs">{pick.value.toFixed(2)}</Badge>
-                    </div>
+                    <Badge className="bg-red-500 text-white text-xs">{pick.value.toFixed(2)}</Badge>
                   </div>
                 ))
               ) : (
@@ -322,23 +292,16 @@ export default function DraftPage() {
           <CardContent>
             <div className="space-y-3">
               {filteredRankings && filteredRankings.length > 0 ? (
-                filteredRankings.slice(0, 10).map((ranking, idx) => (
+                filteredRankings.slice(0, 8).map((ranking, idx) => (
                   <div key={ranking.team._id} className="p-3 bg-muted/50 rounded-lg flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <div className="flex items-center space-x-2">
-                        <span className="text-xs font-bold text-muted-foreground">#{idx + 1}</span>
-                        <Avatar className="w-6 h-6">
-                          <AvatarFallback className="text-xs">{(ranking.team.ownerDisplayName || ranking.team.name || 'U').substring(0, 2).toUpperCase()}</AvatarFallback>
-                        </Avatar>
-                        <div className="flex flex-col">
-                          <span className="text-xs font-medium">{ranking.team.ownerDisplayName || ranking.team.name}</span>
-                          <span className="text-[10px] text-muted-foreground">{ranking.totalSeasons} seasons</span>
-                        </div>
+                      <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-xs font-bold text-black">#{idx+1}</div>
+                      <div>
+                        <div className="font-semibold text-sm">{ranking.team.ownerDisplayName || ranking.team.name}</div>
+                        <div className="text-xs text-muted-foreground">{ranking.totalSeasons} seasons</div>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <Badge className="text-white text-xs" style={{ background: getRankColor(idx, Math.min(10, filteredRankings.length)) }}>{ranking.avgValue}</Badge>
-                    </div>
+                    <Badge className="text-white text-xs" style={{ background: getRankColor(idx, Math.min(8, filteredRankings.length)) }}>{ranking.avgValue}</Badge>
                   </div>
                 ))
               ) : (
@@ -358,8 +321,6 @@ export default function DraftPage() {
             { label: "RB PICKS", value: "RB" },
             { label: "WR PICKS", value: "WR" },
             { label: "TE PICKS", value: "TE" },
-            { label: "K PICKS", value: "K" },
-            { label: "DEF PICKS", value: "DST" },
           ].map((tab) => (
             <button
               key={tab.value}

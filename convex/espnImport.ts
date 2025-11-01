@@ -16,12 +16,10 @@ export const importEspnLeagueData = mutation({
       leagueId,
       year: espnData.year,
       isActive: espnData.year === new Date().getFullYear(),
-      totalTeams: espnData.teams.length,
       playoffTeams: Math.ceil(espnData.teams.length / 2),
       regularSeasonWeeks: 14,
       playoffWeeks: 3,
       dataSource: "ESPN",
-      hasCompleteData: true,
       createdAt: now,
       updatedAt: now,
     });
@@ -34,15 +32,8 @@ export const importEspnLeagueData = mutation({
         espnTeamId: team.team_id,
         name: team.team_name,
         ownerId: "temp_owner_id" as any, // This would need to be mapped to actual user IDs
-        wins: team.wins,
-        losses: team.losses,
-        ties: team.ties || 0,
-        pointsFor: team.points_for,
-        pointsAgainst: team.points_against,
         standing: team.standing,
         finalStanding: team.final_standing,
-        streakLength: team.streak_length,
-        streakType: team.streak_type,
         createdAt: now,
         updatedAt: now,
       });
@@ -76,7 +67,6 @@ export const importEspnLeagueData = mutation({
             playerId,
             seasonId,
             points: player.points || 0,
-            isStarter: player.isStarter || false,
             createdAt: now,
             updatedAt: now,
           });

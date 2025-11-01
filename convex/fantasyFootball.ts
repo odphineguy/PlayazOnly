@@ -76,12 +76,10 @@ export const createHistoricalSeasons = mutation({
         leagueId,
         year,
         isActive: false,
-        totalTeams: 12, // Default team count
         playoffTeams: 6, // Default playoff teams
         regularSeasonWeeks: 14,
         playoffWeeks: 3,
         dataSource: "MANUAL",
-        hasCompleteData: false, // Will be updated when data is added
         createdAt: now,
         updatedAt: now,
       });
@@ -114,16 +112,9 @@ export const createTeam = mutation({
     seasonId: v.id("seasons"),
     espnTeamId: v.optional(v.number()),
     name: v.string(),
-    ownerId: v.id("users"),
-    wins: v.number(),
-    losses: v.number(),
-    ties: v.optional(v.number()),
-    pointsFor: v.number(),
-    pointsAgainst: v.number(),
+    ownerId: v.id("owners"),
     standing: v.number(),
     finalStanding: v.optional(v.number()),
-    streakLength: v.number(),
-    streakType: v.string(),
   },
   handler: async (ctx, args) => {
     const now = Date.now();
@@ -243,10 +234,10 @@ export const getTransactionsByTypeAndSeason = query({
     }
     
     if (args.type) {
-      return transactions.filter(t => t.type === args.type).sort((a, b) => b.createdAt - a.createdAt);
+      return transactions.filter(t => t.type === args.type).sort((a, b) => (b.createdAt ?? 0) - (a.createdAt ?? 0));
     }
     
-    return transactions.sort((a, b) => b.createdAt - a.createdAt);
+    return transactions.sort((a, b) => (b.createdAt ?? 0) - (a.createdAt ?? 0));
   },
 });
 
@@ -507,23 +498,29 @@ export const createSampleData = mutation({
         leagueId,
         year,
         isActive: year === 2024,
-        totalTeams: 12,
         playoffTeams: 6,
         regularSeasonWeeks: 14,
         playoffWeeks: 3,
         dataSource: "MANUAL",
-        hasCompleteData: true,
         createdAt: now,
         updatedAt: now,
       });
       seasons.push({ year, seasonId });
     }
 
+    // Create sample owner
+    const ownerId = await ctx.db.insert("owners", {
+      displayName: "Sample Owner",
+      userId,
+      createdAt: now,
+      updatedAt: now,
+    });
+
     // Create sample teams for 2024 season
     const currentSeason = seasons.find(s => s.year === 2024);
     if (currentSeason) {
       const teamNames = [
-        "South Side Delinquents", "What would Breesus do?", "Chandler TopFeeders", 
+        "South Side Delinquents", "What would Breesus do?", "Chandler TopFeeders",
         "Miami Big D Big Sack", "Young Money Cash Money", "Killer Beers",
         "Cock Blockers", "BOTTOM FEEDER", "The Tank", "OG LA Raiders",
         "Mad Men", "Wreaking Crew JDR"
@@ -534,15 +531,8 @@ export const createSampleData = mutation({
           leagueId,
           seasonId: currentSeason.seasonId,
           name: teamNames[i],
-          ownerId: userId, // Use the same user for all teams
-          wins: Math.floor(Math.random() * 10),
-          losses: Math.floor(Math.random() * 10),
-          ties: 0,
-          pointsFor: Math.floor(Math.random() * 2000) + 1000,
-          pointsAgainst: Math.floor(Math.random() * 2000) + 1000,
+          ownerId,
           standing: i + 1,
-          streakLength: Math.floor(Math.random() * 5),
-          streakType: Math.random() > 0.5 ? "WIN" : "LOSS",
           createdAt: now,
           updatedAt: now,
         });
@@ -588,18 +578,25 @@ export const debugTeamOwners = query({
   args: {},
   handler: async (ctx) => {
     const teams = await ctx.db.query("teams").collect();
-    const sample = teams.slice(0, 20).map(t => ({
-      name: t.name,
-      ownerDisplayName: t.ownerDisplayName,
-      wins: t.wins,
-      losses: t.losses,
-      seasonId: t.seasonId
-    }));
+    const owners = await ctx.db.query("owners").collect();
+    const ownerMap = new Map(owners.map(o => [o._id, o]));
+
+    const sample = teams.slice(0, 20).map(t => {
+      const owner = ownerMap.get(t.ownerId);
+      return {
+        name: t.name,
+        ownerDisplayName: owner?.displayName || "Unknown",
+        seasonId: t.seasonId
+      };
+    });
 
     return {
       totalTeams: teams.length,
       sample,
-      uniqueOwners: [...new Set(teams.map(t => t.ownerDisplayName))],
+      uniqueOwners: [...new Set(teams.map(t => {
+        const owner = ownerMap.get(t.ownerId);
+        return owner?.displayName || "Unknown";
+      }))],
       uniqueTeamNames: [...new Set(teams.map(t => t.name))]
     };
   },
@@ -738,7 +735,7 @@ export const getChampionshipMatchups = query({
     // Sort by season and week
     return matchups.sort((a, b) => {
       // We'll need to get season data to sort properly
-      return b.createdAt - a.createdAt; // For now, sort by creation time
+      return (b.createdAt ?? 0) - (a.createdAt ?? 0); // For now, sort by creation time
     }).slice(0, limit);
   },
 });
@@ -778,17 +775,31 @@ export const getMatchupStats = query({
       .withIndex("bySeason", (q) => q.eq("seasonId", matchup.seasonId))
       .collect();
     
-    const leagueAvgScore = seasonMatchups.length > 0 
+    const leagueAvgScore = seasonMatchups.length > 0
       ? seasonMatchups.reduce((sum, m) => sum + m.homeScore + m.awayScore, 0) / (seasonMatchups.length * 2)
       : 0;
-    
+
+    // Calculate team stats from matchups
+    const homeTeamMatchups = seasonMatchups.filter(m => m.homeTeamId === homeTeam._id || m.awayTeamId === homeTeam._id);
+    const awayTeamMatchups = seasonMatchups.filter(m => m.homeTeamId === awayTeam._id || m.awayTeamId === awayTeam._id);
+
+    const homeTeamPointsFor = homeTeamMatchups.reduce((sum, m) => {
+      return sum + (m.homeTeamId === homeTeam._id ? m.homeScore : m.awayScore);
+    }, 0);
+    const awayTeamPointsFor = awayTeamMatchups.reduce((sum, m) => {
+      return sum + (m.homeTeamId === awayTeam._id ? m.homeScore : m.awayScore);
+    }, 0);
+
+    const homeTeamGames = homeTeamMatchups.length;
+    const awayTeamGames = awayTeamMatchups.length;
+
     // Calculate team averages
-    const homeTeamAvg = homeTeam.pointsFor / (homeTeam.wins + homeTeam.losses);
-    const awayTeamAvg = awayTeam.pointsFor / (awayTeam.wins + awayTeam.losses);
-    
+    const homeTeamAvg = homeTeamGames > 0 ? homeTeamPointsFor / homeTeamGames : 0;
+    const awayTeamAvg = awayTeamGames > 0 ? awayTeamPointsFor / awayTeamGames : 0;
+
     // Calculate luck factors (simplified)
-    const homeLuckFactor = ((matchup.homeScore - homeTeamAvg) / homeTeamAvg) * 100;
-    const awayLuckFactor = ((matchup.awayScore - awayTeamAvg) / awayTeamAvg) * 100;
+    const homeLuckFactor = homeTeamAvg > 0 ? ((matchup.homeScore - homeTeamAvg) / homeTeamAvg) * 100 : 0;
+    const awayLuckFactor = awayTeamAvg > 0 ? ((matchup.awayScore - awayTeamAvg) / awayTeamAvg) * 100 : 0;
     
     return {
       matchup,
@@ -820,7 +831,7 @@ export const cleanupDuplicates = mutation({
 
     if (playazLeagues.length > 1) {
       // Sort by createdAt, keep the oldest
-      playazLeagues.sort((a, b) => a.createdAt - b.createdAt);
+      playazLeagues.sort((a, b) => (a.createdAt ?? 0) - (b.createdAt ?? 0));
       const keepLeague = playazLeagues[0];
 
       // Delete duplicates
@@ -840,7 +851,7 @@ export const cleanupDuplicates = mutation({
       const seasonsByYear = new Map();
       allSeasons.forEach(season => {
         const existing = seasonsByYear.get(season.year);
-        if (!existing || season.createdAt > existing.createdAt) {
+        if (!existing || (season.createdAt ?? 0) > (existing.createdAt ?? 0)) {
           if (existing) {
             seasonsByYear.set(season.year, { keep: season, duplicates: [existing, ...(seasonsByYear.get(season.year)?.duplicates || [])] });
           } else {
@@ -884,7 +895,7 @@ export const cleanupDuplicates = mutation({
         const teamsByName = new Map();
         seasonTeams.forEach(team => {
           const existing = teamsByName.get(team.name);
-          if (!existing || team.createdAt > existing.createdAt) {
+          if (!existing || (team.createdAt ?? 0) > (existing.createdAt ?? 0)) {
             if (existing) {
               teamsByName.set(team.name, { keep: team, duplicates: [existing, ...(teamsByName.get(team.name)?.duplicates || [])] });
             } else {
@@ -974,38 +985,56 @@ export const getMostDisappointing = query({
 
     if (matchups.length === 0) return null;
 
+    // Get all matchups for the season up to this week to calculate averages
+    const allSeasonMatchups = await ctx.db.query("matchups")
+      .withIndex("bySeason", (q) => q.eq("seasonId", args.seasonId))
+      .collect();
+
+    const matchupsUpToWeek = allSeasonMatchups.filter(m => m.week <= args.week);
+
+    // Calculate team stats from matchups
+    const teamStats = new Map<string, { pointsFor: number; games: number }>();
+
+    for (const m of matchupsUpToWeek) {
+      // Home team
+      const homeStats = teamStats.get(m.homeTeamId) || { pointsFor: 0, games: 0 };
+      homeStats.pointsFor += m.homeScore;
+      homeStats.games++;
+      teamStats.set(m.homeTeamId, homeStats);
+
+      // Away team
+      const awayStats = teamStats.get(m.awayTeamId) || { pointsFor: 0, games: 0 };
+      awayStats.pointsFor += m.awayScore;
+      awayStats.games++;
+      teamStats.set(m.awayTeamId, awayStats);
+    }
+
     let worstPerformance = 0;
     let disappointingTeamId = null;
     let disappointingScore = 0;
 
     for (const matchup of matchups) {
       // Check home team
-      const homeTeam = await ctx.db.get(matchup.homeTeamId);
-      if (homeTeam) {
-        const games = homeTeam.wins + homeTeam.losses;
-        if (games > 0) {
-          const homeAvg = homeTeam.pointsFor / games;
-          const homeDiff = matchup.homeScore - homeAvg;
-          if (homeDiff < worstPerformance) {
-            worstPerformance = homeDiff;
-            disappointingTeamId = matchup.homeTeamId;
-            disappointingScore = matchup.homeScore;
-          }
+      const homeStats = teamStats.get(matchup.homeTeamId);
+      if (homeStats && homeStats.games > 0) {
+        const homeAvg = homeStats.pointsFor / homeStats.games;
+        const homeDiff = matchup.homeScore - homeAvg;
+        if (homeDiff < worstPerformance) {
+          worstPerformance = homeDiff;
+          disappointingTeamId = matchup.homeTeamId;
+          disappointingScore = matchup.homeScore;
         }
       }
 
       // Check away team
-      const awayTeam = await ctx.db.get(matchup.awayTeamId);
-      if (awayTeam) {
-        const games = awayTeam.wins + awayTeam.losses;
-        if (games > 0) {
-          const awayAvg = awayTeam.pointsFor / games;
-          const awayDiff = matchup.awayScore - awayAvg;
-          if (awayDiff < worstPerformance) {
-            worstPerformance = awayDiff;
-            disappointingTeamId = matchup.awayTeamId;
-            disappointingScore = matchup.awayScore;
-          }
+      const awayStats = teamStats.get(matchup.awayTeamId);
+      if (awayStats && awayStats.games > 0) {
+        const awayAvg = awayStats.pointsFor / awayStats.games;
+        const awayDiff = matchup.awayScore - awayAvg;
+        if (awayDiff < worstPerformance) {
+          worstPerformance = awayDiff;
+          disappointingTeamId = matchup.awayTeamId;
+          disappointingScore = matchup.awayScore;
         }
       }
     }
@@ -1080,21 +1109,39 @@ export const getLuckiest = query({
     let luckiestTeamId = null;
     let luckiestScore = 0;
 
+    // Calculate team stats from all season matchups
+    const allSeasonMatchups = await ctx.db.query("matchups")
+      .withIndex("bySeason", (q) => q.eq("seasonId", args.seasonId))
+      .collect();
+
+    const matchupsUpToWeek = allSeasonMatchups.filter(m => m.week <= args.week);
+
+    const teamStats = new Map<string, { pointsFor: number; games: number }>();
+
+    for (const m of matchupsUpToWeek) {
+      const homeStats = teamStats.get(m.homeTeamId) || { pointsFor: 0, games: 0 };
+      homeStats.pointsFor += m.homeScore;
+      homeStats.games++;
+      teamStats.set(m.homeTeamId, homeStats);
+
+      const awayStats = teamStats.get(m.awayTeamId) || { pointsFor: 0, games: 0 };
+      awayStats.pointsFor += m.awayScore;
+      awayStats.games++;
+      teamStats.set(m.awayTeamId, awayStats);
+    }
+
     for (const matchup of matchups) {
       // Check home team (only if they won)
       if (matchup.homeScore > matchup.awayScore) {
-        const homeTeam = await ctx.db.get(matchup.homeTeamId);
-        if (homeTeam) {
-          const games = homeTeam.wins + homeTeam.losses;
-          if (games > 0) {
-            const homeAvg = homeTeam.pointsFor / games;
-            if (homeAvg > 0) {
-              const homeLuck = ((matchup.homeScore - homeAvg) / homeAvg) * 100;
-              if (homeLuck > highestLuck) {
-                highestLuck = homeLuck;
-                luckiestTeamId = matchup.homeTeamId;
-                luckiestScore = matchup.homeScore;
-              }
+        const homeStats = teamStats.get(matchup.homeTeamId);
+        if (homeStats && homeStats.games > 0) {
+          const homeAvg = homeStats.pointsFor / homeStats.games;
+          if (homeAvg > 0) {
+            const homeLuck = ((matchup.homeScore - homeAvg) / homeAvg) * 100;
+            if (homeLuck > highestLuck) {
+              highestLuck = homeLuck;
+              luckiestTeamId = matchup.homeTeamId;
+              luckiestScore = matchup.homeScore;
             }
           }
         }
@@ -1102,18 +1149,15 @@ export const getLuckiest = query({
 
       // Check away team (only if they won)
       if (matchup.awayScore > matchup.homeScore) {
-        const awayTeam = await ctx.db.get(matchup.awayTeamId);
-        if (awayTeam) {
-          const games = awayTeam.wins + awayTeam.losses;
-          if (games > 0) {
-            const awayAvg = awayTeam.pointsFor / games;
-            if (awayAvg > 0) {
-              const awayLuck = ((matchup.awayScore - awayAvg) / awayAvg) * 100;
-              if (awayLuck > highestLuck) {
-                highestLuck = awayLuck;
-                luckiestTeamId = matchup.awayTeamId;
-                luckiestScore = matchup.awayScore;
-              }
+        const awayStats = teamStats.get(matchup.awayTeamId);
+        if (awayStats && awayStats.games > 0) {
+          const awayAvg = awayStats.pointsFor / awayStats.games;
+          if (awayAvg > 0) {
+            const awayLuck = ((matchup.awayScore - awayAvg) / awayAvg) * 100;
+            if (awayLuck > highestLuck) {
+              highestLuck = awayLuck;
+              luckiestTeamId = matchup.awayTeamId;
+              luckiestScore = matchup.awayScore;
             }
           }
         }
