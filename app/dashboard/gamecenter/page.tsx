@@ -85,7 +85,7 @@ export default function GamecenterPage() {
       const seasonsByYear = new Map();
       seasonsRaw.forEach(season => {
         const existing = seasonsByYear.get(season.year);
-        if (!existing || season.createdAt > existing.createdAt) {
+        if (!existing || season._creationTime > existing._creationTime) {
           seasonsByYear.set(season.year, season);
         }
       });
@@ -99,7 +99,7 @@ export default function GamecenterPage() {
       teamsRaw.forEach(team => {
         const key = `${team.seasonId}-${team.name}`;
         const existing = teamsBySeasonAndName.get(key);
-        if (!existing || team.createdAt > existing.createdAt) {
+        if (!existing || team._creationTime > existing._creationTime) {
           teamsBySeasonAndName.set(key, team);
         }
       });
