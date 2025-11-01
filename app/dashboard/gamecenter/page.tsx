@@ -116,10 +116,11 @@ export default function GamecenterPage() {
   }, [leagues]);
 
   useEffect(() => {
-    if (currentLeague && seasons.length > 0) {
-      setLeagueSeasons(seasons.filter(season => season.leagueId === currentLeague._id));
+    if (seasons.length > 0) {
+      // Since leagueId was removed in migration, use all seasons
+      setLeagueSeasons(seasons);
     }
-  }, [currentLeague, seasons]);
+  }, [seasons]);
 
   useEffect(() => {
     if (leagueSeasons.length > 0) {
